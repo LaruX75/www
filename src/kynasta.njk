@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Kynästä — kirjoitukset, puheet ja kannanotot
-description: "Jari Larun kirjoitukset, puheenvuorot ja kannanotot yhdestä paikasta. Sisältö on jaettu kolmeen kokonaisuuteen: Kirjoitukset (blogi, mielipiteet, kolumnit), Valtuustotyö (puheet, aloitteet) ja Lausunnot (asiantuntijalausunnot, julkiset puheet)."
+description: "Jari Larun kirjoitukset, puheenvuorot ja kannanotot yhdestä paikasta. Sisältö on jaettu kolmeen kokonaisuuteen: Kirjoitukset (blogi, mielipiteet, kolumnit), Valtuustotyö (puheet, aloitteet) ja Asiantuntijatyö (lausunnot, julkiset puheet). Kussakin ryhmässä näytetään viisi tuoreinta tekstiä."
 permalink: /kynasta/
 translationKey: writings_index
 pageStyles:
@@ -31,50 +31,11 @@ schemaMentions:
     name: "Pohjois-Pohjanmaan hyvinvointialue"
     url: "https://pohde.fi/"
 ---
-{# ---- Kynästä-hubin sisällönlaskenta ---- #}
-{% set statementItems = [] %}
-{% for item in (collections.publications or []) %}
-  {% if item.data.type == "lausunto" %}
-    {% set _ = (statementItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set councilSpeechItems = [] %}
-{% set publicSpeechItems = [] %}
-{% for item in (collections.pub_puhe or []) %}
-  {% set speechContext = item.data.speechContext or "" %}
-  {% set forums = item.data.forum or [] %}
-  {% if speechContext %}
-    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
-  {% else %}
-    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
-  {% endif %}
-  {% if isCouncilSpeech %}
-    {% set _ = (councilSpeechItems.push(item), null) %}
-  {% else %}
-    {% set _ = (publicSpeechItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-
-{% set councilSpeechCount = councilSpeechItems | length %}
-{% set publicSpeechCount = publicSpeechItems | length %}
-{% set initiativeCount = (collections.politics or []) | length %}
-{% set statementCount = statementItems | length %}
-{% set blogCount = (collections.blog or []) | length %}
-{% set opinionCount = (collections.pub_mielipide or []) | length %}
-{% set columnCount = (collections.pub_kolumni or []) | length %}
-
-{% set writingsCount = blogCount + opinionCount + columnCount %}
-{% set councilCount = councilSpeechCount + initiativeCount %}
-{% set expertCount = statementCount + publicSpeechCount %}
-{% set totalCount = writingsCount + councilCount + expertCount %}
-
-{% set latestBlog = (collections.blog or []).slice(0, 3) %}
-{% set latestOpinion = (collections.pub_mielipide or []).slice(0, 3) %}
-{% set latestColumn = (collections.pub_kolumni or []).slice(0, 3) %}
-{% set latestSpeech = councilSpeechItems.slice(0, 3) %}
-{% set latestInitiative = (collections.politics or []).slice(0, 3) %}
-{% set latestStatement = statementItems.slice(0, 3) %}
-{% set latestPublicSpeech = publicSpeechItems.slice(0, 3) %}
+{# KYNÄSTÄ-HUB-02: content-rich SSR hub.
+   All grouping, sorting and latest-5 slicing lives in the canonical
+   kynastaHubPage projection (src/_utils/kynastaHubPage.js). Nunjucks
+   only renders — no classification, no counting, no .slice() here. #}
+{% set model = kynastaHubPage %}
 
 <section class="kynasta-hero py-4 py-lg-5">
   <div class="site-shell">
@@ -82,8 +43,7 @@ schemaMentions:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-2">Kynästä</p>
         <h1 class="display-6 fw-bold mb-3">Kirjoitukset, puheet ja kannanotot</h1>
-        <p class="text-muted mb-3">Yhteensä <strong>{{ totalCount }}</strong> tekstiä ja puheenvuoroa on koottu kolmeen sivuun: kirjoituksia, valtuustotyötä ja asiantuntijatyötä. Valitse alta reitti, joka kuvaa parhaiten sitä, mitä etsit.</p>
-        <p class="small text-muted mb-0">Näet nostoja tuoreimmista teksteistä alempana kunkin kortin sisällä.</p>
+        <p class="text-muted mb-3">Yhteensä <strong>{{ model.totalCount }}</strong> tekstiä ja puheenvuoroa on koottu kolmeen kokonaisuuteen: kirjoituksia, valtuustotyötä ja asiantuntijatyötä. Kussakin osiossa näet viisi tuoreinta tekstiä ja linkin koko arkistoon.</p>
       </div>
       <div class="col-lg-4">
         <aside class="kynasta-hero-aside">
@@ -91,7 +51,7 @@ schemaMentions:
           <ul class="kynasta-hero-aside-list mb-0">
             <li><strong>Kirjoitukset:</strong> blogia, mielipiteitä ja kolumneja — vapaamuotoisia tekstejä.</li>
             <li><strong>Valtuustotyö:</strong> puheenvuoroja ja aloitteita kaupunginvaltuustossa.</li>
-            <li><strong>Lausunnot:</strong> asiantuntijalausuntoja valmisteluun ja julkisia puheita.</li>
+            <li><strong>Asiantuntijatyö:</strong> asiantuntijalausuntoja ja julkisia puheita.</li>
           </ul>
         </aside>
       </div>
@@ -99,100 +59,118 @@ schemaMentions:
   </div>
 </section>
 
-<section class="py-5" id="reitit">
+{# ---- Kirjoitukset ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="kirjoitukset" aria-labelledby="kynasta-writings-heading">
   <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">Kirjoitukset</p>
+      <h2 id="kynasta-writings-heading" class="h3 mb-2">Vapaamuotoiset kirjoitukset ja julkaistut kannanotot</h2>
+      <p class="text-muted mb-0">Blogitekstit, mielipidekirjoitukset ja kolumnit yhteensä <strong>{{ model.writings.count }}</strong> tekstiä.</p>
+    </header>
     <div class="row g-4">
-
-      {# ---- Kortti 1: Kirjoitukset ---- #}
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
-          <div class="card-body p-4 d-flex flex-column">
-            <p class="kynasta-entry-kicker">Kirjoitukset</p>
-            <h2 class="h4 mb-2">Blogi, mielipiteet ja kolumnit</h2>
-            <p class="small text-muted mb-3">Vapaamuotoiset omat tekstit yhdellä sivulla. Blogissa on syvempiä pohdintoja opetuksesta, teknologiasta ja avoimesta tieteestä. Mielipidekirjoitukset ja kolumnit ovat julkaistuja tekstejä lehdissä.</p>
-            <div class="d-grid gap-3 mb-4">
-              {% if latestBlog[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Blogi <span class="text-muted fw-normal">({{ blogCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestBlog[0].url }}">{{ latestBlog[0].data.title }}</a>
-              </div>
-              {% endif %}
-              {% if latestOpinion[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Mielipiteet <span class="text-muted fw-normal">({{ opinionCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestOpinion[0].data.url or latestOpinion[0].url }}">{{ latestOpinion[0].data.title }}</a>
-              </div>
-              {% endif %}
-              {% if latestColumn[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Kolumnit <span class="text-muted fw-normal">({{ columnCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestColumn[0].data.url or latestColumn[0].url }}">{{ latestColumn[0].data.title }}</a>
-              </div>
-              {% endif %}
-            </div>
-            <div class="mt-auto">
-              <a class="btn btn-primary btn-sm rounded-pill px-4" href="/kirjoitukset/">Selaa kirjoituksia <i class="bi bi-arrow-right ms-1"></i></a>
-            </div>
-          </div>
-        </article>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Blogi" %}
+        {% set subsectionDescription = "Blogin syvempiä pohdintoja opetuksesta, teknologiasta ja avoimesta tieteestä." %}
+        {% set subsectionItems = model.writings.groups.blog.latestItems %}
+        {% set subsectionCount = model.writings.groups.blog.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#blogi" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki blogitekstit" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei blogitekstejä." %}
+        {% include "kynasta-hub-subsection.njk" %}
       </div>
-
-      {# ---- Kortti 2: Valtuustotyö ---- #}
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
-          <div class="card-body p-4 d-flex flex-column">
-            <p class="kynasta-entry-kicker">Valtuustotyö</p>
-            <h2 class="h4 mb-2">Puheenvuorot ja aloitteet</h2>
-            <p class="small text-muted mb-3">Oulun kaupunginvaltuustossa pidetyt puheenvuorot ja kirjalliset aloitteet päätöksenteon valmisteluun. Politiikan kokonaiskuva näkyy myös Politiikka-sivulla.</p>
-            <div class="d-grid gap-3 mb-4">
-              {% if latestSpeech[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Valtuustopuheet <span class="text-muted fw-normal">({{ councilSpeechCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestSpeech[0].data.url or latestSpeech[0].url }}">{{ latestSpeech[0].data.title }}</a>
-              </div>
-              {% endif %}
-              {% if latestInitiative[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Aloitteet <span class="text-muted fw-normal">({{ initiativeCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestInitiative[0].data.url or latestInitiative[0].url }}">{{ latestInitiative[0].data.title }}</a>
-              </div>
-              {% endif %}
-            </div>
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              <a class="btn btn-primary btn-sm rounded-pill px-4" href="/valtuustotyo/">Selaa puheenvuoroja ja aloitteita <i class="bi bi-arrow-right ms-1"></i></a>
-            </div>
-          </div>
-        </article>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Mielipidekirjoitukset" %}
+        {% set subsectionDescription = "Lehdissä julkaistut kannanotot ja mielipidekirjoitukset." %}
+        {% set subsectionItems = model.writings.groups.opinion.latestItems %}
+        {% set subsectionCount = model.writings.groups.opinion.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#mielipiteet" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki mielipidekirjoitukset" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei mielipidekirjoituksia." %}
+        {% include "kynasta-hub-subsection.njk" %}
       </div>
-
-      {# ---- Kortti 3: Lausunnot ja julkiset puheet ---- #}
-      <div class="col-lg-4">
-        <article class="card border-0 shadow-sm h-100 kynasta-route-card">
-          <div class="card-body p-4 d-flex flex-column">
-            <p class="kynasta-entry-kicker">Asiantuntijatyö</p>
-            <h2 class="h4 mb-2">Lausunnot ja julkiset puheet</h2>
-            <p class="small text-muted mb-3">Valmisteluprosesseihin annetut asiantuntijalausunnot sekä julkiset puheet (juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot). Tutkimustieto ja opetusosaaminen viedään päätöksenteon valmisteluun tai julkiseen keskusteluun.</p>
-            <div class="d-grid gap-3 mb-4">
-              {% if latestStatement[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Lausunnot <span class="text-muted fw-normal">({{ statementCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestStatement[0].url }}">{{ latestStatement[0].data.title }}</a>
-              </div>
-              {% endif %}
-              {% if latestPublicSpeech[0] %}
-              <div>
-                <p class="small text-uppercase text-muted fw-semibold mb-1">Julkiset puheet <span class="text-muted fw-normal">({{ publicSpeechCount }})</span></p>
-                <a class="text-decoration-none fw-semibold" href="{{ latestPublicSpeech[0].data.url or latestPublicSpeech[0].url }}">{{ latestPublicSpeech[0].data.title }}</a>
-              </div>
-              {% endif %}
-            </div>
-            <div class="mt-auto">
-              <a class="btn btn-primary btn-sm rounded-pill px-4" href="/lausunnot/">Selaa lausuntoja <i class="bi bi-arrow-right ms-1"></i></a>
-            </div>
-          </div>
-        </article>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Kolumnit ja blogivierailut" %}
+        {% set subsectionDescription = "Lehtiin ja verkkojulkaisuihin kirjoitetut kolumnit sekä vieraskirjoitukset." %}
+        {% set subsectionItems = model.writings.groups.column.latestItems %}
+        {% set subsectionCount = model.writings.groups.column.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#kolumnit" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki kolumnit" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei kolumneja." %}
+        {% include "kynasta-hub-subsection.njk" %}
       </div>
+    </div>
+  </div>
+</section>
 
+{# ---- Valtuustotyö ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5 bg-body-tertiary border-top border-bottom" id="valtuustotyo" aria-labelledby="kynasta-council-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">Valtuustotyö</p>
+      <h2 id="kynasta-council-heading" class="h3 mb-2">Kaupunginvaltuustoon liittyvät puheenvuorot ja aloitteet</h2>
+      <p class="text-muted mb-0">Oulun kaupunginvaltuustossa pidetyt puheenvuorot ja kirjalliset aloitteet, yhteensä <strong>{{ model.council.count }}</strong> tapausta.</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6">
+        {% set subsectionHeading = "Valtuustopuheet" %}
+        {% set subsectionDescription = "Kaupunginvaltuustossa pidetyt puheenvuorot päätöskohdissa ja kyselytunneilla." %}
+        {% set subsectionItems = model.council.groups.speeches.latestItems %}
+        {% set subsectionCount = model.council.groups.speeches.count %}
+        {% set subsectionArchiveUrl = "/valtuustotyo/#puheet" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki valtuustopuheet" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei valtuustopuheita." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6">
+        {% set subsectionHeading = "Valtuustoaloitteet" %}
+        {% set subsectionDescription = "Kirjalliset aloitteet päätöksenteon valmisteluun." %}
+        {% set subsectionItems = model.council.groups.initiatives.latestItems %}
+        {% set subsectionCount = model.council.groups.initiatives.count %}
+        {% set subsectionArchiveUrl = "/valtuustotyo/#aloitteet" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki aloitteet" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei aloitteita." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Asiantuntijatyö ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="asiantuntijatyo" aria-labelledby="kynasta-expert-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">Asiantuntijatyö</p>
+      <h2 id="kynasta-expert-heading" class="h3 mb-2">Asiantuntijana annetut lausunnot ja muut julkiset puheet</h2>
+      <p class="text-muted mb-0">Valmisteluprosesseihin annetut lausunnot ja juhla-, yliopisto- sekä yleisötilaisuuksien puheenvuorot, yhteensä <strong>{{ model.expert.count }}</strong> tapausta.</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6">
+        {% set subsectionHeading = "Lausunnot" %}
+        {% set subsectionDescription = "Asiantuntijalausunnot opetuksesta, koulutuksesta ja teknologiasta." %}
+        {% set subsectionItems = model.expert.groups.statements.latestItems %}
+        {% set subsectionCount = model.expert.groups.statements.count %}
+        {% set subsectionArchiveUrl = "/lausunnot/#lausunnot" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki lausunnot" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei lausuntoja." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6">
+        {% set subsectionHeading = "Julkiset puheet" %}
+        {% set subsectionDescription = "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." %}
+        {% set subsectionItems = model.expert.groups.publicSpeeches.latestItems %}
+        {% set subsectionCount = model.expert.groups.publicSpeeches.count %}
+        {% set subsectionArchiveUrl = "/lausunnot/#julkiset-puheet" %}
+        {% set subsectionArchiveLabel = "Näytä kaikki julkiset puheet" %}
+        {% set subsectionLang = "fi" %}
+        {% set subsectionEmptyText = "Ei julkisia puheita." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
     </div>
   </div>
 </section>
@@ -213,7 +191,10 @@ schemaMentions:
 </section>
 
 {# ---- Sisäisten linkkien säilyttäminen ---- #}
-{# Vanhat ankkurit (esim. /kynasta/#lausunnot) ohjataan asiakassivustolla oikeille sivuille #}
+{# Vanhat ankkurit (esim. /kynasta/#lausunnot) ohjataan asiakassivustolla oikeille sivuille.
+   Nämä ID:t on tarkoituksella ns. hidden-elementteinä — kohtaa /kynasta/#foo etsivät ulkoiset
+   linkit löytävät edelleen kohteensa. Sisäiset ankkurit /kynasta/#kirjoitukset, #valtuustotyo,
+   #asiantuntijatyo on vastaavasti käytössä uudessa hub-rakenteessa (ks. <section id=...>). #}
 <span id="lausunnot" class="visually-hidden" data-legacy-anchor data-target="/lausunnot/#lausunnot"></span>
 <span id="julkiset-puheet" class="visually-hidden" data-legacy-anchor data-target="/lausunnot/#julkiset-puheet"></span>
 <span id="puheet" class="visually-hidden" data-legacy-anchor data-target="/valtuustotyo/#puheet"></span>

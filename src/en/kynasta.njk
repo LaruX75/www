@@ -1,18 +1,129 @@
 ---
-layout: null
-permalink: /en/kynasta/index.html
-eleventyExcludeFromCollections: true
+layout: base.njk
+title: Writings, speeches and statements
+description: "Jari Laru's writings, speeches and statements grouped by domain. English content covers the writings section (blog posts, opinion pieces and columns) with five newest per subgroup. Council work and expert statements are currently available only in Finnish; direct links to the Finnish archives are included."
+permalink: /en/kynasta/
+translationKey: writings_index
+lang: en
+pageStyles:
+  - /css/kynasta-page.css
+schemaType: CollectionPage
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="robots" content="noindex, follow">
-    <meta http-equiv="refresh" content="0; url=/en/writings/">
-    <link rel="canonical" href="https://www.jarilaru.fi/en/writings/">
-    <title>Redirecting...</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href="/en/writings/">/en/writings/</a>.</p>
-  </body>
-</html>
+{# KYNÄSTÄ-HUB-02 (EN): partial hub. Writings section fully populated
+   from EN-scoped items. Council + Expert sections render an honest
+   "Available only in Finnish" note with links to the FI archives —
+   no fabricated EN content, matches spec §9. #}
+{% set model = kynastaHubPage %}
+
+<section class="kynasta-hero py-4 py-lg-5">
+  <div class="site-shell">
+    <div class="row align-items-start g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">Kynästä</p>
+        <h1 class="display-6 fw-bold mb-3">Writings, speeches and statements</h1>
+        <p class="text-muted mb-3">Jari Laru's public writing organised into three domains. English content is available for the writings section (blog, opinion, column). Council work and expert statements are currently published only in Finnish; links to the Finnish archives are provided below.</p>
+      </div>
+      <div class="col-lg-4">
+        <aside class="kynasta-hero-aside">
+          <p class="kynasta-hero-aside-kicker mb-2">How to browse</p>
+          <ul class="kynasta-hero-aside-list mb-0">
+            <li><strong>Writings:</strong> blog, opinion pieces and columns — free-form English texts.</li>
+            <li><strong>Council work:</strong> speeches and initiatives in the Oulu city council (Finnish).</li>
+            <li><strong>Expert work:</strong> expert statements and public speeches (Finnish).</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Writings (EN) ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="writings" aria-labelledby="kynasta-writings-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">Writings</p>
+      <h2 id="kynasta-writings-heading" class="h3 mb-2">Free-form writing and published pieces</h2>
+      <p class="text-muted mb-0">Blog posts, opinion pieces and columns — {{ model.writings.count }} English items in total.</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Blog" %}
+        {% set subsectionDescription = "In-depth reflections on teaching, technology and open science." %}
+        {% set subsectionItems = model.writings.groups.blog.latestItems %}
+        {% set subsectionCount = model.writings.groups.blog.count %}
+        {% set subsectionArchiveUrl = "/en/writings/#blog" %}
+        {% set subsectionArchiveLabel = "Show all blog posts" %}
+        {% set subsectionLang = "en" %}
+        {% set subsectionEmptyText = "No English blog posts yet." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Opinion pieces" %}
+        {% set subsectionDescription = "Published opinion pieces in newspapers and magazines." %}
+        {% set subsectionItems = model.writings.groups.opinion.latestItems %}
+        {% set subsectionCount = model.writings.groups.opinion.count %}
+        {% set subsectionArchiveUrl = "/en/writings/#opinion" %}
+        {% set subsectionArchiveLabel = "Show all opinion pieces" %}
+        {% set subsectionLang = "en" %}
+        {% set subsectionEmptyText = "No English opinion pieces yet." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Columns and guest posts" %}
+        {% set subsectionDescription = "Columns for magazines and guest posts on other blogs." %}
+        {% set subsectionItems = model.writings.groups.column.latestItems %}
+        {% set subsectionCount = model.writings.groups.column.count %}
+        {% set subsectionArchiveUrl = "/en/writings/#column" %}
+        {% set subsectionArchiveLabel = "Show all columns" %}
+        {% set subsectionLang = "en" %}
+        {% set subsectionEmptyText = "No English columns yet." %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Council work (FI only) ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5 bg-body-tertiary border-top border-bottom" id="council-work" aria-labelledby="kynasta-council-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-3">
+      <p class="text-uppercase small text-muted mb-1">Council work</p>
+      <h2 id="kynasta-council-heading" class="h3 mb-2">Available only in Finnish</h2>
+      <p class="text-muted mb-0">The city-council speeches ({{ model.council.groups.speeches.count }}) and written initiatives ({{ model.council.groups.initiatives.count }}) are published in Finnish only. Direct links to the Finnish archives:</p>
+    </header>
+    <ul class="list-unstyled mb-0 kynasta-hub-fi-only-list d-flex flex-wrap gap-2 mt-3">
+      <li><a class="btn btn-outline-primary btn-sm" href="/valtuustotyo/#puheet" lang="fi" hreflang="fi">Valtuustopuheet (Finnish) <span class="text-muted">({{ model.council.groups.speeches.count }})</span></a></li>
+      <li><a class="btn btn-outline-primary btn-sm" href="/valtuustotyo/#aloitteet" lang="fi" hreflang="fi">Valtuustoaloitteet (Finnish) <span class="text-muted">({{ model.council.groups.initiatives.count }})</span></a></li>
+    </ul>
+  </div>
+</section>
+
+{# ---- Expert work (FI only) ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="expert-work" aria-labelledby="kynasta-expert-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-3">
+      <p class="text-uppercase small text-muted mb-1">Expert work</p>
+      <h2 id="kynasta-expert-heading" class="h3 mb-2">Available only in Finnish</h2>
+      <p class="text-muted mb-0">Expert statements ({{ model.expert.groups.statements.count }}) and public speeches ({{ model.expert.groups.publicSpeeches.count }}) are published in Finnish only. Direct links to the Finnish archives:</p>
+    </header>
+    <ul class="list-unstyled mb-0 kynasta-hub-fi-only-list d-flex flex-wrap gap-2 mt-3">
+      <li><a class="btn btn-outline-primary btn-sm" href="/lausunnot/#lausunnot" lang="fi" hreflang="fi">Lausunnot (Finnish) <span class="text-muted">({{ model.expert.groups.statements.count }})</span></a></li>
+      <li><a class="btn btn-outline-primary btn-sm" href="/lausunnot/#julkiset-puheet" lang="fi" hreflang="fi">Julkiset puheet (Finnish) <span class="text-muted">({{ model.expert.groups.publicSpeeches.count }})</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-top border-bottom">
+  <div class="site-shell">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-1">Topics</p>
+        <h2 class="h3 mb-2">The same topics run across content types</h2>
+        <p class="text-muted mb-0">Service-network questions, open decision-making, teacher education and AI literacy appear in speeches, initiatives, statements and writings alike. Topic browsing collects related pieces across all types.</p>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-lg-end">
+        <a href="/en/topics/" class="btn btn-outline-primary btn-sm rounded-pill px-3">Browse by topic</a>
+      </div>
+    </div>
+  </div>
+</section>

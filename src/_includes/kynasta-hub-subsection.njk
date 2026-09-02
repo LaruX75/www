@@ -1,0 +1,46 @@
+{#
+  kynasta-hub-subsection.njk — shared 5-latest block for a single
+  canonical subgroup. Rendered by the Kynästä hub for both FI and EN.
+
+  Required context:
+    subsectionHeading      — visible h3 label
+    subsectionDescription  — one short intro line
+    subsectionItems        — array of normalized items from
+                             kynastaHubPage.groups.<key>.latestItems
+    subsectionCount        — total count in the group
+    subsectionArchiveUrl   — "Näytä kaikki" / "Show all" destination
+    subsectionArchiveLabel — CTA label ("Näytä kaikki gradut" etc.)
+    subsectionLang         — "fi" or "en"
+    subsectionEmptyText    — text to show when the group has zero items
+                             (only rendered when subsectionCount == 0)
+#}
+<article class="kynasta-hub-subsection" data-kynasta-hub-subsection>
+  <header class="kynasta-hub-subsection-header d-flex flex-wrap align-items-baseline justify-content-between gap-2 mb-2">
+    <h3 class="h5 mb-0">{{ subsectionHeading }}</h3>
+    <span class="badge text-bg-light border text-dark">{{ subsectionCount }}</span>
+  </header>
+  {% if subsectionDescription %}
+  <p class="text-muted small mb-2">{{ subsectionDescription }}</p>
+  {% endif %}
+  {% if subsectionItems and subsectionItems.length %}
+  <ol class="list-unstyled kynasta-hub-subsection-list mb-3">
+    {% for item in subsectionItems %}
+    <li class="kynasta-hub-subsection-item">
+      <a class="kynasta-hub-subsection-link fw-semibold text-decoration-none" href="{{ item.pageUrl }}">{{ item.title }}</a>
+      {% if item.date or item.publication or item.event %}
+      <div class="kynasta-hub-subsection-meta small text-muted">
+        {% if item.date %}<span class="kynasta-hub-subsection-date">{{ item.date }}</span>{% endif %}
+        {% if item.publication %}<span class="kynasta-hub-subsection-source">· {{ item.publication }}</span>{% endif %}
+        {% if item.event and not item.publication %}<span class="kynasta-hub-subsection-source">· {{ item.event }}</span>{% endif %}
+      </div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="text-muted small mb-3">{{ subsectionEmptyText }}</p>
+  {% endif %}
+  <a class="btn btn-outline-primary btn-sm" href="{{ subsectionArchiveUrl }}">
+    {{ subsectionArchiveLabel }} <span class="text-muted">({{ subsectionCount }})</span>
+  </a>
+</article>
