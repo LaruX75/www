@@ -90,6 +90,18 @@ pageStyles:
         href: "/en/politics/"
     }
 ] %}
+{% set homeRecognitionItems = [
+    {
+        year: "2020",
+        title: "National Open Science Award",
+        description: "Recognition for long-term work in open science, open teaching, and support for educators."
+    },
+    {
+        year: "2014",
+        title: "Teacher of the Year in Educational Technology",
+        description: "Recognition for sustained work connecting educational technology research, teaching, and shared expertise."
+    }
+] %}
 
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop" style="--hero-img: url('{{ '/img/WIN_20210329_16_06_01_Pro.jpg' | url }}')">
@@ -368,6 +380,31 @@ pageStyles:
                 </div>
             </div>
 
+        </div>
+    </div>
+</section>
+
+<section class="py-4 home-recognition-section" id="recognised-work" aria-labelledby="home-recognition-heading">
+    <div class="container">
+        <div class="home-recognition-shell">
+            <div class="home-recognition-head">
+                <h2 class="home-recognition-title mb-2" id="home-recognition-heading">Recognised work</h2>
+                <p class="home-recognition-lead mb-0">Two strong personal recognitions, with the full context on the canonical awards page.</p>
+            </div>
+
+            <ul class="home-recognition-grid" aria-label="Key recognitions">
+                {% for item in homeRecognitionItems %}
+                <li class="home-recognition-card">
+                    <p class="home-recognition-year">{{ item.year }}</p>
+                    <h3 class="home-recognition-card-title">{{ item.title }}</h3>
+                    <p class="home-recognition-card-text">{{ item.description }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="home-recognition-footer">
+                <a class="btn btn-outline-primary rounded-pill px-4" href="/en/awards/">See awards and recognition</a>
+            </div>
         </div>
     </div>
 </section>

@@ -428,6 +428,127 @@ html:not([data-bs-theme="dark"]) .home-hero-role-item + .home-hero-role-item::be
   text-decoration: none;
 }
 
+.home-recognition-section {
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+
+.home-recognition-shell {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(35, 66, 104, 0.16);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(244, 248, 252, 0.9) 0%, rgba(255, 255, 255, 0.98) 100%);
+  box-shadow: 0 10px 24px rgba(11, 34, 62, 0.07);
+}
+
+[data-bs-theme="dark"] .home-recognition-shell {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(210, 226, 246, 0.1) 100%);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+}
+
+.home-recognition-head {
+  max-width: 44rem;
+  margin-bottom: 1.1rem;
+}
+
+.home-recognition-title {
+  font-family: 'Bree Serif', serif;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  color: var(--bs-body-color);
+}
+
+.home-recognition-lead {
+  color: var(--bs-secondary-color);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.home-recognition-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.home-recognition-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+  padding: 1rem 1.1rem;
+  border-radius: 0.875rem;
+  border: 1px solid var(--bs-border-color-translucent);
+  background: var(--bs-body-bg);
+}
+
+.home-recognition-year {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-primary);
+}
+
+.home-recognition-card-title {
+  margin: 0;
+  font-family: 'Bree Serif', serif;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: var(--bs-body-color);
+}
+
+.home-recognition-card-text {
+  margin: 0;
+  color: var(--bs-secondary-color);
+  line-height: 1.6;
+}
+
+.home-recognition-footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 767.98px) {
+  .home-recognition-shell {
+    padding: 0.95rem;
+  }
+
+  .home-recognition-head {
+    margin-bottom: 0.85rem;
+  }
+
+  .home-recognition-title {
+    font-size: 1.22rem;
+  }
+
+  .home-recognition-card {
+    padding: 0.9rem;
+  }
+
+  .home-recognition-card-title {
+    font-size: 0.98rem;
+  }
+
+  .home-recognition-card-text,
+  .home-recognition-lead {
+    font-size: 0.94rem;
+    line-height: 1.5;
+  }
+
+  .home-recognition-grid {
+    gap: 0.75rem;
+  }
+
+  .home-recognition-footer {
+    margin-top: 0.85rem;
+  }
+}
+
 .home-challenge-card {
   padding: 1.5rem;
   border-radius: 0.75rem;
