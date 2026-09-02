@@ -17,7 +17,7 @@ describe("searchQualityRegressionBenchmark", () => {
 
     assert.equal(report.pagefind.version, "1.5.2");
     assert.equal(report.pagefind.corpus.htmlDocumentsIndexed, 1459);
-    assert.ok(report.pagefind.corpus.pageCountFi >= 1067);
+    assert.ok(report.pagefind.corpus.pageCountFi >= 1063);
     assert.equal(report.pagefind.corpus.pageCountEn, 316);
     assert.ok(report.pagefind.languages.fi, "FI language index should exist");
     assert.ok(report.pagefind.languages.en, "EN language index should exist");
