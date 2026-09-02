@@ -461,40 +461,6 @@ function buildPresentationPagefindMeta(record = {}) {
   };
 }
 
-function escapeHtml(value = "") {
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
-}
-
-function escapeAttribute(value = "") {
-  return escapeHtml(value).replace(/"/g, "&quot;");
-}
-
-function buildPresentationPagefindInjection(record = {}) {
-  const filterMarkup = Object.entries(buildPresentationPagefindFilters(record))
-    .flatMap(([key, values]) =>
-      values.map((value) => `<span data-pagefind-filter="${escapeAttribute(`${key}:${value}`)}"></span>`)
-    )
-    .join("");
-
-  const metaMarkup = Object.entries(buildPresentationPagefindMeta(record))
-    .filter(([, value]) => hasValue(value))
-    .map(([key, value]) => `<span data-pagefind-meta="${escapeAttribute(`${key}:${value}`)}"></span>`)
-    .join("");
-
-  return `<div hidden data-pagefind-ignore="all" data-presentation-pagefind-scope="presentations">${filterMarkup}${metaMarkup}</div>`;
-}
-
-function injectPresentationPagefindMetadata(html = "", record = {}) {
-  const injection = buildPresentationPagefindInjection(record);
-  if (/<\/body>/i.test(html)) {
-    return html.replace(/<\/body>/i, `${injection}</body>`);
-  }
-  return `${html}${injection}`;
-}
-
 function extractTextFromHtml(html = "") {
   const $ = cheerio.load(html);
   const parts = [
@@ -548,8 +514,6 @@ module.exports = {
   buildPresentationExistingHtmlAudit,
   buildPresentationPagefindFilters,
   buildPresentationPagefindMeta,
-  buildPresentationPagefindInjection,
-  injectPresentationPagefindMetadata,
   extractTextFromHtml,
   buildPresentationCustomRecord
 };

@@ -6,7 +6,6 @@ const {
   SITE_ROOT,
   buildHtmlRouteMap,
   buildPresentationExistingHtmlAudit,
-  injectPresentationPagefindMetadata,
   buildPresentationCustomRecord,
   extractTextFromHtml
 } = require("./_lib/presentationPagefind");
@@ -46,18 +45,18 @@ function uniqueIndexCandidates(records = []) {
   return byUrl;
 }
 
-async function addHtmlFiles(index, htmlRouteMap, presentationScopeByUrl) {
+async function addHtmlFiles(index, htmlRouteMap) {
+  // Local presentation HTML now carries Pagefind metadata directly from
+  // Eleventy/Nunjucks SSR (see src/src.11tydata.js resolvePagefindPresentations
+  // — PF5-G2). The postbuild in-memory injection layer that used to add an
+  // equivalent hidden block per PR/audit PF5-HYGIENE-1 has been deleted; we
+  // simply hand each HTML file to Pagefind as it exists on disk.
   const errors = [];
   let indexedCount = 0;
 
   for (const [url, filePath] of stableSortByKey([...htmlRouteMap.entries()])) {
     const sourcePath = path.relative(SITE_ROOT, filePath);
-    let content = await fsp.readFile(filePath, "utf8");
-    const presentationScope = presentationScopeByUrl.get(url);
-
-    if (presentationScope) {
-      content = injectPresentationPagefindMetadata(content, presentationScope);
-    }
+    const content = await fsp.readFile(filePath, "utf8");
 
     const result = await index.addHTMLFile({ sourcePath, content });
     if (result.errors.length) {
@@ -127,7 +126,7 @@ async function main() {
   }
 
   try {
-    const htmlResult = await addHtmlFiles(service.index, htmlRouteMap, localScopeRecords);
+    const htmlResult = await addHtmlFiles(service.index, htmlRouteMap);
     const customResult = await addPresentationCustomRecords(service.index, customScopeRecords, htmlRouteMap);
     const writeResult = await service.index.writeFiles({
       outputPath: path.join(SITE_ROOT, "pagefind")
