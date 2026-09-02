@@ -1,0 +1,62 @@
+---
+layout: base.njk
+title: Tarkastetut opinnäytteet
+description: "Opinnäytteet, joissa Jari Laru toimi tarkastajana mutta ei ohjaajana. OuluREPO-arkisto, uusin ensin. Scoped-haku."
+translationKey: theses_tarkastetut
+suppressTableFilters: true
+pageStyles:
+  - /css/theses-page.css
+  - /css/find-explore.css
+pageScripts:
+  - /js/find-explore.js
+schemaType: CollectionPage
+pagination:
+  data: thesesArchivePagesTarkastetutFi.pages
+  size: 1
+  alias: thesesArchive
+permalink: "{{ thesesArchive.permalink }}"
+eleventyComputed:
+  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  sitemap:
+    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
+---
+{% set pageModel = thesesFindExplorePageTarkastetutFi %}
+{% set findExploreKind = "theses" %}
+{% set findExploreScope = "fi" %}
+{% set findExploreLang = "fi" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Etsi tarkastetuista" %}
+{% set findExploreDescription = "Haku rajattu Jari Larun tarkastamiin (mutta ei ohjaamiin) opinnäytteisiin." %}
+{% set findExploreSearchLabel = "Hae otsikolla, tekijällä tai aiheella" %}
+{% set findExplorePlaceholder = "Esim. tekoäly, tutkimusmenetelmä..." %}
+{% set findExploreYearLabel = "Vuosi" %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreTopicLabel = "Aihe" %}
+{% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
+{% set findExploreResetLabel = "Tyhjennä" %}
+{% set findExploreMoreLabel = "Näytä lisää" %}
+{% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin." %}
+{% set findExploreHideTypeControl = true %}
+{% set findExploreHideRoleControl = true %}
+{% set findExplorePinnedType = pageModel.pinnedType %}
+{% set findExplorePinnedRole = pageModel.pinnedRole %}
+{% set findExploreYears = pageModel.years %}
+{% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreExternalResultsId = "thesesArchiveTbodyTarkastetutFi" %}
+{% set thesisArchiveTableId = "thesesArchiveTableTarkastetutFi" %}
+{% set thesisArchiveTbodyId = "thesesArchiveTbodyTarkastetutFi" %}
+{% set thesisArchiveHeading = "Tarkastetut opinnäytteet" %}
+{% set thesisArchiveDescription = "Tarkastetut työt (ei ohjatut), uusin ensin." %}
+{% set thesisArchiveLang = "fi" %}
+{% set thesisArchiveLandingUrl = "/opinnaytteet/tarkastetut/" %}
+{% set thesisArchivePageBase = "/opinnaytteet/tarkastetut/sivu/" %}
+{% set thesisArchiveWithFindExplore = true %}
+{% set thesisArchiveTypeRoleOptions = [] %}
+{% set subarchiveEyebrow = '<a href="/opinnaytteet/" class="text-decoration-none">Opinnäytteet</a> · Tarkastetut' %}
+{% set subarchiveHeading = "Tarkastetut opinnäytteet" %}
+{% set subarchiveIntro = "Opinnäytteet, joissa Jari Laru toimi tarkastajana (mutta ei ohjaajana). Uusin ensin." %}
+{% set subarchiveFooter = 'Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>. Palaa <a href="/opinnaytteet/" class="text-decoration-underline">opinnäytehubiin</a> tai selaa <a href="/opinnaytteet/gradut/" class="text-decoration-underline">ohjattuja graduja</a> ja <a href="/opinnaytteet/kandit/" class="text-decoration-underline">ohjattuja kandeja</a>.' %}
+{% include "thesis-subarchive-page.njk" %}

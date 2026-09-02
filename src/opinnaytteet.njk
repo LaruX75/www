@@ -1,16 +1,13 @@
 ---
 layout: base.njk
 title: Ohjatut opinnäytetyöt
-description: "Jari Larun ohjaamat pro gradu -tutkielmat ja kandidaatintyöt OuluREPO-arkistosta aiheittain, vuosittain ja hakutoiminnoilla."
+description: "Jari Larun ohjaamat pro gradu -tutkielmat ja kandidaatintyöt sekä tarkastetut opinnäytteet. Uusimmat nostot per ryhmä ja linkit koko arkistoihin."
 translationKey: theses_index
 suppressTableFilters: true
 pageStyles:
   - /css/theses-page.css
   - /css/find-explore.css
 pageScripts:
-  # TH-CITE1 Phase 4B: thesis-hub-actions.js moved to the thesis
-  # detail template. The archive has no citation triggers after
-  # Phase 3 and does not ship the modal interaction JS anymore.
   - /js/find-explore.js
 schemaType: CollectionPage
 schemaAbout:
@@ -30,64 +27,47 @@ schemaMentions:
   - "@type": "Organization"
     name: "OuluREPO"
     url: "https://oulurepo.oulu.fi/"
-pagination:
-  data: thesesArchivePagesFi.pages
-  size: 1
-  alias: thesesArchive
-permalink: "{{ thesesArchive.permalink }}"
-eleventyComputed:
-  # TH-CITE1 Phase 3 SEO discipline: only the landing archive URL
-  # goes into the sitemap and stays indexable. The 15 per-section
-  # paginated permalinks are excluded from `collections.all`
-  # (`eleventyExcludeFromCollections`), from the sitemap projection
-  # explicitly (`sitemap.ignore`, which src/sitemap.njk honours as a
-  # primary skip condition), and marked `noindex, follow` for search
-  # engines that discover them via internal links. Three independent
-  # layers keep the pagination URLs off the sitemap.
-  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
-  sitemap:
-    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
-  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
+permalink: "/opinnaytteet/"
 ---
+{# THESIS-HUB-02: standalone hub landing.
+   No pagination on this page — the three subarchives own their own
+   paginated routes:
+     /opinnaytteet/gradut/       (ohjatut pro gradut)
+     /opinnaytteet/kandit/       (ohjatut kandit)
+     /opinnaytteet/tarkastetut/  (tarkastetut, ei ohjatut)
+   Each section below renders the 5 newest items per group from the
+   same canonical thesisDetails model those archives paginate — the
+   invariant hub.first5 === archive.first5 must hold. #}
 {% set pageModel = thesesFindExplorePage %}
+{# THESIS-HUB-02 hub FE: complete canonical thesis set, no type/role pin.
+   Searches across gradut + kandit + tarkastetut. Results render into
+   the FE's own container (no external tbody). Reset clears results
+   and the SSR 3 x 5 hub sections below remain the primary content. #}
 {% set findExploreKind = "theses" %}
 {% set findExploreScope = "fi" %}
 {% set findExploreLang = "fi" %}
 {% set findExploreSearchLanguage = "fi,en" %}
 {% set findExploreEyebrow = "Find & Explore" %}
-{% set findExploreTitle = "Tutki opinnäytteitä" %}
-{% set findExploreDescription = "Kirjoita hakusana tai käytä suodattimia. Hakuaika käyttää samaa canonical-joukkoa kuin arkistotaulukot." %}
+{% set findExploreTitle = "Hae opinnäytteistä" %}
+{% set findExploreDescription = "Haku ulottuu koko canonical thesis -joukkoon: ohjatut pro gradut, ohjatut kandit ja tarkastetut työt yhtenä kokonaisuutena. Alempana olevat nostosectionit näkyvät vaikka haku olisi käynnissä; tyhjennys palauttaa perustilan." %}
 {% set findExploreSearchLabel = "Hae otsikolla, tekijällä tai aiheella" %}
 {% set findExplorePlaceholder = "Esim. tekoäly, opettajankoulutus, matematiikka, Riikonen..." %}
-{% set findExploreTypeLabel = "Tyyppi" %}
-{% set findExploreAllTypesLabel = "Kaikki opinnäytteet" %}
-{% set findExploreRoleLabel = "Rooli" %}
-{% set findExploreAllRolesLabel = "Kaikki roolit" %}
 {% set findExploreYearLabel = "Vuosi" %}
 {% set findExploreAllYearsLabel = "Kaikki vuodet" %}
 {% set findExploreTopicLabel = "Aihe" %}
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan. Hakusana tai suodatin korvaa saman taulukon rivit Pagefind-tuloksilla; Tyhjennä palauttaa sivulle valmiiksi renderöidyt rivit." %}
-{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukot ja niiden sivutus toimivat silti ilman JavaScriptiä." %}
+{% set findExploreInitialStatus = "Kirjoita hakusana. Alla olevat nostosectionit toimivat myös ilman hakua." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Ryhmäkohtaiset arkistot ovat käytettävissä alempana ilman JavaScriptiä." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
-{% set findExploreHideYearControl = true %}
-{% set findExploreExternalYearOrderId = "thesesArchiveYearOrderFi" %}
-{% set findExploreExternalAuthorSortId = "thesesArchiveAuthorSortFi" %}
-{% set findExploreExternalTypeRoleId = "thesesArchiveTypeRoleFi" %}
-{% set findExploreTypeOptions = [
-  { value: "masterThesis", label: "Pro gradu -tutkielmat", count: pageModel.typeCounts.masterThesis },
-  { value: "bachelorThesis", label: "Kandidaatintyöt", count: pageModel.typeCounts.bachelorThesis }
-] %}
-{% set findExploreRoleOptions = [
-  { value: "advised", label: "Ohjatut", count: pageModel.roleCounts.advised },
-  { value: "reviewed", label: "Tarkastetut", count: pageModel.roleCounts.reviewed }
-] %}
+{% set findExploreHideYearControl = false %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
-{% set findExploreExternalResultsId = "thesesArchiveTbodyFi" %}
+{% set hubMasters = thesisDetails.advisedMasters or [] %}
+{% set hubBachelors = thesisDetails.advisedBachelors or [] %}
+{% set hubReviewed = thesisDetails.reviewed or [] %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -95,7 +75,7 @@ eleventyComputed:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Ohjaustyö</p>
         <h1 class="display-6 fw-bold mb-2">Ohjatut opinnäytetyöt</h1>
-        <p class="text-muted mb-0">OuluREPOsta koottu yksi arkistotaulukko Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Otsikko vie sivuston omaan detail-sivuun, ja alkuperäinen OuluREPO-julkaisu avautuu erillisestä lähdelinkistä.</p>
+        <p class="text-muted mb-0">OuluREPOsta koottu näkymä Jari Larun ohjaamiin ja tarkastamiin opinnäytteisiin. Alle on nostettu kunkin ryhmän viisi tuoreinta työtä; koko arkisto avautuu ryhmäkohtaisen linkin kautta. Otsikko vie sivuston omaan detail-sivuun ja alkuperäinen OuluREPO-julkaisu avautuu erillisenä lähdelinkkinä.</p>
       </div>
     </div>
   </div>
@@ -107,7 +87,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-primary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-primary">{{ pageModel.advisedMasterItems.length }}</div>
+            <div class="display-4 fw-bold text-primary">{{ hubMasters.length }}</div>
             <div class="text-muted">ohjattua gradua</div>
           </div>
         </div>
@@ -115,7 +95,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-info h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-info">{{ pageModel.advisedBachelorItems.length }}</div>
+            <div class="display-4 fw-bold text-info">{{ hubBachelors.length }}</div>
             <div class="text-muted">ohjattua kandia</div>
           </div>
         </div>
@@ -123,7 +103,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold">{{ pageModel.count }}</div>
+            <div class="display-4 fw-bold">{{ thesisDetails.count }}</div>
             <div class="text-muted">opinnäytettä yhteensä</div>
           </div>
         </div>
@@ -131,7 +111,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-secondary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-secondary">{{ pageModel.reviewedItems.length }}</div>
+            <div class="display-4 fw-bold text-secondary">{{ hubReviewed.length }}</div>
             <div class="text-muted">tarkastettua työtä</div>
           </div>
         </div>
@@ -148,7 +128,7 @@ eleventyComputed:
           <div>
             <p class="text-uppercase small text-muted mb-1">Avausreitit</p>
             <h2 class="h4 mb-1">Aiheprofiilit</h2>
-            <p class="text-muted mb-0">Nostot vievät kategoriakohtaiselle hakusivulle. Alla oleva arkisto toimii täydentävänä selailunäkymänä.</p>
+            <p class="text-muted mb-0">Nostot vievät kategoriakohtaiselle hakusivulle. Ryhmäkohtaiset arkistot alla toimivat täydentävinä selailunäkyminä.</p>
           </div>
           <span class="badge text-bg-light border text-dark">{{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}</span>
         </div>
@@ -164,18 +144,94 @@ eleventyComputed:
 
 {% include "find-explore-writings.njk" %}
 
-{% set thesisArchiveTableId = "thesesArchiveTableFi" %}
-{% set thesisArchiveTbodyId = "thesesArchiveTbodyFi" %}
-{% set thesisArchiveHeading = "Opinnäytearkisto" %}
-{% set thesisArchiveDescription = "Yksi server-renderöity arkistotaulukko näyttää saman canonical thesis -joukon, jota Find & Explore käyttää aktiivisessa haussa." %}
-{% set thesisArchiveLang = "fi" %}
-{% set thesisArchiveLandingUrl = "/opinnaytteet/" %}
-{% set thesisArchivePageBase = "/opinnaytteet/sivu/" %}
-{% set thesisArchiveYearOrderId = "thesesArchiveYearOrderFi" %}
-{% set thesisArchiveAuthorSortId = "thesesArchiveAuthorSortFi" %}
-{% set thesisArchiveTypeRoleId = "thesesArchiveTypeRoleFi" %}
-{% set thesisArchiveTypeRoleOptions = pageModel.typeRoleOptionsFi %}
-{% include "thesis-archive-table.njk" %}
+{% macro renderHubSection(heading, description, items, archiveUrl, archiveCtaLabel, totalCount) %}
+<section class="thesis-hub-section py-4" data-thesis-hub-section>
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1">{{ heading }}</h2>
+            <p class="text-muted mb-0">{{ description }}</p>
+          </div>
+          <span class="badge text-bg-light border text-dark">{{ totalCount }}</span>
+        </div>
+        {% if items.length %}
+        <div class="table-responsive">
+          <table class="table table-sm thesis-archive-table align-top mb-0">
+            <thead>
+              <tr>
+                <th scope="col" class="thesis-archive-col-year">Vuosi</th>
+                <th scope="col" class="thesis-archive-col-author">Tekijä</th>
+                <th scope="col" class="thesis-archive-col-title">Otsikko</th>
+                <th scope="col" class="thesis-archive-col-source text-end">Lähde</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in items %}
+              <tr class="thesis-archive-row">
+                <td class="thesis-archive-col-year small text-muted"><span class="d-inline-block">{{ item.year }}</span></td>
+                <td class="thesis-archive-col-author small text-muted">{{ item.authorLine }}</td>
+                <th scope="row" class="thesis-archive-col-title">
+                  <a class="thesis-archive-title-link fw-semibold text-decoration-none d-block" href="{{ item.pageUrl }}">{{ item.title }}</a>
+                </th>
+                <td class="thesis-archive-col-source text-end">
+                  {% if item.sourceUrl %}
+                  <a class="btn btn-sm btn-outline-secondary"
+                     href="{{ item.sourceUrl }}"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Avaa OuluREPOssa: {{ item.title }}">
+                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    <span class="ms-1">OuluREPO</span>
+                  </a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="text-muted small mb-0">Tässä ryhmässä ei ole vielä julkaistuja opinnäytteitä.</p>
+        {% endif %}
+        <div class="mt-3">
+          <a class="btn btn-outline-primary btn-sm" href="{{ archiveUrl }}">
+            {{ archiveCtaLabel }} <span class="text-muted">({{ totalCount }})</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{{ renderHubSection(
+  "Uusimmat ohjatut pro gradu -tutkielmat",
+  "Viisi tuoreinta ohjattua gradua. Koko arkisto sivutettuna omalla sivullaan.",
+  hubMasters.slice(0, 5),
+  "/opinnaytteet/gradut/",
+  "Selaa kaikkia graduja",
+  hubMasters.length
+) }}
+
+{{ renderHubSection(
+  "Uusimmat ohjatut kandidaatintyöt",
+  "Viisi tuoreinta ohjattua kandia. Koko arkisto sivutettuna omalla sivullaan.",
+  hubBachelors.slice(0, 5),
+  "/opinnaytteet/kandit/",
+  "Selaa kaikkia kandeja",
+  hubBachelors.length
+) }}
+
+{{ renderHubSection(
+  "Uusimmat tarkastetut opinnäytteet",
+  "Viisi tuoreinta työtä joissa Jari Laru toimi tarkastajana (mutta ei ohjaajana).",
+  hubReviewed.slice(0, 5),
+  "/opinnaytteet/tarkastetut/",
+  "Selaa kaikkia tarkastettuja",
+  hubReviewed.length
+) }}
 
 <section class="pb-5">
   <div class="site-shell">
@@ -183,7 +239,4 @@ eleventyComputed:
       Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>, Oulun yliopiston julkaisuarkisto. Julkaisutiedot, tiivistelmien provenance ja detail-sivujen lähdepolut säilyvät canonical thesis -datassa.
     </p>
   </div>
- </section>
-{# TH-CITE1 Phase 4B: modals no longer live on the archive page.
-   The citation/export modal is now scoped to the thesis detail
-   template where the trigger exists. #}
+</section>

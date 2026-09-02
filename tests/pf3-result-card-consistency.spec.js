@@ -28,11 +28,16 @@ test("FI writings result card shows Sisältö:Kirjoitukset ja puheenvuorot", asy
 });
 
 test("FI theses archive search stays on the shared tbody surface instead of rendering family-badge cards", async ({ page }) => {
-  await page.goto("/opinnaytteet/");
+  // THESIS-HUB-02: FE now on the gradut subarchive (hub has no FE).
+  // The Gradu-tarkastettu thesis 62699 lives in advisedMasters where
+  // "role" is `reviewed` but the source-of-truth cache still classifies
+  // 62699 as reviewed-only. We use the tarkastetut subarchive to match
+  // that record's group.
+  await page.goto("/opinnaytteet/tarkastetut/");
   const mount = page.locator("[data-find-explore]").first();
   await expect(mount).toBeVisible();
   await mount.locator("[data-find-explore-query]").fill("matematiikka-ahdistuksesta");
-  await expect(page.locator(".thesis-archive-row .thesis-archive-title-link[href='/opinnaytteet/62699/']")).toBeVisible({ timeout: 15000 });
+  await expect(page.locator(".thesis-archive-row .thesis-archive-title-link[href^='/opinnaytteet/62699/']")).toBeVisible({ timeout: 15000 });
   await expect(mount.locator(".find-explore-result [data-find-explore-family='theses']")).toHaveCount(0);
 });
 

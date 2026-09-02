@@ -1,0 +1,47 @@
+{#
+  thesis-subarchive-page.njk — shared rendering shell for the six
+  THESIS-HUB-02 scoped subarchives:
+    /opinnaytteet/{gradut,kandit,tarkastetut}/
+    /en/theses/{masters,bachelors,reviewed}/
+
+  Route templates supply only genuinely route-specific configuration
+  (permalinks, pinned type/role, tbody id, localized strings). This
+  shell owns the shared markup wiring — hero section, Find & Explore
+  include, archive-table include, footer. Canonical grouping / sorting
+  live in shared _utils; those are NOT re-implemented here.
+
+  Required caller vars:
+    subarchiveEyebrow             — small breadcrumb-style eyebrow, e.g. `<a>Opinnäytteet</a> · Gradut`
+    subarchiveHeading             — h1 text
+    subarchiveIntro               — lead paragraph under h1
+    subarchiveFooter              — hint/return copy (HTML allowed)
+
+  Plus the Find & Explore vars consumed by find-explore-writings.njk
+  (findExploreKind, ..., findExplorePinnedType, findExplorePinnedRole,
+  findExploreExternalResultsId, ...) and the archive-table vars
+  consumed by thesis-archive-table.njk (thesisArchiveTableId,
+  thesisArchiveTbodyId, thesisArchiveHeading, thesisArchiveDescription,
+  thesisArchiveLang, thesisArchiveLandingUrl, thesisArchivePageBase,
+  thesisArchiveWithFindExplore, thesisArchiveTypeRoleOptions).
+#}
+<section class="kynasta-hero py-4">
+  <div class="site-shell">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-1">{{ subarchiveEyebrow | safe }}</p>
+        <h1 class="display-6 fw-bold mb-2">{{ subarchiveHeading }}</h1>
+        <p class="text-muted mb-0">{{ subarchiveIntro }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "find-explore-writings.njk" %}
+
+{% include "thesis-archive-table.njk" %}
+
+<section class="pb-5">
+  <div class="site-shell">
+    <p class="text-muted small mb-0">{{ subarchiveFooter | safe }}</p>
+  </div>
+</section>

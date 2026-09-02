@@ -25,10 +25,12 @@ test.describe("PF4 shared card hierarchy", () => {
   });
 
   test("FI theses archive search keeps the same tbody surface and does not expose shared result cards", async ({ page }) => {
-    await page.goto("/opinnaytteet/");
+    // THESIS-HUB-02: FE moved from hub to subarchive. Thesis 62699 is a
+    // Gradu-tarkastettu record → lives in the tarkastetut subarchive.
+    await page.goto("/opinnaytteet/tarkastetut/");
     const mount = page.locator("[data-find-explore]").first();
     await typeAndWait(page, mount, "matematiikka-ahdistuksesta");
-    await expect(page.locator(".thesis-archive-row .thesis-archive-title-link[href='/opinnaytteet/62699/']")).toBeVisible({ timeout: 15000 });
+    await expect(page.locator(".thesis-archive-row .thesis-archive-title-link[href^='/opinnaytteet/62699/']")).toBeVisible({ timeout: 15000 });
     await expect(page.locator(".thesis-archive-row .thesis-archive-col-type").first()).toContainText("Gradu · tarkastettu");
     await expect(mount.locator(".find-explore-result")).toHaveCount(0);
   });

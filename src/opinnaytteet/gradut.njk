@@ -1,0 +1,63 @@
+---
+layout: base.njk
+title: Ohjatut pro gradu -tutkielmat
+description: "Jari Larun ohjaamat pro gradu -tutkielmat OuluREPO-arkistosta, uusin ensin. Sivutettu arkisto ja scoped-haku."
+translationKey: theses_gradut
+suppressTableFilters: true
+pageStyles:
+  - /css/theses-page.css
+  - /css/find-explore.css
+pageScripts:
+  - /js/find-explore.js
+schemaType: CollectionPage
+pagination:
+  data: thesesArchivePagesGradutFi.pages
+  size: 1
+  alias: thesesArchive
+permalink: "{{ thesesArchive.permalink }}"
+eleventyComputed:
+  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  sitemap:
+    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
+---
+{% set pageModel = thesesFindExplorePageGradutFi %}
+{% set findExploreKind = "theses" %}
+{% set findExploreScope = "fi" %}
+{% set findExploreLang = "fi" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Etsi graduista" %}
+{% set findExploreDescription = "Haku rajattu Jari Larun ohjaamiin pro gradu -tutkielmiin. Hakusana korvaa alla olevan taulukon rivit; Tyhjennä palauttaa arkiston." %}
+{% set findExploreSearchLabel = "Hae otsikolla, tekijällä tai aiheella" %}
+{% set findExplorePlaceholder = "Esim. tekoäly, opettajankoulutus, matematiikka..." %}
+{% set findExploreYearLabel = "Vuosi" %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
+{% set findExploreTopicLabel = "Aihe" %}
+{% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
+{% set findExploreResetLabel = "Tyhjennä" %}
+{% set findExploreMoreLabel = "Näytä lisää" %}
+{% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan. Hakusana tai suodatin korvaa saman taulukon rivit Pagefind-tuloksilla." %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukko ja sen sivutus toimivat silti ilman JavaScriptiä." %}
+{% set findExploreHideTypeControl = true %}
+{% set findExploreHideRoleControl = true %}
+{% set findExploreHideYearControl = false %}
+{% set findExplorePinnedType = pageModel.pinnedType %}
+{% set findExplorePinnedRole = pageModel.pinnedRole %}
+{% set findExploreYears = pageModel.years %}
+{% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreExternalResultsId = "thesesArchiveTbodyGradutFi" %}
+{% set thesisArchiveTableId = "thesesArchiveTableGradutFi" %}
+{% set thesisArchiveTbodyId = "thesesArchiveTbodyGradutFi" %}
+{% set thesisArchiveHeading = "Pro gradu -tutkielmat" %}
+{% set thesisArchiveDescription = "Ohjatut pro gradu -tutkielmat, uusin ensin. Sama canonical thesis -aineisto kuin etusivun tuoreimmat-nostoissa ja saman scope-rajauksen alaisena kuin ylläoleva haku." %}
+{% set thesisArchiveLang = "fi" %}
+{% set thesisArchiveLandingUrl = "/opinnaytteet/gradut/" %}
+{% set thesisArchivePageBase = "/opinnaytteet/gradut/sivu/" %}
+{% set thesisArchiveWithFindExplore = true %}
+{% set thesisArchiveTypeRoleOptions = [] %}
+{% set subarchiveEyebrow = '<a href="/opinnaytteet/" class="text-decoration-none">Opinnäytteet</a> · Gradut' %}
+{% set subarchiveHeading = "Ohjatut pro gradu -tutkielmat" %}
+{% set subarchiveIntro = "OuluREPOsta koottu arkisto Jari Larun ohjaamiin pro gradu -tutkielmiin. Uusin ensin. Otsikko vie sivuston omaan detail-sivuun." %}
+{% set subarchiveFooter = 'Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>. Palaa <a href="/opinnaytteet/" class="text-decoration-underline">opinnäytehubiin</a> tai selaa <a href="/opinnaytteet/kandit/" class="text-decoration-underline">ohjattuja kandeja</a> ja <a href="/opinnaytteet/tarkastetut/" class="text-decoration-underline">tarkastettuja töitä</a>.' %}
+{% include "thesis-subarchive-page.njk" %}

@@ -1,7 +1,7 @@
 ---
 layout: base.njk
 title: Supervised Theses
-description: "Master's theses and bachelor's theses supervised by Jari Laru from OuluREPO, searchable by year, keyword, and topic."
+description: "Master's theses and bachelor's theses supervised by Jari Laru plus reviewed works. Latest picks per group with links to full paginated archives."
 translationKey: theses_index
 lang: en
 suppressTableFilters: true
@@ -9,61 +9,43 @@ pageStyles:
   - /css/theses-page.css
   - /css/find-explore.css
 pageScripts:
-  # TH-CITE1 Phase 4B: thesis-hub-actions.js moved to the thesis
-  # detail template. The archive has no citation triggers after
-  # Phase 3 and does not ship the modal interaction JS anymore.
   - /js/find-explore.js
 schemaType: CollectionPage
-pagination:
-  data: thesesArchivePagesEn.pages
-  size: 1
-  alias: thesesArchive
-permalink: "{{ thesesArchive.permalink }}"
-eleventyComputed:
-  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
-  sitemap:
-    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
-  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
+permalink: "/en/theses/"
 ---
+{# THESIS-HUB-02: standalone EN hub landing.
+   Mirrors src/opinnaytteet.njk. Three subarchives own paginated routes:
+     /en/theses/masters/    (supervised master's theses)
+     /en/theses/bachelors/  (supervised bachelor's theses)
+     /en/theses/reviewed/   (reviewed, not supervised)
+   Hub sections show the 5 newest per group from the same canonical model. #}
 {% set pageModel = thesesFindExplorePage %}
+{# THESIS-HUB-02 hub FE: complete canonical thesis set, no type/role pin. #}
 {% set findExploreKind = "theses" %}
 {% set findExploreScope = "en" %}
 {% set findExploreLang = "en" %}
 {% set findExploreSearchLanguage = "fi,en" %}
 {% set findExploreEyebrow = "Find & Explore" %}
-{% set findExploreTitle = "Explore theses" %}
-{% set findExploreDescription = "Type a query or use the filters. Search runs against the same canonical thesis set as the archive tables." %}
+{% set findExploreTitle = "Search theses" %}
+{% set findExploreDescription = "Search spans the complete canonical thesis set: supervised master's, supervised bachelor's and reviewed works combined. The latest-per-group sections below remain visible whether or not a search is active; clear returns to the resting state." %}
 {% set findExploreSearchLabel = "Search by title, author or topic" %}
-{% set findExplorePlaceholder = "Try AI, teacher education, mathematics, Riikonen..." %}
-{% set findExploreTypeLabel = "Type" %}
-{% set findExploreAllTypesLabel = "All theses" %}
-{% set findExploreRoleLabel = "Role" %}
-{% set findExploreAllRolesLabel = "All roles" %}
+{% set findExplorePlaceholder = "Try AI, teacher education, mathematics..." %}
 {% set findExploreYearLabel = "Year" %}
 {% set findExploreAllYearsLabel = "All years" %}
 {% set findExploreTopicLabel = "Topic" %}
 {% set findExploreAllTopicsLabel = "All topics" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "The canonical archive table is visible below. A query or filter replaces the same table rows with Pagefind matches; Clear restores the server-rendered rows already on this page." %}
-{% set findExploreNoScript = "Interactive search requires JavaScript. The archive tables and their pagination remain available without JavaScript." %}
+{% set findExploreInitialStatus = "Type a query. The section highlights below work without a search too." %}
+{% set findExploreNoScript = "Interactive search requires JavaScript. The group-scoped archives below remain available without it." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
-{% set findExploreHideYearControl = true %}
-{% set findExploreExternalYearOrderId = "thesesArchiveYearOrderEn" %}
-{% set findExploreExternalAuthorSortId = "thesesArchiveAuthorSortEn" %}
-{% set findExploreExternalTypeRoleId = "thesesArchiveTypeRoleEn" %}
-{% set findExploreTypeOptions = [
-  { value: "masterThesis", label: "Master's theses", count: pageModel.typeCounts.masterThesis },
-  { value: "bachelorThesis", label: "Bachelor's theses", count: pageModel.typeCounts.bachelorThesis }
-] %}
-{% set findExploreRoleOptions = [
-  { value: "advised", label: "Supervised", count: pageModel.roleCounts.advised },
-  { value: "reviewed", label: "Reviewed", count: pageModel.roleCounts.reviewed }
-] %}
+{% set findExploreHideYearControl = false %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
-{% set findExploreExternalResultsId = "thesesArchiveTbodyEn" %}
+{% set hubMasters = thesisDetails.advisedMasters or [] %}
+{% set hubBachelors = thesisDetails.advisedBachelors or [] %}
+{% set hubReviewed = thesisDetails.reviewed or [] %}
 
 <section class="kynasta-hero py-4">
   <div class="site-shell">
@@ -71,7 +53,7 @@ eleventyComputed:
       <div class="col-lg-8">
         <p class="text-uppercase small text-muted mb-1">Supervision</p>
         <h1 class="display-6 fw-bold mb-2">Supervised theses</h1>
-        <p class="text-muted mb-0">A single local archive table for OuluREPO-based supervision work. The thesis title opens the site's canonical detail page, while the original OuluREPO source stays available as a separate external action.</p>
+        <p class="text-muted mb-0">OuluREPO-based view of theses supervised or reviewed by Jari Laru. The five newest works per group are highlighted below; the full archive per group is one link away. Thesis titles open the site's canonical detail page while the original OuluREPO record stays available as a separate external action.</p>
       </div>
     </div>
   </div>
@@ -83,7 +65,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-primary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-primary">{{ pageModel.advisedMasterItems.length }}</div>
+            <div class="display-4 fw-bold text-primary">{{ hubMasters.length }}</div>
             <div class="text-muted">Master's theses</div>
           </div>
         </div>
@@ -91,7 +73,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-info h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-info">{{ pageModel.advisedBachelorItems.length }}</div>
+            <div class="display-4 fw-bold text-info">{{ hubBachelors.length }}</div>
             <div class="text-muted">Bachelor's theses</div>
           </div>
         </div>
@@ -99,7 +81,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold">{{ pageModel.count }}</div>
+            <div class="display-4 fw-bold">{{ thesisDetails.count }}</div>
             <div class="text-muted">theses in total</div>
           </div>
         </div>
@@ -107,7 +89,7 @@ eleventyComputed:
       <div class="col-6 col-md-3">
         <div class="card text-center border-secondary h-100 thesis-stat-card">
           <div class="card-body d-flex flex-column justify-content-center">
-            <div class="display-4 fw-bold text-secondary">{{ pageModel.reviewedItems.length }}</div>
+            <div class="display-4 fw-bold text-secondary">{{ hubReviewed.length }}</div>
             <div class="text-muted">reviewed theses</div>
           </div>
         </div>
@@ -124,7 +106,7 @@ eleventyComputed:
           <div>
             <p class="text-uppercase small text-muted mb-1">Opening routes</p>
             <h2 class="h4 mb-1">Topic entry points</h2>
-            <p class="text-muted mb-0">Category chips lead to topic-scoped search pages. The archive tables below serve as the primary browsing view.</p>
+            <p class="text-muted mb-0">Category chips lead to topic-scoped search pages. The group-scoped archives below serve as the primary browsing view.</p>
           </div>
           <span class="badge text-bg-light border text-dark">{{ theses.stats.firstYear }}–{{ theses.stats.lastYear }}</span>
         </div>
@@ -140,18 +122,94 @@ eleventyComputed:
 
 {% include "find-explore-writings.njk" %}
 
-{% set thesisArchiveTableId = "thesesArchiveTableEn" %}
-{% set thesisArchiveTbodyId = "thesesArchiveTbodyEn" %}
-{% set thesisArchiveHeading = "Thesis archive" %}
-{% set thesisArchiveDescription = "One server-rendered archive table shows the same canonical thesis set that Find & Explore uses during active search." %}
-{% set thesisArchiveLang = "en" %}
-{% set thesisArchiveLandingUrl = "/en/theses/" %}
-{% set thesisArchivePageBase = "/en/theses/page/" %}
-{% set thesisArchiveYearOrderId = "thesesArchiveYearOrderEn" %}
-{% set thesisArchiveAuthorSortId = "thesesArchiveAuthorSortEn" %}
-{% set thesisArchiveTypeRoleId = "thesesArchiveTypeRoleEn" %}
-{% set thesisArchiveTypeRoleOptions = pageModel.typeRoleOptionsEn %}
-{% include "thesis-archive-table.njk" %}
+{% macro renderHubSection(heading, description, items, archiveUrl, archiveCtaLabel, totalCount) %}
+<section class="thesis-hub-section py-4" data-thesis-hub-section>
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1">{{ heading }}</h2>
+            <p class="text-muted mb-0">{{ description }}</p>
+          </div>
+          <span class="badge text-bg-light border text-dark">{{ totalCount }}</span>
+        </div>
+        {% if items.length %}
+        <div class="table-responsive">
+          <table class="table table-sm thesis-archive-table align-top mb-0">
+            <thead>
+              <tr>
+                <th scope="col" class="thesis-archive-col-year">Year</th>
+                <th scope="col" class="thesis-archive-col-author">Author</th>
+                <th scope="col" class="thesis-archive-col-title">Title</th>
+                <th scope="col" class="thesis-archive-col-source text-end">Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in items %}
+              <tr class="thesis-archive-row">
+                <td class="thesis-archive-col-year small text-muted"><span class="d-inline-block">{{ item.year }}</span></td>
+                <td class="thesis-archive-col-author small text-muted">{{ item.authorLine }}</td>
+                <th scope="row" class="thesis-archive-col-title">
+                  <a class="thesis-archive-title-link fw-semibold text-decoration-none d-block" href="{{ item.pageUrl }}">{{ item.title }}</a>
+                </th>
+                <td class="thesis-archive-col-source text-end">
+                  {% if item.sourceUrl %}
+                  <a class="btn btn-sm btn-outline-secondary"
+                     href="{{ item.sourceUrl }}"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     aria-label="Open in OuluREPO: {{ item.title }}">
+                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                    <span class="ms-1">OuluREPO</span>
+                  </a>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <p class="text-muted small mb-0">No theses in this group yet.</p>
+        {% endif %}
+        <div class="mt-3">
+          <a class="btn btn-outline-primary btn-sm" href="{{ archiveUrl }}">
+            {{ archiveCtaLabel }} <span class="text-muted">({{ totalCount }})</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endmacro %}
+
+{{ renderHubSection(
+  "Latest supervised master's theses",
+  "Five newest supervised master's theses. Full archive available with pagination.",
+  hubMasters.slice(0, 5),
+  "/en/theses/masters/",
+  "Browse all master's theses",
+  hubMasters.length
+) }}
+
+{{ renderHubSection(
+  "Latest supervised bachelor's theses",
+  "Five newest supervised bachelor's theses. Full archive available with pagination.",
+  hubBachelors.slice(0, 5),
+  "/en/theses/bachelors/",
+  "Browse all bachelor's theses",
+  hubBachelors.length
+) }}
+
+{{ renderHubSection(
+  "Latest reviewed theses",
+  "Five newest works where Jari Laru served as a reviewer (not as supervisor).",
+  hubReviewed.slice(0, 5),
+  "/en/theses/reviewed/",
+  "Browse all reviewed theses",
+  hubReviewed.length
+) }}
 
 <section class="pb-5">
   <div class="site-shell">
@@ -159,7 +217,4 @@ eleventyComputed:
       Source: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>, University of Oulu publication archive. Canonical metadata, abstract provenance and source semantics remain on the thesis detail layer.
     </p>
   </div>
- </section>
-{# TH-CITE1 Phase 4B: modals no longer live on the archive page.
-   The citation/export modal is now scoped to the thesis detail
-   template where the trigger exists. #}
+</section>

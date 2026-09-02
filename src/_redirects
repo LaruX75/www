@@ -71,5 +71,12 @@
 /presentations/ss-sosiaalinen-media-opetuskaytossa /esitykset/ 301
 /presentations/ss-sosiaalinen-media-opetuskaytossa/ /esitykset/ 301
 
+# THESIS-HUB-02 (2026-09-02): the monolithic /opinnaytteet/sivu/N/ +
+# /en/theses/page/N/ pagination was retired when the theses landing became
+# a hub with three scoped subarchives. Old deep-links land back on the hub
+# so users can pick the right subarchive (gradut / kandit / tarkastetut).
+/opinnaytteet/sivu/* /opinnaytteet/ 301
+/en/theses/page/* /en/theses/ 301
+
 /en/* /en/404.html 404
 /* /404.html 404

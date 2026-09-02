@@ -1,0 +1,63 @@
+---
+layout: base.njk
+title: Reviewed Theses
+description: "Theses where Jari Laru served as a reviewer (not supervisor). OuluREPO-sourced archive, newest first, with scoped search."
+translationKey: theses_tarkastetut
+lang: en
+suppressTableFilters: true
+pageStyles:
+  - /css/theses-page.css
+  - /css/find-explore.css
+pageScripts:
+  - /js/find-explore.js
+schemaType: CollectionPage
+pagination:
+  data: thesesArchivePagesReviewedEn.pages
+  size: 1
+  alias: thesesArchive
+permalink: "{{ thesesArchive.permalink }}"
+eleventyComputed:
+  eleventyExcludeFromCollections: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  sitemap:
+    ignore: "{{ 'true' if thesesArchive.pageKind != 'landing' else '' }}"
+  robots: "{{ 'noindex, follow' if thesesArchive.pageKind != 'landing' else 'index, follow' }}"
+---
+{% set pageModel = thesesFindExplorePageReviewedEn %}
+{% set findExploreKind = "theses" %}
+{% set findExploreScope = "en" %}
+{% set findExploreLang = "en" %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreEyebrow = "Find & Explore" %}
+{% set findExploreTitle = "Search reviewed theses" %}
+{% set findExploreDescription = "Search restricted to theses where Jari Laru served as a reviewer (not supervisor)." %}
+{% set findExploreSearchLabel = "Search by title, author or topic" %}
+{% set findExplorePlaceholder = "Try research method, mathematics..." %}
+{% set findExploreYearLabel = "Year" %}
+{% set findExploreAllYearsLabel = "All years" %}
+{% set findExploreTopicLabel = "Topic" %}
+{% set findExploreAllTopicsLabel = "All topics" %}
+{% set findExploreResetLabel = "Clear" %}
+{% set findExploreMoreLabel = "Show more" %}
+{% set findExploreInitialStatus = "The archive table is visible below." %}
+{% set findExploreNoScript = "Interactive search requires JavaScript. The archive table still works." %}
+{% set findExploreHideTypeControl = true %}
+{% set findExploreHideRoleControl = true %}
+{% set findExplorePinnedType = pageModel.pinnedType %}
+{% set findExplorePinnedRole = pageModel.pinnedRole %}
+{% set findExploreYears = pageModel.years %}
+{% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreExternalResultsId = "thesesArchiveTbodyReviewedEn" %}
+{% set thesisArchiveTableId = "thesesArchiveTableReviewedEn" %}
+{% set thesisArchiveTbodyId = "thesesArchiveTbodyReviewedEn" %}
+{% set thesisArchiveHeading = "Reviewed theses" %}
+{% set thesisArchiveDescription = "Reviewed works (not supervised), newest first." %}
+{% set thesisArchiveLang = "en" %}
+{% set thesisArchiveLandingUrl = "/en/theses/reviewed/" %}
+{% set thesisArchivePageBase = "/en/theses/reviewed/page/" %}
+{% set thesisArchiveWithFindExplore = true %}
+{% set thesisArchiveTypeRoleOptions = [] %}
+{% set subarchiveEyebrow = '<a href="/en/theses/" class="text-decoration-none">Theses</a> · Reviewed' %}
+{% set subarchiveHeading = "Reviewed theses" %}
+{% set subarchiveIntro = "Theses where Jari Laru served as a reviewer (not supervisor). Newest first." %}
+{% set subarchiveFooter = 'Source: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>. Back to the <a href="/en/theses/" class="text-decoration-underline">theses hub</a>, or browse <a href="/en/theses/masters/" class="text-decoration-underline">supervised master&apos;s theses</a> and <a href="/en/theses/bachelors/" class="text-decoration-underline">supervised bachelor&apos;s theses</a>.' %}
+{% include "thesis-subarchive-page.njk" %}
