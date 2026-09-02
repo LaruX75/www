@@ -447,8 +447,28 @@ function isGenericSlideshareDescription(text = "") {
   return !normalized || normalized === "slideshare-esitys" || normalized === "slideshare presentation";
 }
 
+// Named/numeric HTML-entity decoder. Narrow scope: SlideShare transcript
+// captures in `slideshare-content.json` were scraped as HTML and preserve
+// entities like `&quot;` in what should be plain-text transcript content.
+// Left encoded they leak into meta descriptions (double-encoded), OG/Twitter
+// tags, and JSON-LD (single-encoded, which check:jsonld flags as
+// html-entity-leak). `&amp;` must run LAST so that any hypothetical
+// `&amp;quot;` in source data does not get double-decoded.
+function decodeHtmlEntities(text = "") {
+  return String(text || "")
+    .replace(/&#(\d+);/g, (_, dec) => String.fromCharCode(parseInt(dec, 10)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+}
+
 function transcriptExcerpt(text = "", maxLength = 420) {
-  const normalized = String(text || "")
+  const decoded = decodeHtmlEntities(String(text || ""));
+  const normalized = decoded
     .replace(/\s*---\s*/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -1508,5 +1528,7 @@ module.exports = {
   buildPresentationFilterYears,
   buildPresentationFilterTopics,
   buildPublicPresentationLegacyBuckets,
-  buildPresentationsPageModel
+  buildPresentationsPageModel,
+  decodeHtmlEntities,
+  transcriptExcerpt
 };
