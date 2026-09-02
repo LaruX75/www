@@ -102,6 +102,8 @@ pageStyles:
         description: "Recognition for sustained work connecting educational technology research, teaching, and shared expertise."
     }
 ] %}
+{% set citationMetrics = (semanticscholar and semanticscholar.metrics) or {} %}
+{% set homeCitationCount = citationMetrics.profileTotalCitations %}
 
 <section class="section-flush home-hero-section" id="heroSection">
     <div class="home-hero-backdrop" style="--hero-img: url('{{ '/img/WIN_20210329_16_06_01_Pro.jpg' | url }}')">
@@ -242,10 +244,6 @@ pageStyles:
                             <span class="home-overview-kpi-value">{{ theses.stats.total }}</span>
                             <span class="home-overview-kpi-label">theses supervised</span>
                         </div>
-                        <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ semanticscholar.metrics.totalCitations or "600+" }}</span>
-                            <span class="home-overview-kpi-label">citations</span>
-                        </div>
                     </div>
                     <div class="home-overview-items mb-3">
                         {% for post in collections.blogAcademic | take(3) %}
@@ -316,10 +314,12 @@ pageStyles:
                             <span class="home-overview-kpi-value">{{ heroPublicationCount }}</span>
                             <span class="home-overview-kpi-label">publications</span>
                         </div>
+                        {% if homeCitationCount %}
                         <div class="home-overview-kpi">
-                            <span class="home-overview-kpi-value">{{ semanticscholar.metrics.totalCitations or "600+" }}</span>
+                            <span class="home-overview-kpi-value">{{ homeCitationCount }}</span>
                             <span class="home-overview-kpi-label">citations</span>
                         </div>
+                        {% endif %}
                     </div>
                     <div class="home-overview-items mb-3">
                         {% for pub in researchfi.slice(0, 3) %}
