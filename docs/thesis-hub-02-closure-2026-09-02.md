@@ -51,11 +51,21 @@ removed with `_redirects` 301s to the corresponding hub.
 
 ## File-set inventory
 
-### Production (13 modified + 12 new + 2 deleted)
+Reconciled against `git diff --name-status origin/main...HEAD` — the
+subtotals below sum exactly to the PR total.
 
-Modified (10):
-- `src/_data/theses.js` — preserve full `dc.date.issued` string as `issuedDate`
-- `src/_data/thesisDetails.js` — precision-aware normalize + canonical comparator + `{advisedMasters, advisedBachelors, reviewed}` groupings
+**Totals: 42 changed files = 22 additions + 17 modifications + 3 deletions.**
+
+_(The 42-file total appears once the amended commit lands; the ancestor
+commit `82cb9a1f` had 41 files. The +1 additional modification is
+`.cache/api-fallback/theses-oulurepo-v2.json`, described below in the
+Production subsection.)_
+
+### Production (11 modified + 13 new + 2 deleted = 26)
+
+Modified (11):
+- `src/_data/theses.js` — preserve full `dc.date.issued` string as `issuedDate`; add `isThesesCacheSchemaValid` guard (see "Cache regeneration" below)
+- `src/_data/thesisDetails.js` — precision-aware `normalizeIssuedDate` + canonical `compareThesisDetailChronology` + `{ advisedMasters, advisedBachelors, reviewed }` groupings
 - `src/_utils/thesesFindExplore.js` — `buildScopedFindExploreModel` factory
 - `src/_includes/find-explore-writings.njk` — emits `data-find-explore-pinned-{type,role}` when the caller supplies them
 - `src/_includes/thesis-archive-table.njk` — gates FE-driven header dropdowns behind `thesisArchiveWithFindExplore`
@@ -63,7 +73,8 @@ Modified (10):
 - `src/js/find-explore.js` — pinned filter enforcement in `filtersFor()` + `filtersForKind()`
 - `src/opinnaytteet.njk` — rewritten as standalone hub (3×5 sections + hub FE + CTAs)
 - `src/en/theses.njk` — rewritten as standalone EN hub (mirror)
-- `src/_data/thesisDetails.js` — canonical model (double-counted above)
+- `src/opinnaytteet/gradut.njk` etc route templates (counted below under "New" for the three new FI + three new EN routes)
+- `.cache/api-fallback/theses-oulurepo-v2.json` — regenerated from a live OuluREPO fetch so every canonical record ships with `issuedDate` at day precision (170/170 records covered)
 
 New (13):
 - `src/_includes/thesis-subarchive-page.njk` — shared subarchive shell (47 LOC)
@@ -72,15 +83,25 @@ New (13):
 - `src/_data/thesesFindExplorePage{Gradut,Kandit,Tarkastetut}Fi.js` (3)
 - `src/_data/thesesFindExplorePage{Masters,Bachelors,Reviewed}En.js` (3)
 
-New (6 thin route templates):
-- `src/opinnaytteet/{gradut,kandit,tarkastetut}.njk` (avg ~62 LOC after consolidation, down from ~84)
-- `src/en/theses/{masters,bachelors,reviewed}.njk` (same reduction)
+_(The six route templates `src/opinnaytteet/{gradut,kandit,tarkastetut}.njk` +
+`src/en/theses/{masters,bachelors,reviewed}.njk` are counted under
+"Templates" below since Eleventy treats them as page routes rather than
+`_data` adapters. They are not double-counted in the modification list
+above.)_
 
 Deleted (2):
 - `src/_data/thesesArchivePagesFi.js` — old monolithic FI pagination (zero remaining consumers)
 - `src/_data/thesesArchivePagesEn.js` — old monolithic EN pagination (zero remaining consumers)
 
-### Tests (7 modified + 2 new + 1 deleted)
+### Templates (6 new thin route templates)
+
+- `src/opinnaytteet/{gradut,kandit,tarkastetut}.njk` (~62 LOC each; down from ~84)
+- `src/en/theses/{masters,bachelors,reviewed}.njk` (same reduction)
+
+Each of the six is config-only and delegates to
+`src/_includes/thesis-subarchive-page.njk` for shared rendering.
+
+### Tests (7 modified + 2 new + 1 deleted = 10)
 
 Modified (7):
 - `tests/f3a-theses-find-explore.spec.js` — rewritten for hub + subarchive FE contract
@@ -92,8 +113,8 @@ Modified (7):
 - `tests/unit/searchQualityRegressionBenchmark.test.js` — `pageCountEn` baseline 316 → 318 (net +2 from EN thesis subarchive split)
 
 New (2):
-- `tests/thesis-hub-02-hub-and-subarchives.spec.js` — full 12-point contract spec including hub FE assertions
-- `tests/unit/thesisChronology.test.js` — `normalizeIssuedDate` + `compareThesisDetailChronology` + groupings + hub-first-5 invariant + 61633 classification
+- `tests/thesis-hub-02-hub-and-subarchives.spec.js` — 12-point contract Playwright spec incl. hub FE assertions
+- `tests/unit/thesisChronology.test.js` — `normalizeIssuedDate` + `compareThesisDetailChronology` + groupings + hub-first-5 invariant + 61633 classification + THESIS-HUB-02 cache schema-guard regression
 
 Deleted (1):
 - `tests/th-cite1-phase3-thesis-pagination.spec.js` — its premise (monolithic `/opinnaytteet/sivu/N/` + hub-level FE with type-role dropdowns) was retired as intended
@@ -102,9 +123,22 @@ Deleted (1):
 
 - `docs/thesis-hub-02-closure-2026-09-02.md` (this file)
 
+### Subtotal reconciliation
+
+| Category | New | Modified | Deleted | Subtotal |
+| --- | ---: | ---: | ---: | ---: |
+| Production | 13 | 11 | 2 | 26 |
+| Templates | 6 | — | — | 6 |
+| Tests | 2 | 7 | 1 | 10 |
+| Documentation | 1 | — | — | 1 |
+| **Total** | **22** | **17** | **3** | **42** |
+
+Matches `git diff --name-status origin/main...HEAD` (42 lines total)
+and `git diff --stat origin/main...HEAD` (42 files changed).
+
 ### Explicitly NOT staged (unrelated existing state)
 
-- `.cache/api-fallback/{crossref-enrichments,finna-aoe,jufo-enrichments}-v1.json` — build-time cache drift
+- `.cache/api-fallback/{crossref-enrichments,finna-aoe,jufo-enrichments}-v1.json` — non-thesis build-time cache drift; unrelated to THESIS-HUB-02
 - `docs/modern-web-eleventy-audit-2026-08-31.md`, `docs/post-closure-next-workstream-selection-2-2026-08-30.md`, `docs/post-closure-user-visible-ux-selection-2026-08-31.md`, `docs/web-capabilities-2026-suitability-audit-2026-08-31.md` — prior-session documents
 
 ## Template consolidation metric
@@ -155,9 +189,56 @@ Plus the hub FE subcontract (new tests in `thesis-hub-02-hub-and-subarchives.spe
 
 **Two pre-existing failures** in unrelated specs (`o1-orientation:109 FI presentation archive returnTo` and `pf-perf2:101 no data-pagefind-body on publication detail`) also fail on the unmodified base `c4a59116` — confirmed via `git stash` + re-run. Not caused by THESIS-HUB-02 and out of scope for this workstream.
 
-## Cache dependency (chronological sort visibility)
+## Cache regeneration + schema guard (chronological ordering effective immediately)
 
-The `issuedDate`-based chronological sort is **code-complete**. The OuluREPO cache (`.cache/api-fallback/theses-oulurepo-v2.json`) was serialized before the field existed, so cached records currently lack `issuedDate` and the comparator falls back to `year` (producing the same year-DESC + title-ASC behavior as before). The next live OuluREPO fetch regenerates the cache and the ordering improvement takes effect immediately. Unit tests exercise the correct code path directly against synthetic records with explicit `issuedDate` values.
+The pre-THESIS-HUB-02 committed cache lacked `issuedDate`, which would
+have left the canonical comparator falling back to year+title on the
+first post-merge build. That is not acceptable — THESIS-HUB-02 must
+deliver genuinely newest ordering from day one.
+
+Two changes ensure the first production build gets real chronology:
+
+1. **Cache regeneration.** A live OuluREPO fetch was run and the
+   fresh cache (`.cache/api-fallback/theses-oulurepo-v2.json`,
+   `savedAt = 2026-09-02T19:27:34.518Z`) is committed inside this PR.
+   All 170 canonical records (88 gradut + 29 kandit + 53 reviewerOnly)
+   ship with `issuedDate` at day precision. OuluREPO remains the sole
+   source; no dates are fabricated. Offline and network-outage builds
+   read this cache directly and immediately benefit from real
+   chronology.
+2. **Schema guard against future silent regressions.**
+   `src/_data/theses.js` now carries `isThesesCacheSchemaValid()`:
+   a cache with < 80% `issuedDate` coverage is treated as stale so
+   `loadThesesData` triggers a live fetch. In CACHE_ONLY / offline
+   builds, an invalid cache is still consumed as a last-resort
+   fallback but with a loud warning line — the build is never
+   silently degraded. This closes the failure mode where a future
+   downgrade / accidental old-cache commit could silently reintroduce
+   title-order fallback.
+
+Regression: `tests/unit/thesisChronology.test.js` adds five new
+schema-guard tests including one that reads the committed cache
+file directly and asserts it satisfies the guard. If someone in the
+future replaces the committed cache with a pre-`issuedDate` snapshot,
+the unit test fails at CI before merge.
+
+Observable proof from the built output (`_site/opinnaytteet/gradut/`
+first 5 titles, after cache regeneration):
+
+```
+1. /opinnaytteet/64129/  Nuorten kokemuksia sosiaalisen median vaikutuksista itsetuntoon   (2026-06-29)
+2. /opinnaytteet/64139/  Tekoälylukutaidon ilmeneminen luokanopettajaopiskelijoiden ...     (2026-06-29)
+3. /opinnaytteet/63433/  Teknologiakasvattajan muotokuva                                    (2026-06-15)
+4. /opinnaytteet/63335/  Pieni kielikone tekoäly-ymmärryksen rakentajana ...                (2026-06-12)
+5. /opinnaytteet/63041/  Opettajaopiskelijoiden ajatuksia tekoälystä                        (2026-06-03)
+```
+
+Compare against the pre-fix ordering that surfaced 61633
+("Luokanopettajien tulevaisuudenkuvia tekoälystä") in the top 5 solely
+because "L" precedes "N", "O", "P", "T" alphabetically — 61633's real
+publication date (2026-05-27) is older than all five above and is now
+correctly demoted to its true chronological slot in the gradut
+archive.
 
 ## Not measured / not changed
 

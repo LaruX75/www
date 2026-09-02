@@ -27,7 +27,41 @@ const CITATION_APA_LANG = 'fi';
 
 const CACHE_KEY = 'theses-oulurepo-v2';
 const CACHE_TTL_HOURS = 6;
+// THESIS-HUB-02: minimum fraction of canonical items that must carry
+// `issuedDate` for a cache to be treated as schema-valid. Below this
+// threshold the cache is likely a pre-THESIS-HUB-02 serialization that
+// pre-dates the field; the loader treats it as stale so a live fetch
+// re-populates the field. See `isThesesCacheSchemaValid` below.
+const CACHE_MIN_ISSUED_DATE_COVERAGE = 0.8;
 let memoizedThesesPromise = null;
+
+function countIssuedDateCoverage(data) {
+    if (!data || typeof data !== 'object') return { total: 0, withIssuedDate: 0 };
+    const groups = [data.gradut, data.kandit, data.reviewerOnly].filter(Array.isArray);
+    let total = 0;
+    let withIssuedDate = 0;
+    for (const group of groups) {
+        for (const item of group) {
+            total += 1;
+            if (item && typeof item.issuedDate === 'string' && item.issuedDate.trim()) {
+                withIssuedDate += 1;
+            }
+        }
+    }
+    return { total, withIssuedDate };
+}
+
+// A cache written before the THESIS-HUB-02 `issuedDate` field existed
+// contains no `issuedDate` values. If we accepted that cache silently,
+// the canonical chronology comparator would fall back to `year` only —
+// which reproduces the pre-fix same-year alphabetical-by-title order.
+// Reject such caches so the loader either uses live data or, if the
+// network is down, exposes the degradation explicitly (empty result).
+function isThesesCacheSchemaValid(data) {
+    const { total, withIssuedDate } = countIssuedDateCoverage(data);
+    if (total === 0) return true;
+    return withIssuedDate / total >= CACHE_MIN_ISSUED_DATE_COVERAGE;
+}
 
 const BASE = 'https://oulurepo.oulu.fi/open-search/';
 const NAME = 'Laru';  // ← vaihda ohjaajan sukunimi
@@ -319,6 +353,10 @@ async function loadThesesData() {
         console.log('[theses] Offline fetch mode käytössä, ohitetaan OuluREPO-haku.');
         const offlineCached = readCache(CACHE_KEY);
         if (offlineCached?.data) {
+            if (!isThesesCacheSchemaValid(offlineCached.data)) {
+                const { total, withIssuedDate } = countIssuedDateCoverage(offlineCached.data);
+                console.warn(`[theses] Offline-välimuisti EI läpäise THESIS-HUB-02 schema-tarkistusta (${withIssuedDate}/${total} tietuetta issuedDate-kentällä < ${Math.round(CACHE_MIN_ISSUED_DATE_COVERAGE * 100)} %). Kronologinen järjestys palautuisi title-fallbackiin. Ajetaan silti offline-tulos, mutta build ilmoittaa asiasta selvästi.`);
+            }
             console.log('[theses] Käytetään offline-välimuistia.');
             return { ...mergeManualIntoCache(offlineCached.data, keywordsCache), source: 'cache' };
         }
@@ -326,9 +364,14 @@ async function loadThesesData() {
     }
 
     const fresh = readCacheIfFresh(CACHE_KEY, CACHE_TTL_HOURS);
-    if (fresh?.data) {
+    if (fresh?.data && isThesesCacheSchemaValid(fresh.data)) {
         console.log(`[theses] Käytetään tuoretta välimuistia (${fresh.savedAt}).`);
         return { ...mergeManualIntoCache(fresh.data, keywordsCache), source: 'cache' };
+    }
+    if (fresh?.data) {
+        // Fresh in time but pre-THESIS-HUB-02 in schema — force live fetch
+        // so downstream chronology sees real issuedDate values.
+        console.warn(`[theses] Tuore välimuisti (${fresh.savedAt}) EI läpäise THESIS-HUB-02 schema-tarkistusta; pakotetaan live-haku jotta issuedDate saadaan mukaan.`);
     }
 
     const cached = readCache(CACHE_KEY);
@@ -434,3 +477,9 @@ module.exports = function loadTheses() {
 
     return memoizedThesesPromise;
 };
+
+// THESIS-HUB-02: export schema helpers so the regression suite can
+// prove that a pre-field cache cannot silently be treated as valid.
+module.exports.isThesesCacheSchemaValid = isThesesCacheSchemaValid;
+module.exports.countIssuedDateCoverage = countIssuedDateCoverage;
+module.exports.CACHE_MIN_ISSUED_DATE_COVERAGE = CACHE_MIN_ISSUED_DATE_COVERAGE;

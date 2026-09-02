@@ -28,6 +28,14 @@ const {
   buildThesesArchivePages
 } = require("../../src/_utils/thesesArchivePages");
 
+const {
+  isThesesCacheSchemaValid,
+  countIssuedDateCoverage,
+  CACHE_MIN_ISSUED_DATE_COVERAGE
+} = require("../../src/_data/theses");
+const fs = require("node:fs");
+const path = require("node:path");
+
 describe("normalizeIssuedDate", () => {
   test("day precision returns full ISO-shape sort key", () => {
     const norm = normalizeIssuedDate("2026-05-07");
@@ -240,5 +248,76 @@ describe("regression: known thesis 10024/61633", () => {
 
     const inMasters = model.advisedMasters.some((item) => item.id === "61633");
     assert.ok(inMasters, "thesis 61633 must appear in advisedMasters (renders on /opinnaytteet/gradut/)");
+  });
+});
+
+// THESIS-HUB-02: cache schema regression. A cache serialized before the
+// `issuedDate` field existed must not be silently accepted, because the
+// canonical chronology comparator would then fall back to year+title
+// and the hub would claim chronological ordering while continuing the
+// pre-fix title-order behavior in production.
+describe("cache schema guard (issuedDate coverage)", () => {
+  test("empty cache is considered valid (bootstrap case)", () => {
+    assert.equal(isThesesCacheSchemaValid({ gradut: [], kandit: [], reviewerOnly: [] }), true);
+  });
+
+  test("pre-THESIS-HUB-02 cache (no issuedDate anywhere) is REJECTED", () => {
+    const preFieldCache = {
+      gradut: [{ title: "T", year: "2026", link: "https://oulurepo.oulu.fi/handle/10024/1", type: "masterThesis" }],
+      kandit: [{ title: "T2", year: "2025", link: "https://oulurepo.oulu.fi/handle/10024/2", type: "bachelorThesis" }],
+      reviewerOnly: [{ title: "T3", year: "2024", link: "https://oulurepo.oulu.fi/handle/10024/3", type: "masterThesis" }]
+    };
+    const { total, withIssuedDate } = countIssuedDateCoverage(preFieldCache);
+    assert.equal(total, 3);
+    assert.equal(withIssuedDate, 0);
+    assert.equal(isThesesCacheSchemaValid(preFieldCache), false,
+      "a cache with 0/3 issuedDate coverage must be treated as invalid so live fetch runs");
+  });
+
+  test("cache with 100% coverage is accepted", () => {
+    const goodCache = {
+      gradut: [{ title: "T", year: "2026", issuedDate: "2026-06-01", link: "https://oulurepo.oulu.fi/handle/10024/1", type: "masterThesis" }],
+      kandit: [{ title: "T2", year: "2025", issuedDate: "2025-05-15", link: "https://oulurepo.oulu.fi/handle/10024/2", type: "bachelorThesis" }],
+      reviewerOnly: []
+    };
+    assert.equal(isThesesCacheSchemaValid(goodCache), true);
+  });
+
+  test("threshold: 80% coverage is accepted; below is rejected", () => {
+    // 4/5 = 80% exactly — accepted
+    const at80 = {
+      gradut: [
+        { title: "A", year: "2026", issuedDate: "2026-01-01", link: "https://oulurepo.oulu.fi/handle/10024/1", type: "masterThesis" },
+        { title: "B", year: "2026", issuedDate: "2026-02-01", link: "https://oulurepo.oulu.fi/handle/10024/2", type: "masterThesis" },
+        { title: "C", year: "2026", issuedDate: "2026-03-01", link: "https://oulurepo.oulu.fi/handle/10024/3", type: "masterThesis" },
+        { title: "D", year: "2026", issuedDate: "2026-04-01", link: "https://oulurepo.oulu.fi/handle/10024/4", type: "masterThesis" },
+        { title: "E", year: "2026", link: "https://oulurepo.oulu.fi/handle/10024/5", type: "masterThesis" }
+      ],
+      kandit: [],
+      reviewerOnly: []
+    };
+    assert.equal(CACHE_MIN_ISSUED_DATE_COVERAGE, 0.8);
+    assert.equal(isThesesCacheSchemaValid(at80), true);
+
+    // 2/5 = 40% — rejected
+    const at40 = { ...at80, gradut: at80.gradut.map((t, i) => i < 2 ? t : { ...t, issuedDate: undefined }) };
+    assert.equal(isThesesCacheSchemaValid(at40), false);
+  });
+
+  test("current committed cache passes the schema guard", () => {
+    // Load the actual committed cache and prove it carries issuedDate
+    // for enough records to satisfy the guard. Guarantees the first
+    // post-merge production build (which reads this cache when the
+    // network is down, or via CACHE_ONLY) does not silently degrade.
+    const cachePath = path.join(__dirname, "..", "..", ".cache", "api-fallback", "theses-oulurepo-v2.json");
+    if (!fs.existsSync(cachePath)) return; // repo without the cache file — skip
+    const payload = JSON.parse(fs.readFileSync(cachePath, "utf8"));
+    assert.ok(payload?.data, "cache payload must expose data");
+    const { total, withIssuedDate } = countIssuedDateCoverage(payload.data);
+    assert.ok(total > 0, "committed cache must contain thesis records");
+    assert.ok(
+      isThesesCacheSchemaValid(payload.data),
+      `committed cache must satisfy THESIS-HUB-02 schema guard (got ${withIssuedDate}/${total} = ${Math.round(100*withIssuedDate/total)}% issuedDate coverage; threshold ${Math.round(100*CACHE_MIN_ISSUED_DATE_COVERAGE)}%)`
+    );
   });
 });
