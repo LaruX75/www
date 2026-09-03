@@ -521,73 +521,22 @@ schemaMentions:
   </div>
 </section>
 
-{# Political speeches: filtteroidaan client-side /data/publications.json:sta
-   samojen event-nimien perusteella kuin buildissa (politicalSpeechEvents). #}
-<script id="political-speech-events" type="application/json">
-{{ politicalSpeechEvents | jsonSafe | safe }}
-</script>
-
 <script>
-  (async () => {
-    // Data haetaan /data/publications.json:sta ja filtteroidaan event-nimien
-    // perusteella (aiemmin build-tason filtteri politicalSpeeches:issa).
-    async function _loadItems(url) {
-      try {
-        const res = await fetch(url);
-        if (!res.ok) return [];
-        const data = await res.json();
-        return Array.isArray(data.items) ? data.items : [];
-      } catch { return []; }
-    }
-    const politicalSpeechEvents = new Set(JSON.parse(
-      document.getElementById('political-speech-events')?.textContent || '[]'
-    ));
-    const _fiDateFormatter = new Intl.DateTimeFormat('fi-FI', {
-      day: 'numeric', month: 'long', year: 'numeric'
-    });
-    const _pubs = await _loadItems('/data/publications.json');
-    const politicalSpeechesData = _pubs
-      .filter(i => i.contentType === 'speech' && politicalSpeechEvents.has(i.event || ''))
-      .map(i => ({
-        title: i.title || '',
-        url: i.url || '',
-        date: i.date || '',
-        formattedDate: i.date ? _fiDateFormatter.format(new Date(i.date)) : '',
-        event: i.event || '',
-        asiakohta: i.asiakohta || ''
-      }))
-      .filter(item => item.title && item.url)
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
-    const politicalSpeechesTableBody = document.getElementById('political-speeches-table-body');
-    const politicalSpeechesInfo = document.getElementById('political-speeches-info');
-    const politicalSpeechesPagination = document.getElementById('political-speeches-pagination');
+  // POLITIIKKA-SSR-01: previous IIFE fetched /data/publications.json,
+  // filtered by politicalSpeechEvents, and attempted to render a
+  // political-speeches table into #political-speeches-table-body /
+  // -info / -pagination. Those DOM targets never existed in the
+  // rendered HTML (audit confirmed 0 consumers repo-wide), so the
+  // fetch + row builder + pagination were orphaned dead code writing
+  // to nowhere. The whole pipeline is deleted. Only the unrelated
+  // mobile-disclosure interaction is retained below.
+  //
+  // Build-time politicalSpeechEvents + politicalSpeeches remain in
+  // use for the SSR evidence-showcase card (latestPoliticalSpeech
+  // via sortedPoliticalSpeeches). Do not remove them.
+  (() => {
     const mobileQuery = window.matchMedia('(max-width: 767.98px)');
     const mobileDisclosures = Array.from(document.querySelectorAll('[data-pol-mobile-collapse]'));
-
-    const escHtml = (value) => String(value || '')
-      .replaceAll('&', '&amp;')
-      .replaceAll('<', '&lt;')
-      .replaceAll('>', '&gt;')
-      .replaceAll('"', '&quot;')
-      .replaceAll("'", '&#39;');
-    const formatFiDate = (value) => {
-      const date = new Date(value || '');
-      if (Number.isNaN(date.getTime())) return '';
-      return date.toLocaleDateString('fi-FI');
-    };
-
-    function shortPoliticalSpeechTitle(title) {
-      let s = String(title || '').trim();
-      s = s.replace(/^(?:Valtuustopuheenvuoro|Puheenvuoro(?:ni)?)(?:\s+valtuustossa|\s+kaupunginvaltuuston\s+kokouksessa\.?)?\s*/i, '');
-      const afterParagraph = s.replace(/^.*?§\s*\d+\s*[.:–-]\s*/i, '');
-      if (afterParagraph !== s) return afterParagraph.trim();
-      const afterColon = s.replace(/^[^:]+:\s*/, '');
-      if (afterColon !== s) return afterColon.trim();
-      return s.trim();
-    }
-    function currentPoliticalSpeechPageSize() {
-      return mobileQuery.matches ? 3 : 6;
-    }
 
     function applyPoliticsMobileDisclosureState() {
       mobileDisclosures.forEach((disclosure) => {
@@ -602,55 +551,7 @@ schemaMentions:
       });
     }
 
-    function renderPoliticalSpeeches(page = 1) {
-      if (!politicalSpeechesTableBody || !politicalSpeechesPagination || !politicalSpeechesInfo) return;
-      const pageSize = currentPoliticalSpeechPageSize();
-      const total = politicalSpeechesData.length;
-      const totalPages = Math.max(1, Math.ceil(total / pageSize));
-      const safePage = Math.min(Math.max(page, 1), totalPages);
-      const start = (safePage - 1) * pageSize;
-      const items = politicalSpeechesData.slice(start, start + pageSize);
-
-      politicalSpeechesTableBody.innerHTML = items.map((item) => `
-        <tr>
-          <td class="small text-muted">${escHtml(item.formattedDate)}</td>
-          <td class="small">${escHtml(item.event)}</td>
-          <td><a href="${escHtml(item.url)}" class="fw-semibold text-decoration-none political-speech-title">${escHtml(shortPoliticalSpeechTitle(item.title))}</a></td>
-          <td class="small text-muted">${escHtml(item.asiakohta || '')}</td>
-        </tr>
-      `).join('');
-
-      const first = total ? start + 1 : 0;
-      const last = Math.min(start + pageSize, total);
-      politicalSpeechesInfo.textContent = total
-        ? `Näytetään ${first}–${last} / ${total} puhetta`
-        : 'Puheita ei löytynyt';
-
-      politicalSpeechesPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => {
-        const pageNumber = index + 1;
-        return `
-          <li class="page-item ${pageNumber === safePage ? 'active' : ''}">
-            <button type="button" class="page-link" data-political-speeches-page="${pageNumber}" aria-label="Sivu ${pageNumber}">
-              ${pageNumber}
-            </button>
-          </li>
-        `;
-      }).join('');
-    }
-
     applyPoliticsMobileDisclosureState();
-    renderPoliticalSpeeches();
-
-    politicalSpeechesPagination?.addEventListener('click', (event) => {
-      const button = event.target.closest('[data-political-speeches-page]');
-      if (!button) return;
-      const page = Number(button.getAttribute('data-political-speeches-page'));
-      if (!Number.isFinite(page)) return;
-      renderPoliticalSpeeches(page);
-    });
-    mobileQuery.addEventListener('change', () => {
-      applyPoliticsMobileDisclosureState();
-      renderPoliticalSpeeches(1);
-    });
+    mobileQuery.addEventListener('change', applyPoliticsMobileDisclosureState);
   })();
 </script>
