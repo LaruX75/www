@@ -49,7 +49,7 @@ permalink: "/opinnaytteet/"
 {% set findExploreSearchLanguage = "fi,en" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Hae opinnäytteistä" %}
-{% set findExploreDescription = "Haku ulottuu koko canonical thesis -joukkoon: ohjatut pro gradut, ohjatut kandit ja tarkastetut työt yhtenä kokonaisuutena. Alempana olevat nostosectionit näkyvät vaikka haku olisi käynnissä; tyhjennys palauttaa perustilan." %}
+{% set findExploreDescription = "Hae opinnäytteitä otsikon, tekijän tai aiheen perusteella. Voit rajata tuloksia vuoden ja aiheen mukaan." %}
 {% set findExploreSearchLabel = "Hae otsikolla, tekijällä tai aiheella" %}
 {% set findExplorePlaceholder = "Esim. tekoäly, opettajankoulutus, matematiikka, Riikonen..." %}
 {% set findExploreYearLabel = "Vuosi" %}
@@ -58,11 +58,15 @@ permalink: "/opinnaytteet/"
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Kirjoita hakusana. Alla olevat nostosectionit toimivat myös ilman hakua." %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai käytä rajauksia." %}
 {% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Ryhmäkohtaiset arkistot ovat käytettävissä alempana ilman JavaScriptiä." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
 {% set findExploreHideYearControl = false %}
+{# THESIS-SEARCH-UX-01: eager Pagefind warmup on the dedicated thesis
+   search surface. Bypasses the 2.5-second idle-callback ceiling that
+   dominated first-search latency. Still no auto-search. #}
+{% set findExploreEagerWarmup = true %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
 {% set hubMasters = thesisDetails.advisedMasters or [] %}
@@ -236,7 +240,7 @@ permalink: "/opinnaytteet/"
 <section class="pb-5">
   <div class="site-shell">
     <p class="text-muted small mb-0">
-      Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>, Oulun yliopiston julkaisuarkisto. Julkaisutiedot, tiivistelmien provenance ja detail-sivujen lähdepolut säilyvät canonical thesis -datassa.
+      Lähde: <a href="https://oulurepo.oulu.fi" target="_blank" rel="noopener noreferrer" class="text-decoration-underline">OuluREPO</a>, Oulun yliopiston julkaisuarkisto. Julkaisutiedot ja tiivistelmät ovat peräisin OuluREPOsta.
     </p>
   </div>
 </section>

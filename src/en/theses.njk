@@ -27,7 +27,7 @@ permalink: "/en/theses/"
 {% set findExploreSearchLanguage = "fi,en" %}
 {% set findExploreEyebrow = "Find & Explore" %}
 {% set findExploreTitle = "Search theses" %}
-{% set findExploreDescription = "Search spans the complete canonical thesis set: supervised master's, supervised bachelor's and reviewed works combined. The latest-per-group sections below remain visible whether or not a search is active; clear returns to the resting state." %}
+{% set findExploreDescription = "Search theses by title, author or topic. You can narrow the results by year and topic." %}
 {% set findExploreSearchLabel = "Search by title, author or topic" %}
 {% set findExplorePlaceholder = "Try AI, teacher education, mathematics..." %}
 {% set findExploreYearLabel = "Year" %}
@@ -36,11 +36,15 @@ permalink: "/en/theses/"
 {% set findExploreAllTopicsLabel = "All topics" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "Type a query. The section highlights below work without a search too." %}
+{% set findExploreInitialStatus = "Type a query or use the filters." %}
 {% set findExploreNoScript = "Interactive search requires JavaScript. The group-scoped archives below remain available without it." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
 {% set findExploreHideYearControl = false %}
+{# THESIS-SEARCH-UX-01: eager Pagefind warmup on the dedicated thesis
+   search surface. Bypasses the 2.5-second idle-callback ceiling that
+   dominated first-search latency. Still no auto-search. #}
+{% set findExploreEagerWarmup = true %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
 {% set hubMasters = thesisDetails.advisedMasters or [] %}

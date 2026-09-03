@@ -456,15 +456,21 @@
 
     // THESIS-HUB-02: mirror pinned role/type from the mount into the
     // per-kind filter set used by cross-kind searches.
+    //
+    // THESIS-SEARCH-UX-01: only pinned attributes are safe to apply
+    // here. `state.type` in cross-kind mounts (e.g. researchContext)
+    // is the KIND selector ("publications", "theses", "writings"),
+    // NOT a Pagefind subtype value like "masterThesis". Applying it
+    // as `Theses type` would zero out results because no thesis
+    // record has `Theses type=theses`. `state.role` behaves the same
+    // way in cross-kind mounts (the role dropdown is not exposed).
     const pinnedRoleKind = mount.dataset.findExplorePinnedRole;
     const pinnedTypeKind = mount.dataset.findExplorePinnedType;
-    const roleValueKind = state.role || pinnedRoleKind;
-    const typeValueKind = state.type || pinnedTypeKind;
-    if (roleValueKind && kind === "theses") {
-      filters[config.roleFilterKey || `${prefix} role`] = roleValueKind;
+    if (pinnedRoleKind && kind === "theses") {
+      filters[config.roleFilterKey || `${prefix} role`] = pinnedRoleKind;
     }
-    if (typeValueKind && kind === "theses") {
-      filters[config.typeFilterKey || `${prefix} type`] = typeValueKind;
+    if (pinnedTypeKind && kind === "theses") {
+      filters[config.typeFilterKey || `${prefix} type`] = pinnedTypeKind;
     }
     if (state.year) filters[config.yearFilterKey || `${prefix} year`] = state.year;
     if (state.topic) filters[config.topicFilterKey || `${prefix} topic`] = state.topic;
@@ -990,12 +996,21 @@
       const state = readState();
       const renderAll = Boolean(config.renderAllResults);
       const activeQuery = queryInput?.value.trim() || "";
-      // Deterministic bibliographic order when the user has not
-      // entered a free-text query. Any structured facet state still
-      // uses bibliographic order — filters narrow the set, but
-      // relevance ranking only kicks in for actual text queries.
+      // THESIS-SEARCH-UX-01 — relevance ranking only kicks in for
+      // actual text queries. Filter-only or archive states keep the
+      // documented per-kind bibliographic ordering (year DESC for
+      // theses; publication group ordering for publications).
+      //
+      // When the user has entered a free-text query, Pagefind's
+      // relevance score is authoritative and must not be overwritten
+      // by year/author archive sorting. The previous unconditional
+      // `sortThesisEntries()` call had no `!activeQuery` guard and
+      // so buried high-relevance hits under the year-DESC ordering.
+      // Explicit user sort interactions still win via
+      // hasThesisSortInteraction (state.authorSort / yearOrder set).
+      const hasExplicitThesisSort = kind === "theses" && !isDefaultThesisSortState(state);
       let orderedResults = latestResults;
-      if (kind === "theses") {
+      if (kind === "theses" && (!activeQuery || hasExplicitThesisSort)) {
         orderedResults = sortThesisEntries(latestResults, state, labels.langKey);
       } else if (kind === "publications") {
         orderedResults = sortPublicationEntries(latestResults, state, labels.langKey);
@@ -1096,24 +1111,43 @@
       resultsList?.setAttribute("aria-busy", "true");
 
       try {
-        const searchResults = [];
         const searchKinds = config.contextual
           ? (state.type ? [state.type] : contextualKinds)
           : [kind];
+
+        // THESIS-SEARCH-UX-01 — parallelise the per-language search
+        // dispatch. Previously the outer kind × language loops were
+        // serial with `await` inside both, so on a search surface
+        // configured with `searchLanguages = ["fi","en"]` the EN
+        // runtime waited for the FI runtime to finish even when the
+        // two runtimes operate on disjoint Pagefind sublanguage
+        // indexes. Concurrent dispatch preserves cancellation via
+        // the shared runId check (both before and after the awaits)
+        // and preserves the original result ordering because the
+        // returned array is index-aligned with the input.
+        const kindLanguagePairs = [];
         for (const searchKind of searchKinds) {
           const filterSet = config.contextual
             ? filtersForKind(mount, state, searchKind)
             : filtersFor(mount, state);
           for (const language of searchLanguages) {
-            const pagefind = await createSearch(language);
-            if (runId !== activeSearchRunId) return;
-            const result = await pagefind.search(effectiveQuery, {
-              filters: filterSet
-            });
-            if (runId !== activeSearchRunId) return;
-            searchResults.push({ kind: searchKind, result });
+            kindLanguagePairs.push({ searchKind, filterSet, language });
           }
         }
+        const searchResults = (
+          await Promise.all(
+            kindLanguagePairs.map(async ({ searchKind, filterSet, language }) => {
+              const pagefind = await createSearch(language);
+              if (runId !== activeSearchRunId) return null;
+              const result = await pagefind.search(effectiveQuery, {
+                filters: filterSet
+              });
+              if (runId !== activeSearchRunId) return null;
+              return { kind: searchKind, result };
+            })
+          )
+        ).filter(Boolean);
+        if (runId !== activeSearchRunId) return;
 
         const typeLabel = typeSelect?.selectedOptions?.[0]?.textContent?.replace(/\s+\(\d+\)$/, "") || "";
         // PF5-IMPL-APA: kinds that show the full canonical list on
@@ -1129,12 +1163,27 @@
         }
         merged.sort((left, right) => (right.result.score || 0) - (left.result.score || 0));
 
+        // THESIS-SEARCH-UX-01 — hydrate candidate result data in
+        // parallel while preserving score order. `Promise.all` on an
+        // ordered map keeps the array index-aligned with the score-
+        // sorted `merged` input, so a slower `.data()` fetch cannot
+        // reorder a lower-scoring result above a higher-scoring one.
+        // Dedup runs *after* hydration in a deterministic pass; a
+        // duplicate URL is dropped in favour of the first
+        // (highest-scoring) occurrence. This still respects the
+        // per-kind resultCap.
+        const hydrated = await Promise.all(
+          merged.map(async (item) => {
+            const data = await item.result.data();
+            return { kind: item.kind, data };
+          })
+        );
+        if (runId !== activeSearchRunId) return;
+
         const seen = new Set();
         const entries = [];
-        for (const item of merged) {
-          const data = await item.result.data();
-          if (runId !== activeSearchRunId) return;
-          const entry = createResultEntry(item.kind, data, {
+        for (const item of hydrated) {
+          const entry = createResultEntry(item.kind, item.data, {
             ...state,
             typeLabel
           }, recordsByUrl, labels);
@@ -1211,15 +1260,29 @@
       runSearch();
     });
 
-    // PF-PERF2 — warm Pagefind before the user's first explicit
-    // search. Three orthogonal triggers, all idempotent because
-    // createSearch caches per language:
-    //   1. Idle window after mount init (requestIdleCallback → setTimeout).
-    //   2. Search input focus (one-shot).
-    //   3. Pointerenter on the mount (one-shot).
-    // None of these calls pagefind.search — no auto-search on load.
+    // PF-PERF2 + THESIS-SEARCH-UX-01 — warm Pagefind before the user's
+    // first explicit search. Warmup imports the Pagefind wasm module
+    // and calls pagefind.init() but NEVER calls pagefind.search(), so
+    // no results appear before user interaction.
+    //
+    // Triggers, all idempotent because createSearch caches per language:
+    //   1. Eager: fire on the next microtask when the mount opts in
+    //      via data-find-explore-eager-warmup (e.g. dedicated thesis
+    //      search surfaces that must feel immediate). This bypasses
+    //      the 2.5-second requestIdleCallback ceiling that was
+    //      dominating first-search latency on /opinnaytteet/.
+    //   2. Idle window after mount init (requestIdleCallback →
+    //      setTimeout fallback) — kept as the default for non-eager
+    //      surfaces so they do not incur wasm bandwidth before the
+    //      user shows interest.
+    //   3. Search input focus (one-shot).
+    //   4. Pointerenter on the mount (one-shot).
     const warmup = () => warmSearchLanguages(searchLanguages);
-    scheduleIdle(warmup);
+    if (mount.dataset.findExploreEagerWarmup === "true") {
+      Promise.resolve().then(warmup);
+    } else {
+      scheduleIdle(warmup);
+    }
     queryInput?.addEventListener("focus", warmup, { once: true });
     mount.addEventListener("pointerenter", warmup, { once: true });
     mount.dataset.findExplorePagefindWarmed = "scheduled";

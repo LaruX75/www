@@ -38,7 +38,7 @@ eleventyComputed:
 {% set findExploreAllTopicsLabel = "All topics" %}
 {% set findExploreResetLabel = "Clear" %}
 {% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "The archive table is visible below." %}
+{% set findExploreInitialStatus = "Type a query or use the filters." %}
 {% set findExploreNoScript = "Interactive search requires JavaScript. The archive table still works." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
@@ -46,6 +46,7 @@ eleventyComputed:
 {% set findExplorePinnedRole = pageModel.pinnedRole %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreEagerWarmup = true %}
 {% set findExploreExternalResultsId = "thesesArchiveTbodyMastersEn" %}
 {% set thesisArchiveTableId = "thesesArchiveTableMastersEn" %}
 {% set thesisArchiveTbodyId = "thesesArchiveTbodyMastersEn" %}
