@@ -33,6 +33,13 @@
  *   publicSpeech     → collections.pub_puhe filtered by NOT isCouncilSpeech()
  */
 
+// VALTUUSTOTYO-SSR-01: council-speech classification is now single-owner
+// in src/_utils/councilSpeech.js. Re-exported from this module so
+// existing importers (tests, other consumers) continue to work.
+const {
+  isCouncilSpeech: sharedIsCouncilSpeech
+} = require("./councilSpeech");
+
 const LATEST_LIMIT = 5;
 
 // Date preference per group. Group 5 (initiatives) uses `meetingDate`
@@ -57,20 +64,15 @@ function pickString(value) {
   return value.trim();
 }
 
-// The council-speech classification lives in this canonical model so the
-// hub, /valtuustotyo/ archive and any downstream consumer agree on the
-// same rule. Priority: explicit `speechContext` first (data-frontmatter
-// contract); fall back to `event`/`forum` heuristics for legacy records
-// missing the field.
+// VALTUUSTOTYO-SSR-01: single-owner classifier lives in
+// src/_utils/councilSpeech.js. Kept as a local export so this
+// module's public surface (previously exposed `isCouncilSpeech`)
+// remains stable. The shared implementation drops the "type != puhe"
+// pre-check on Kynästä's council branch because the caller already
+// passes `collections.pub_puhe` (guaranteed type=="puhe"); the
+// shared helper's stricter guard is safe.
 function isCouncilSpeech(item) {
-  const data = item?.data || {};
-  const speechContext = pickString(data.speechContext);
-  if (speechContext) {
-    return speechContext === "valtuusto" || speechContext === "kyselytunti";
-  }
-  const forums = toArray(data.forum);
-  if (pickString(data.event) === "Oulun kaupunginvaltuusto") return true;
-  return forums.some((f) => pickString(f) === "Kaupunginvaltuusto");
+  return sharedIsCouncilSpeech(item);
 }
 
 function resolveDate(item, fields) {
