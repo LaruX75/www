@@ -191,14 +191,38 @@ test.describe("Kynästä ↔ Valtuustotyö first-5 parity", () => {
   });
 });
 
-test.describe("/politiikka/ unaffected regression", () => {
-  test("/politiikka/ still fetches /data/publications.json (not touched by this workstream)", async ({ page }) => {
+test.describe("/politiikka/ runtime-fetch cleanup (POLITIIKKA-SSR-01)", () => {
+  // Contract flipped by POLITIIKKA-SSR-01: /politiikka/ previously
+  // fetched /data/publications.json at runtime to render a political-
+  // speeches table into DOM targets that never existed (orphaned
+  // dead code). After POLITIIKKA-SSR-01 the fetch is gone. The
+  // endpoint itself remains (retained public JSON contract) but
+  // /politiikka/ is no longer a consumer.
+  test("/politiikka/ must NOT fetch /data/publications.json at runtime", async ({ page }) => {
     const publications = [];
     page.on("request", (r) => {
       if (/\/data\/publications\.json/.test(r.url())) publications.push(r.url());
     });
     await page.goto("/politiikka/", { waitUntil: "domcontentloaded" });
     await page.waitForLoadState("networkidle");
-    expect(publications.length, "/politiikka/ must still fetch /data/publications.json (dependency retained)").toBeGreaterThanOrEqual(1);
+    expect(publications, `no /data/publications.json fetch expected from /politiikka/; got ${JSON.stringify(publications)}`).toEqual([]);
+  });
+
+  test("/politiikka/ still renders its primary SSR content sections", async ({ page }) => {
+    await page.goto("/politiikka/");
+    // Primary sections that must survive after the dead-code cleanup.
+    // (Hero heading, current-role card, evidence showcase, deep-dive
+    // anchors, and the mobile-disclosure host elements.)
+    await expect(page.locator("h1").first()).toBeVisible();
+    const anchors = await page.locator('a[href^="/politiikka/kaupunginvaltuusto/"], a[href^="/politiikka/sivistyslautakunta/"], a[href="/valtuustotyo/"], a[href="/lausunnot/"]').count();
+    expect(anchors, "/politiikka/ deep-dive navigation must remain intact").toBeGreaterThan(0);
+  });
+
+  test("/data/publications.json endpoint still resolves (public contract retained)", async ({ page }) => {
+    const r = await page.request.get("/data/publications.json");
+    expect(r.ok()).toBeTruthy();
+    const body = await r.json();
+    expect(body).toHaveProperty("items");
+    expect(Array.isArray(body.items)).toBeTruthy();
   });
 });
