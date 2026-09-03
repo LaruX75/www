@@ -147,8 +147,19 @@
           </div>
           {% endif %}
 
-          {# R1-B1: shared related-content sidebar. Same include as publication-item-body.njk:122, media-item.njk, presentation-item.njk, blog-post.njk, writing-post.njk. Reads categories/keywords/contexts/type from the thesis-details.njk paginated wrapper's eleventyComputed data. #}
-          {% include "content-context-sidebar.njk" %}
+          {# R1-B1: shared related-content sidebar. Same include as publication-item-body.njk:122, media-item.njk, presentation-item.njk, blog-post.njk, writing-post.njk. Reads categories/keywords/contexts/type from the thesis-details.njk paginated wrapper's eleventyComputed data.
+
+             THESIS-SEARCH-UX-01: wrapped in data-pagefind-ignore because
+             the sidebar contains "Katso myös" cross-references to OTHER
+             theses' titles. Without this, a Pagefind query for "ADHD"
+             would match thesis 46597 (a thesis unrelated to ADHD) purely
+             because 46597's sidebar links to 62157 whose title contains
+             "ADHD". Keywords + research themes are duplicated in the
+             above `<aside>` cards outside this wrapper, so this ignore
+             does not drop any unique searchable content. #}
+          <div data-pagefind-ignore>
+            {% include "content-context-sidebar.njk" %}
+          </div>
         </aside>
       </div>
     </article>

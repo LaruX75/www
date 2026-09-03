@@ -277,7 +277,12 @@ test("gradut FE scope cannot leak kandi-only records", async ({ page }) => {
   // Now search that title on the gradut subarchive.
   await page.goto("/opinnaytteet/gradut/");
   await page.locator("[data-find-explore-query]").fill(kandiTitle);
-  await expect(page.locator("[data-find-explore-status]")).toContainText(/tulos|tulosta/, { timeout: 15000 });
+  // Wait for either a result-count status or the no-results status.
+  // After THESIS-SEARCH-UX-01 eliminated sidebar chrome pollution, a
+  // kandi title on the master's-scoped archive legitimately returns
+  // zero results (Tuloksia ei löytynyt) instead of leaked matches.
+  await expect(page.locator("[data-find-explore-status]"))
+    .toContainText(/tulos|tulosta|löytynyt/i, { timeout: 15000 });
 
   // Any row surfaced in the shared tbody must be a master's thesis
   // ("Gradu"), never a "Kandi". Zero rows is also acceptable — the goal

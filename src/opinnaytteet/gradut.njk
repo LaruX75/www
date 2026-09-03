@@ -37,7 +37,7 @@ eleventyComputed:
 {% set findExploreAllTopicsLabel = "Kaikki aiheet" %}
 {% set findExploreResetLabel = "Tyhjennä" %}
 {% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Alla oleva arkistotaulukko näkyy suoraan. Hakusana tai suodatin korvaa saman taulukon rivit Pagefind-tuloksilla." %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai käytä rajauksia." %}
 {% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Arkistotaulukko ja sen sivutus toimivat silti ilman JavaScriptiä." %}
 {% set findExploreHideTypeControl = true %}
 {% set findExploreHideRoleControl = true %}
@@ -46,11 +46,12 @@ eleventyComputed:
 {% set findExplorePinnedRole = pageModel.pinnedRole %}
 {% set findExploreYears = pageModel.years %}
 {% set findExploreTopicOptions = pageModel.topicOptions %}
+{% set findExploreEagerWarmup = true %}
 {% set findExploreExternalResultsId = "thesesArchiveTbodyGradutFi" %}
 {% set thesisArchiveTableId = "thesesArchiveTableGradutFi" %}
 {% set thesisArchiveTbodyId = "thesesArchiveTbodyGradutFi" %}
 {% set thesisArchiveHeading = "Pro gradu -tutkielmat" %}
-{% set thesisArchiveDescription = "Ohjatut pro gradu -tutkielmat, uusin ensin. Sama canonical thesis -aineisto kuin etusivun tuoreimmat-nostoissa ja saman scope-rajauksen alaisena kuin ylläoleva haku." %}
+{% set thesisArchiveDescription = "Ohjatut pro gradu -tutkielmat, uusin ensin. Näet saman aineiston kuin etusivun tuoreimmissa nostoissa." %}
 {% set thesisArchiveLang = "fi" %}
 {% set thesisArchiveLandingUrl = "/opinnaytteet/gradut/" %}
 {% set thesisArchivePageBase = "/opinnaytteet/gradut/sivu/" %}
