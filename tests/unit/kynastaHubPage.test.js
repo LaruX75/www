@@ -50,28 +50,37 @@ describe("LATEST_LIMIT + DATE_FIELDS contract", () => {
 });
 
 describe("isCouncilSpeech classification", () => {
+  // VALTUUSTOTYO-SSR-01: after the shared helper consolidation
+  // (src/_utils/councilSpeech.js) the rule additionally enforces
+  // `type == "puhe"` as the outer guard — a legitimate hardening of
+  // the previously implicit contract. Test fixtures must therefore
+  // supply `type: "puhe"` explicitly.
   test("speechContext=valtuusto → true", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { speechContext: "valtuusto" } })), true);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", speechContext: "valtuusto" } })), true);
   });
 
   test("speechContext=kyselytunti → true", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { speechContext: "kyselytunti" } })), true);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", speechContext: "kyselytunti" } })), true);
   });
 
   test("speechContext=juhlapuhe → false", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { speechContext: "juhlapuhe" } })), false);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", speechContext: "juhlapuhe" } })), false);
   });
 
   test("no speechContext + event=Oulun kaupunginvaltuusto → true", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { event: "Oulun kaupunginvaltuusto" } })), true);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", event: "Oulun kaupunginvaltuusto" } })), true);
   });
 
   test("no speechContext + forum contains Kaupunginvaltuusto → true", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { forum: ["Kaupunginvaltuusto"] } })), true);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", forum: ["Kaupunginvaltuusto"] } })), true);
   });
 
   test("no speechContext, no council event/forum → false", () => {
-    assert.equal(isCouncilSpeech(mkItem({ data: { event: "Rehtoripäivä" } })), false);
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "puhe", event: "Rehtoripäivä" } })), false);
+  });
+
+  test("type != puhe → false (new outer guard)", () => {
+    assert.equal(isCouncilSpeech(mkItem({ data: { type: "mielipide", speechContext: "valtuusto" } })), false);
   });
 });
 
@@ -90,9 +99,9 @@ describe("buildKynastaHubModel — grouping + slicing", () => {
       mkItem({ url: "/c1/", data: { title: "C1", date: "2026-04-01" } })
     ],
     pub_puhe: [
-      mkItem({ url: "/s1/", data: { title: "Council speech 1", date: "2026-06-01", speechContext: "valtuusto" } }),
-      mkItem({ url: "/s2/", data: { title: "Public speech 1", date: "2026-07-01", speechContext: "juhlapuhe" } }),
-      mkItem({ url: "/s3/", data: { title: "Council speech 2", date: "2026-08-20", speechContext: "kyselytunti" } })
+      mkItem({ url: "/s1/", data: { title: "Council speech 1", date: "2026-06-01", type: "puhe", speechContext: "valtuusto" } }),
+      mkItem({ url: "/s2/", data: { title: "Public speech 1", date: "2026-07-01", type: "puhe", speechContext: "juhlapuhe" } }),
+      mkItem({ url: "/s3/", data: { title: "Council speech 2", date: "2026-08-20", type: "puhe", speechContext: "kyselytunti" } })
     ],
     politics: [
       mkItem({ url: "/i1/", data: { title: "Init 1", date: "2026-05-05" } }),
@@ -196,7 +205,7 @@ describe("buildKynastaHubModel — EN scope preserves site's FI-corpus-with-EN-U
       pub_mielipide: [],
       pub_kolumni: [],
       pub_puhe: [
-        mkItem({ url: "/s/", data: { title: "FI speech", date: "2026-06-01", speechContext: "valtuusto" } })
+        mkItem({ url: "/s/", data: { title: "FI speech", date: "2026-06-01", type: "puhe", speechContext: "valtuusto" } })
       ],
       politics: [
         mkItem({ url: "/i/", data: { title: "FI init", date: "2026-05-05" } })

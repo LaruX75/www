@@ -11,6 +11,11 @@ const {
   resolveContexts
 } = require("./src/_data/contentContext");
 const getTaxonomyType = require("./src/_utils/getTaxonomyType");
+// VALTUUSTOTYO-SSR-01: canonical single-owner council-speech classifier.
+// Previously duplicated inline here + in src/_utils/kynastaHubPage.js
+// + in src/valtuustotyo.njk. Consolidated so a future change to the
+// membership rule updates one place.
+const { isCouncilSpeech } = require("./src/_utils/councilSpeech");
 
 module.exports = function registerCollections(eleventyConfig) {
   const ACADEMIC_TERMS = [
@@ -153,23 +158,6 @@ module.exports = function registerCollections(eleventyConfig) {
 
   function hasExplicitDate(item) {
     return Boolean(item?.data && Object.prototype.hasOwnProperty.call(item.data, "date") && item.data.date);
-  }
-
-  function isCouncilSpeech(item) {
-    const data = item?.data || {};
-    if (data.type !== "puhe") return false;
-
-    const speechContext = String(data.speechContext || "").trim();
-    const forums = Array.isArray(data.forum) ? data.forum : (data.forum ? [data.forum] : []);
-
-    if (speechContext) {
-      return speechContext === "valtuusto" || speechContext === "kyselytunti";
-    }
-
-    return (
-      data.event === "Oulun kaupunginvaltuusto" ||
-      forums.includes("Kaupunginvaltuusto")
-    );
   }
 
   function sortByExplicitDateThenOrder(a, b, orderKey = "order") {
