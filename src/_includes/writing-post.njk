@@ -69,45 +69,40 @@ layout: base.njk
   {% set sectionLabel = "Council initiative" if isEnglish else "Valtuustoaloite" %}
 {% endif %}
 
-{% macro heroCopy(wrapperClass) %}
-  <div class="{{ wrapperClass }}">
-    <p class="content-detail-eyebrow mb-2">{{ sectionLabel }}</p>
-    <h1 class="content-detail-title mb-3">{{ title }}</h1>
-    {% if subtitle %}
-      <p class="content-detail-lead mb-2">{{ subtitle }}</p>
-    {% endif %}
-    <div class="content-detail-actions">
-      {% set orientationLang = currentLang %}
-      {% set orientationHubHref = orientationCtx.archiveHref %}
-      {% set orientationHubLabel = orientationCtx.archiveLabel %}
-      {% set orientationReturnPrefixes = ["/kirjoitukset/", "/en/writings/"] %}
-      {% include "detail-orientation.njk" %}
-      {% if externalSourceHref %}
-        <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-          {{ "Open source" if isEnglish else "Avaa lähde" }}
-          <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-        </a>
-      {% endif %}
-    </div>
-  </div>
-{% endmacro %}
+{% import "detail-hero.njk" as heroPartial %}
 
-<section class="content-detail-hero content-detail-hero--writing py-5 border-bottom">
-  <div class="site-shell">
-    {% if thumbnail %}
-      <div class="content-detail-hero-grid">
-        {{ heroCopy("content-detail-copy") }}
-        <aside class="content-detail-visual" aria-label="{{ 'Preview' if isEnglish else 'Esikatselu' }}">
-          <div class="content-detail-thumb">
-            <img src="{{ thumbnail }}" alt="{{ title }}" loading="lazy" decoding="async">
-          </div>
-        </aside>
-      </div>
-    {% else %}
-      {{ heroCopy("") }}
+{% set writingHeroAside %}
+{% if thumbnail %}
+<aside class="content-detail-visual" aria-label="{{ 'Preview' if isEnglish else 'Esikatselu' }}">
+  <div class="content-detail-thumb">
+    <img src="{{ thumbnail }}" alt="{{ title }}" loading="lazy" decoding="async">
+  </div>
+</aside>
+{% endif %}
+{% endset %}
+
+{% call heroPartial.heroShell(
+  variant="writing",
+  eyebrow=sectionLabel,
+  title=title,
+  lead=(subtitle or null),
+  leadMb="2",
+  aside=(writingHeroAside if thumbnail else null)
+) %}
+  <div class="content-detail-actions">
+    {% set orientationLang = currentLang %}
+    {% set orientationHubHref = orientationCtx.archiveHref %}
+    {% set orientationHubLabel = orientationCtx.archiveLabel %}
+    {% set orientationReturnPrefixes = ["/kirjoitukset/", "/en/writings/"] %}
+    {% include "detail-orientation.njk" %}
+    {% if externalSourceHref %}
+      <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
+        {{ "Open source" if isEnglish else "Avaa lähde" }}
+        <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+      </a>
     {% endif %}
   </div>
-</section>
+{% endcall %}
 
 <section class="py-4">
   <div class="site-shell">
