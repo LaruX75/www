@@ -113,11 +113,10 @@ test("FI presentation archive decorates local card links with returnTo and leave
   const localLink = page.locator(".presentation-archive-card-title a[href^='/presentations/']").first();
   await expect(localLink).toHaveAttribute("href", /returnTo=%2Fesitykset%2F/);
 
-  const externalLink = page.locator(".presentation-archive-card-title a").filter({ hasNot: page.locator("[href^='/presentations/']") }).first();
-  const externalHref = await externalLink.getAttribute("href").catch(() => null);
-  if (externalHref) {
-    expect(externalHref).not.toContain("returnTo=");
-  }
+  const externalLink = page.locator(".presentation-archive-card-title a:not([href^='/presentations/'])").first();
+  await expect(externalLink).toHaveCount(1);
+  const externalHref = await externalLink.getAttribute("href");
+  expect(externalHref).not.toContain("returnTo=");
 });
 
 test("FI presentation detail reveals discovery return link when returnTo carries state that differs from hub", async ({ page }) => {
