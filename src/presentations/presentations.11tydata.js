@@ -91,6 +91,12 @@ module.exports = {
         categories: (data) => getPresentationRecord(data)?.categories,
         keywords: (data) => getPresentationRecord(data)?.keywords,
         source: (data) => getPresentationRecord(data)?.source || data.source,
+        // DETAIL-UX-01C: route thumbnail through the canonical projection
+        // so the detail page picks up locally-hosted Canva thumbnails
+        // (/images/canva-thumbnails/…) instead of the raw stale
+        // `design.canva.ai/*` URLs some frontmatter still carries.
+        // Falls back to frontmatter thumbnail when the projection has none.
+        thumbnail: (data) => getPresentationRecord(data)?.thumbnail || data.thumbnail,
         courseContexts: (data) => getPresentationCourseContexts(data),
         sourceLanguage: (data) => getPresentationRecord(data)?.sourceLanguage,
         slideCount: (data) => getPresentationRecord(data)?.slideCount,
