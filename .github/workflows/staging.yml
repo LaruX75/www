@@ -151,11 +151,16 @@ jobs:
     # behavior where accessibility-navigation.yml ran only on pull_request.
     #
     # CI-PERF-01B: path-aware test selection. If the PR touches ONLY
-    # course-content markdown under src/opetus/**/*.md, run just the
-    # course-specific spec. Any other change (shared templates, JS, CSS,
-    # data pipeline, config, workflow itself, or any unknown path)
-    # falls back to the full accessibility+navigation+contrast suite.
-    # Fail-safe: classification failure defaults to full regression.
+    # the single explicitly audited course page
+    # (src/opetus/teknologiatuettu-oppiminen-2026-a.md), run just the
+    # scoped course-page spec. ANY other change — including any other
+    # file under src/opetus/, shared templates, JS, CSS, data pipeline,
+    # config, workflow itself, or any unknown path — falls back to the
+    # full accessibility+navigation+contrast suite. File extension or
+    # directory membership alone is NOT sufficient to classify Eleventy
+    # source as content-only; new course/teaching sources must be
+    # audited and added to this allowlist explicitly. Fail-safe:
+    # classification failure defaults to full regression.
     needs: build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
@@ -187,19 +192,22 @@ jobs:
           fi
           echo "Changed files:"
           echo "$changed" | sed 's/^/  /'
-          # CI-PERF-01B allowlist: only immediate or nested .md files
-          # under src/opetus/ count as content-only. Anything else —
-          # including .11tydata.js, images, or paths outside src/opetus/ —
-          # forces full regression.
-          non_course=$(echo "$changed" | grep -v -E '^src/opetus/.+\.md$')
-          if [ -z "$non_course" ]; then
+          # CI-PERF-01B audited LOW-RISK allowlist: exactly one explicitly
+          # audited course page. All other src/opetus/*.md files (including
+          # future course pages, index pages, and hub pages) default to
+          # full regression until they are individually audited and added
+          # to this allowlist. File extension or directory membership is
+          # not sufficient — Eleventy/Nunjucks source can hide SSR logic.
+          allowlist='^src/opetus/teknologiatuettu-oppiminen-2026-a\.md$'
+          non_allowed=$(echo "$changed" | grep -v -E "$allowlist")
+          if [ -z "$non_allowed" ]; then
             echo ""
-            echo "→ All changed paths are src/opetus/**/*.md (LOW-RISK content-only)"
+            echo "→ Only the audited course page changed (LOW-RISK content-only)"
             echo "course_content_only=true" >> "$GITHUB_OUTPUT"
           else
             echo ""
             echo "→ HIGH-RISK / shared / unknown paths detected → full regression"
-            echo "$non_course" | sed 's/^/    - /'
+            echo "$non_allowed" | sed 's/^/    - /'
             echo "course_content_only=false" >> "$GITHUB_OUTPUT"
           fi
 

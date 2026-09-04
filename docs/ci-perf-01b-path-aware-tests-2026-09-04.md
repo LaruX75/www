@@ -4,7 +4,7 @@
 **Date:** 2026-09-04
 **Baseline SHA:** `e72d3d178cbd91787ce7ce3b7c34801a4b0cf6f8`
 **Branch:** `perf/ci-path-aware-tests`
-**Scope:** run scoped Playwright when a PR touches only `src/opetus/**/*.md`; keep full regression for anything else
+**Scope:** run scoped Playwright when a PR touches ONLY the single explicitly audited course page; keep full regression for anything else
 
 Architecture Closure 1.0 remains `CLOSED / GREEN / MAIN`. CI-PERF-01A (single-build artifact reuse) is preserved. This is a CI/performance change, not an architecture reopen.
 
@@ -35,7 +35,7 @@ staging.yml (PR)
 ├─ verify                        (unchanged — cheap, universal invariants)
 └─ playwright
      ├─ classify step:
-     │    diff base..head → is every changed path src/opetus/**/*.md?
+     │    diff base..head → is every changed path in the audited allowlist?
      │       yes → course_content_only=true
      │       no  → course_content_only=false  (fail-safe default)
      │
@@ -52,25 +52,33 @@ staging.yml (PR)
 
 The classification lives inline in the Playwright job (no separate job overhead). It uses `git diff --name-only $BASE_SHA $HEAD_SHA` from the PR's own event payload.
 
-**LOW-RISK allowlist (course_content_only=true):**
-- `src/opetus/**/*.md` — course-page markdown files
+**Audited LOW-RISK allowlist (`course_content_only=true`):**
+- `src/opetus/teknologiatuettu-oppiminen-2026-a.md` — the single explicitly audited 405040Y course page
 
-**HIGH-RISK / triggers full regression (course_content_only=false):**
-- Anything NOT matching `src/opetus/**/*.md`, including:
-  - `src/opetus/**/*.11tydata.js`, `src/opetus/**/*.png` (non-md files inside the same directory)
-  - `src/_includes/**` — shared Nunjucks templates and partials
-  - `src/_data/**` — data pipeline
-  - `src/_utils/**` — shared utilities
-  - `src/js/**` — client JavaScript
-  - `src/css/**` — styles
-  - `.eleventy.js` — build config
-  - `package.json`, `package-lock.json` — dependency changes
-  - `.github/workflows/**` — workflow logic changes
-  - All other content directories (`src/fi/**`, `src/en/**`, `src/blog/**`, `src/presentations/**`, `src/publications/**`, `src/opinnaytteet/**`, `src/politics/**`, `src/portfolio/**`, `src/media/**`, `src/training/**`, `src/api/**`, `src/data/**`, `src/curated/**`, `src/images/**`, `src/img/**`, `src/julkaisut/**`, `src/legacy-redirects/**`)
-  - Any repo-root path, any unknown directory, any hidden file
-  - Any file added under a brand-new directory that wasn't in the allowlist
+That's it. No wildcard, no directory glob.
 
-The allowlist is deliberately narrow: single-directory, .md only. Adding a new low-risk allowlist entry is a conscious future workstream, not a passive default.
+**Reasoning:**
+
+> File extension or directory membership alone is not sufficient to classify Eleventy/Nunjucks source files as content-only. New course/teaching sources default to full regression until explicitly audited and allowlisted.
+
+This is important particularly for future `/opetus/` SSR hub work: an index page, a hub page, or a new course landing under `src/opetus/` could legitimately hide SSR/template/data logic (Nunjucks blocks, macros, `.11tydata.js` adapters, collection iterations) even inside a `.md` file. Auto-allowlisting the whole directory would silently drop test coverage on those changes.
+
+**HIGH-RISK / triggers full regression (`course_content_only=false`):**
+- Any `src/opetus/*.md` file that isn't the explicitly audited course page — including any future course page, index page, or hub page
+- `src/opetus/**/*.11tydata.js`, `src/opetus/**/*.png`, or any other non-allowlisted file inside the same directory
+- `src/_includes/**` — shared Nunjucks templates and partials
+- `src/_data/**` — data pipeline
+- `src/_utils/**` — shared utilities
+- `src/js/**` — client JavaScript
+- `src/css/**` — styles
+- `.eleventy.js` — build config
+- `package.json`, `package-lock.json` — dependency changes
+- `.github/workflows/**` — workflow logic changes
+- All other content directories (`src/fi/**`, `src/en/**`, `src/blog/**`, `src/presentations/**`, `src/publications/**`, `src/opinnaytteet/**`, `src/politics/**`, `src/portfolio/**`, `src/media/**`, `src/training/**`, `src/api/**`, `src/data/**`, `src/curated/**`, `src/images/**`, `src/img/**`, `src/julkaisut/**`, `src/legacy-redirects/**`)
+- Any repo-root path, any unknown directory, any hidden file
+- Any file added under a brand-new directory not in the allowlist
+
+Adding a new low-risk allowlist entry is a conscious future workstream (audit + explicit entry), not a passive default.
 
 ## Fail-safe behavior
 
@@ -126,15 +134,15 @@ None performed. This workstream **adds** conditional test-selection logic to the
 
 | Change touches | course_content_only | Playwright runs |
 | --- | :---: | --- |
-| Only `src/opetus/foo.md` | `true` | `course-page-01.spec.js` |
-| Only `src/opetus/**/*.md` (multiple) | `true` | `course-page-01.spec.js` |
-| `src/opetus/**/*.md` + `src/_includes/base.njk` | `false` | full regression |
+| Only `src/opetus/teknologiatuettu-oppiminen-2026-a.md` | `true` | `course-page-01.spec.js` |
+| The audited course page + any other file | `false` | full regression |
+| Only `src/opetus/uusi-kurssi.md` (new course, not yet audited) | `false` | full regression |
+| Only `src/opetus/index.md` (potential future hub) | `false` | full regression |
+| Only `src/opetus/*.11tydata.js` | `false` | full regression |
 | Only `src/_includes/**` | `false` | full regression |
-| Only `src/js/**` | `false` | full regression |
-| Only `src/css/**` | `false` | full regression |
-| `.eleventy.js` | `false` | full regression |
-| `package.json` / `package-lock.json` | `false` | full regression |
-| `.github/workflows/staging.yml` | `false` | full regression |
+| Only `src/js/**` / `src/css/**` | `false` | full regression |
+| `.eleventy.js` / `package.json` | `false` | full regression |
+| `.github/workflows/**` | `false` | full regression |
 | Unknown / brand-new directory | `false` | full regression |
 | `docs/**` only | *N/A — workflow skipped entirely by `paths-ignore`* | none |
 
@@ -159,7 +167,7 @@ None performed. This workstream **adds** conditional test-selection logic to the
 This workstream stops at path-aware selection between two Playwright modes. Not in scope:
 - Caching / dependency-install optimization (potential CI-PERF-01C)
 - Test matrix expansion or splitting
-- Adding new content-only allowlist entries beyond `src/opetus/**/*.md`
+- Adding new files to the audited allowlist (each future entry requires its own audit + workstream)
 - Changing verify-job coverage
 - Extending classification to unit or integration tests
 
