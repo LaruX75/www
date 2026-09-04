@@ -7,7 +7,7 @@ test.describe.configure({ mode: "serial" });
  * (periodi A, lukuvuosi 2026–2027).
  *
  * Guards:
- *   1. Route /opetus/teknologiatuettu-oppiminen/2026-a/ returns SSR content
+ *   1. Route /opetus/teknologiatuettu-oppiminen/2026-2027-a/ returns SSR content
  *   2. Course code 405040Y appears
  *   3. Five lecture rows render
  *   4. Known lecture dates + times are present
@@ -20,7 +20,7 @@ test.describe.configure({ mode: "serial" });
  *  10. No runtime JSON fetches introduced
  */
 
-const COURSE_URL = "/opetus/teknologiatuettu-oppiminen/2026-a/";
+const COURSE_URL = "/opetus/teknologiatuettu-oppiminen/2026-2027-a/";
 const CANVA_URLS = [
   "https://canva.link/rd3kruke4i7fzns",
   "https://canva.link/vmsct2fivgoxykk",
