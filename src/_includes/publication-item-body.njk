@@ -3,43 +3,39 @@
 {% set externalHref = detail.externalUrl or detail.doiUrl or "" %}
 {% set openAccessValue = detail.openAccess or 0 %}
 {% set citationCount = detail.citationCount or 0 %}
+{% import "detail-hero.njk" as heroPartial %}
 
-<section class="content-detail-hero content-detail-hero--writing py-5 border-bottom">
-  <div class="site-shell">
-    <div class="content-detail-hero-grid content-detail-hero-grid--single">
-      <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2">{{ "Scientific publication" if isEnglish else "Tieteellinen julkaisu" }}</p>
-        <h1 class="content-detail-title mb-3">{{ title }}</h1>
-        {% if detail.journal or detail.type %}
-          <p class="content-detail-lead mb-3">
-            {{ detail.journal or detail.publisher or "" }}
-            {% if detail.journal and detail.type %} · {% endif %}
-            {{ detail.type or "" }}
-          </p>
-        {% endif %}
-        <div class="content-detail-meta" aria-label="{{ 'Publication metadata' if isEnglish else 'Julkaisun metatiedot' }}">
-          {% if detail.year %}<span class="badge text-bg-light text-dark border">{{ detail.year }}</span>{% endif %}
-          {% if detail.typeCode %}<span class="badge text-bg-secondary">{{ detail.typeCode }}</span>{% endif %}
-          {% if detail.peerReviewed %}<span class="badge text-bg-primary">{{ "Peer-reviewed" if isEnglish else "Vertaisarvioitu" }}</span>{% endif %}
-          {% if openAccessValue %}<span class="badge text-bg-success">{{ "Open access" if isEnglish else "Avoin saatavuus" }}</span>{% endif %}
-          {% if citationCount %}<span class="badge text-bg-warning text-dark">{{ citationCount }} {{ "citations" if isEnglish else "viittausta" }}</span>{% endif %}
-        </div>
-        <div class="content-detail-actions mt-3">
-          {% set orientationHubHref = detail.archiveUrl or ('/en/publications/' if isEnglish else '/julkaisut/') %}
-          {% set orientationHubLabel = "Back to publications" if isEnglish else "Takaisin julkaisuihin" %}
-          {% set orientationReturnPrefixes = ["/julkaisut/", "/en/publications/"] %}
-          {% include "detail-orientation.njk" %}
-          {% if externalHref %}
-          <a href="{{ externalHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-            {{ "Open source" if isEnglish else "Avaa lähde" }}
-            <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-          </a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
+{% set heroLead = "" %}
+{% if detail.journal or detail.type %}
+  {% set heroLead %}{{ detail.journal or detail.publisher or "" }}{% if detail.journal and detail.type %} · {% endif %}{{ detail.type or "" }}{% endset %}
+{% endif %}
+
+{% call heroPartial.heroShell(
+  variant="writing",
+  eyebrow=("Scientific publication" if isEnglish else "Tieteellinen julkaisu"),
+  title=title,
+  lead=(heroLead if heroLead else null)
+) %}
+  <div class="content-detail-meta" aria-label="{{ 'Publication metadata' if isEnglish else 'Julkaisun metatiedot' }}">
+    {% if detail.year %}<span class="badge text-bg-light text-dark border">{{ detail.year }}</span>{% endif %}
+    {% if detail.typeCode %}<span class="badge text-bg-secondary">{{ detail.typeCode }}</span>{% endif %}
+    {% if detail.peerReviewed %}<span class="badge text-bg-primary">{{ "Peer-reviewed" if isEnglish else "Vertaisarvioitu" }}</span>{% endif %}
+    {% if openAccessValue %}<span class="badge text-bg-success">{{ "Open access" if isEnglish else "Avoin saatavuus" }}</span>{% endif %}
+    {% if citationCount %}<span class="badge text-bg-warning text-dark">{{ citationCount }} {{ "citations" if isEnglish else "viittausta" }}</span>{% endif %}
   </div>
-</section>
+  <div class="content-detail-actions mt-3">
+    {% set orientationHubHref = detail.archiveUrl or ('/en/publications/' if isEnglish else '/julkaisut/') %}
+    {% set orientationHubLabel = "Back to publications" if isEnglish else "Takaisin julkaisuihin" %}
+    {% set orientationReturnPrefixes = ["/julkaisut/", "/en/publications/"] %}
+    {% include "detail-orientation.njk" %}
+    {% if externalHref %}
+    <a href="{{ externalHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
+      {{ "Open source" if isEnglish else "Avaa lähde" }}
+      <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+    </a>
+    {% endif %}
+  </div>
+{% endcall %}
 
 <section class="content-detail-body-section py-5">
   <div class="site-shell">

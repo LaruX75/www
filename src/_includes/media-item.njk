@@ -38,43 +38,40 @@ layout: base.njk
 <span hidden data-pagefind-sort="date:{{ mediaIsoDate }}"></span>
 {% endif %}
 
-<section class="content-detail-hero content-detail-hero--media py-5 border-bottom">
-  <div class="site-shell">
-    <div class="content-detail-hero-grid">
-      <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2">Mediassa</p>
-        <h1 class="content-detail-title mb-3">{{ title }}</h1>
-        {% if subtitle %}
-          <p class="content-detail-lead mb-3">{{ subtitle }}</p>
-        {% elif description %}
-          <p class="content-detail-lead mb-3">{{ description }}</p>
-        {% endif %}
-        <div class="content-detail-actions">
-          {% if sourceHref %}
-            <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa alkuperäinen lähde</a>
-          {% endif %}
-          {% set orientationLang = currentLang %}
-          {% set orientationHubHref = "/mediassa/" %}
-          {% set orientationHubLabel = "Kaikki mediaosumat" %}
-          {% set orientationReturnPrefixes = ["/mediassa/", "/en/media/"] %}
-          {% include "detail-orientation.njk" %}
-        </div>
-      </div>
+{% import "detail-hero.njk" as heroPartial %}
 
-      <aside class="content-detail-visual" aria-label="Mediaosuman esikatselu">
-        {% if thumbnail %}
-          <a href="{{ sourceHref or page.url }}" {% if sourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
-            <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
-          </a>
-        {% else %}
-          <div class="content-detail-thumb content-detail-thumb--empty">
-            <i class="bi bi-newspaper" aria-hidden="true"></i>
-          </div>
-        {% endif %}
-      </aside>
+{% set mediaHeroAside %}
+<aside class="content-detail-visual" aria-label="Mediaosuman esikatselu">
+  {% if thumbnail %}
+    <a href="{{ sourceHref or page.url }}" {% if sourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
+      <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
+    </a>
+  {% else %}
+    <div class="content-detail-thumb content-detail-thumb--empty">
+      <i class="bi bi-newspaper" aria-hidden="true"></i>
     </div>
+  {% endif %}
+</aside>
+{% endset %}
+
+{% call heroPartial.heroShell(
+  variant="media",
+  eyebrow="Mediassa",
+  title=title,
+  lead=(subtitle or description or null),
+  aside=mediaHeroAside
+) %}
+  <div class="content-detail-actions">
+    {% if sourceHref %}
+      <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa alkuperäinen lähde</a>
+    {% endif %}
+    {% set orientationLang = currentLang %}
+    {% set orientationHubHref = "/mediassa/" %}
+    {% set orientationHubLabel = "Kaikki mediaosumat" %}
+    {% set orientationReturnPrefixes = ["/mediassa/", "/en/media/"] %}
+    {% include "detail-orientation.njk" %}
   </div>
-</section>
+{% endcall %}
 
 <section class="content-detail-body-section py-5">
   <div class="site-shell">

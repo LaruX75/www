@@ -24,37 +24,34 @@ layout: base.njk
 {% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
 {% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel %}
 
-<section class="content-detail-hero content-detail-hero--presentation py-5 border-bottom">
-  <div class="site-shell">
-    <div class="content-detail-hero-grid content-detail-hero-grid--single">
-      <div class="content-detail-copy">
-        <p class="content-detail-eyebrow mb-2" data-pagefind-ignore>Esitys tai opetusmateriaali</p>
-        <h1 class="content-detail-title mb-3" data-pagefind-weight="10">{{ title }}</h1>
-        {% if subtitle %}
-          <p class="content-detail-lead mb-3" data-pagefind-weight="6">{{ subtitle }}</p>
-        {% elif description %}
-          <p class="content-detail-lead mb-3" data-pagefind-weight="6">{{ description }}</p>
-        {% endif %}
-        <div class="content-detail-meta" aria-label="Esityksen perustiedot" data-pagefind-ignore>
-          <span>{{ sourceText }}</span>
-          {% if date %}<span>{{ date | dateFormat }}</span>{% endif %}
-          {% if sourceLanguage %}<span>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</span>{% endif %}
-          {% if slideCount %}<span>{{ slideCount }} diaa</span>{% endif %}
-        </div>
-        <div class="content-detail-actions" data-pagefind-ignore>
-          {% if publicSourceHref %}
-            <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
-          {% endif %}
-          {% set orientationLang = currentLang %}
-          {% set orientationHubHref = "/esitykset/" %}
-          {% set orientationHubLabel = "Kaikki esitykset" %}
-          {% set orientationReturnPrefixes = ["/esitykset/", "/en/presentations/"] %}
-          {% include "detail-orientation.njk" %}
-        </div>
-      </div>
-    </div>
+{% import "detail-hero.njk" as heroPartial %}
+
+{% call heroPartial.heroShell(
+  variant="presentation",
+  eyebrow="Esitys tai opetusmateriaali",
+  title=title,
+  lead=(subtitle or description or null),
+  eyebrowPagefindIgnore=true,
+  titlePagefindWeight="10",
+  leadPagefindWeight="6"
+) %}
+  <div class="content-detail-meta" aria-label="Esityksen perustiedot" data-pagefind-ignore>
+    <span>{{ sourceText }}</span>
+    {% if date %}<span>{{ date | dateFormat }}</span>{% endif %}
+    {% if sourceLanguage %}<span>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</span>{% endif %}
+    {% if slideCount %}<span>{{ slideCount }} diaa</span>{% endif %}
   </div>
-</section>
+  <div class="content-detail-actions" data-pagefind-ignore>
+    {% if publicSourceHref %}
+      <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
+    {% endif %}
+    {% set orientationLang = currentLang %}
+    {% set orientationHubHref = "/esitykset/" %}
+    {% set orientationHubLabel = "Kaikki esitykset" %}
+    {% set orientationReturnPrefixes = ["/esitykset/", "/en/presentations/"] %}
+    {% include "detail-orientation.njk" %}
+  </div>
+{% endcall %}
 
 <section class="content-detail-body-section content-detail-body-section--presentation py-5">
   <div class="site-shell">

@@ -1,0 +1,85 @@
+{#
+  DETAIL-HERO-01: shared canonical detail identity shell.
+
+  Renders the outer .content-detail-hero section that five of the six
+  canonical detail body partials share (publications, presentations,
+  media, blog, writings). Thesis detail keeps its own card+badge
+  hero pattern and does NOT consume this partial.
+
+  Responsibilities (truly shared):
+    - .content-detail-hero section + variant modifier class
+    - .site-shell container
+    - .content-detail-hero-grid (single-column when no aside)
+    - .content-detail-copy wrapper
+    - .content-detail-eyebrow paragraph
+    - <h1 class="content-detail-title"> canonical identity
+    - Optional .content-detail-lead paragraph
+    - Optional Pagefind hygiene attributes on eyebrow / title / lead
+    - Optional aside slot for domain thumbnail / visual (raw HTML string)
+
+  Non-responsibilities (must stay in the domain body):
+    - Domain-specific meta / badges (year, DOI, JUFO, source labels…)
+    - Actions row (orientation include, source/DOI/external buttons)
+    - Type-specific context cards (below the hero section)
+    - Related-content sidebar (owned by content-context-sidebar.njk)
+    - Canonical URL derivation (owned by _meta.njk)
+    - JSON-LD (owned by _ldschema.njk)
+
+  Usage:
+
+    {% import "detail-hero.njk" as heroPartial %}
+    {% call heroPartial.heroShell(
+      variant="writing",
+      eyebrow="Tieteellinen julkaisu",
+      title=title,
+      lead=(detail.journal or detail.publisher)
+    ) %}
+      <div class="content-detail-meta">…domain-specific badges…</div>
+      <div class="content-detail-actions">
+        {% include "detail-orientation.njk" %}
+        <a href="…">Open source</a>
+      </div>
+    {% endcall %}
+
+  Aside slot (blog / media / writing thumbnail):
+
+    {% set heroAside %}
+      {% if thumbnail %}
+        <aside class="content-detail-visual" aria-label="…">
+          <div class="content-detail-thumb">
+            <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
+          </div>
+        </aside>
+      {% endif %}
+    {% endset %}
+
+    {% call heroPartial.heroShell(variant="blog", …, aside=heroAside) %}
+      …caller content…
+    {% endcall %}
+#}
+
+{% macro heroShell(
+  variant,
+  eyebrow,
+  title,
+  lead=null,
+  leadMb='3',
+  aside=null,
+  eyebrowPagefindIgnore=false,
+  titlePagefindWeight=null,
+  leadPagefindWeight=null
+) %}
+<section class="content-detail-hero content-detail-hero--{{ variant }} py-5 border-bottom">
+  <div class="site-shell">
+    <div class="content-detail-hero-grid{% if not aside %} content-detail-hero-grid--single{% endif %}">
+      <div class="content-detail-copy">
+        <p class="content-detail-eyebrow mb-2"{% if eyebrowPagefindIgnore %} data-pagefind-ignore{% endif %}>{{ eyebrow }}</p>
+        <h1 class="content-detail-title mb-3"{% if titlePagefindWeight %} data-pagefind-weight="{{ titlePagefindWeight }}"{% endif %}>{{ title }}</h1>
+        {% if lead %}<p class="content-detail-lead mb-{{ leadMb }}"{% if leadPagefindWeight %} data-pagefind-weight="{{ leadPagefindWeight }}"{% endif %}>{{ lead | safe }}</p>{% endif %}
+        {{ caller() }}
+      </div>
+      {% if aside %}{{ aside | safe }}{% endif %}
+    </div>
+  </div>
+</section>
+{% endmacro %}
