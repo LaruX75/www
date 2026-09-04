@@ -15,10 +15,10 @@ place, usage-context type and organiser never conflate.
 - Content Graph: **not called at render time** (kept as modeling/verification tool only, per R1 ADR1)
 
 ## Files changed
-- `src/_data/presentationsPage.js` — added `kategoria`, `jarjestaja` to the canonical Presentation page record (fields already exist on the Canva projection; this only routes them to the detail template).
-- `src/presentations/presentations.11tydata.js` — new `selectPeerPresentationsByCourse(data)` helper + three `eleventyComputed` fields (`peerPresentationsByCourse`, `kategoria`, `jarjestaja`).
-- `src/_includes/presentation-item.njk` — two additions inside the existing `presentation-detail-support` region: (a) two new `<dl>` rows (`Käyttöyhteys`, `Järjestäjä`) inserted BEFORE the existing rows so the type/organiser semantics never conflate; (b) `content-detail-course-peers` `<section>` rendered ONLY when peers exist.
-- `tests/detail-ux-01c-b-course.spec.js` — new regression suite (13 tests, 5 groups A–E).
+- `src/_data/presentationsPage.js` — added `location`, `kategoria`, `jarjestaja` to the canonical Presentation page record. All three fields already exist on the canonical projection (`location` via `withPresentationSemantics` + `inferLocation`; `kategoria`/`jarjestaja` directly on the Canva projection). This only routes them to the detail template.
+- `src/presentations/presentations.11tydata.js` — new `selectPeerPresentationsByCourse(data)` helper + four `eleventyComputed` fields (`peerPresentationsByCourse`, `location`, `kategoria`, `jarjestaja`).
+- `src/_includes/presentation-item.njk` — two additions inside the existing `presentation-detail-support` region: (a) three new `<dl>` rows (`Paikka`, `Käyttöyhteys`, `Järjestäjä`) inserted BEFORE the existing rows in that reading order so the three canonical semantics (place / usage-context type / organiser) never conflate; (b) `content-detail-course-peers` `<section>` rendered ONLY when peers exist.
+- `tests/detail-ux-01c-b-course.spec.js` — new regression suite (17 tests, 5 groups A–E; includes three explicit non-conflation guards + reading-order check).
 
 ## Canonical peer-selection rule (exact)
 
