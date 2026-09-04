@@ -13,8 +13,15 @@ on:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
+permissions:
+  contents: read
+
+concurrency:
+  group: staging-checks-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build-and-verify:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -38,7 +45,47 @@ jobs:
       - name: Build site without generated OG assets
         run: npm run build:no-og
         env:
-          ELEVENTY_PATH_PREFIX: /www-staging/
+          # CI-PERF-01A: single build serves verify + Playwright + optional
+          # staging deploy. Only the staging deploy path needs the
+          # /www-staging/ pathPrefix, so PR builds run prefix-free — that
+          # matches what Playwright expects when navigating root-relative
+          # URLs against the static-served _site artifact.
+          ELEVENTY_PATH_PREFIX: ${{ github.ref == 'refs/heads/staging' && '/www-staging/' || '' }}
+          # Optional: YouTube API key was previously supplied to the
+          # Playwright build. Keep it available so the shared build has
+          # the same environment; missing secret is tolerated by the
+          # build (falls back to cached data).
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
+
+      - name: Prevent Jekyll build in www-staging
+        run: touch _site/.nojekyll
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: staging-site
+          path: _site/
+          retention-days: 3
+
+  verify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: staging-site
+          path: _site/
 
       - name: i18n / SEO check
         run: npm run check:i18n-seo
@@ -97,18 +144,52 @@ jobs:
       - name: EN pages have English skip-link
         run: grep -q 'Skip to main content' _site/en/about/index.html
 
-      - name: Upload build artifact for review
-        uses: actions/upload-artifact@v7
+  playwright:
+    # CI-PERF-01A: only PR events run Playwright. The staging-deploy path
+    # (push:staging) uses a /www-staging/-prefixed build that would break
+    # Playwright's root-relative navigation. This matches the previous
+    # behavior where accessibility-navigation.yml ran only on pull_request.
+    needs: build
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
         with:
           name: staging-site
           path: _site/
-          retention-days: 3
 
-      - name: Prevent Jekyll build in www-staging
-        run: touch _site/.nojekyll
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run accessibility and navigation tests
+        run: npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
+        env:
+          PLAYWRIGHT_USE_STATIC_SERVER: "true"
+          PLAYWRIGHT_A11Y_OFFLINE: "true"
+
+  deploy:
+    needs: [build, verify]
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v7
+        with:
+          name: staging-site
+          path: _site/
 
       - name: Deploy to www-staging
-        if: github.ref == 'refs/heads/staging'
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.STAGING_DEPLOY_TOKEN }}
