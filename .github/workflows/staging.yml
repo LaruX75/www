@@ -149,12 +149,59 @@ jobs:
     # (push:staging) uses a /www-staging/-prefixed build that would break
     # Playwright's root-relative navigation. This matches the previous
     # behavior where accessibility-navigation.yml ran only on pull_request.
+    #
+    # CI-PERF-01B: path-aware test selection. If the PR touches ONLY
+    # course-content markdown under src/opetus/**/*.md, run just the
+    # course-specific spec. Any other change (shared templates, JS, CSS,
+    # data pipeline, config, workflow itself, or any unknown path)
+    # falls back to the full accessibility+navigation+contrast suite.
+    # Fail-safe: classification failure defaults to full regression.
     needs: build
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
+        with:
+          # Need base..head range for path classification. Full history is
+          # simplest; the checkout is tiny compared to Playwright install.
+          fetch-depth: 0
+
+      - name: Classify PR changed paths
+        id: classify
+        # Fail-safe: any script failure or unrecognized path keeps
+        # course_content_only=false → full regression runs.
+        shell: bash
+        run: |
+          set +e
+          base='${{ github.event.pull_request.base.sha }}'
+          head='${{ github.event.pull_request.head.sha }}'
+          echo "Base: $base"
+          echo "Head: $head"
+          git fetch --no-tags origin "$base" 2>/dev/null || true
+          changed=$(git diff --name-only "$base" "$head" 2>/dev/null)
+          if [ -z "$changed" ]; then
+            echo "Could not determine changed files → defaulting to full regression"
+            echo "course_content_only=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "Changed files:"
+          echo "$changed" | sed 's/^/  /'
+          # CI-PERF-01B allowlist: only immediate or nested .md files
+          # under src/opetus/ count as content-only. Anything else —
+          # including .11tydata.js, images, or paths outside src/opetus/ —
+          # forces full regression.
+          non_course=$(echo "$changed" | grep -v -E '^src/opetus/.+\.md$')
+          if [ -z "$non_course" ]; then
+            echo ""
+            echo "→ All changed paths are src/opetus/**/*.md (LOW-RISK content-only)"
+            echo "course_content_only=true" >> "$GITHUB_OUTPUT"
+          else
+            echo ""
+            echo "→ HIGH-RISK / shared / unknown paths detected → full regression"
+            echo "$non_course" | sed 's/^/    - /'
+            echo "course_content_only=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - uses: actions/setup-node@v4
         with:
@@ -172,7 +219,15 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: Run accessibility and navigation tests
+      - name: Run scoped course-page test (content-only PR)
+        if: steps.classify.outputs.course_content_only == 'true'
+        run: npx playwright test tests/course-page-01.spec.js
+        env:
+          PLAYWRIGHT_USE_STATIC_SERVER: "true"
+          PLAYWRIGHT_A11Y_OFFLINE: "true"
+
+      - name: Run full accessibility + navigation + contrast regression
+        if: steps.classify.outputs.course_content_only != 'true'
         run: npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
         env:
           PLAYWRIGHT_USE_STATIC_SERVER: "true"
