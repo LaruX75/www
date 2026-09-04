@@ -26,6 +26,7 @@ const teachingUnits = {
   "410017Y": OK,        // Multimedia / Digitaalinen media oppimisessa ja opettamisessa
   "050091A": OK,        // Tieto- ja viestintätekniikka opetuksessa ja opiskelussa
   "405021Y": OK,        // Tietotyö pedagogisena haasteena
+  "405040Y": OK,        // Teknologiatuettu oppiminen ja työskentely
   "407062A": OK,        // Ohjelmointi perusopetuksessa
 
   // LET - Learning and Educational Technology (maisteriohjelma / tutkimusryhma)

@@ -100,16 +100,16 @@ describe("F3C-P3 presentation canonical integration", () => {
       assert.ok(decision.detailUrl);
     });
 
-    assert.equal(decisionRows.length, 21);
+    assert.equal(decisionRows.length, 24);
     assert.equal(decisionCounts.MATCHES_EXISTING_CANONICAL, 1);
     assert.equal(decisionCounts.ALTERNATE_REPRESENTATION, 12);
-    assert.equal(decisionCounts.IS_DISTINCT_LOCAL_PRESENTATION, 8);
+    assert.equal(decisionCounts.IS_DISTINCT_LOCAL_PRESENTATION, 11);
     assert.equal(decisionCounts.CANNOT_DETERMINE || 0, 0);
 
     const expectedCanonicalCount = startingItems.length + decisionCounts.IS_DISTINCT_LOCAL_PRESENTATION;
     assert.equal(startingItems.length, 206);
     assert.equal(items.length, expectedCanonicalCount);
-    assert.equal(items.length, 214);
+    assert.equal(items.length, 217);
 
     decisionRows.forEach(([caseId, decision]) => {
       if (decision.humanDecision === "MATCHES_EXISTING_CANONICAL") {
