@@ -179,12 +179,16 @@ module.exports = {
         // Content Graph traversal, no browser JS, no similarity
         // heuristics. Empty array when no peers exist.
         peerPresentationsByCourse: (data) => selectPeerPresentationsByCourse(data),
-        // Kempele semantic verification: route Canonical Content v1 §3
-        // type-specific `kategoria` (usage-context type, e.g.
-        // "täydennyskoulutus") and `jarjestaja` (organiser, e.g.
-        // "Kempeleen kunta (VESO-koulutus)") from the canonical Canva
-        // projection to the detail template so Käyttöyhteys stops
-        // conflating usage-context with organiser.
+        // Kempele semantic verification: route three independent
+        // Canonical Content v1 §3 type-specific fields from the
+        // canonical Canva projection to the detail template so the
+        // three semantics never conflate.
+        //   Paikka        = geographic place        (`location`)
+        //   Käyttöyhteys  = usage-context type      (`kategoria`)
+        //   Järjestäjä    = organiser entity        (`jarjestaja`)
+        // All three are existing canonical fields; no new field or
+        // taxonomy introduced.
+        location: (data) => getPresentationRecord(data)?.location || undefined,
         kategoria: (data) => getPresentationRecord(data)?.kategoria || undefined,
         jarjestaja: (data) => getPresentationRecord(data)?.jarjestaja || undefined
     }

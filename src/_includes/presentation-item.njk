@@ -22,14 +22,15 @@ layout: base.njk
   {% set sourceText = "YouTube" %}
 {% endif %}
 {% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
-{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel or kategoria or jarjestaja %}
-{# Kempele semantic verification: `kategoria` is a canonical
-   Presentation type-specific field (Canonical Content v1 §3) and
-   represents the *usage-context type* (e.g. "täydennyskoulutus"),
-   NOT the organiser. `jarjestaja` is the organiser (e.g.
-   "Kempeleen kunta (VESO-koulutus)"). We show them under separate
-   labels so the two semantics never conflate. Kategoria strings
-   come in lower-case from Canva; capitalize for display. #}
+{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel or kategoria or jarjestaja or location %}
+{# Kempele semantic verification: three INDEPENDENT canonical
+   Presentation type-specific fields (Canonical Content v1 §3):
+     location   — geographic place        (e.g. "Kempele")
+     kategoria  — usage-context type      (e.g. "täydennyskoulutus")
+     jarjestaja — organiser entity        (e.g. "Kempeleen kunta (VESO-koulutus)")
+   We show them under three separate labels so the semantics never
+   conflate. Kategoria strings come in lower-case from Canva;
+   capitalize for display. #}
 {% set kategoriaLabel = kategoria | capitalize %}
 
 {% import "detail-hero.njk" as heroPartial %}
@@ -110,6 +111,12 @@ layout: base.njk
         <div class="content-detail-side-card content-detail-support-card">
           <p class="content-detail-card-kicker">Käyttöyhteys</p>
           <dl class="content-detail-definition-list content-detail-definition-list--context mb-0">
+            {% if location %}
+            <div>
+              <dt>Paikka</dt>
+              <dd>{{ location }}</dd>
+            </div>
+            {% endif %}
             {% if kategoria %}
             <div>
               <dt>Käyttöyhteys</dt>

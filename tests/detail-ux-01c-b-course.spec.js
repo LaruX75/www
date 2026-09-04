@@ -72,15 +72,22 @@ test.describe("C. Negative control — Kempele has no course peers", () => {
   });
 });
 
-test.describe("D. Kempele semantic verification — Käyttöyhteys != Järjestäjä", () => {
-  test("Kempele renders <dt>Käyttöyhteys</dt> row with usage-context type", async ({ page }) => {
+test.describe("D. Kempele semantic verification — Paikka / Käyttöyhteys / Järjestäjä are three independent labels", () => {
+  test("Kempele renders <dt>Paikka</dt> row with geographic place from canonical `location`", async ({ page }) => {
+    const html = await page.request.get(PAGES.kempele).then((r) => r.text());
+    expect(html, "Paikka <dt> row").toMatch(
+      /<dt>Paikka<\/dt>\s*<dd>Kempele<\/dd>/
+    );
+  });
+
+  test("Kempele renders <dt>Käyttöyhteys</dt> row with usage-context type from canonical `kategoria`", async ({ page }) => {
     const html = await page.request.get(PAGES.kempele).then((r) => r.text());
     expect(html, "Käyttöyhteys <dt> row").toMatch(
       /<dt>Käyttöyhteys<\/dt>\s*<dd>Täydennyskoulutus<\/dd>/
     );
   });
 
-  test("Kempele renders <dt>Järjestäjä</dt> row with organiser string", async ({ page }) => {
+  test("Kempele renders <dt>Järjestäjä</dt> row with organiser string from canonical `jarjestaja`", async ({ page }) => {
     const html = await page.request.get(PAGES.kempele).then((r) => r.text());
     expect(html, "Järjestäjä <dt> row").toMatch(
       /<dt>Järjestäjä<\/dt>\s*<dd>Kempeleen kunta \(VESO-koulutus\)<\/dd>/
@@ -92,6 +99,32 @@ test.describe("D. Kempele semantic verification — Käyttöyhteys != Järjestä
     expect(html, "Käyttöyhteys value stays type-only").not.toMatch(
       /<dt>Käyttöyhteys<\/dt>\s*<dd>Kempeleen kunta/
     );
+  });
+
+  test("Kempele does NOT conflate: Paikka value is not the organiser string (jarjestaja not relabeled as Paikka)", async ({ page }) => {
+    const html = await page.request.get(PAGES.kempele).then((r) => r.text());
+    expect(html, "Paikka value stays geographic (not organiser)").not.toMatch(
+      /<dt>Paikka<\/dt>\s*<dd>Kempeleen kunta/
+    );
+  });
+
+  test("Kempele does NOT conflate: Käyttöyhteys value is not the place name", async ({ page }) => {
+    const html = await page.request.get(PAGES.kempele).then((r) => r.text());
+    expect(html, "Käyttöyhteys value is not the place name").not.toMatch(
+      /<dt>Käyttöyhteys<\/dt>\s*<dd>Kempele<\/dd>/
+    );
+  });
+
+  test("Kempele renders Paikka BEFORE Käyttöyhteys and Käyttöyhteys BEFORE Järjestäjä (semantic reading order)", async ({ page }) => {
+    const html = await page.request.get(PAGES.kempele).then((r) => r.text());
+    const paikkaIdx = html.indexOf("<dt>Paikka</dt>");
+    const kaytIdx = html.indexOf("<dt>Käyttöyhteys</dt>");
+    const jarjIdx = html.indexOf("<dt>Järjestäjä</dt>");
+    expect(paikkaIdx, "Paikka present").toBeGreaterThan(-1);
+    expect(kaytIdx, "Käyttöyhteys present").toBeGreaterThan(-1);
+    expect(jarjIdx, "Järjestäjä present").toBeGreaterThan(-1);
+    expect(paikkaIdx, "Paikka before Käyttöyhteys").toBeLessThan(kaytIdx);
+    expect(kaytIdx, "Käyttöyhteys before Järjestäjä").toBeLessThan(jarjIdx);
   });
 });
 
@@ -106,10 +139,13 @@ test.describe("E. Meaningful without JavaScript (SSR-only render)", () => {
     await ctx.close();
   });
 
-  test("Kempele Käyttöyhteys + Järjestäjä rows present in SSR HTML with JS disabled", async ({ browser }) => {
+  test("Kempele Paikka + Käyttöyhteys + Järjestäjä rows all present in SSR HTML with JS disabled", async ({ browser }) => {
     const ctx = await browser.newContext({ javaScriptEnabled: false });
     const page = await ctx.newPage();
     const html = await page.request.get(PAGES.kempele).then((r) => r.text());
+    expect(html, "Paikka row in SSR").toMatch(
+      /<dt>Paikka<\/dt>\s*<dd>Kempele<\/dd>/
+    );
     expect(html, "Käyttöyhteys row in SSR").toMatch(
       /<dt>Käyttöyhteys<\/dt>\s*<dd>Täydennyskoulutus<\/dd>/
     );
