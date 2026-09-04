@@ -26,6 +26,19 @@
             {% endfor %}
           </div>
           <div class="content-detail-actions mt-4">
+            {# DETAIL-UX-01A: promote canonical primary action to hero.
+               Same href and semantics as the OuluREPO card below;
+               user reaches source without scrolling past Abstract +
+               Citation. Card below retains contextual explanation. #}
+            {% if thesisDetail.sourceUrl %}
+            <a
+              class="btn btn-primary rounded-pill px-4"
+              href="{{ thesisDetail.sourceUrl }}"
+              target="_blank"
+              rel="noopener noreferrer">
+              {{ "Open in OuluREPO" if isEn else "Avaa OuluREPOssa" }}
+            </a>
+            {% endif %}
             {% set orientationLang = currentLang %}
             {% set orientationHubHref = '/en/theses/' if isEn else '/opinnaytteet/' %}
             {% set orientationHubLabel = "Back to theses" if isEn else "Takaisin opinnäytteisiin" %}
