@@ -1,7 +1,7 @@
 ---
-title: "Teknologiatuettu oppiminen ja työskentely – periodi A 2026"
+title: "Teknologiatuettu oppiminen ja työskentely – syyslukukausi 2026"
 date: 2026-08-25
-description: "Opintojakson 405040Y Teknologiatuettu oppiminen ja työskentely (4 op) julkinen kurssisivu periodissa A lukuvuonna 2026–2027: luentoaikataulu, materiaalit ja opinnäytesuunnat."
+description: "Opintojakson 405040Y Teknologiatuettu oppiminen ja työskentely (4 op) julkinen kurssisivu syyslukukaudella 2026, periodissa A lukuvuonna 2026–2027: luentoaikataulu, materiaalit ja opinnäytesuunnat."
 layout: base.njk
 templateEngineOverride: njk
 permalink: /opetus/teknologiatuettu-oppiminen/2026-a/
@@ -15,6 +15,9 @@ course:
   creditsLabel: "4 op"
   period: A
   academicYear: "2026–2027"
+  semester: syksy
+  semesterLabel: "Syyslukukausi 2026"
+  periodId: "2026-2027-a"
   peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027"
   teachingUnitLabel: Opettajankoulutus
   lectures:
@@ -69,11 +72,11 @@ course:
   <div class="site-shell">
     <p class="text-uppercase text-muted fw-semibold small mb-2">Opetus &rsaquo; {{ course.teachingUnitLabel }}</p>
     <h1 class="display-6 fw-bold mb-3">{{ title }}</h1>
-    <p class="lead mb-3">Kurssin {{ course.courseId }} julkinen sivu periodissa {{ course.period }} lukuvuonna {{ course.academicYear }}. Sivulla ovat luentoaikataulu, julkiset esitysmateriaalit ja mahdolliset opinnäytesuunnat.</p>
+    <p class="lead mb-3">Kurssin {{ course.courseId }} julkinen sivu syyslukukaudella 2026, periodissa {{ course.period }}, lukuvuonna {{ course.academicYear }}. Sivulla ovat luentoaikataulu, julkiset esitysmateriaalit ja mahdolliset opinnäytesuunnat.</p>
     <div class="d-flex flex-wrap gap-2">
       <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle">{{ course.courseId }}</span>
       <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle">{{ course.creditsLabel }}</span>
-      <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle">Periodi {{ course.period }} · {{ course.academicYear }}</span>
+      <span class="badge bg-secondary-subtle text-secondary-emphasis border border-secondary-subtle">{{ course.semesterLabel }} · periodi {{ course.period }}</span>
       <a href="{{ course.peppiUrl }}" target="_blank" rel="noopener noreferrer" class="badge bg-primary-subtle text-primary-emphasis border border-primary-subtle text-decoration-none">Virallinen kurssikuvaus Peppi-oppaassa <i class="bi bi-arrow-up-right ms-1"></i></a>
     </div>
   </div>
@@ -93,21 +96,29 @@ course:
     <h2 class="h3 fw-bold mb-3">Kurssin viralliset tiedot</h2>
     <p class="text-muted mb-4">Oulun yliopiston Peppi-opas on virallinen lähde opintojakson kuvaukseen, tavoitteisiin, arviointiin ja oppimateriaaleihin. Tämä sivu täydentää sitä julkisilla luentomateriaaleilla ja opinnäyteaiheiden esittelyllä.</p>
     <dl class="row g-3">
-      <div class="col-md-6">
+      <div class="col-md-6 col-lg-4">
         <dt class="fw-semibold">Kurssikoodi</dt>
         <dd>{{ course.courseId }}</dd>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-lg-4">
         <dt class="fw-semibold">Opintopisteet</dt>
         <dd>{{ course.creditsLabel }}</dd>
       </div>
-      <div class="col-md-6">
-        <dt class="fw-semibold">Periodi</dt>
-        <dd>Periodi {{ course.period }} · lukuvuosi {{ course.academicYear }}</dd>
-      </div>
-      <div class="col-md-6">
+      <div class="col-md-6 col-lg-4">
         <dt class="fw-semibold">Opetusyksikkö</dt>
         <dd>{{ course.teachingUnitLabel }}</dd>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <dt class="fw-semibold">Lukukausi</dt>
+        <dd>{{ course.semesterLabel }}</dd>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <dt class="fw-semibold">Periodi</dt>
+        <dd>{{ course.period }}</dd>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <dt class="fw-semibold">Lukuvuosi</dt>
+        <dd>{{ course.academicYear }}</dd>
       </div>
       <div class="col-12">
         <dt class="fw-semibold">Peppi-opas</dt>
@@ -172,117 +183,84 @@ course:
   </div>
 </section>
 
-<section class="py-5 border-bottom" id="tutkimus">
-  <div class="site-shell">
-    <div class="card border-0 shadow-sm course-thesis-teaser">
-      <div class="card-body p-4 p-md-5">
-        <h2 class="h3 fw-bold mb-3">Tutkimus</h2>
-        <p class="text-muted mb-4">Kurssin teemat kytkeytyvät suoraan omaan tutkimustyöhöni. Käsittelen tutkimuksessani teknologiatuettua oppimista, digitaalista osaamista, tekoälylukutaitoa ja opettajankoulutusta, aihepiirejä, joita kurssilla tarkastellaan.</p>
-        <a href="/tutkimus/" class="fw-semibold text-decoration-none">Tutustu tutkimukseeni <i class="bi bi-arrow-right ms-1"></i></a>
-      </div>
-    </div>
-  </div>
-</section>
+{% set hubBachelors = thesisDetails.advisedBachelors or [] %}
+{% set hubMasters = thesisDetails.advisedMasters or [] %}
+{% set hubReviewed = thesisDetails.reviewed or [] %}
 
-<section class="py-5" id="opinnaytteet">
+<section class="py-5 bg-body-tertiary" id="tutkimus">
   <div class="site-shell">
-    <div class="card border-0 shadow-sm course-thesis-teaser mb-4">
-      <div class="card-body p-4 p-md-5">
-        <h2 class="h3 fw-bold mb-3">Opinnäytetyö mielessä?</h2>
-        <p class="text-muted mb-4">Kurssin aihepiireistä voi rakentaa kandidaatintutkielman tai pro gradu -tutkielman. Tutustu aiemmin ohjaamiini ja tarkastamiini opinnäytteisiin ja etsi näkökulmia oman aiheen rajaamiseen.</p>
-        <a href="/opinnaytteet/" class="fw-semibold text-decoration-none">Tutustu opinnäytteisiin <i class="bi bi-arrow-right ms-1"></i></a>
-      </div>
-    </div>
-    {% set courseHubMasters = thesisDetails.advisedMasters or [] %}
-    {% set courseHubBachelors = thesisDetails.advisedBachelors or [] %}
-    {% set courseHubReviewed = thesisDetails.reviewed or [] %}
+    <h2 class="h3 fw-bold mb-3">Tutkimus</h2>
+    <p class="text-muted mb-3">Kurssin teemat kytkeytyvät suoraan omaan tutkimustyöhöni. Käsittelen tutkimuksessani teknologiatuettua oppimista, digitaalista osaamista, tekoälylukutaitoa ja opettajankoulutusta, aihepiirejä, joita kurssilla tarkastellaan.</p>
+    <p class="mb-5"><a href="/tutkimus/" class="btn btn-outline-primary btn-sm">Tutustu tutkimukseeni <i class="bi bi-arrow-right ms-1"></i></a></p>
 
-    {% macro renderCourseThesisSection(heading, description, items, archiveUrl, archiveCtaLabel, totalCount) %}
-    <section class="thesis-hub-section py-3">
-      <div class="card shadow-sm border-0 course-thesis-teaser mb-3">
-        <div class="card-body">
-          <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-            <div>
-              <h3 class="h5 mb-1">{{ heading }}</h3>
-              <p class="text-muted mb-0 small">{{ description }}</p>
-            </div>
-            <span class="badge text-bg-light border text-dark">{{ totalCount }}</span>
-          </div>
-          {% if items.length %}
-          <div class="table-responsive">
-            <table class="table table-sm thesis-archive-table align-top mb-0">
-              <thead>
-                <tr>
-                  <th scope="col" class="thesis-archive-col-year">Vuosi</th>
-                  <th scope="col" class="thesis-archive-col-author">Tekijä</th>
-                  <th scope="col" class="thesis-archive-col-title">Otsikko</th>
-                  <th scope="col" class="thesis-archive-col-source text-end">Lähde</th>
-                </tr>
-              </thead>
-              <tbody>
+    <div id="opinnaytteet">
+      <h2 class="h3 fw-bold mb-3">Opinnäytetyö mielessä?</h2>
+      <p class="text-muted mb-3">Kurssin aihepiireistä voi rakentaa kandidaatintutkielman tai pro gradu -tutkielman. Tutustu aiemmin ohjaamiini ja tarkastamiini opinnäytteisiin ja etsi näkökulmia oman aiheen rajaamiseen.</p>
+      <p class="mb-4"><a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Tutustu opinnäytteisiin <i class="bi bi-arrow-right ms-1"></i></a></p>
+
+      <div class="row g-4">
+        {% macro courseThesisColumn(heading, description, items, archiveUrl, archiveCtaLabel, totalCount) %}
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100 course-thesis-column">
+            <div class="card-body d-flex flex-column">
+              <div class="d-flex flex-wrap align-items-start justify-content-between gap-2 mb-2">
+                <h3 class="h5 mb-0">{{ heading }}</h3>
+                <span class="badge text-bg-light border text-dark">{{ totalCount }}</span>
+              </div>
+              <p class="text-muted small mb-3">{{ description }}</p>
+              {% if items.length %}
+              <ul class="list-unstyled mb-3 course-thesis-list">
                 {% for item in items %}
-                <tr class="thesis-archive-row">
-                  <td class="thesis-archive-col-year small text-muted"><span class="d-inline-block">{{ item.year }}</span></td>
-                  <td class="thesis-archive-col-author small text-muted">{{ item.authorLine }}</td>
-                  <th scope="row" class="thesis-archive-col-title">
-                    <a class="thesis-archive-title-link fw-semibold text-decoration-none d-block" href="{{ item.pageUrl }}">{{ item.title }}</a>
-                  </th>
-                  <td class="thesis-archive-col-source text-end">
-                    {% if item.sourceUrl %}
-                    <a class="btn btn-sm btn-outline-secondary"
-                       href="{{ item.sourceUrl }}"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       aria-label="Avaa OuluREPOssa: {{ item.title }}">
-                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
-                      <span class="ms-1">OuluREPO</span>
-                    </a>
-                    {% endif %}
-                  </td>
-                </tr>
+                <li class="course-thesis-item">
+                  <div class="text-muted small">{{ item.year }} · {{ item.authorLine }}</div>
+                  <a href="{{ item.pageUrl }}" class="fw-semibold text-decoration-none d-block">{{ item.title }}</a>
+                  {% if item.sourceUrl %}
+                  <a href="{{ item.sourceUrl }}" target="_blank" rel="noopener noreferrer" class="small text-decoration-none" aria-label="Avaa OuluREPOssa: {{ item.title }}">OuluREPO <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+                  {% endif %}
+                </li>
                 {% endfor %}
-              </tbody>
-            </table>
-          </div>
-          {% else %}
-          <p class="text-muted small mb-0">Tässä ryhmässä ei ole vielä julkaistuja opinnäytteitä.</p>
-          {% endif %}
-          <div class="mt-3">
-            <a class="btn btn-outline-primary btn-sm" href="{{ archiveUrl }}">
-              {{ archiveCtaLabel }} <span class="text-muted">({{ totalCount }})</span>
-            </a>
+              </ul>
+              {% else %}
+              <p class="text-muted small mb-3">Tässä ryhmässä ei ole vielä julkaistuja opinnäytteitä.</p>
+              {% endif %}
+              <div class="mt-auto">
+                <a class="btn btn-outline-primary btn-sm w-100" href="{{ archiveUrl }}">
+                  {{ archiveCtaLabel }} ({{ totalCount }})
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+        {% endmacro %}
+
+        {{ courseThesisColumn(
+          "Kandidaatintutkielmat",
+          "Viisi uusinta ohjaamaani kandidaatintutkielmaa.",
+          hubBachelors.slice(0, 5),
+          "/opinnaytteet/kandit/",
+          "Selaa kaikkia kandidaatintutkielmia",
+          hubBachelors.length
+        ) }}
+
+        {{ courseThesisColumn(
+          "Pro gradu -tutkielmat",
+          "Viisi uusinta ohjaamaani pro gradu -tutkielmaa.",
+          hubMasters.slice(0, 5),
+          "/opinnaytteet/gradut/",
+          "Selaa kaikkia pro gradu -tutkielmia",
+          hubMasters.length
+        ) }}
+
+        {{ courseThesisColumn(
+          "Tarkastetut opinnäytteet",
+          "Viisi uusinta työtä, joissa olen toiminut tarkastajana mutta en ohjaajana.",
+          hubReviewed.slice(0, 5),
+          "/opinnaytteet/tarkastetut/",
+          "Selaa kaikkia tarkastettuja opinnäytteitä",
+          hubReviewed.length
+        ) }}
       </div>
-    </section>
-    {% endmacro %}
-
-    {{ renderCourseThesisSection(
-      "Uusimmat ohjatut pro gradu -tutkielmat",
-      "Viisi tuoreinta ohjattua gradua. Koko arkisto sivutettuna omalla sivullaan.",
-      courseHubMasters.slice(0, 5),
-      "/opinnaytteet/gradut/",
-      "Selaa kaikkia graduja",
-      courseHubMasters.length
-    ) }}
-
-    {{ renderCourseThesisSection(
-      "Uusimmat ohjatut kandidaatintyöt",
-      "Viisi tuoreinta ohjattua kandia. Koko arkisto sivutettuna omalla sivullaan.",
-      courseHubBachelors.slice(0, 5),
-      "/opinnaytteet/kandit/",
-      "Selaa kaikkia kandeja",
-      courseHubBachelors.length
-    ) }}
-
-    {{ renderCourseThesisSection(
-      "Uusimmat tarkastetut opinnäytteet",
-      "Viisi tuoreinta työtä joissa Jari Laru toimi tarkastajana (mutta ei ohjaajana).",
-      courseHubReviewed.slice(0, 5),
-      "/opinnaytteet/tarkastetut/",
-      "Selaa kaikkia tarkastettuja",
-      courseHubReviewed.length
-    ) }}
+    </div>
   </div>
 </section>
 
@@ -294,8 +272,20 @@ course:
 .course-lecture-table td {
   vertical-align: top;
 }
-.course-thesis-teaser {
+.course-thesis-column {
   border-radius: 1rem;
   background: var(--bs-body-bg);
+}
+.course-thesis-list {
+  display: grid;
+  gap: 0.9rem;
+}
+.course-thesis-item {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--bs-border-color-translucent);
+}
+.course-thesis-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
 }
 </style>
