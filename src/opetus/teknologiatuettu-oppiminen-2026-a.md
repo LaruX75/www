@@ -63,25 +63,6 @@ course:
       presentationPageUrl: null
       externalSpeaker: Kopiosto
       note: "Vierailuluento Kopiostosta. Materiaalilinkki ja tarkka otsikko lisätään luennon lähestyessä."
-  thesisTeaser:
-    heading: "Tule tekemään opinnäytteitä näistä aiheista"
-    lead: "Kurssin aihepiirit tarjoavat useita mahdollisia opinnäyteaiheita. Alla suoria polkuja niihin tuotannoille ja avainsanoille, joista aihepiireistä on jo kertynyt jarilaru.fi:hin sisältöä."
-    links:
-      - label: "Tekoälylukutaito"
-        href: /avainsanat/tekoalylukutaito/
-        note: "Sisältöä, esityksiä ja julkaisuja tekoälylukutaitoon liittyen."
-      - label: "Media- ja informaatiolukutaito"
-        href: /avainsanat/medialukutaito/
-        note: "Medialukutaidon materiaaleja ja tutkimusta."
-      - label: "Opettajankoulutus"
-        href: /avainsanat/opettajankoulutus/
-        note: "Opettajankoulutukseen liittyvät sisällöt."
-      - label: "Pro gradut ja opinnäytteet"
-        href: /opinnaytteet/gradut/
-        note: "Aiemmin ohjaamiani ja tarkastamiani pro gradu -tutkielmia — hyvä lähtökohta oman aiheen rajaamiseen."
-      - label: "Tutkimuslinjani"
-        href: /tutkimus/
-        note: "Ajankohtaiset tutkimuslinjat, joista voi rakentaa opinnäytteen aiheen."
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom course-page-hero">
@@ -102,7 +83,8 @@ course:
   <div class="site-shell">
     <a href="#kurssitiedot">Kurssitiedot</a>
     <a href="#luennot">Luennot</a>
-    <a href="#opinnaytteet">Opinnäyteaiheita</a>
+    <a href="#tutkimus">Tutkimus</a>
+    <a href="#opinnaytteet">Opinnäytteet</a>
   </div>
 </nav>
 
@@ -190,20 +172,51 @@ course:
   </div>
 </section>
 
-<section class="py-5" id="opinnaytteet">
+<section class="py-5 border-bottom" id="tutkimus">
   <div class="site-shell">
     <div class="card border-0 shadow-sm course-thesis-teaser">
       <div class="card-body p-4 p-md-5">
-        <h2 class="h3 fw-bold mb-3">{{ course.thesisTeaser.heading }}</h2>
-        <p class="text-muted mb-4">{{ course.thesisTeaser.lead }}</p>
-        <ul class="list-unstyled mb-0 d-grid gap-3">
-          {% for link in course.thesisTeaser.links %}
-            <li>
-              <a href="{{ link.href }}" class="fw-semibold text-decoration-none">{{ link.label }} <i class="bi bi-arrow-right ms-1"></i></a>
-              {% if link.note %}<div class="text-muted small">{{ link.note }}</div>{% endif %}
-            </li>
-          {% endfor %}
-        </ul>
+        <h2 class="h3 fw-bold mb-3">Tutkimus</h2>
+        <p class="text-muted mb-4">Kurssin teemat kytkeytyvät suoraan omaan tutkimustyöhöni. Käsittelen tutkimuksessani teknologiatuettua oppimista, digitaalista osaamista, tekoälylukutaitoa ja opettajankoulutusta — samoja aihepiirejä joita kurssilla tarkastellaan opettajan ammatin näkökulmasta.</p>
+        <a href="/tutkimus/" class="fw-semibold text-decoration-none">Tutustu tutkimukseeni <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" id="opinnaytteet">
+  <div class="site-shell">
+    <div class="card border-0 shadow-sm course-thesis-teaser mb-4">
+      <div class="card-body p-4 p-md-5">
+        <h2 class="h3 fw-bold mb-3">Opinnäytetyö mielessä?</h2>
+        <p class="text-muted mb-4">Kurssin aihepiireistä voi rakentaa kandidaatintutkielman tai pro gradu -tutkielman. Tutustu aiemmin ohjaamiini ja tarkastamiini opinnäytteisiin ja etsi näkökulmia oman aiheen rajaamiseen.</p>
+        <a href="/opinnaytteet/" class="fw-semibold text-decoration-none">Tutustu opinnäytteisiin <i class="bi bi-arrow-right ms-1"></i></a>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
+          <div class="card-body p-4">
+            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/gradut/" class="text-decoration-none stretched-link">Ohjatut pro gradu -tutkielmat <i class="bi bi-arrow-right ms-1"></i></a></h3>
+            <p class="text-muted small mb-0">Aiemmin ohjaamiani pro gradu -tutkielmia.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
+          <div class="card-body p-4">
+            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/kandit/" class="text-decoration-none stretched-link">Ohjatut kandidaatintyöt <i class="bi bi-arrow-right ms-1"></i></a></h3>
+            <p class="text-muted small mb-0">Aiemmin ohjaamiani kandidaatintutkielmia.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
+          <div class="card-body p-4">
+            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/tarkastetut/" class="text-decoration-none stretched-link">Tarkastetut opinnäytteet <i class="bi bi-arrow-right ms-1"></i></a></h3>
+            <p class="text-muted small mb-0">Töitä, joissa olen toiminut tarkastajana mutta en ohjaajana.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
