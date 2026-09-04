@@ -26,11 +26,44 @@ layout: base.njk
 
 {% import "detail-hero.njk" as heroPartial %}
 
+{# DETAIL-UX-01A: promote canonical Presentation preview to hero aside
+   when a thumbnail exists in canonical data. Mirrors Media detail's
+   hero pattern. Falls back to single-column hero when thumbnail is
+   absent (4/138 records). The thumbnail is content, not decoration —
+   it links to the same publicSourceHref as the primary CTA. #}
+{% set presentationHeroAside %}
+{% if thumbnail %}
+<aside class="content-detail-visual" aria-label="Esityksen esikatselu">
+  <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}" data-pagefind-ignore>
+    <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
+  </a>
+</aside>
+{% endif %}
+{% endset %}
+
+{# DETAIL-UX-01A: destination-specific primary CTA label derived from
+   canonical `source` semantics (Canva/SlideShare/AOE/YouTube/OUKA).
+   No new source classifier introduced — all mappings come from the
+   existing sourceText resolver above. #}
+{% set presentationCtaLabel = "Avaa materiaali" %}
+{% if isVideoPreview %}
+  {% set presentationCtaLabel = "Katso tallenne YouTubessa" %}
+{% elif source == "canva" or (publicSourceHref and "canva" in publicSourceHref) %}
+  {% set presentationCtaLabel = "Avaa esitys Canvassa" %}
+{% elif source == "slideshare" %}
+  {% set presentationCtaLabel = "Avaa esitys SlideSharessa" %}
+{% elif source == "aoe" %}
+  {% set presentationCtaLabel = "Avaa materiaali AOE:ssa" %}
+{% elif source == "ouka" %}
+  {% set presentationCtaLabel = "Avaa Oulun kaupungin materiaali" %}
+{% endif %}
+
 {% call heroPartial.heroShell(
   variant="presentation",
   eyebrow="Esitys tai opetusmateriaali",
   title=title,
   lead=(subtitle or description or null),
+  aside=(presentationHeroAside if thumbnail else null),
   eyebrowPagefindIgnore=true,
   titlePagefindWeight="10",
   leadPagefindWeight="6"
@@ -43,7 +76,7 @@ layout: base.njk
   </div>
   <div class="content-detail-actions" data-pagefind-ignore>
     {% if publicSourceHref %}
-      <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{% if isVideoPreview %}Katso tallenne{% else %}Avaa materiaali{% endif %}</a>
+      <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ presentationCtaLabel }}</a>
     {% endif %}
     {% set orientationLang = currentLang %}
     {% set orientationHubHref = "/esitykset/" %}
@@ -58,13 +91,9 @@ layout: base.njk
     <article class="content-detail-main content-detail-main--presentation">
       <div class="content-detail-card content-detail-card--presentation">
         <p class="content-detail-card-kicker" data-pagefind-ignore>Esitys</p>
-        {% if thumbnail %}
-          <div class="content-detail-inline-visual" aria-label="Esityksen esikatselu">
-            <a href="{{ publicSourceHref or page.url }}" {% if publicSourceHref %}target="_blank" rel="noopener noreferrer"{% endif %} class="content-detail-thumb{% if isVideoPreview %} video-preview{% endif %}">
-              <img src="{{ thumbnail }}" alt="" loading="lazy" decoding="async">
-            </a>
-          </div>
-        {% endif %}
+        {# DETAIL-UX-01A: thumbnail moved to hero aside above (see
+           presentationHeroAside). Inline body thumbnail removed to
+           avoid the same preview rendering twice. #}
         <div class="content-prose">{{ content | safe }}</div>
       </div>
 

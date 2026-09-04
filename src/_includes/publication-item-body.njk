@@ -29,8 +29,14 @@
     {% set orientationReturnPrefixes = ["/julkaisut/", "/en/publications/"] %}
     {% include "detail-orientation.njk" %}
     {% if externalHref %}
+    {# DETAIL-UX-01A: destination-specific label. DOI is the canonical
+       persistent identifier when present; use it in the CTA. #}
+    {% set publicationCtaLabel = ("Open publication" if isEnglish else "Avaa julkaisu") %}
+    {% if detail.doiUrl and externalHref == detail.doiUrl %}
+      {% set publicationCtaLabel = ("Open in DOI" if isEnglish else "Avaa DOI:ssa") %}
+    {% endif %}
     <a href="{{ externalHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-      {{ "Open source" if isEnglish else "Avaa lähde" }}
+      {{ publicationCtaLabel }}
       <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
     </a>
     {% endif %}

@@ -62,8 +62,15 @@ layout: base.njk
   aside=mediaHeroAside
 ) %}
   <div class="content-detail-actions">
+    {# DETAIL-UX-01A: destination-specific label. Uses canonical
+       mediaOutlet when known; falls back to a semantically safe
+       generic label. No new outlet classifier introduced. #}
     {% if sourceHref %}
-      <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa alkuperäinen lähde</a>
+      {% set mediaCtaLabel = "Avaa alkuperäinen lähde" %}
+      {% if mediaOutlet %}
+        {% set mediaCtaLabel = "Avaa alkuperäinen lähde — " ~ mediaOutlet %}
+      {% endif %}
+      <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ mediaCtaLabel }}</a>
     {% endif %}
     {% set orientationLang = currentLang %}
     {% set orientationHubHref = "/mediassa/" %}
