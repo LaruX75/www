@@ -20,6 +20,19 @@ course:
   periodId: "2026-2027-a"
   peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027"
   teachingUnitLabel: Opettajankoulutus
+  teachingStaff:
+    - name: Jari Laru
+      responsibilities:
+        - Luennot
+        - Musiikkikasvatuksen harjoitukset
+      platform: Howspace
+    - name: Riina Pursiainen
+      responsibilities:
+        - Kasvatustieteiden ja oppimistieteiden harjoitukset
+      platform: Moodle
+    - name: Jouni Karsikas
+      responsibilities:
+        - Psykologian harjoitukset
   lectures:
     - number: 1
       date: 2026-08-25
@@ -93,7 +106,7 @@ course:
 
 <section class="py-5 border-bottom" id="kurssitiedot">
   <div class="site-shell">
-    <h2 class="h3 fw-bold mb-3">Kurssin viralliset tiedot</h2>
+    <h2 class="h3 fw-bold mb-3">Kurssin tiedot</h2>
     <p class="text-muted mb-4">Oulun yliopiston Peppi-opas on virallinen lähde opintojakson kuvaukseen, tavoitteisiin, arviointiin ja oppimateriaaleihin. Tämä sivu täydentää sitä julkisilla luentomateriaaleilla ja opinnäyteaiheiden esittelyllä.</p>
     <dl class="row g-3">
       <div class="col-md-6 col-lg-4">
@@ -125,6 +138,30 @@ course:
         <dd><a href="{{ course.peppiUrl }}" target="_blank" rel="noopener noreferrer">{{ course.peppiUrl }}</a></dd>
       </div>
     </dl>
+    {% if course.teachingStaff and course.teachingStaff.length %}
+    <h3 class="h5 fw-bold mt-5 mb-3">Opetushenkilökunta</h3>
+    <div class="row g-3">
+      {% for member in course.teachingStaff %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <p class="fw-semibold mb-2">{{ member.name }}</p>
+            {% if member.responsibilities and member.responsibilities.length %}
+            <ul class="list-unstyled mb-{% if member.platform %}3{% else %}0{% endif %} small">
+              {% for responsibility in member.responsibilities %}
+              <li>{{ responsibility }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            {% if member.platform %}
+            <p class="text-muted small mb-0">Oppimisympäristö: {{ member.platform }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </div>
 </section>
 
