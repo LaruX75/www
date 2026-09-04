@@ -4,7 +4,7 @@ date: 2026-08-25
 description: "Opintojakson 405040Y Teknologiatuettu oppiminen ja työskentely (4 op) julkinen kurssisivu syyslukukaudella 2026, periodissa A lukuvuonna 2026–2027: luentoaikataulu, materiaalit ja opinnäytesuunnat."
 layout: base.njk
 templateEngineOverride: njk
-permalink: /opetus/teknologiatuettu-oppiminen/2026-a/
+permalink: /opetus/teknologiatuettu-oppiminen/2026-2027-a/
 lang: fi
 pageShell: true
 translationKey: course_405040y_2026_a_fi_only
@@ -194,8 +194,8 @@ course:
     <p class="mb-5"><a href="/tutkimus/" class="btn btn-outline-primary btn-sm">Tutustu tutkimukseeni <i class="bi bi-arrow-right ms-1"></i></a></p>
 
     <div id="opinnaytteet">
-      <h2 class="h3 fw-bold mb-3">Opinnäytetyö mielessä?</h2>
-      <p class="text-muted mb-3">Kurssin aihepiireistä voi rakentaa kandidaatintutkielman tai pro gradu -tutkielman. Tutustu aiemmin ohjaamiini ja tarkastamiini opinnäytteisiin ja etsi näkökulmia oman aiheen rajaamiseen.</p>
+      <h2 class="h3 fw-bold mb-3">Tee opinnäytetyö kurssin aihepiiristä</h2>
+      <p class="text-muted mb-3">Vaikka opinnäytetyö ei olisi sinulle vielä ajankohtainen, kurssin aihepiireistä voi rakentaa myöhemmin kandidaatintutkielman tai pro gradu -tutkielman aiheen. Tutustu aiemmin ohjaamiini ja tarkastamiini opinnäytteisiin ja poimi niistä ideoita oman aiheen hahmottamiseen.</p>
       <p class="mb-4"><a href="/opinnaytteet/" class="btn btn-outline-primary btn-sm">Tutustu opinnäytteisiin <i class="bi bi-arrow-right ms-1"></i></a></p>
 
       <div class="row g-4">
