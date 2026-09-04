@@ -1221,7 +1221,17 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
         url: item?.url || canonicalItem?.url || item?.publicUrl || item?.sourceUrl || "",
         sourceUrl: item?.sourceUrl || item?.url || canonicalItem?.url || "",
         publicUrl: item?.publicUrl || "",
-        thumbnail: item?.thumbnail || canonicalItem?.thumbnail || "",
+        // DETAIL-UX-01C: prefer canonical/managed thumbnail when it is
+        // a locally-hosted asset (starts with "/"). Some frontmatter
+        // records still carry legacy `design.canva.ai/*` URLs that are
+        // ephemeral Canva CDN references and can rot; the canonical
+        // Canva projection (`src/_data/canva-presentations.json`) holds
+        // the authoritative local `/images/canva-thumbnails/…` asset.
+        // When no local canonical thumbnail exists we fall back to
+        // the original precedence.
+        thumbnail: (canonicalItem?.thumbnail && String(canonicalItem.thumbnail).startsWith("/"))
+          ? canonicalItem.thumbnail
+          : (item?.thumbnail || canonicalItem?.thumbnail || ""),
         date: item?.date ?? canonicalItem?.date ?? "",
         year: canonicalItem?.year || null,
         lang: canonicalItem?.lang || "fi",
