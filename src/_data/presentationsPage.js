@@ -1244,7 +1244,18 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
           : undefined,
         courseContexts: localCourseContexts.length ? localCourseContexts : canonicalCourseContexts,
         contexts: localContexts.length ? localContexts : canonicalContexts,
-        declaredContexts: localDeclaredContexts.length ? localDeclaredContexts : canonicalDeclaredContexts
+        declaredContexts: localDeclaredContexts.length ? localDeclaredContexts : canonicalDeclaredContexts,
+        // DETAIL-UX-01C-B-COURSE (Kempele semantic verification):
+        // `kategoria` and `jarjestaja` are Canonical Content v1 §3
+        // Presentations type-specific fields. They already exist on
+        // `canonicalItem` (from the Canva projection) but were dropped
+        // by this record projection. Routing them here lets the detail
+        // template distinguish "Käyttöyhteys" (usage-context type, e.g.
+        // Täydennyskoulutus) from "Järjestäjä" (organiser, e.g.
+        // Kempeleen kunta) without conflating the two semantics.
+        // No new field / no new taxonomy introduced.
+        kategoria: item?.kategoria || canonicalItem?.kategoria || "",
+        jarjestaja: item?.jarjestaja || canonicalItem?.jarjestaja || ""
       };
     })
     .filter((item) => item.pageUrl);
