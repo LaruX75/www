@@ -124,5 +124,23 @@
     "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
     "humanCanonicalId": "",
     "humanNotes": "Accepted Codex proposal 2026-08-14: distinct YouTube video/LEA context; not ITK opening recording."
+  },
+  "P2-22": {
+    "detailUrl": "/presentations/405040y-luento-1-johdanto-2026-a/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 1 (Johdanto). Canva short-link source has no matching prior canonical Canva record."
+  },
+  "P2-23": {
+    "detailUrl": "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 2 (Digitaalinen osaaminen – DigComp 3.0). Canva short-link source has no matching prior canonical Canva record."
+  },
+  "P2-24": {
+    "detailUrl": "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/",
+    "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
+    "humanCanonicalId": "",
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 3 (Tekoälylukutaito). Canva short-link source has no matching prior canonical Canva record."
   }
 }
