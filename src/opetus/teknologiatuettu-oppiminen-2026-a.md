@@ -177,7 +177,7 @@ course:
     <div class="card border-0 shadow-sm course-thesis-teaser">
       <div class="card-body p-4 p-md-5">
         <h2 class="h3 fw-bold mb-3">Tutkimus</h2>
-        <p class="text-muted mb-4">Kurssin teemat kytkeytyvät suoraan omaan tutkimustyöhöni. Käsittelen tutkimuksessani teknologiatuettua oppimista, digitaalista osaamista, tekoälylukutaitoa ja opettajankoulutusta — samoja aihepiirejä joita kurssilla tarkastellaan opettajan ammatin näkökulmasta.</p>
+        <p class="text-muted mb-4">Kurssin teemat kytkeytyvät suoraan omaan tutkimustyöhöni. Käsittelen tutkimuksessani teknologiatuettua oppimista, digitaalista osaamista, tekoälylukutaitoa ja opettajankoulutusta, aihepiirejä, joita kurssilla tarkastellaan.</p>
         <a href="/tutkimus/" class="fw-semibold text-decoration-none">Tutustu tutkimukseeni <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
     </div>
@@ -193,32 +193,96 @@ course:
         <a href="/opinnaytteet/" class="fw-semibold text-decoration-none">Tutustu opinnäytteisiin <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
     </div>
-    <div class="row g-3">
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
-          <div class="card-body p-4">
-            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/gradut/" class="text-decoration-none stretched-link">Ohjatut pro gradu -tutkielmat <i class="bi bi-arrow-right ms-1"></i></a></h3>
-            <p class="text-muted small mb-0">Aiemmin ohjaamiani pro gradu -tutkielmia.</p>
+    {% set courseHubMasters = thesisDetails.advisedMasters or [] %}
+    {% set courseHubBachelors = thesisDetails.advisedBachelors or [] %}
+    {% set courseHubReviewed = thesisDetails.reviewed or [] %}
+
+    {% macro renderCourseThesisSection(heading, description, items, archiveUrl, archiveCtaLabel, totalCount) %}
+    <section class="thesis-hub-section py-3">
+      <div class="card shadow-sm border-0 course-thesis-teaser mb-3">
+        <div class="card-body">
+          <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+            <div>
+              <h3 class="h5 mb-1">{{ heading }}</h3>
+              <p class="text-muted mb-0 small">{{ description }}</p>
+            </div>
+            <span class="badge text-bg-light border text-dark">{{ totalCount }}</span>
+          </div>
+          {% if items.length %}
+          <div class="table-responsive">
+            <table class="table table-sm thesis-archive-table align-top mb-0">
+              <thead>
+                <tr>
+                  <th scope="col" class="thesis-archive-col-year">Vuosi</th>
+                  <th scope="col" class="thesis-archive-col-author">Tekijä</th>
+                  <th scope="col" class="thesis-archive-col-title">Otsikko</th>
+                  <th scope="col" class="thesis-archive-col-source text-end">Lähde</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                <tr class="thesis-archive-row">
+                  <td class="thesis-archive-col-year small text-muted"><span class="d-inline-block">{{ item.year }}</span></td>
+                  <td class="thesis-archive-col-author small text-muted">{{ item.authorLine }}</td>
+                  <th scope="row" class="thesis-archive-col-title">
+                    <a class="thesis-archive-title-link fw-semibold text-decoration-none d-block" href="{{ item.pageUrl }}">{{ item.title }}</a>
+                  </th>
+                  <td class="thesis-archive-col-source text-end">
+                    {% if item.sourceUrl %}
+                    <a class="btn btn-sm btn-outline-secondary"
+                       href="{{ item.sourceUrl }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Avaa OuluREPOssa: {{ item.title }}">
+                      <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                      <span class="ms-1">OuluREPO</span>
+                    </a>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+          <p class="text-muted small mb-0">Tässä ryhmässä ei ole vielä julkaistuja opinnäytteitä.</p>
+          {% endif %}
+          <div class="mt-3">
+            <a class="btn btn-outline-primary btn-sm" href="{{ archiveUrl }}">
+              {{ archiveCtaLabel }} <span class="text-muted">({{ totalCount }})</span>
+            </a>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
-          <div class="card-body p-4">
-            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/kandit/" class="text-decoration-none stretched-link">Ohjatut kandidaatintyöt <i class="bi bi-arrow-right ms-1"></i></a></h3>
-            <p class="text-muted small mb-0">Aiemmin ohjaamiani kandidaatintutkielmia.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm h-100 course-thesis-teaser">
-          <div class="card-body p-4">
-            <h3 class="h5 fw-bold mb-2"><a href="/opinnaytteet/tarkastetut/" class="text-decoration-none stretched-link">Tarkastetut opinnäytteet <i class="bi bi-arrow-right ms-1"></i></a></h3>
-            <p class="text-muted small mb-0">Töitä, joissa olen toiminut tarkastajana mutta en ohjaajana.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    </section>
+    {% endmacro %}
+
+    {{ renderCourseThesisSection(
+      "Uusimmat ohjatut pro gradu -tutkielmat",
+      "Viisi tuoreinta ohjattua gradua. Koko arkisto sivutettuna omalla sivullaan.",
+      courseHubMasters.slice(0, 5),
+      "/opinnaytteet/gradut/",
+      "Selaa kaikkia graduja",
+      courseHubMasters.length
+    ) }}
+
+    {{ renderCourseThesisSection(
+      "Uusimmat ohjatut kandidaatintyöt",
+      "Viisi tuoreinta ohjattua kandia. Koko arkisto sivutettuna omalla sivullaan.",
+      courseHubBachelors.slice(0, 5),
+      "/opinnaytteet/kandit/",
+      "Selaa kaikkia kandeja",
+      courseHubBachelors.length
+    ) }}
+
+    {{ renderCourseThesisSection(
+      "Uusimmat tarkastetut opinnäytteet",
+      "Viisi tuoreinta työtä joissa Jari Laru toimi tarkastajana (mutta ei ohjaajana).",
+      courseHubReviewed.slice(0, 5),
+      "/opinnaytteet/tarkastetut/",
+      "Selaa kaikkia tarkastettuja",
+      courseHubReviewed.length
+    ) }}
   </div>
 </section>
 
