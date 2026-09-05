@@ -133,7 +133,7 @@ schemaType: CollectionPage
           {% endif %}
           <div class="media-card-actions">
             <a href="{{ media.itemUrl(mainHighlight) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">Avaa lähde</a>
-            <a href="{{ mainHighlight.url }}?returnTo=%2Fmediassa%2F" class="btn btn-outline-secondary rounded-pill px-4">Lisätiedot</a>
+            <a href="{{ mainHighlight.url }}?returnTo=%2Fmediassa%2F&returnLabel=Takaisin%20mediaan" class="btn btn-outline-secondary rounded-pill px-4">Lisätiedot</a>
           </div>
         </div>
       </article>
@@ -229,7 +229,7 @@ schemaType: CollectionPage
             {% endif %}
             <div class="media-card-actions">
               <a href="{{ media.itemUrl(item) | trim }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary btn-sm rounded-pill px-3">Avaa lähde</a>
-              <a href="{{ item.url }}?returnTo=%2Fmediassa%2F" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
+              <a href="{{ item.url }}?returnTo=%2Fmediassa%2F&returnLabel=Takaisin%20mediaan" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Lisätiedot</a>
             </div>
           </div>
         </article>
@@ -365,7 +365,10 @@ schemaType: CollectionPage
       const returnTo = window.location.pathname + window.location.search;
       if (!returnTo) return rawUrl;
       const sep = rawUrl.includes('?') ? '&' : '?';
-      return `${rawUrl}${sep}returnTo=${encodeURIComponent(returnTo)}`;
+      // DETAIL-UX-ORIENT-01: pair returnTo with a destination label
+      // so the detail page can render "Takaisin mediaan" instead of
+      // the generic "Takaisin hakutuloksiin" default.
+      return `${rawUrl}${sep}returnTo=${encodeURIComponent(returnTo)}&returnLabel=${encodeURIComponent('Takaisin mediaan')}`;
     }
 
     function renderCard(item) {

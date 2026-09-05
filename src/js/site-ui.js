@@ -90,9 +90,46 @@
         && left.hash === right.hash
       );
 
+      // DETAIL-UX-ORIENT-01: RETURN TO ORIGIN semantics.
+       // Return-link renders only when the current URL carries a
+       // valid `?returnTo=` state (same-origin + allowlist prefix +
+       // NOT a duplicate of the sidebar/domain hub `hub-link` on
+       // this page and NOT the current page itself). No canonical
+       // hub fallback: if there is no origin, there is no
+       // return-link — the SSR site-orientation link (sidebar
+       // `content-context-archive-link` / trailing hub-link) is
+       // sufficient.
+       //
+       // Attribute contract on the anchor:
+       //   data-detail-return-link            — identity marker
+       //   data-detail-return-prefixes        — comma-separated
+       //                                        pathname prefix allowlist
+       //   data-detail-return-fallback        — canonical hub URL for
+       //                                        DUPLICATE-SUPPRESSION
+       //                                        ONLY (not a destination
+       //                                        fallback: JS never
+       //                                        sets href to it)
+       //   data-detail-return-default-label   — SSR-set textContent
+       //                                        default (used when
+       //                                        returnLabel is absent
+       //                                        or after suppression)
+       // URL param `returnLabel` is optional; length-capped and
+       // injected via `textContent` only (no HTML surface).
+      const RETURN_LABEL_MAX = 80;
+      const sanitizeReturnLabel = (raw) => {
+        if (typeof raw !== 'string') return '';
+        const collapsed = raw.replace(/\s+/g, ' ').trim();
+        if (!collapsed) return '';
+        return collapsed.length > RETURN_LABEL_MAX
+          ? collapsed.slice(0, RETURN_LABEL_MAX).trim()
+          : collapsed;
+      };
+
       document.querySelectorAll('[data-detail-return-link]').forEach((link) => {
         const pageUrl = new URL(window.location.href);
-        const fallbackUrl = normalizeLocalUrl(link.getAttribute('data-detail-return-fallback') || link.getAttribute('href') || '/');
+        // Duplicate-suppression peer only — this URL is NEVER assigned
+        // to the anchor's href.
+        const suppressionPeer = normalizeLocalUrl(link.getAttribute('data-detail-return-fallback') || '');
         const allowedPrefixes = String(link.getAttribute('data-detail-return-prefixes') || '')
           .split(',')
           .map((value) => value.trim())
@@ -105,18 +142,25 @@
         const useReturnLink = Boolean(
           returnUrl
           && prefixMatch
-          && !sameTarget(returnUrl, fallbackUrl)
+          && !sameTarget(returnUrl, suppressionPeer)
           && !sameDetailTarget
         );
 
+        const defaultText = link.dataset.detailReturnDefaultLabel || link.textContent.trim();
+
         if (!useReturnLink) {
+          // No origin known → keep link hidden. Do NOT assign a
+          // canonical-hub href here; the anchor's placeholder href
+          // (`#`) stays untouched so nothing implies a fake origin.
           link.classList.add('d-none');
-          if (fallbackUrl) link.setAttribute('href', `${fallbackUrl.pathname}${fallbackUrl.search}${fallbackUrl.hash}`);
+          link.textContent = defaultText;
           return;
         }
 
         link.classList.remove('d-none');
         link.setAttribute('href', `${returnUrl.pathname}${returnUrl.search}${returnUrl.hash}`);
+        const contextualLabel = sanitizeReturnLabel(pageUrl.searchParams.get('returnLabel'));
+        link.textContent = contextualLabel || defaultText;
       });
 
       // Shared reveal motion for main content. CSS remains harmless without JS:

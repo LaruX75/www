@@ -83,16 +83,16 @@ layout: base.njk
     {% if sourceLanguage %}<span>{{ "English" if sourceLanguage == "en" else ("Suomi" if sourceLanguage == "fi" else sourceLanguage) }}</span>{% endif %}
     {% if slideCount %}<span>{{ slideCount }} diaa</span>{% endif %}
   </div>
+  {# DETAIL-UX-ORIENT-01: hero-actions renders only when a real
+     primary action exists (Writing-no-source drops the wrapper).
+     Return-to-origin is NOT here — it lives in a trailing region
+     below (see end of file) so it never competes with the CTA and
+     never depends on the hero-actions wrapper. #}
+  {% if publicSourceHref %}
   <div class="content-detail-actions" data-pagefind-ignore>
-    {% if publicSourceHref %}
-      <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ presentationCtaLabel }}</a>
-    {% endif %}
-    {% set orientationLang = currentLang %}
-    {% set orientationHubHref = "/esitykset/" %}
-    {% set orientationHubLabel = "Kaikki esitykset" %}
-    {% set orientationReturnPrefixes = ["/esitykset/", "/en/presentations/"] %}
-    {% include "detail-orientation.njk" %}
+    <a href="{{ publicSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ presentationCtaLabel }}</a>
   </div>
+  {% endif %}
 {% endcall %}
 
 <section class="content-detail-body-section content-detail-body-section--presentation py-5">
@@ -193,3 +193,16 @@ layout: base.njk
     </article>
   </div>
 </section>
+
+{# DETAIL-UX-ORIENT-01: trailing RETURN-TO-ORIGIN region. Renders
+   the O1 return-link partial (JS-hidden by default). Sidebar
+   `content-context-archive-link` above continues to serve as
+   the always-visible SITE ORIENTATION link → /esitykset/. #}
+<footer class="content-detail-origin py-4" aria-label="{{ 'Return to origin' if currentLang == 'en' else 'Palaa lähtökohtaan' }}">
+  <div class="site-shell">
+    {% set orientationLang = currentLang %}
+    {% set orientationReturnFallback = "/esitykset/" %}
+    {% set orientationReturnPrefixes = ["/esitykset/", "/en/presentations/", "/opetus/", "/en/teaching/", "/etsi/", "/en/search/"] %}
+    {% include "detail-return-link.njk" %}
+  </div>
+</footer>

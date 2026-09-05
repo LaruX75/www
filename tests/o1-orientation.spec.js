@@ -79,23 +79,33 @@ test("FI writings detail uses explicit hub navigation instead of browser-history
   await expect(resultLink).toHaveAttribute("href", /returnTo=/);
   await resultLink.click();
 
-  await expect(page.locator("[data-detail-hub-link]")).toBeVisible();
-  await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", /\/kirjoitukset\//);
+  // DETAIL-UX-ORIENT-01: `data-detail-hub-link` no longer emitted on
+  // Writing detail (sidebar `content-context-archive-link` is the
+  // sole always-visible site-orientation link). The O1 return-link
+  // (`data-detail-return-link`) is preserved via the standalone
+  // `detail-return-link.njk` partial and remains JS-revealed when
+  // `?returnTo=` matches the allowlist.
+  await expect(page.locator("[data-detail-hub-link]")).toHaveCount(0);
   await expect(page.locator("[data-detail-return-link]")).toBeVisible();
   await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /\/kirjoitukset\/\?q=Kampuspohdintaa/);
   await expect(page.locator("[data-history-back]")).toHaveCount(0);
 });
 
-test("FI presentation detail exposes shared O1 hub return and hides discovery return without valid context", async ({ browser, page }) => {
+test("FI presentation detail: sidebar archive-link is SSR site-orientation; return-link stays hidden without valid context", async ({ browser, page }) => {
+  // DETAIL-UX-ORIENT-01: hero orientation removed on Presentation.
+  // Sidebar `content-context-archive-link` → /esitykset/ is the sole
+  // always-visible SSR orientation link. The O1 return-link partial
+  // is retained in the hero-actions row (JS-revealed only).
   const jsOffContext = await browser.newContext({ javaScriptEnabled: false });
   const jsOffPage = await jsOffContext.newPage();
 
   await jsOffPage.goto("/presentations/arjen-tekoalyhaaste/");
-  await expect(jsOffPage.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/esitykset/");
-  await expect(jsOffPage.locator("[data-detail-hub-link]")).toContainText("Kaikki esitykset");
-  await expect(jsOffPage.locator("nav[aria-label='Detaljisivun orientaatio']")).toHaveCount(1);
-  const jsOffHubHref = await jsOffPage.locator("[data-detail-hub-link]").getAttribute("href");
-  await jsOffPage.goto(jsOffHubHref);
+  await expect(jsOffPage.locator("[data-detail-hub-link]")).toHaveCount(0);
+  const sidebarLink = jsOffPage.locator(".content-context-archive-link");
+  await expect(sidebarLink).toHaveAttribute("href", "/esitykset/");
+  await expect(sidebarLink).toContainText("Kaikki esitykset");
+  const sidebarHref = await sidebarLink.getAttribute("href");
+  await jsOffPage.goto(sidebarHref);
   await expect(jsOffPage).toHaveURL(/\/esitykset\/$/);
   await jsOffContext.close();
 
@@ -121,23 +131,30 @@ test("FI presentation archive decorates local card links with returnTo and leave
 });
 
 test("FI presentation detail reveals discovery return link when returnTo carries state that differs from hub", async ({ page }) => {
+  // DETAIL-UX-ORIENT-01: hub-link no longer emitted here. Return-link
+  // (via standalone `detail-return-link.njk`) still reveals correctly
+  // when `?returnTo=` matches the /esitykset/ prefix allowlist.
   await page.goto("/presentations/arjen-tekoalyhaaste/?returnTo=%2Fesitykset%2F%23kaikki-esitykset");
-  await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/esitykset/");
+  await expect(page.locator("[data-detail-hub-link]")).toHaveCount(0);
   await expect(page.locator("[data-detail-return-link]")).toBeVisible();
   await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /\/esitykset\/#kaikki-esitykset/);
 });
 
-test("FI media detail exposes shared O1 hub return, preserves source CTA and hides invalid discovery return", async ({ browser, page }) => {
+test("FI media detail: sidebar archive-link is SSR site-orientation; source CTA preserved; return-link hidden without valid context", async ({ browser, page }) => {
+  // DETAIL-UX-ORIENT-01: hero orientation removed on Media. Sidebar
+  // `content-context-archive-link` → /mediassa/ is the sole
+  // always-visible SSR orientation link.
   const jsOffContext = await browser.newContext({ javaScriptEnabled: false });
   const jsOffPage = await jsOffContext.newPage();
 
   await jsOffPage.goto("/mediassa/2025/12/24/24-myyttia-tekoalysta-ja-datasta-joulukalenteri/");
-  await expect(jsOffPage.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/mediassa/");
-  await expect(jsOffPage.locator("[data-detail-hub-link]")).toContainText("Kaikki mediaosumat");
-  await expect(jsOffPage.locator("nav[aria-label='Detaljisivun orientaatio']")).toHaveCount(1);
+  await expect(jsOffPage.locator("[data-detail-hub-link]")).toHaveCount(0);
+  const sidebarLink = jsOffPage.locator(".content-context-archive-link");
+  await expect(sidebarLink).toHaveAttribute("href", "/mediassa/");
+  await expect(sidebarLink).toContainText("Kaikki mediaosumat");
   await expect(jsOffPage.locator("a[href*='youtube.com']")).not.toHaveCount(0);
-  const jsOffHubHref = await jsOffPage.locator("[data-detail-hub-link]").getAttribute("href");
-  await jsOffPage.goto(jsOffHubHref);
+  const sidebarHref = await sidebarLink.getAttribute("href");
+  await jsOffPage.goto(sidebarHref);
   await expect(jsOffPage).toHaveURL(/\/mediassa\/$/);
   await jsOffContext.close();
 
@@ -155,15 +172,19 @@ test("FI media archive decorates Lisätiedot links with /mediassa/ returnTo (bar
 
   const href = await detailsLink.getAttribute("href");
   await page.goto(href);
-  await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/mediassa/");
-  // When returnTo equals the hub fallback ("/mediassa/") site-ui.js suppresses the duplicate return link.
+  // DETAIL-UX-ORIENT-01: hub-link no longer emitted; sidebar-archive-link
+  // carries the always-visible orientation. Return-link suppression
+  // logic (site-ui.js) unaffected: returnTo == fallback → still hidden.
+  await expect(page.locator("[data-detail-hub-link]")).toHaveCount(0);
   await expect(page.locator("[data-detail-return-link]")).toBeHidden();
 });
 
 test("FI media detail reveals discovery return link when returnTo carries filter state", async ({ page }) => {
   // Simulate a discovery-return context where filters differ from the plain hub URL.
   await page.goto("/mediassa/2025/12/24/24-myyttia-tekoalysta-ja-datasta-joulukalenteri/?returnTo=%2Fmediassa%2F%3Ftype%3Dvideo");
-  await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/mediassa/");
+  // DETAIL-UX-ORIENT-01: hub-link removed on Media detail. Return-link
+  // still reveals correctly via `detail-return-link.njk` partial.
+  await expect(page.locator("[data-detail-hub-link]")).toHaveCount(0);
   await expect(page.locator("[data-detail-return-link]")).toBeVisible();
   await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /\/mediassa\/\?type=video/);
 });
@@ -175,7 +196,10 @@ test("EN media archive Details link uses /en/media/ returnTo and FI detail accep
 
   const href = await detailsLink.getAttribute("href");
   await page.goto(href);
-  await expect(page.locator("[data-detail-hub-link]")).toHaveAttribute("href", "/mediassa/");
+  // DETAIL-UX-ORIENT-01: hub-link no longer emitted on Media detail;
+  // sidebar `content-context-archive-link` carries the SSR
+  // site-orientation. Return-link reveals with returnTo → /en/media/.
+  await expect(page.locator("[data-detail-hub-link]")).toHaveCount(0);
   await expect(page.locator("[data-detail-return-link]")).toBeVisible();
   await expect(page.locator("[data-detail-return-link]")).toHaveAttribute("href", /^\/en\/media\/?$/);
 });

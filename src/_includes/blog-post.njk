@@ -7,8 +7,6 @@ layout: base.njk
   toc:        "Contents" if currentLang == "en" else "Sisällys",
   categories: "Categories" if currentLang == "en" else "Kategoriat",
   keywords:   "Keywords" if currentLang == "en" else "Avainsanat",
-  back:       "Back to blog" if currentLang == "en" else "Takaisin blogiin",
-  backHref:   "/en/blog/" if currentLang == "en" else "/blogi/",
   catBase:    "/en/categories/" if currentLang == "en" else "/kategoriat/",
   kwBase:     "/en/keywords/" if currentLang == "en" else "/avainsanat/"
 } %}
@@ -132,9 +130,6 @@ layout: base.njk
             {% endif %}
           </div>
           {% endif %}
-        </div>
-        <div class="card-footer bg-transparent">
-          <a href="{{ txt.backHref }}" class="btn btn-outline-primary">&larr; {{ txt.back }}</a>
         </div>
       </div>
     </article>

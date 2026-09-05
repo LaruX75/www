@@ -1,3 +1,16 @@
+{#
+  DETAIL-UX-ORIENT-01: shared O1 orientation partial (Publication +
+  Thesis trailing footer). Emits the always-visible SITE ORIENTATION
+  domain-hub link plus a JS-revealed RETURN-TO-ORIGIN link.
+
+  The return-link anchor starts with `href="#"` — the canonical
+  `hubHref` is passed via `data-detail-return-fallback` only for
+  DUPLICATE-SUPPRESSION (`src/js/site-ui.js` uses it to hide the
+  return-link when `?returnTo=` would resolve to the same URL as
+  the always-visible hub-link above). JS never assigns the fallback
+  as the anchor's href — return-to-origin has no canonical hub
+  fallback destination.
+#}
 {% set currentLang = orientationLang or lang or (page.url | langFromUrl) %}
 {% set isEnglish = currentLang == "en" %}
 {% set hubHref = orientationHubHref or "/" %}
@@ -14,10 +27,11 @@
   </a>
   <a
     class="btn btn-link fw-semibold px-0 d-none"
-    href="{{ hubHref }}"
+    href="#"
     data-detail-return-link
     data-detail-return-fallback="{{ hubHref }}"
-    data-detail-return-prefixes="{{ returnPrefixes | join(',') }}">
+    data-detail-return-prefixes="{{ returnPrefixes | join(',') }}"
+    data-detail-return-default-label="{{ returnLabel }}">
     {{ returnLabel }}
   </a>
 </nav>

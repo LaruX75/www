@@ -1,7 +1,11 @@
 {% set cardBaseUrl = item.landingUrl or item.localPageUrl or item.pageUrl or item.url or item.externalUrl or item.sourceUrl or "" %}
 {% set cardIsExternal = item.externalFirst or (cardBaseUrl and cardBaseUrl.startsWith("http")) %}
 {% if cardReturnTo and not cardIsExternal and cardBaseUrl.startsWith("/presentations/") %}
-  {% set cardUrl = cardBaseUrl + ("&" if "?" in cardBaseUrl else "?") + "returnTo=" + (cardReturnTo | urlencode) %}
+  {# DETAIL-UX-ORIENT-01: emit both `returnTo` and `returnLabel` so
+     the detail page can name the origin ("Takaisin esityksiin",
+     "Takaisin kurssille 405040Y") instead of the generic default. #}
+  {% set _cardReturnLabel = cardReturnLabel or ("Back to presentations" if (lang or (page.url | langFromUrl)) == "en" else "Takaisin esityksiin") %}
+  {% set cardUrl = cardBaseUrl + ("&" if "?" in cardBaseUrl else "?") + "returnTo=" + (cardReturnTo | urlencode) + "&returnLabel=" + (_cardReturnLabel | urlencode) %}
 {% else %}
   {% set cardUrl = cardBaseUrl %}
 {% endif %}
