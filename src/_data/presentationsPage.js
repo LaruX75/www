@@ -1244,7 +1244,21 @@ function buildCanonicalPresentationPageRecords(sourceData = {}) {
           : undefined,
         courseContexts: localCourseContexts.length ? localCourseContexts : canonicalCourseContexts,
         contexts: localContexts.length ? localContexts : canonicalContexts,
-        declaredContexts: localDeclaredContexts.length ? localDeclaredContexts : canonicalDeclaredContexts
+        declaredContexts: localDeclaredContexts.length ? localDeclaredContexts : canonicalDeclaredContexts,
+        // DETAIL-UX-01C-B-COURSE (Kempele semantic verification):
+        // `location`, `kategoria` and `jarjestaja` are all existing
+        // Canonical Content v1 §3 Presentations type-specific fields
+        // (see `withPresentationSemantics` + Canva projection). They
+        // were dropped by this record projection. Routing them here
+        // lets the detail template distinguish three independent
+        // semantics that MUST NOT conflate:
+        //   Paikka        = geographic place        (`location`)
+        //   Käyttöyhteys  = usage-context type      (`kategoria`)
+        //   Järjestäjä    = organiser entity        (`jarjestaja`)
+        // No new canonical field / no new taxonomy introduced.
+        location: item?.location || canonicalItem?.location || "",
+        kategoria: item?.kategoria || canonicalItem?.kategoria || "",
+        jarjestaja: item?.jarjestaja || canonicalItem?.jarjestaja || ""
       };
     })
     .filter((item) => item.pageUrl);

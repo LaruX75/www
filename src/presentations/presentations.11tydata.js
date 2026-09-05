@@ -82,6 +82,66 @@ function teachingUnitLabelFor(value) {
   return undefined;
 }
 
+// DETAIL-UX-01C-B-COURSE: build-time canonical selector for peer
+// presentations that share at least one courseId with the current
+// presentation via canonical `courseContexts[].courseId`. Deterministic:
+// same-course peers sorted by date DESC (newer lectures first), then
+// title ASC for stability. Excludes the current URL. Caller-side hard
+// cap. Returns [] when the current presentation has no courseContexts
+// or no other presentation shares its courseId.
+const PEER_LIMIT = 6;
+
+function collectCourseIds(courseContexts = []) {
+  return Array.from(new Set(
+    (Array.isArray(courseContexts) ? courseContexts : [])
+      .map((c) => c && c.courseId)
+      .filter(Boolean)
+  ));
+}
+
+function selectPeerPresentationsByCourse(data) {
+  const currentUrl = data?.page?.url;
+  if (!currentUrl) return [];
+  const currentCourseIds = collectCourseIds(getPresentationCourseContexts(data));
+  if (!currentCourseIds.length) return [];
+  const currentSet = new Set(currentCourseIds);
+
+  // Read peers directly from the canonical Presentation projection
+  // rather than data.collections.presentations, because peer
+  // `courseContexts` is itself an eleventyComputed field and is not
+  // guaranteed to be resolved on other items at the moment this
+  // compute runs. The canonical lookup is derived from _data and is
+  // fully resolved before any computed field executes.
+  if (!presentationLookup) {
+    presentationLookup = buildCanonicalPresentationPageLookup(data);
+  }
+
+  const peers = [];
+  presentationLookup.forEach((record, pageUrl) => {
+    if (!record || pageUrl === currentUrl) return;
+    const peerContexts = Array.isArray(record.courseContexts) ? record.courseContexts : [];
+    const peerCourseIds = collectCourseIds(peerContexts);
+    const sharedCourseId = peerCourseIds.find((id) => currentSet.has(id));
+    if (!sharedCourseId) return;
+    const sharedContext = peerContexts.find((c) => c && c.courseId === sharedCourseId) || {};
+    peers.push({
+      url: pageUrl,
+      title: record.title || "",
+      date: record.date || "",
+      courseId: sharedCourseId,
+      courseName: sharedContext.courseName || ""
+    });
+  });
+
+  peers.sort((a, b) => {
+    const dateDiff = String(b.date).localeCompare(String(a.date));
+    if (dateDiff !== 0) return dateDiff;
+    return String(a.title).localeCompare(String(b.title), "fi");
+  });
+
+  return peers.slice(0, PEER_LIMIT);
+}
+
 module.exports = {
     tags: "presentations",
     lang: "fi",
@@ -112,6 +172,24 @@ module.exports = {
         // toPublicContentRecord ei sisallyta kenttaa JSON:iin.
         teachingUnit: (data) => teachingUnits.fromCourseContexts(getPresentationCourseContexts(data)) || undefined,
         teachingUnitLabel: (data) =>
-          teachingUnitLabelFor(teachingUnits.fromCourseContexts(getPresentationCourseContexts(data)))
+          teachingUnitLabelFor(teachingUnits.fromCourseContexts(getPresentationCourseContexts(data))),
+        // DETAIL-UX-01C-B-COURSE: build-time peer list for the
+        // "Samalla kurssilla" SSR section on presentation-item.njk.
+        // Uses canonical courseContexts[].courseId directly — no
+        // Content Graph traversal, no browser JS, no similarity
+        // heuristics. Empty array when no peers exist.
+        peerPresentationsByCourse: (data) => selectPeerPresentationsByCourse(data),
+        // Kempele semantic verification: route three independent
+        // Canonical Content v1 §3 type-specific fields from the
+        // canonical Canva projection to the detail template so the
+        // three semantics never conflate.
+        //   Paikka        = geographic place        (`location`)
+        //   Käyttöyhteys  = usage-context type      (`kategoria`)
+        //   Järjestäjä    = organiser entity        (`jarjestaja`)
+        // All three are existing canonical fields; no new field or
+        // taxonomy introduced.
+        location: (data) => getPresentationRecord(data)?.location || undefined,
+        kategoria: (data) => getPresentationRecord(data)?.kategoria || undefined,
+        jarjestaja: (data) => getPresentationRecord(data)?.jarjestaja || undefined
     }
 };

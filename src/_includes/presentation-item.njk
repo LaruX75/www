@@ -22,7 +22,16 @@ layout: base.njk
   {% set sourceText = "YouTube" %}
 {% endif %}
 {% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
-{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel %}
+{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel or kategoria or jarjestaja or location %}
+{# Kempele semantic verification: three INDEPENDENT canonical
+   Presentation type-specific fields (Canonical Content v1 §3):
+     location   — geographic place        (e.g. "Kempele")
+     kategoria  — usage-context type      (e.g. "täydennyskoulutus")
+     jarjestaja — organiser entity        (e.g. "Kempeleen kunta (VESO-koulutus)")
+   We show them under three separate labels so the semantics never
+   conflate. Kategoria strings come in lower-case from Canva;
+   capitalize for display. #}
+{% set kategoriaLabel = kategoria | capitalize %}
 
 {% import "detail-hero.njk" as heroPartial %}
 
@@ -102,6 +111,24 @@ layout: base.njk
         <div class="content-detail-side-card content-detail-support-card">
           <p class="content-detail-card-kicker">Käyttöyhteys</p>
           <dl class="content-detail-definition-list content-detail-definition-list--context mb-0">
+            {% if location %}
+            <div>
+              <dt>Paikka</dt>
+              <dd>{{ location }}</dd>
+            </div>
+            {% endif %}
+            {% if kategoria %}
+            <div>
+              <dt>Käyttöyhteys</dt>
+              <dd>{{ kategoriaLabel }}</dd>
+            </div>
+            {% endif %}
+            {% if jarjestaja %}
+            <div>
+              <dt>Järjestäjä</dt>
+              <dd>{{ jarjestaja }}</dd>
+            </div>
+            {% endif %}
             {% if event %}
             <div>
               <dt>Tilaisuus</dt>
@@ -130,6 +157,35 @@ layout: base.njk
         </div>
         {% endif %}
       </div>
+
+      {# DETAIL-UX-01C-B-COURSE: build-time canonical peer list from
+         shared courseContexts[].courseId. Renders only when peers
+         exist. Empty state → section omitted (no "ei muita sisältöjä"
+         placeholder). Selection lives in presentations.11tydata.js
+         via peerPresentationsByCourse computed. No graph traversal,
+         no browser JS, no similarity heuristic. #}
+      {% if peerPresentationsByCourse and peerPresentationsByCourse.length %}
+      <section class="content-detail-course-peers" aria-labelledby="samalla-kurssilla-heading">
+        <h2 id="samalla-kurssilla-heading" class="h5 fw-bold mb-3">
+          {{ "On the same course" if currentLang == "en" else "Samalla kurssilla" }}
+        </h2>
+        {% set peerCourseId = peerPresentationsByCourse[0].courseId %}
+        {% set peerCourseName = peerPresentationsByCourse[0].courseName %}
+        {% if peerCourseId %}
+        <p class="text-muted small mb-3">
+          {% if currentLang == "en" %}Other presentations from course {{ peerCourseId }}{% if peerCourseName %} — {{ peerCourseName }}{% endif %}.{% else %}Muut opintojakson {{ peerCourseId }}{% if peerCourseName %} — {{ peerCourseName }}{% endif %} esitykset.{% endif %}
+        </p>
+        {% endif %}
+        <ul class="list-unstyled mb-0 d-grid gap-2">
+          {% for peer in peerPresentationsByCourse %}
+          <li class="course-peer-item">
+            <a href="{{ peer.url }}" class="fw-semibold text-decoration-none d-block">{{ peer.title }}</a>
+            {% if peer.date %}<div class="text-muted small">{{ peer.date | dateFormat }}</div>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
 
       <div class="content-detail-related content-detail-related--presentation">
           {% include "content-context-sidebar.njk" %}
