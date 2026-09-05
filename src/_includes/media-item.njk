@@ -61,23 +61,18 @@ layout: base.njk
   lead=(subtitle or description or null),
   aside=mediaHeroAside
 ) %}
-  <div class="content-detail-actions">
-    {# DETAIL-UX-01A: destination-specific label. Uses canonical
-       mediaOutlet when known; falls back to a semantically safe
-       generic label. No new outlet classifier introduced. #}
-    {% if sourceHref %}
-      {% set mediaCtaLabel = "Avaa alkuperäinen lähde" %}
-      {% if mediaOutlet %}
-        {% set mediaCtaLabel = "Avaa alkuperäinen lähde — " ~ mediaOutlet %}
-      {% endif %}
-      <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ mediaCtaLabel }}</a>
+  {# DETAIL-UX-ORIENT-01: hero-actions renders only when a real
+     primary source action exists. Return-to-origin lives in a
+     trailing region below (see end of file). #}
+  {% if sourceHref %}
+    {% set mediaCtaLabel = "Avaa alkuperäinen lähde" %}
+    {% if mediaOutlet %}
+      {% set mediaCtaLabel = "Avaa alkuperäinen lähde — " ~ mediaOutlet %}
     {% endif %}
-    {% set orientationLang = currentLang %}
-    {% set orientationHubHref = "/mediassa/" %}
-    {% set orientationHubLabel = "Kaikki mediaosumat" %}
-    {% set orientationReturnPrefixes = ["/mediassa/", "/en/media/"] %}
-    {% include "detail-orientation.njk" %}
+  <div class="content-detail-actions">
+    <a href="{{ sourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">{{ mediaCtaLabel }}</a>
   </div>
+  {% endif %}
 {% endcall %}
 
 <section class="content-detail-body-section py-5">
@@ -134,3 +129,13 @@ layout: base.njk
     </article>
   </div>
 </section>
+
+{# DETAIL-UX-ORIENT-01: trailing RETURN-TO-ORIGIN region. #}
+<footer class="content-detail-origin py-4" aria-label="{{ 'Return to origin' if currentLang == 'en' else 'Palaa lähtökohtaan' }}">
+  <div class="site-shell">
+    {% set orientationLang = currentLang %}
+    {% set orientationReturnFallback = "/mediassa/" %}
+    {% set orientationReturnPrefixes = ["/mediassa/", "/en/media/", "/etsi/", "/en/search/"] %}
+    {% include "detail-return-link.njk" %}
+  </div>
+</footer>

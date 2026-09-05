@@ -1,0 +1,63 @@
+{#
+  DETAIL-UX-ORIENT-01: RETURN TO ORIGIN partial. Emits the JS-revealed
+  "back to where you came from" link WITHOUT any always-visible
+  hub-link. Site orientation is handled separately (sidebar
+  `content-context-archive-link`).
+
+  Hidden by default (`d-none`) with `href="#"` placeholder. The
+  anchor becomes visible and gains a real href ONLY when
+  `src/js/site-ui.js` finds a valid `?returnTo=` on the current URL
+  matching `data-detail-return-prefixes`. If no origin exists we do
+  NOT surface a synthetic "back to hub" link — the sidebar/domain-hub
+  SITE ORIENTATION link is sufficient. Return-to-origin and site
+  orientation are two different semantic layers.
+
+  Contextual label (URL contract):
+    - JS reads `?returnLabel=` and, when the return context is valid,
+      uses it as the anchor's textContent (length-capped + whitespace-
+      normalized).
+    - Otherwise the anchor keeps the SSR default label stored as
+      `data-detail-return-default-label`.
+
+  Consumers (trailing `<footer class="content-detail-origin">` region):
+    - media-item.njk
+    - presentation-item.njk
+    - writing-post.njk
+
+  Publications + Theses continue to use `detail-orientation.njk`
+  (hub-link + return-link inside the same trailing footer) because
+  their sidebar `content-context-archive-link` points at `/kynasta/`
+  (topical umbrella), not the domain hub — so both the always-visible
+  domain hub AND the return link must render.
+
+  Inputs (set by caller as Nunjucks vars):
+    orientationLang                — currentLang for label
+    orientationReturnFallback      — canonical hub URL used for
+                                     DUPLICATE-SUPPRESSION ONLY (never
+                                     assigned as the anchor's href).
+                                     Suppresses the return-link when
+                                     `?returnTo=` would resolve to the
+                                     same URL as the page's SSR
+                                     orientation link (avoids
+                                     rendering a duplicate).
+    orientationReturnPrefixes      — pathname prefix allowlist
+    orientationReturnLabel         — optional default label; falls
+                                     back to "Takaisin hakutuloksiin" /
+                                     "Back to results" for
+                                     compatibility with legacy Find &
+                                     Explore links that omit the new
+                                     `returnLabel` param.
+#}
+{% set _returnLang = orientationLang or lang or (page.url | langFromUrl) %}
+{% set _returnFallback = orientationReturnFallback or "" %}
+{% set _returnPrefixes = orientationReturnPrefixes or [] %}
+{% set _returnLabel = orientationReturnLabel or ("Back to results" if _returnLang == "en" else "Takaisin hakutuloksiin") %}
+<a
+  class="btn btn-link fw-semibold px-0 d-none"
+  href="#"
+  data-detail-return-link
+  data-detail-return-fallback="{{ _returnFallback }}"
+  data-detail-return-prefixes="{{ _returnPrefixes | join(',') }}"
+  data-detail-return-default-label="{{ _returnLabel }}">
+  {{ _returnLabel }}
+</a>

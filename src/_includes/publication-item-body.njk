@@ -23,24 +23,25 @@
     {% if openAccessValue %}<span class="badge text-bg-success">{{ "Open access" if isEnglish else "Avoin saatavuus" }}</span>{% endif %}
     {% if citationCount %}<span class="badge text-bg-warning text-dark">{{ citationCount }} {{ "citations" if isEnglish else "viittausta" }}</span>{% endif %}
   </div>
+  {# DETAIL-UX-ORIENT-01: hero-actions now hosts only the true primary
+     action. Site orientation ("Takaisin julkaisuihin" → /julkaisut/)
+     is rendered as a trailing footer BELOW the body section because
+     the sidebar's `content-context-archive-link` resolves to the
+     topical Kynästä hub (/kynasta/), NOT the publication archive. #}
+  {% if externalHref %}
+  {# DETAIL-UX-01A: destination-specific label. DOI is the canonical
+     persistent identifier when present; use it in the CTA. #}
+  {% set publicationCtaLabel = ("Open publication" if isEnglish else "Avaa julkaisu") %}
+  {% if detail.doiUrl and externalHref == detail.doiUrl %}
+    {% set publicationCtaLabel = ("Open in DOI" if isEnglish else "Avaa DOI:ssa") %}
+  {% endif %}
   <div class="content-detail-actions mt-3">
-    {% set orientationHubHref = detail.archiveUrl or ('/en/publications/' if isEnglish else '/julkaisut/') %}
-    {% set orientationHubLabel = "Back to publications" if isEnglish else "Takaisin julkaisuihin" %}
-    {% set orientationReturnPrefixes = ["/julkaisut/", "/en/publications/"] %}
-    {% include "detail-orientation.njk" %}
-    {% if externalHref %}
-    {# DETAIL-UX-01A: destination-specific label. DOI is the canonical
-       persistent identifier when present; use it in the CTA. #}
-    {% set publicationCtaLabel = ("Open publication" if isEnglish else "Avaa julkaisu") %}
-    {% if detail.doiUrl and externalHref == detail.doiUrl %}
-      {% set publicationCtaLabel = ("Open in DOI" if isEnglish else "Avaa DOI:ssa") %}
-    {% endif %}
     <a href="{{ externalHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
       {{ publicationCtaLabel }}
       <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
     </a>
-    {% endif %}
   </div>
+  {% endif %}
 {% endcall %}
 
 <section class="content-detail-body-section py-5">
@@ -126,3 +127,17 @@
     </div>
   </div>
 </section>
+
+{# DETAIL-UX-ORIENT-01: trailing site-orientation footer. Domain-hub
+   link (/julkaisut/) differs from the sidebar's Kynästä archive-link
+   (/kynasta/), so both survive but each in its semantic layer:
+   sidebar = topical discovery; footer = site orientation. #}
+<footer class="content-detail-orientation py-4 border-top" aria-label="{{ 'Site orientation' if isEnglish else 'Sivuston orientaatio' }}">
+  <div class="site-shell">
+    {% set orientationLang = 'en' if isEnglish else 'fi' %}
+    {% set orientationHubHref = detail.archiveUrl or ('/en/publications/' if isEnglish else '/julkaisut/') %}
+    {% set orientationHubLabel = "Back to publications" if isEnglish else "Takaisin julkaisuihin" %}
+    {% set orientationReturnPrefixes = ["/julkaisut/", "/en/publications/"] %}
+    {% include "detail-orientation.njk" %}
+  </div>
+</footer>

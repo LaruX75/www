@@ -5,6 +5,10 @@ layout: base.njk
 {% set currentTags = tags or [] %}
 {% set isEnglish = currentLang == "en" %}
 {% set externalSourceHref = "" %}
+{# DETAIL-UX-ORIENT-01: `orientationCtx` retained for the return-link
+   fallback href. Dynamic per writing type via sidebarContext (matches
+   the same source the sidebar `content-context-archive-link` uses),
+   so a returnTo-invalidation fall-back stays semantically aligned. #}
 {% set orientationCtx = ({
   "tags": currentTags,
   "contexts": contexts or [],
@@ -89,19 +93,19 @@ layout: base.njk
   leadMb="2",
   aside=(writingHeroAside if thumbnail else null)
 ) %}
+  {# DETAIL-UX-ORIENT-01: hero-actions renders ONLY when a real
+     primary action (external source) exists. Writing pages without
+     a source drop the hero-actions row entirely — no empty wrapper,
+     no lone "leaving" link. Return-to-origin lives in a trailing
+     region below and works even on no-source Writings. #}
+  {% if externalSourceHref %}
   <div class="content-detail-actions">
-    {% set orientationLang = currentLang %}
-    {% set orientationHubHref = orientationCtx.archiveHref %}
-    {% set orientationHubLabel = orientationCtx.archiveLabel %}
-    {% set orientationReturnPrefixes = ["/kirjoitukset/", "/en/writings/"] %}
-    {% include "detail-orientation.njk" %}
-    {% if externalSourceHref %}
-      <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-        {{ "Open source" if isEnglish else "Avaa lähde" }}
-        <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
-      </a>
-    {% endif %}
+    <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
+      {{ "Open source" if isEnglish else "Avaa lähde" }}
+      <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
+    </a>
   </div>
+  {% endif %}
 {% endcall %}
 
 <section class="py-4">
@@ -199,3 +203,18 @@ layout: base.njk
     </article>
   </div>
 </section>
+
+{# DETAIL-UX-ORIENT-01: trailing RETURN-TO-ORIGIN region.
+   Independent from hero-actions so it works on no-source Writings
+   too (e.g. a lausunto arrived at via Find & Explore). Fallback +
+   allowlist derive dynamically per writing type via
+   `orientationCtx.archiveHref` (same source as sidebar
+   `content-context-archive-link`). #}
+<footer class="content-detail-origin py-4" aria-label="{{ 'Return to origin' if isEnglish else 'Palaa lähtökohtaan' }}">
+  <div class="site-shell">
+    {% set orientationLang = currentLang %}
+    {% set orientationReturnFallback = orientationCtx.archiveHref %}
+    {% set orientationReturnPrefixes = ["/kirjoitukset/", "/en/writings/", "/lausunnot/", "/mielipiteet/", "/puheet/", "/kolumnit/", "/valtuustoaloitteet/", "/etsi/", "/en/search/"] %}
+    {% include "detail-return-link.njk" %}
+  </div>
+</footer>

@@ -25,12 +25,14 @@
             <span class="badge text-bg-light border text-secondary">{{ themeLabels[theme] or theme }}</span>
             {% endfor %}
           </div>
+          {# DETAIL-UX-ORIENT-01: hero-actions row now hosts only the
+             true primary action. Site orientation ("Takaisin
+             opinnäytteisiin" → /opinnaytteet/) is rendered as a
+             trailing footer BELOW the body because the sidebar's
+             `content-context-archive-link` resolves to the topical
+             Kynästä hub (/kynasta/), NOT the thesis archive. #}
+          {% if thesisDetail.sourceUrl %}
           <div class="content-detail-actions mt-4">
-            {# DETAIL-UX-01A: promote canonical primary action to hero.
-               Same href and semantics as the OuluREPO card below;
-               user reaches source without scrolling past Abstract +
-               Citation. Card below retains contextual explanation. #}
-            {% if thesisDetail.sourceUrl %}
             <a
               class="btn btn-primary rounded-pill px-4"
               href="{{ thesisDetail.sourceUrl }}"
@@ -38,13 +40,8 @@
               rel="noopener noreferrer">
               {{ "Open in OuluREPO" if isEn else "Avaa OuluREPOssa" }}
             </a>
-            {% endif %}
-            {% set orientationLang = currentLang %}
-            {% set orientationHubHref = '/en/theses/' if isEn else '/opinnaytteet/' %}
-            {% set orientationHubLabel = "Back to theses" if isEn else "Takaisin opinnäytteisiin" %}
-            {% set orientationReturnPrefixes = ["/opinnaytteet/", "/en/theses/"] %}
-            {% include "detail-orientation.njk" %}
           </div>
+          {% endif %}
         </div>
       </div>
 
@@ -178,6 +175,20 @@
     </article>
   </div>
 </section>
+
+{# DETAIL-UX-ORIENT-01: trailing site-orientation footer. Domain-hub
+   link (/opinnaytteet/) differs from the sidebar's Kynästä archive-link
+   (/kynasta/), so both survive but each in its semantic layer:
+   sidebar = topical discovery; footer = site orientation. #}
+<footer class="content-detail-orientation py-4 border-top" aria-label="{{ 'Site orientation' if isEn else 'Sivuston orientaatio' }}">
+  <div class="site-shell">
+    {% set orientationLang = currentLang %}
+    {% set orientationHubHref = '/en/theses/' if isEn else '/opinnaytteet/' %}
+    {% set orientationHubLabel = "Back to theses" if isEn else "Takaisin opinnäytteisiin" %}
+    {% set orientationReturnPrefixes = ["/opinnaytteet/", "/en/theses/"] %}
+    {% include "detail-orientation.njk" %}
+  </div>
+</footer>
 
 {# TH-CITE1 Phase 4B: citation/export modal for this detail page. #}
 {% include "thesis-citation-modal.njk" %}

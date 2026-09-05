@@ -35,13 +35,21 @@ const PAGES = {
     url: "/presentations/405040y-luento-1-johdanto-2026-a/",
     variant: "presentation",
     expectedTitleClass: "content-detail-title",
-    expectsOrientation: true
+    // DETAIL-UX-ORIENT-01: hero orientation removed; site orientation
+    // now delivered by sidebar `content-context-archive-link` (→ same
+    // /esitykset/ destination). No `data-detail-hub-link` on page —
+    // the O1 return-link JS mechanism is dropped on this domain
+    // because it would duplicate the sidebar hub link.
+    expectsOrientation: false
   },
   media: {
     url: "/mediassa/2026/03/29/tekoaly-tekee-petoksen-koulutehtavissa-helpoksi/",
     variant: "media",
     expectedTitleClass: "content-detail-title",
-    expectsOrientation: true
+    // DETAIL-UX-ORIENT-01: same rule as Presentation. Sidebar
+    // `content-context-archive-link` → /mediassa/ is the sole
+    // orientation link.
+    expectsOrientation: false
   },
   blog: {
     url: "/2013/02/05/yhdistysaktivisti/",
@@ -53,7 +61,10 @@ const PAGES = {
     url: "/2026/04/28/lausunto-uutta-suuntaa-suomen-digitaaliseen-kompassiin/",
     variant: "writing",
     expectedTitleClass: "content-detail-title",
-    expectsOrientation: true
+    // DETAIL-UX-ORIENT-01: hero orientation removed. Sidebar
+    // `content-context-archive-link` (dynamic per writing type via
+    // sidebarContext) is the sole orientation link.
+    expectsOrientation: false
   },
   thesis: {
     url: "/opinnaytteet/46895/",

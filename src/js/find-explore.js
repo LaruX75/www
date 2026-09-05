@@ -651,12 +651,21 @@
       return `${window.location.pathname}${window.location.search}${window.location.hash}`;
     }
 
+    // DETAIL-UX-ORIENT-01: Find & Explore is the search-return origin.
+    // Language derives from <html lang>; falls back to fi.
+    function currentReturnLabel() {
+      if (typeof document === "undefined") return "Takaisin hakutuloksiin";
+      const lang = (document.documentElement.getAttribute("lang") || "fi").toLowerCase();
+      return lang.startsWith("en") ? "Back to results" : "Takaisin hakutuloksiin";
+    }
+
     function withReturnTo(href) {
       if (typeof window === "undefined" || !href) return href;
       try {
         const targetUrl = new URL(href, window.location.origin);
         if (targetUrl.origin !== window.location.origin) return href;
         targetUrl.searchParams.set("returnTo", currentReturnTo());
+        targetUrl.searchParams.set("returnLabel", currentReturnLabel());
         return `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`;
       } catch (_) {
         return href;
