@@ -13,6 +13,7 @@ topics:
 courseContexts:
   - courseId: 405040Y
     courseName: Teknologiatuettu oppiminen ja työskentely
+    periodId: "2026-2027-a"
     evidenceLevel: strong
     linkType: explicit_course_code
     matchedTerms:
