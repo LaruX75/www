@@ -812,6 +812,12 @@ module.exports = {
           headingHref: "/tyoni-yliopistonlehtorina/",
           links: [
             {
+              title: "Opetus",
+              href: "/opetus/",
+              icon: "bi bi-mortarboard me-2",
+              description: "Julkiset kurssisivut ja opetukseen liittyvät kokonaisuudet."
+            },
+            {
               title: "Esitykset",
               href: "/esitykset/",
               icon: "bi bi-easel2 me-2",
