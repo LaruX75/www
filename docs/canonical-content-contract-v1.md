@@ -119,6 +119,34 @@ Luokitus:
 
 - `TYPE-SPECIFIC`
 
+#### `courseContexts[]` — nested fields
+
+Jokainen `courseContexts[]` -itemi kuvaa yhden kurssikontekstin, johon Presentation kuuluu. Kentät:
+
+| Nested field | Status | Semantic meaning |
+| --- | --- | --- |
+| `courseId` | REQUIRED | Kurssikoodi (esim. `405040Y`). Pelkkä kurssitason canonical membership. |
+| `courseName` | REQUIRED | Kurssin ihmisen luettava nimi. |
+| `evidenceLevel` | REQUIRED | Todistusaste kurssijäsenyydelle: `"strong"` \| `"contextual"`. |
+| `linkType` | REQUIRED | Tunnistusmekanismin provenance: `"explicit_course_code"` \| `"explicit_course_name"` \| `"probable_legacy_course_material"` \| `"possible_reuse_of_course_material"` \| `"contextual_topic_or_pathway"`. |
+| `matchedTerms` | REQUIRED | Tekstitokenit, jotka tuottivat jäsenyystulkinnan. |
+| `evidenceSummary` | OPTIONAL | Vapaamuotoinen audit-trail. |
+| `courseSourceReferenceIds` | OPTIONAL | Provenance-tunnukset. |
+| `periodId` | OPTIONAL | Tunnistaa tietyn **kurssitoteutuksen / periodin**. Human-readable string (esim. `"2026-2027-a"`). MUST match the corresponding course-page's `course.periodId` when such a page exists. **Absence on merkityksellinen**: se tarkoittaa "kurssijäsenyys tunnetaan, tarkkaa toteutusta ei kanonisesti tunneta". Consumer MUST NOT infer `periodId` päivämäärästä, otsikosta, URL-slugista, topicista, categorystä, Pagefindista, Content Graphista, tiedostonimestä tai muusta lähteestä. Vain frontmatter on authoritative. |
+
+`periodId`-invariantit:
+
+1. `periodId` ei saa esiintyä ilman `courseId`:tä (nested `courseContexts[]`-itemissä joka jo sisältää `courseId`:n).
+2. Format on suositeltavasti `{academicYear-lowercased}-{period-lowercased}` (esim. `"2026-2027-a"`), yhtenäinen course-page-frontmatterin `course.periodId`-konvention kanssa. Kenttä on consumereille opaakki string.
+3. Sama `(courseId, periodId)`-tuple SHOULD deduplikoitua saman Presentationin `courseContexts[]`-listalla.
+4. Sama `courseId` mutta eri `periodId` ALLOWED — esitys voi olla kanonisesti attribuoitu useaan saman kurssin toteutukseen.
+5. **`periodId` ei implikoi `sessionIndex`ia.** Sekvenssijärjestys (edellinen/seuraava luento) ei ole johdettavissa `periodId`:sta yksin. Sekvenssisemantiikka vaatisi erillisen kanonisen laajennuksen omalla auditillaan; DETAIL-UX-SEQUENCE-01 pysyy CLOSED / DEFERRED.
+
+Consumer impact (v1-laajennus, additiivinen):
+
+- Internal consumers (canonical projection, page templates, knowledgeGraph) välittävät `periodId`:n läpi as-is.
+- Public JSON, JSON-LD ja Pagefind projisointi pysyvät ennallaan: `courseContexts` (ja siten `periodId`) EI julkaista näihin projektioihin.
+
 ### Publications
 
 Type-specific extensioneja:
