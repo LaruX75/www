@@ -3,7 +3,8 @@ import { AXE_AUDIT_PAGES, runAxeAudit } from './helpers/a11y.js';
 
 test.describe('Accessibility Audits', () => {
     for (const auditPage of AXE_AUDIT_PAGES) {
-        test(`${auditPage.name} passes basic axe-core accessibility tests`, async ({ page }) => {
+        const smokeTag = auditPage.name === 'Homepage' ? ' @smoke' : '';
+        test(`${auditPage.name} passes basic axe-core accessibility tests${smokeTag}`, async ({ page }) => {
             try {
                 await runAxeAudit(page, auditPage.path, {
                     detailedReport: true,

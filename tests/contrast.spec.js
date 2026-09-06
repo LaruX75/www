@@ -17,7 +17,8 @@ test.describe('Button Contrast Audits', () => {
     // only. Other pages complete well under the old budget.
     test.setTimeout(300000);
     for (const auditPage of BUTTON_AUDIT_PAGES) {
-        test(`${auditPage.name} buttons meet contrast requirements`, async ({ page }) => {
+        const smokeTag = auditPage.name === 'Homepage' ? ' @smoke' : '';
+        test(`${auditPage.name} buttons meet contrast requirements${smokeTag}`, async ({ page }) => {
             await gotoAndAssertSite(page, auditPage.path);
             const issues = await auditButtonContrastOnPage(page, auditPage);
 
@@ -30,7 +31,7 @@ test.describe('Button Contrast Audits', () => {
         });
     }
 
-    test('Site changes KPI text meets contrast requirements in both themes', async ({ page }) => {
+    test('Site changes KPI text meets contrast requirements in both themes @smoke', async ({ page }) => {
         const auditPages = [
             { name: 'Site Changes', path: '/sivuston-muutokset/' },
             { name: 'Site Changes (EN)', path: '/en/site-changes/' },

@@ -1,0 +1,62 @@
+name: Weekly Playwright regression
+
+# CI-PERF-02: broad Playwright regression that runs weekly against
+# `main`. The PR gate (staging.yml) only runs @smoke-tagged tests to
+# keep merge feedback under ~1 minute. This workflow owns the full
+# curated regression set defined by the CI-PERF-02 audit:
+#   * tests/accessibility.spec.js  (13 axe scans across all archives)
+#   * tests/navigation.spec.js     (all 5 tests, including the Pagefind
+#                                    FI search-term test that is
+#                                    flaky-prone and PR-only weekly)
+#   * tests/contrast.spec.js       (14 tests, including the heavy
+#                                    /esitykset/ + /en/presentations/
+#                                    button-contrast walks)
+#
+# No deploy. No artifact publishing. Failure surfaces as a normal
+# failed Actions run.
+
+on:
+  schedule:
+    # Mondays 03:17 UTC — low-traffic slot; matches the low-cost
+    # weekly cadence recommended by CI-PERF-02 §13.
+    - cron: "17 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: weekly-playwright-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  full-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site without generated OG assets
+        run: npm run build:no-og
+        env:
+          # Weekly runs against main and does not deploy. Root-relative
+          # navigation in Playwright expects an empty pathPrefix.
+          ELEVENTY_PATH_PREFIX: ""
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run full accessibility, navigation, and contrast regression
+        run: npx playwright test tests/accessibility.spec.js tests/navigation.spec.js tests/contrast.spec.js
+        env:
+          PLAYWRIGHT_USE_STATIC_SERVER: "true"
+          PLAYWRIGHT_A11Y_OFFLINE: "true"
