@@ -107,6 +107,15 @@
             {% else %}
             <div class="mega-wrap grid-8-4">
               {{ nav.mobileJumpLink(navWork.url or '/en/work/', navWork.title or 'Work', jumpPagePrefix) }}
+              {% if workMegaMenu.overviewLinks %}
+                <nav class="mega-overview-strip" aria-label="Work overview">
+                  {% for link in workMegaMenu.overviewLinks %}
+                    <a class="mega-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                      <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                    </a>
+                  {% endfor %}
+                </nav>
+              {% endif %}
               <div class="mega-left three-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
@@ -520,6 +529,15 @@
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navWork.url or '/en/work/' }}">Open Work page</a>
+          {% if workMegaMenu.overviewLinks %}
+            <nav class="mobile-nav-overview-strip" aria-label="Work overview">
+              {% for link in workMegaMenu.overviewLinks %}
+                <a class="mobile-nav-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                  <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+                </a>
+              {% endfor %}
+            </nav>
+          {% endif %}
           <div class="mobile-nav-section-grid">
             {% for section in workMegaMenu.sections %}
               <section class="mobile-nav-section-card">
