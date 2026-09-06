@@ -161,8 +161,8 @@ test.describe("H. Accessibility / semantics", () => {
 
   test("section headings use <h2> and are labeled", async ({ page }) => {
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    expect(html, "nykyinen opetus h2 exists")
-      .toMatch(/<h2[^>]*id="opetus-nykyiset-heading"[^>]*>[^<]*Nykyinen opetus[^<]*<\/h2>/);
+    expect(html, "course implementations h2 exists")
+      .toMatch(/<h2[^>]*id="opetus-kurssitoteutukset-heading"[^>]*>[^<]*Kurssitoteutukset[^<]*<\/h2>/);
     expect(html, "adjacent surfaces h2 exists")
       .toMatch(/<h2[^>]*id="opetus-liittyvat-heading"[^>]*>/);
   });
