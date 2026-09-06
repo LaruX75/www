@@ -60,9 +60,42 @@ function parseCoursePage(filePath) {
     pageUrl,
     courseName: extractCourseStringField(fm, "courseName") || courseId,
     semesterLabel: extractCourseStringField(fm, "semesterLabel") || "",
+    academicYear: extractCourseStringField(fm, "academicYear") || "",
     period: extractCourseField(fm, "period") || "",
+    creditsLabel: extractCourseStringField(fm, "creditsLabel") || "",
+    teachingUnitLabel: extractCourseStringField(fm, "teachingUnitLabel") || "",
     lang: extractCourseStringField(fm, "lang") || "fi"
   };
+}
+
+function buildCatalog(entries) {
+  const groups = Object.create(null);
+  for (const entry of entries) {
+    if (!groups[entry.courseId]) {
+      groups[entry.courseId] = {
+        courseId: entry.courseId,
+        courseName: entry.courseName,
+        implementations: []
+      };
+    }
+    groups[entry.courseId].implementations.push(entry);
+  }
+
+  return Object.values(groups)
+    .map((group) => ({
+      ...group,
+      // The local canonical academicYear is the only ordering signal. Do not
+      // infer a year from a URL, filename, title, or external course source.
+      implementations: group.implementations.sort((a, b) =>
+        b.academicYear.localeCompare(a.academicYear, "fi") ||
+        a.semesterLabel.localeCompare(b.semesterLabel, "fi") ||
+        a.periodId.localeCompare(b.periodId, "fi")
+      )
+    }))
+    .sort((a, b) =>
+      a.courseName.localeCompare(b.courseName, "fi") ||
+      a.courseId.localeCompare(b.courseId, "fi")
+    );
 }
 
 function buildCoursePagesIndex() {
@@ -94,7 +127,10 @@ function buildCoursePagesIndex() {
     // Serializable shape — Eleventy _data files are JSON-serialised into
     // the data cascade. Cannot expose a live Map here.
     byCourseAndPeriod: byKey,
-    all: Object.values(byKey)
+    all: Object.values(byKey),
+    // Catalog projection for /opetus/. It reuses the exact same locally
+    // canonical course-page metadata as the Presentation backlink lookup.
+    catalog: buildCatalog(Object.values(byKey))
   };
 }
 
