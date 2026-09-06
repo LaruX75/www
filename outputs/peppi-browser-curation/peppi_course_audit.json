@@ -1,0 +1,2783 @@
+{
+  "retrievedAt": "2026-09-06T16:04:15.999Z",
+  "completedAt": "2026-09-06T16:05:01.474Z",
+  "source": "opas.peppi.oulu.fi",
+  "tool": "scripts/audit-peppi-courses.js",
+  "playwrightBrowser": "chromium",
+  "probes": 10,
+  "results": 19,
+  "courses": [
+    {
+      "courseCode": "405040Y",
+      "probes": [
+        {
+          "courseCode": "405040Y",
+          "kind": "direct",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027",
+          "studyGuideYear": "2026-2027",
+          "status": "FOUND",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 13234,
+            "h1": "Opinto-opas 2026-2027",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "405040Y",
+            "detectedCredits": "4 op",
+            "realizations": [
+              {
+                "text": "405040Y-3021 Teknologiatuettu oppiminen ja työskentely: Psyka, Opti, Kako, Muka 25.08.2026 - 08.10.2026OpettajatRiina Pursiainen, Iiris Jokela, Jari Laru, Jouni KarsikasOpetuskielisuomiIlmoittautumisaika15.08.2026 08:00 - 02.09.2026 23:59LuokitteluLähiLisätiedotLuennot tarjotaan hybridinä ja asiasta infotaan 1. luentokerralla, jonne on osallistuttava lähinä. 1. luento on pakollinen.Ryhmä2401000-Ps…",
+                "href": null
+              },
+              {
+                "text": "405040Y-3021 Teknologiatuettu oppiminen ja työskentely: Psyka, Opti, Kako, Muka 25.08.2026 - 08.10.2026",
+                "href": null
+              },
+              {
+                "text": "405040Y-3022 Teknologiatuettu oppiminen ja työskentely, VaMo ja Vaka Momu 1EF 27.08.2026 - 27.11.2026",
+                "href": null
+              },
+              {
+                "text": "405040Y-3023 Teknologiatuettu oppiminen ja työskentely, Luko ja ELO 29.10.2026 - 09.12.2026",
+                "href": null
+              },
+              {
+                "text": "405040Y-3024 Teknologiatuettu oppiminen ja työskentely, VAKA kevät 2027 01.01.2027 - 09.05.2027",
+                "href": null
+              }
+            ],
+            "internalLinks": [
+              {
+                "text": "Erityisopettaja ja erityisluokanopettaja (KK) 2026-2027",
+                "href": "/fi/ohjelma/53258?period=2026-2027"
+              },
+              {
+                "text": "Yleinen kasvatustiede (KK) 2026-2027",
+                "href": "/fi/ohjelma/53421?period=2026-2027"
+              },
+              {
+                "text": "Luokanopettaja (KK) 2026-2027",
+                "href": "/fi/ohjelma/53539?period=2026-2027"
+              },
+              {
+                "text": "Musiikkikasvatus (KK) 2026-2027",
+                "href": "/fi/ohjelma/53567?period=2026-2027"
+              },
+              {
+                "text": "Oppimistieteet (KK) 2026-2027",
+                "href": "/fi/ohjelma/53887?period=2026-2027"
+              },
+              {
+                "text": "Psykologia (PsK) 2026-2027",
+                "href": "/fi/ohjelma/52969?period=2026-2027"
+              },
+              {
+                "text": "Varhaiskasvatus (KK) 2026-2027",
+                "href": "/fi/ohjelma/53581?period=2026-2027"
+              },
+              {
+                "text": "Varhaiskasvatus (KK) Monimuotokoulutus KK+KM 2026-2027",
+                "href": "/fi/ohjelma/54325?period=2026-2027"
+              },
+              {
+                "text": "Varhaiskasvatus (KK) tilauskoulutus Oulun kaupunki 2026-2027",
+                "href": "/fi/ohjelma/54532?period=2026-2027"
+              },
+              {
+                "text": "Varhaiskasvatus (KK) Monimuotokoulutus, Oulu, 2026-2027",
+                "href": "/fi/ohjelma/53590?period=2026-2027"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/28004?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"id\":null,\"code\":\"405040Y\",\"name\":{\"valueFi\":\"Teknologiatuettu oppiminen ja työskentely\",\"valueEn\":\"Technology-Enhanced Learning and work\",\"valueSv\":\"\"},\"credits\":4.0,\"minCredits\":4,\"maxCredits\":4,\"tags\":[],\"createdAt\":1788709736561,\"contentList\":[{\"title\":{\"valueFi\":\"Osaamistavoitteet\",\"valueEn\":\"Learning outcomes\",\"valueSv\":\"\"},\"content\":{\"valueFi\":\"Opintojakson suoritettuaan opiskelija osaa \\r\\n- toimia digitalisoituvassa yhteiskunnassa oman alansa ammattilaisena ja elinikäisenä oppijana\\r\\n"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/realizations/course/28004?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"realisationId\":\"28017\",\"code\":\"405040Y-3021\",\"name\":{\"valueFi\":\"Teknologiatuettu oppiminen ja työskentely: Psyka, Opti, Kako, Muka\",\"valueEn\":\"Technology-Enhanced Learning and work: Psyka, Opti, Kako, Muka\",\"valueSv\":\"\"},\"startDate\":1787605200000,\"endDate\":1791406800000,\"seats\":0,\"teachers\":[\"Riina Pursiainen\",\"Iiris Jokela\",\"Jari Laru\",\"Jouni Karsikas\"],\"teachingLanguages\":null,\"enrollmentStartDateTime\":1786770000000,\"enrollmentEndDateTime\":1788382740000,\"tags\":null,\"offices\":null,\"learningM"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/course.programmes?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Jakso sisältyy seuraaviin tutkinto-ohjelmiin/OPSeihin\",\"valueEn\":\"This course belongs to the following programmes\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/programme/course/28004?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"learningUnitId\":\"53258\",\"code\":null,\"name\":{\"valueFi\":\"Erityisopettaja ja erityisluokanopettaja (KK) 2026-2027\",\"valueEn\":\"Special education teacher and Special class teacher (BA) 2026-2027\",\"valueSv\":\"\"},\"type\":null},{\"learningUnitId\":\"53421\",\"code\":null,\"name\":{\"valueFi\":\"Yleinen kasvatustiede (KK) 2026-2027\",\"valueEn\":\"General Education (BA, Education) 2026-2027\",\"valueSv\":\"\"},\"type\":null},{\"learningUnitId\":\"53539\",\"code\":null,\"name\":{\"valueFi\":\"Luokanopettaja (KK) 2026-2027\",\"valueEn\":\"Pr"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2026-2027",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:17.174Z",
+          "note": "Current implementation — canonical peppiUrl in src/opetus/teknologiatuettu-oppiminen-2026-a.md",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": true,
+          "implementations": [
+            {
+              "implementationCode": "405040Y-3021",
+              "dateRange": "25.08.2026 - 08.10.2026",
+              "text": "405040Y-3021 Teknologiatuettu oppiminen ja työskentely: Psyka, Opti, Kako, Muka 25.08.2026 - 08.10.2026"
+            },
+            {
+              "implementationCode": "405040Y-3022",
+              "dateRange": "27.08.2026 - 27.11.2026",
+              "text": "405040Y-3022 Teknologiatuettu oppiminen ja työskentely, VaMo ja Vaka Momu 1EF 27.08.2026 - 27.11.2026"
+            },
+            {
+              "implementationCode": "405040Y-3023",
+              "dateRange": "29.10.2026 - 09.12.2026",
+              "text": "405040Y-3023 Teknologiatuettu oppiminen ja työskentely, Luko ja ELO 29.10.2026 - 09.12.2026"
+            },
+            {
+              "implementationCode": "405040Y-3024",
+              "dateRange": "01.01.2027 - 09.05.2027",
+              "text": "405040Y-3024 Teknologiatuettu oppiminen ja työskentely, VAKA kevät 2027 01.01.2027 - 09.05.2027"
+            }
+          ],
+          "historicalCourseEvidence": null
+        }
+      ]
+    },
+    {
+      "courseCode": "410014Y",
+      "probes": [
+        {
+          "courseCode": "410014Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2011-2012",
+          "studyGuideYear": "2011-2012",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2011-2012",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 747,
+            "h1": "Opinto-opas 2011-2012",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410014Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410014Y",
+                "href": "/fi/opintojakso/410014Y/3213?period=2011-2012"
+              },
+              {
+                "text": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+                "href": "/fi/opintojakso/410014Y/3213?period=2011-2012"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410014Y/COURSE_UNIT?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3213\",\"code\":\"410014Y\",\"name\":{\"valueFi\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\",\"valueEn\":\"Information and communication as a pedagogical tool\",\"valueSv\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:20.965Z",
+          "note": "Historical candidate for 410014Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410014Y",
+            "href": "/fi/opintojakso/410014Y/3213?period=2011-2012"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2011-2012",
+          "studyGuideYear": "2011-2012",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2011-2012",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2011-2012",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2011-2012",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2011-2012",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:22.528Z",
+          "note": "Follow-up from search of 410014Y in 2011-2012",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3213",
+            "courseCode": "410014Y",
+            "nameFi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+            "nameEn": "Information and communication as a pedagogical tool",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2012-2013",
+          "studyGuideYear": "2012-2013",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2012-2013",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 747,
+            "h1": "Opinto-opas 2012-2013",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410014Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410014Y",
+                "href": "/fi/opintojakso/410014Y/3213?period=2012-2013"
+              },
+              {
+                "text": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+                "href": "/fi/opintojakso/410014Y/3213?period=2012-2013"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410014Y/COURSE_UNIT?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3213\",\"code\":\"410014Y\",\"name\":{\"valueFi\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\",\"valueEn\":\"Information and communication as a pedagogical tool\",\"valueSv\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:25.564Z",
+          "note": "Historical candidate for 410014Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410014Y",
+            "href": "/fi/opintojakso/410014Y/3213?period=2012-2013"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2012-2013",
+          "studyGuideYear": "2012-2013",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2012-2013",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2012-2013",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2012-2013",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2012-2013",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:27.042Z",
+          "note": "Follow-up from search of 410014Y in 2012-2013",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3213",
+            "courseCode": "410014Y",
+            "nameFi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+            "nameEn": "Information and communication as a pedagogical tool",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2013-2014",
+          "studyGuideYear": "2013-2014",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2013-2014",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 747,
+            "h1": "Opinto-opas 2013-2014",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410014Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410014Y",
+                "href": "/fi/opintojakso/410014Y/3213?period=2013-2014"
+              },
+              {
+                "text": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+                "href": "/fi/opintojakso/410014Y/3213?period=2013-2014"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410014Y/COURSE_UNIT?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3213\",\"code\":\"410014Y\",\"name\":{\"valueFi\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\",\"valueEn\":\"Information and communication as a pedagogical tool\",\"valueSv\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:29.977Z",
+          "note": "Historical candidate for 410014Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410014Y",
+            "href": "/fi/opintojakso/410014Y/3213?period=2013-2014"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2013-2014",
+          "studyGuideYear": "2013-2014",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2013-2014",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2013-2014",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2013-2014",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2013-2014",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:31.479Z",
+          "note": "Follow-up from search of 410014Y in 2013-2014",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3213",
+            "courseCode": "410014Y",
+            "nameFi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+            "nameEn": "Information and communication as a pedagogical tool",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2014-2015",
+          "studyGuideYear": "2014-2015",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2014-2015",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 747,
+            "h1": "Opinto-opas 2014-2015",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410014Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410014Y",
+                "href": "/fi/opintojakso/410014Y/3213?period=2014-2015"
+              },
+              {
+                "text": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+                "href": "/fi/opintojakso/410014Y/3213?period=2014-2015"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410014Y/COURSE_UNIT?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3213\",\"code\":\"410014Y\",\"name\":{\"valueFi\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\",\"valueEn\":\"Information and communication as a pedagogical tool\",\"valueSv\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:34.504Z",
+          "note": "Historical candidate for 410014Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410014Y",
+            "href": "/fi/opintojakso/410014Y/3213?period=2014-2015"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2014-2015",
+          "studyGuideYear": "2014-2015",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2014-2015",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2014-2015",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2014-2015",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2014-2015",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:35.979Z",
+          "note": "Follow-up from search of 410014Y in 2014-2015",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3213",
+            "courseCode": "410014Y",
+            "nameFi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+            "nameEn": "Information and communication as a pedagogical tool",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2015-2016",
+          "studyGuideYear": "2015-2016",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410014Y?period=2015-2016",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 747,
+            "h1": "Opinto-opas 2015-2016",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410014Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410014Y",
+                "href": "/fi/opintojakso/410014Y/3213?period=2015-2016"
+              },
+              {
+                "text": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+                "href": "/fi/opintojakso/410014Y/3213?period=2015-2016"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410014Y/COURSE_UNIT?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3213\",\"code\":\"410014Y\",\"name\":{\"valueFi\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\",\"valueEn\":\"Information and communication as a pedagogical tool\",\"valueSv\":\"Tieto- ja viestintätekniikka pedagogisena työvälineenä\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:38.923Z",
+          "note": "Historical candidate for 410014Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410014Y",
+            "href": "/fi/opintojakso/410014Y/3213?period=2015-2016"
+          }
+        },
+        {
+          "courseCode": "410014Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2015-2016",
+          "studyGuideYear": "2015-2016",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2015-2016",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2015-2016",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2015-2016",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2015-2016",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3213?period=2015-2016",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:40.493Z",
+          "note": "Follow-up from search of 410014Y in 2015-2016",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3213",
+            "courseCode": "410014Y",
+            "nameFi": "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
+            "nameEn": "Information and communication as a pedagogical tool",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        }
+      ]
+    },
+    {
+      "courseCode": "410017Y",
+      "probes": [
+        {
+          "courseCode": "410017Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2011-2012",
+          "studyGuideYear": "2011-2012",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2011-2012",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 738,
+            "h1": "Opinto-opas 2011-2012",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410017Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410017Y",
+                "href": "/fi/opintojakso/410017Y/3216?period=2011-2012"
+              },
+              {
+                "text": "Digitaalinen media opetuksessa ja oppimisessa",
+                "href": "/fi/opintojakso/410017Y/3216?period=2011-2012"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410017Y/COURSE_UNIT?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3216\",\"code\":\"410017Y\",\"name\":{\"valueFi\":\"Digitaalinen media opetuksessa ja oppimisessa\",\"valueEn\":\"Digital Media in Teaching and Learning\",\"valueSv\":\"Digitaalinen media opetuksessa ja oppimisessa\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:43.521Z",
+          "note": "Historical candidate for 410017Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410017Y",
+            "href": "/fi/opintojakso/410017Y/3216?period=2011-2012"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2011-2012",
+          "studyGuideYear": "2011-2012",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2011-2012",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2011-2012",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2011-2012",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2011-2012",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2011-2012",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:45.065Z",
+          "note": "Follow-up from search of 410017Y in 2011-2012",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3216",
+            "courseCode": "410017Y",
+            "nameFi": "Digitaalinen media opetuksessa ja oppimisessa",
+            "nameEn": "Digital Media in Teaching and Learning",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2012-2013",
+          "studyGuideYear": "2012-2013",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2012-2013",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 738,
+            "h1": "Opinto-opas 2012-2013",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410017Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410017Y",
+                "href": "/fi/opintojakso/410017Y/3216?period=2012-2013"
+              },
+              {
+                "text": "Digitaalinen media opetuksessa ja oppimisessa",
+                "href": "/fi/opintojakso/410017Y/3216?period=2012-2013"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410017Y/COURSE_UNIT?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3216\",\"code\":\"410017Y\",\"name\":{\"valueFi\":\"Digitaalinen media opetuksessa ja oppimisessa\",\"valueEn\":\"Digital Media in Teaching and Learning\",\"valueSv\":\"Digitaalinen media opetuksessa ja oppimisessa\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:47.994Z",
+          "note": "Historical candidate for 410017Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410017Y",
+            "href": "/fi/opintojakso/410017Y/3216?period=2012-2013"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2012-2013",
+          "studyGuideYear": "2012-2013",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2012-2013",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2012-2013",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2012-2013",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2012-2013",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2012-2013",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:49.471Z",
+          "note": "Follow-up from search of 410017Y in 2012-2013",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3216",
+            "courseCode": "410017Y",
+            "nameFi": "Digitaalinen media opetuksessa ja oppimisessa",
+            "nameEn": "Digital Media in Teaching and Learning",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2013-2014",
+          "studyGuideYear": "2013-2014",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2013-2014",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 738,
+            "h1": "Opinto-opas 2013-2014",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410017Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410017Y",
+                "href": "/fi/opintojakso/410017Y/3216?period=2013-2014"
+              },
+              {
+                "text": "Digitaalinen media opetuksessa ja oppimisessa",
+                "href": "/fi/opintojakso/410017Y/3216?period=2013-2014"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410017Y/COURSE_UNIT?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3216\",\"code\":\"410017Y\",\"name\":{\"valueFi\":\"Digitaalinen media opetuksessa ja oppimisessa\",\"valueEn\":\"Digital Media in Teaching and Learning\",\"valueSv\":\"Digitaalinen media opetuksessa ja oppimisessa\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:52.464Z",
+          "note": "Historical candidate for 410017Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410017Y",
+            "href": "/fi/opintojakso/410017Y/3216?period=2013-2014"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2013-2014",
+          "studyGuideYear": "2013-2014",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2013-2014",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2013-2014",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2013-2014",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2013-2014",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2013-2014",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:54.022Z",
+          "note": "Follow-up from search of 410017Y in 2013-2014",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3216",
+            "courseCode": "410017Y",
+            "nameFi": "Digitaalinen media opetuksessa ja oppimisessa",
+            "nameEn": "Digital Media in Teaching and Learning",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "search",
+          "url": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2014-2015",
+          "studyGuideYear": "2014-2015",
+          "status": "FOUND_VIA_SEARCH",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/haku/410017Y?period=2014-2015",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 738,
+            "h1": "Opinto-opas 2014-2015",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": "410017Y",
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [
+              {
+                "text": "410017Y",
+                "href": "/fi/opintojakso/410017Y/3216?period=2014-2015"
+              },
+              {
+                "text": "Digitaalinen media opetuksessa ja oppimisessa",
+                "href": "/fi/opintojakso/410017Y/3216?period=2014-2015"
+              }
+            ],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.header?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset hakusanalla:\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.course?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintojakso\",\"valueEn\":\"Course\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.studymodule?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opintokokonaisuus\",\"valueEn\":\"Module\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.programme?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tutkinto-ohjelma/OPS\",\"valueEn\":\"Programme\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.code?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Tunnus\",\"valueEn\":\"Code\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.title?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hakutulokset\",\"valueEn\":\"Search results\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.not.found?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Annetut hakuehdot eivät tuottaneet tulosta.\",\"valueEn\":\"No objects found.\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.result.name?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Nimi\",\"valueEn\":\"Name\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/lu/units/410017Y/COURSE_UNIT?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"learningUnits\":[{\"learningUnitId\":\"3216\",\"code\":\"410017Y\",\"name\":{\"valueFi\":\"Digitaalinen media opetuksessa ja oppimisessa\",\"valueEn\":\"Digital Media in Teaching and Learning\",\"valueSv\":\"Digitaalinen media opetuksessa ja oppimisessa\"},\"type\":\"COURSE_UNIT\"}],\"numberOfAllMatchedRows\":1}"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:57.024Z",
+          "note": "Historical candidate for 410017Y",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": null,
+          "foundLink": {
+            "text": "410017Y",
+            "href": "/fi/opintojakso/410017Y/3216?period=2014-2015"
+          }
+        },
+        {
+          "courseCode": "410017Y",
+          "kind": "follow",
+          "url": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2014-2015",
+          "studyGuideYear": "2014-2015",
+          "status": "COURSE_UNIT_FOUND_NO_IMPLEMENTATION_DETAIL",
+          "finalUrl": "https://opas.peppi.oulu.fi/fi/opintojakso/410017Y/3216?period=2014-2015",
+          "httpStatus": 200,
+          "render": "RENDERED",
+          "dom": {
+            "visible": true,
+            "bodyLength": 624,
+            "h1": "Opinto-opas 2014-2015",
+            "h2s": [],
+            "dtdd": [],
+            "detectedCourseCode": null,
+            "detectedCredits": null,
+            "realizations": [],
+            "internalLinks": [],
+            "startDate": null,
+            "endDate": null,
+            "teachingPeriodHint": null,
+            "teachers": null
+          },
+          "network": [
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/search.input.placeholder",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Hae sisältöjä\",\"valueEn\":\"Search\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation/links",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"name\":{\"valueFi\":\"Oulun yliopisto\",\"valueEn\":\"University of Oulu\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/yliopisto/\",\"valueEn\":\"https://www.oulu.fi/university/\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Peppi etusivu\",\"valueEn\":\"Peppi Frontpage\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://www.oulu.fi/fi/peppi\",\"valueEn\":\"https://www.oulu.fi/en/peppi\",\"valueSv\":\"\"}},{\"name\":{\"valueFi\":\"Moodle\",\"valueEn\":\"Moodle\",\"valueSv\":\"\"},\"url\":{\"valueFi\":\"https://moodle.oulu.fi/?lang=fi\",\"valueEn\":\"http"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/navigation",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "[{\"id\":\"11738\",\"name\":{\"valueFi\":\"Perustutkintokoulutukset (3+2v, LL, HLL)\",\"valueEn\":\"Degree Studies (3+2 yrs incl. Licentiates)\",\"valueSv\":\"\"},\"organisationView\":true,\"type\":\"code\",\"description\":{\"valueFi\":\"Oulun yliopiston tutkintoon johtavaa koulutusta tarjotaan kahdeksassa tiedekunnassa.\",\"valueEn\":\"Education leading to a degree at the University of Oulu is offered in eight faculties.\",\"valueSv\":\"\"}},{\"id\":\"11740\",\"name\":{\"valueFi\":\"Maisteriohjelmat (2 vuotta)\",\"valueEn\":\"Master's Programme"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Toteutukset\",\"valueEn\":\"Course Units\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Menneet toteutukset\",\"valueEn\":\"Past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.more?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä lisää\",\"valueEn\":\"Show more\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/realizations.past.show?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä menneet toteutukset\",\"valueEn\":\"Show past implementations\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/show.less?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Näytä vähemmän\",\"valueEn\":\"Show less\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/credit.points?period=2014-2015",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"op\",\"valueEn\":\"ECTS\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2014-2015",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/text/header",
+              "method": "GET",
+              "status": 200,
+              "contentType": "application/json;charset=UTF-8",
+              "bodyPreview": "{\"valueFi\":\"Opinto-opas\",\"valueEn\":\"Study Guide\",\"valueSv\":\"\"}"
+            },
+            {
+              "url": "https://opasbe.peppi.oulu.fi/api/course/3216?period=2014-2015",
+              "method": "GET",
+              "status": 404,
+              "contentType": "",
+              "bodyPreview": "[0 bytes ]"
+            }
+          ],
+          "screenshot": null,
+          "retrievedAt": "2026-09-06T16:04:58.542Z",
+          "note": "Follow-up from search of 410017Y in 2014-2015",
+          "error": null,
+          "relevantApiObserved": true,
+          "implementationRowsObserved": false,
+          "implementations": [],
+          "historicalCourseEvidence": {
+            "courseUnitId": "3216",
+            "courseCode": "410017Y",
+            "nameFi": "Digitaalinen media opetuksessa ja oppimisessa",
+            "nameEn": "Digital Media in Teaching and Learning",
+            "type": "COURSE_UNIT",
+            "implementationDetailStatus": 404,
+            "implementationIdentity": "DOES_NOT_PROVE"
+          }
+        }
+      ]
+    }
+  ]
+}
