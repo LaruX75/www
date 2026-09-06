@@ -20,6 +20,7 @@ courseContexts:
       - tvt pedagogiset perusteet
     evidenceSummary: 'Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: tvt pedagogiset perusteet.'
     courseId: 410014Y
+    periodId: "2013-2014-a"
     courseSourceReferenceIds:
       - turn23search228
       - turn19search200

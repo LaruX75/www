@@ -21,6 +21,7 @@ courseContexts:
       Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: haasteet ja koulun
       todellisuus.
     courseId: 410014Y
+    periodId: "2013-2014-a"
     courseSourceReferenceIds:
       - turn23search228
       - turn19search200

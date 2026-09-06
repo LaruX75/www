@@ -11,13 +11,13 @@ test.describe.configure({ mode: "serial" });
 
 test.describe("OPETUS-CATALOG-01A derived SSR catalog", () => {
   test("coursePages projects the local course page into a course to implementation catalog", () => {
-    expect(coursePages.catalog).toHaveLength(1);
-    expect(coursePages.catalog[0]).toMatchObject({
+    const currentCourse = coursePages.catalog.find((course) => course.courseId === "405040Y");
+    expect(currentCourse).toMatchObject({
       courseId: "405040Y",
       courseName: "Teknologiatuettu oppiminen ja työskentely"
     });
-    expect(coursePages.catalog[0].implementations).toHaveLength(1);
-    expect(coursePages.catalog[0].implementations[0]).toMatchObject({
+    expect(currentCourse.implementations).toHaveLength(1);
+    expect(currentCourse.implementations[0]).toMatchObject({
       periodId: "2026-2027-a",
       academicYear: "2026–2027",
       pageUrl: COURSE
