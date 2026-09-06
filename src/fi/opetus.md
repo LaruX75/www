@@ -5,7 +5,7 @@ layout: base.njk
 lang: fi
 translationKey: teaching_fi_only
 description: "Opetus-alue kokoaa yhteen Jari Larun julkiset kurssisivut, opetusportfolion, opiskelijapalautteen ja opetustyön kokonaiskuvan. Kurssitoteutukset ovat suomenkielisiä."
-templateEngineOverride: md,njk
+templateEngineOverride: njk
 pageShell: true
 schemaType: CollectionPage
 ---
@@ -25,7 +25,7 @@ schemaType: CollectionPage
         <h2 id="opetus-kurssitoteutukset-heading" class="h3 fw-bold mb-1">Kurssitoteutukset</h2>
         <p class="text-muted mb-0">Julkiset kurssisivut sisältävät kurssin perustiedot, luentoaikataulun ja saatavilla olevat esitysmateriaalit. Virallinen kurssikuvaus löytyy Oulun yliopiston Peppi-oppaasta.</p>
       </div>
-      <span class="badge text-bg-light border text-dark align-self-start">{{ coursePages.catalog.length }} kurssia</span>
+      <span class="badge text-bg-light border text-dark align-self-start">{{ coursePages.catalog.length }} {% if coursePages.catalog.length == 1 %}kurssi{% else %}kurssia{% endif %}</span>
     </div>
 
     <div class="vstack gap-3" data-opetus-catalog>
@@ -36,19 +36,19 @@ schemaType: CollectionPage
             <h3 class="h5 fw-bold mb-0">{{ course.courseName }}</h3>
             <span class="badge text-bg-light border text-dark">{{ course.courseId }}</span>
           </div>
-          <ul class="list-group list-group-flush mb-0" data-opetus-implementations>
+          <div class="list-group list-group-flush mb-0" data-opetus-implementations>
             {% for implementation in course.implementations %}
-            <li class="list-group-item px-0 py-2 d-flex flex-wrap align-items-baseline justify-content-between gap-3" data-opetus-implementation data-period-id="{{ implementation.periodId }}">
-              <a class="fw-semibold text-decoration-none" href="{{ implementation.pageUrl }}">{{ implementation.semesterLabel or implementation.academicYear }}</a>
+            <a class="list-group-item list-group-item-action px-0 py-3 d-flex flex-wrap align-items-baseline justify-content-between gap-3" href="{{ implementation.pageUrl }}" data-opetus-implementation data-period-id="{{ implementation.periodId }}">
+              <span class="fw-semibold">{{ implementation.semesterLabel or implementation.academicYear }}</span>
               <span class="small text-muted">
                 {% if implementation.academicYear %}{{ implementation.academicYear }}{% endif %}
                 {% if implementation.period %}<span aria-hidden="true"> · </span>Periodi {{ implementation.period }}{% endif %}
                 {% if implementation.creditsLabel %}<span aria-hidden="true"> · </span>{{ implementation.creditsLabel }}{% endif %}
                 {% if implementation.teachingUnitLabel %}<span aria-hidden="true"> · </span>{{ implementation.teachingUnitLabel }}{% endif %}
               </span>
-            </li>
+            </a>
             {% endfor %}
-          </ul>
+          </div>
         </div>
       </article>
       {% endfor %}

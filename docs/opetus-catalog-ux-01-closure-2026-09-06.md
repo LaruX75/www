@@ -91,9 +91,9 @@ Section-level:
 Implementation-level:
 
 - `.list-group.list-group-flush` for the implementations list — reused Bootstrap primitive that gives borderless top/bottom edges and thin `border-top` dividers between rows, without any new page CSS.
-- Each row: `.list-group-item.px-0.py-2.d-flex.flex-wrap.align-items-baseline.justify-content-between.gap-3`.
+- Each row is an `<a class="list-group-item list-group-item-action px-0 py-3 d-flex flex-wrap align-items-baseline justify-content-between gap-3" href="{{ implementation.pageUrl }}">` — the anchor **is** the list-group-item. Bootstrap `list-group-item-action` gives the whole row a hover/focus surface and a click target that spans the full row width. The `data-opetus-implementation` and `data-period-id` markers live on this `<a>`. Repo precedent: `src/en/keywords.njk` uses the identical `<a class="list-group-item list-group-item-action ...">` pattern.
 - Primary interaction: the linked implementation title (semesterLabel or academicYear fallback) — no separate primary-pill button.
-- Meta right-aligned: `academicYear · Periodi X · credits · teaching unit`, only rendering the parts that exist in the local frontmatter.
+- Meta right-aligned: `academicYear · Periodi X · credits · teaching unit`, only rendering the parts that exist in the local frontmatter. Inline `<span aria-hidden="true"> · </span>` separators are hidden from screen readers so the meta reads as a natural comma-less list.
 
 Section header:
 
@@ -120,34 +120,46 @@ letting it scale as more historical implementations are added.
 | Wrapper per course | `.card.shadow-sm` + `.card-body.p-4.p-lg-5` | `.card.shadow-sm.border-0` + `.card-body` (default padding) |
 | Course heading | `h3.h4.fw-bold.mb-3` | `h3.h5.fw-bold.mb-0` (in flex row with badge) |
 | Course code chip | Own row (`.d-flex.flex-wrap.gap-2.mb-4`) with single badge | Inline in course head row, one badge |
-| Implementation container | `<section>` per impl inside `.vstack.gap-3` | `<li.list-group-item>` inside `.list-group.list-group-flush` |
-| Implementation heading | `h4.h5.fw-bold.mb-2` (semesterLabel as heading, then h4-style meta below, then button) | Linked semesterLabel in one row with inline meta |
+| Implementation container | `<section>` per impl inside `.vstack.gap-3` | `<a class="list-group-item list-group-item-action">` inside `.list-group.list-group-flush` — the anchor **is** the row, giving a full-width interactive target |
+| Implementation heading | `h4.h5.fw-bold.mb-2` (semesterLabel as heading, then h4-style meta below, then button) | Linked semesterLabel `<span class="fw-semibold">` in one row with inline meta |
 | Implementation meta | Three separate badges (creditsLabel + academicYear + Periodi) | Inline dot-separated muted text |
 | Teaching-unit kicker | `<p class="text-uppercase small text-muted fw-semibold mb-2">` per impl | Inline in meta segment |
-| Implementation CTA | Full-width `.btn.btn-primary.rounded-pill.px-4` per impl | Linked implementation title (no separate button) |
+| Implementation CTA | Full-width `.btn.btn-primary.rounded-pill.px-4` per impl | Full-row interactive `list-group-item-action` link (no separate button) |
 | Catalog vertical gap | `.vstack.gap-4` | `.vstack.gap-3` |
-| Section header | h2 + description only | h2 + description + count badge in flex row |
+| Section header | h2 + description only | h2 + description + grammatically-agreeing count badge (`kurssi` / `kurssia`) |
 
-Rendered outcome for the current 2-course × 1-implementation catalog: the
-catalog block dropped from ~430 px tall (each implementation ~200 px) to
-~180 px, a ~58 % vertical reduction, at 1440 px viewport.
+Measured outcome for the current 2-course × 1-implementation catalog at
+1440 × 900 viewport: the catalog container (`[data-opetus-catalog]`) is
+**301 px** tall including the inter-course gap. Each implementation link
+`<a>` is **952 × 64 px** on desktop and **272 × 64–128 px** on 390 px
+mobile — well above the WCAG 2.5.5 Level AAA minimum of 44 × 44 CSS px.
+
+Note: an earlier draft of this closure reported "~180 px" and the PR body
+reported "~619 px". Both were wrong. The 619 figure was inflated by DOM
+soup introduced by the Markdown processor wrapping the raw HTML in stray
+`<p>` tags (before `templateEngineOverride` was tightened to `njk`); that
+DOM soup also confused the browser's HTML5 parser into constructing extra
+phantom `<a>` fixup elements. The pre-merge fixes (a) switch
+`templateEngineOverride` from `md,njk` to pure `njk` so the source HTML
+passes through cleanly, and (b) upgrade the implementation row from a
+plain `<li>` to a full-row interactive `<a>` link. The **301 px** figure
+is the measured value after those fixes.
 
 ## 8. Desktop QA (1440 × 900)
 
 Captured to `outputs/opetus-catalog-ux-01/opetus_desktop_1440_*.png` via
-`node scripts/screenshot-opetus-catalog.js`.
+`node scripts/screenshot-opetus-catalog.js`. Metrics dumped to
+`outputs/opetus-catalog-ux-01/metrics.json`.
 
-- Number of visible implementation records above fold: 0 (see caveat below).
-  Once scrolled to the catalog section (which sits below the site's standard
-  hero + section header, per site convention), both courses are visible
-  simultaneously (`catalogHeight = 619 px < 900 px viewport`).
+- Number of course cards visible above fold: **1** (the first `[data-opetus-course]` card sits at y = 880 px and peeks into the 900 px viewport). Once scrolled by ~one card height, both courses are visible simultaneously (`catalogHeight = 301 px < 900 px viewport`).
 - Course grouping is obvious: each course renders as its own bounded card
   with courseName + courseId chip, and the implementation row sits inside
   that card's list-group.
+- Implementation link geometry: `<a>` element **952 × 64 px** — the whole row is one interactive Bootstrap `list-group-item-action` surface with visible hover/focus feedback.
 - Whitespace: appropriate. No repeated `p-4 p-lg-5`. Vertical rhythm
   between courses uses `gap-3` (1 rem) instead of the previous `gap-4`.
 - Actions: not oversized. No repeated pill CTA per implementation. The
-  primary interaction is the linked semester label — matches archive-card
+  primary interaction is the full-row link — matches archive-card
   precedent guidance in the playbook.
 - Metadata: restrained. `2026–2027 · Periodi A · 4 op · Opettajankoulutus`
   reads as one muted line. The 410014Y row simply reads `2013–2014` because
@@ -156,10 +168,10 @@ Captured to `outputs/opetus-catalog-ux-01/opetus_desktop_1440_*.png` via
 - Visual fit: page belongs to jarilaru.fi. Card border/radius/shadow and
   chip/badge treatment match the existing site language.
 
-Caveat: the site-wide hero band + section header push the catalog below the
-initial fold. This is a site convention shared with `/opinnaytteet/`,
-`/julkaisut/`, `/esitykset/`. This slice does not tune the hero band because
-that would ripple beyond `/opetus/`.
+Caveat: the site-wide hero band + section header still push most of the
+catalog below the initial fold. This is a site convention shared with
+`/opinnaytteet/`, `/julkaisut/`, `/esitykset/`. This slice does not tune
+the hero band because that would ripple beyond `/opetus/`.
 
 ## 9. Mobile QA (390 × 844)
 
@@ -167,11 +179,18 @@ Captured to `outputs/opetus-catalog-ux-01/opetus_mobile_390_*.png`.
 
 - Grouping clarity: each course still renders as its own card. Course head
   wraps naturally to `courseName / courseId badge` and the implementation
-  row wraps to `linked semester label / inline meta` (two-line row).
+  row wraps to `linked semester label / inline meta` (two-line row for
+  4-meta-segment implementations; one-line row for compact ones).
 - Readability: strong. Linked semester label first, inline dot-separated
   meta below on narrow widths via `flex-wrap`.
-- Touch-target usability: linked implementation title is the primary tap
-  target. The `.list-group-item.py-2` gives adequate vertical touch area.
+- **Touch-target usability**: the implementation link **is** the entire row
+  (`<a class="list-group-item list-group-item-action ...">`). Measured
+  link hit area on mobile: **272 × 128 px** (405040Y row with wrapping
+  meta) and **272 × 64 px** (410014Y row). Both easily exceed WCAG 2.5.5
+  Level AAA minimum (44 × 44 CSS px). Verified programmatically via
+  `metrics.json` (`allLinksMeet44px: true`) and pinned by the
+  `each implementation row is a full-row interactive link with sufficient
+  touch area` regression test.
 - Whitespace: appropriate. Both courses visible in the second viewport
   after the site hero.
 - Overflow: none. `document.scrollWidth === document.clientWidth = 390`
@@ -192,9 +211,12 @@ Replaced with an evergreen pointer that doesn't state a count:
 
 > "Aiempien vuosien opetusmateriaalit ovat selattavissa myös [esitysten kokoelmasta](/esitykset/)."
 
-The section header carries a live "N kurssia" count badge computed at build
-time from `coursePages.catalog.length`, so the section header signals
-current cardinality without any hard-coded number.
+The section header carries a live count badge computed at build time from
+`coursePages.catalog.length`. The label is grammatically robust:
+`{{ N }} kurssi` when `N === 1`, `{{ N }} kurssia` otherwise. The
+conditional is inline in the Nunjucks template because no shared
+pluralize helper exists in the repo; the presence of both branches is
+pinned by the `course count label agrees in number` regression test.
 
 ## 11. Data flow preserved
 
@@ -237,14 +259,16 @@ Build: `npm run build:local` — exit 0.
 
 Test batch (Playwright, static _site serve):
 
-- `tests/opetus-catalog-ux-01.spec.js` — new: 10 tests. **10/10 green.**
+- `tests/opetus-catalog-ux-01.spec.js` — new: **12 tests. 12/12 green.**
+  (10 original + 2 pre-merge: full-row interactive link geometry with
+  WCAG 44 × 44 CSS px check, and grammar `kurssi`/`kurssia` conditional.)
 - `tests/opetus-catalog-01a.spec.js` — adjacent: 4/4 green.
 - `tests/opetus-ia-01.spec.js` — adjacent: 17/17 green (one test updated to
   invariant-only assertion; see §14).
 - `tests/course-relation-ux-01.spec.js` — adjacent: 20/20 green.
 - `tests/opetus-curation-01b2.spec.js` — adjacent: 4/4 green.
 
-Combined batch: **55/55 green.**
+Combined batch: **57/57 green.**
 
 ## 14. Test invariant preservation notes
 
@@ -263,7 +287,7 @@ comment.
 
 **Modified:**
 
-- `src/fi/opetus.md` — catalog section rewritten; stale count copy removed; evergreen presentation pointer added; new inline `2 kurssia` count badge in section header.
+- `src/fi/opetus.md` — catalog section rewritten; `templateEngineOverride` tightened from `md,njk` to pure `njk` (matches sibling course-implementation pages under `src/opetus/`) so the source HTML passes through without markdown paragraphization; stale count copy removed; evergreen presentation pointer added; grammatically-agreeing count badge (`kurssi` / `kurssia`) in section header; implementation rows are now full-row Bootstrap `<a class="list-group-item list-group-item-action">` interactive links with `py-3` for adequate touch area.
 - `tests/opetus-ia-01.spec.js` — one CTA-text assertion updated to invariant-only anchor check (see §14).
 
 **New:**

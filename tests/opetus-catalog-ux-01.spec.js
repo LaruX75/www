@@ -76,6 +76,49 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
     expect(catalogHtml, "no repeated Avaa kurssisivu pill button").not.toMatch(/btn btn-primary rounded-pill[\s\S]*?Avaa kurssisivu/);
   });
 
+  test("each implementation row is a full-row interactive link with sufficient touch area", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01 pre-merge fix: the implementation row IS the
+    // link (`<a class="list-group-item list-group-item-action">`), so the
+    // clickable/tappable target = the row, not just the inline title.
+    // Repo precedent: src/en/keywords.njk uses the identical
+    // "<a class='list-group-item list-group-item-action'>" pattern.
+    const html = await page.request.get(OPETUS).then((r) => r.text());
+    const catalogHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/)[0];
+    // The data marker MUST live on the <a> element that owns the click area.
+    expect(catalogHtml, "implementation link is an <a> with list-group-item-action").toMatch(
+      /<a[^>]*class="list-group-item list-group-item-action[^"]*"[^>]*data-opetus-implementation/
+    );
+    // No implementation is rendered as a non-clickable <li> anymore.
+    expect(catalogHtml, "no non-anchor implementation row").not.toMatch(
+      /<li[^>]*data-opetus-implementation/
+    );
+    // Bootstrap-standard action row has a distinct hover/focus surface that
+    // extends across the full row width, and its content is separated only
+    // by an inline flex/wrap layout — verified via the class combination.
+    expect(catalogHtml).toMatch(/<a[^>]*list-group-item-action[^>]*d-flex/);
+    // Verify actual link geometry (WCAG 2.5.5 AAA 44x44). Rendered via a
+    // JS-enabled browser context because clickable-area measurement is
+    // layout-dependent.
+    await page.goto(OPETUS, { waitUntil: "domcontentloaded" });
+    const rects = await page.evaluate(() => Array.from(document.querySelectorAll("a[data-opetus-implementation]")).map((el) => {
+      const r = el.getBoundingClientRect();
+      return { w: Math.round(r.width), h: Math.round(r.height) };
+    }));
+    expect(rects.length, "at least one implementation link").toBeGreaterThan(0);
+    for (const r of rects) {
+      expect(r.h, `link height ${r.h}px meets 44px`).toBeGreaterThanOrEqual(44);
+      expect(r.w, `link width ${r.w}px meets 44px`).toBeGreaterThanOrEqual(44);
+    }
+  });
+
+  test("course count label agrees in number (kurssi vs kurssia)", () => {
+    // Grammar helper is inline in the template because no shared pluralize
+    // utility exists in the repo. This spec pins BOTH branches so a future
+    // catalog with 1 course still reads correctly.
+    const landing = fs.readFileSync(LANDING_PATH, "utf8");
+    expect(landing).toContain("== 1 %}kurssi{% else %}kurssia{% endif %}");
+  });
+
   test("stale one-implementation copy is removed and replaced with evergreen wording", async ({ page }) => {
     const html = await page.request.get(OPETUS).then((r) => r.text());
     expect(html, "stale hardcoded count claim").not.toContain("Tällä hetkellä julkinen kurssisivu on avattu vain");

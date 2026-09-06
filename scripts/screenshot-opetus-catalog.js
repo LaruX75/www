@@ -73,6 +73,14 @@ async function main() {
       }
       const cards = Array.from(document.querySelectorAll("[data-opetus-course]"));
       const rows = Array.from(document.querySelectorAll("[data-opetus-implementation]"));
+      // The implementation link IS the row (list-group-item-action pattern),
+      // so link hit area = row bounding rect.
+      const linkRects = rows
+        .filter((r) => r.tagName === "A")
+        .map((r) => {
+          const rect = r.getBoundingClientRect();
+          return { width: Math.round(rect.width), height: Math.round(rect.height) };
+        });
       return {
         totalCourses: cards.length,
         totalImplementations: rows.length,
@@ -80,8 +88,10 @@ async function main() {
         implementationsAboveFold: rows.filter(inViewport).length,
         firstCardRect: cards[0] ? cards[0].getBoundingClientRect().toJSON() : null,
         firstRowRect: rows[0] ? rows[0].getBoundingClientRect().toJSON() : null,
-        catalogHeight: document.querySelector("[data-opetus-catalog]")?.getBoundingClientRect().height,
-        catalogTop: document.querySelector("[data-opetus-catalog]")?.getBoundingClientRect().top
+        implementationLinkRects: linkRects,
+        implementationLinkTag: rows[0] ? rows[0].tagName : null,
+        catalogHeight: Math.round(document.querySelector("[data-opetus-catalog]")?.getBoundingClientRect().height),
+        catalogTop: Math.round(document.querySelector("[data-opetus-catalog]")?.getBoundingClientRect().top)
       };
     });
     await desktop.close();
@@ -100,11 +110,21 @@ async function main() {
     });
     const mobileMetrics = await mPage.evaluate(() => {
       const cards = document.querySelectorAll("[data-opetus-course]");
-      const rows = document.querySelectorAll("[data-opetus-implementation]");
+      const rows = Array.from(document.querySelectorAll("[data-opetus-implementation]"));
+      const linkRects = rows
+        .filter((r) => r.tagName === "A")
+        .map((r) => {
+          const rect = r.getBoundingClientRect();
+          return { width: Math.round(rect.width), height: Math.round(rect.height) };
+        });
       const doc = document.documentElement;
       return {
         totalCourses: cards.length,
         totalImplementations: rows.length,
+        implementationLinkTag: rows[0] ? rows[0].tagName : null,
+        implementationLinkRects: linkRects,
+        // WCAG 2.5.5 Level AAA minimum: 44x44 CSS px
+        allLinksMeet44px: linkRects.every((r) => r.height >= 44 && r.width >= 44),
         docWidth: doc.scrollWidth,
         docHeight: doc.scrollHeight,
         hasHorizontalOverflow: doc.scrollWidth > doc.clientWidth
