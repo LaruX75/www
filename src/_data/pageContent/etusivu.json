@@ -39,6 +39,13 @@
         "href": "/tyoni-yliopistonlehtorina/"
       },
       {
+        "icon": "bi-mortarboard",
+        "title": "Opetus",
+        "desc": "Julkiset kurssisivut ja opetukseen liittyvät kokonaisuudet: kurssitoteutukset, luentomateriaalit, opetusportfolio ja opiskelijapalaute.",
+        "cta": "Opetus-sivulle →",
+        "href": "/opetus/"
+      },
+      {
         "icon": "bi-pencil-square",
         "title": "Kynästä",
         "desc": "Puheenvuorot, lausunnot, mielipidekirjoitukset, kolumnit ja blogitekstit, kun haluat lukea Jari Larun omia kirjoituksia ja puheita.",
