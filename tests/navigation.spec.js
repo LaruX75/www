@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { gotoAndAssertSite, installPagefindStub } from './helpers/a11y.js';
 
 test.describe('Navigation and Focus Audits', () => {
-    test('Desktop mega menu supports keyboard opening and focus return', async ({ page }) => {
+    test('Desktop mega menu supports keyboard opening and focus return @smoke', async ({ page }) => {
         await gotoAndAssertSite(page, '/');
 
         const toggle = page.locator('#megaToggleMeFi');
@@ -33,7 +33,7 @@ test.describe('Navigation and Focus Audits', () => {
         await expect(panel).not.toBeVisible();
     });
 
-    test('Search dialog traps focus and returns it to the trigger', async ({ page }) => {
+    test('Search dialog traps focus and returns it to the trigger @smoke', async ({ page }) => {
         await page.addInitScript(() => {
             const spokenChunks = [];
             window.__spokenChunks = spokenChunks;
@@ -155,7 +155,7 @@ test.describe('Navigation and Focus Audits', () => {
         await expect(page.locator('#searchOverlay [data-search-modular-summary]')).toContainText(/tulos/);
     });
 
-    test('EN search dialog: same open/traversal/close/return lifecycle as FI', async ({ page }) => {
+    test('EN search dialog: same open/traversal/close/return lifecycle as FI @smoke', async ({ page }) => {
         // Parity gate: EN nav renders the same #searchOverlay / #searchToggleBtn /
         // #searchCloseBtn IDs and shares the same site-ui.js JS. This test
         // exercises the full lifecycle on an EN page to prove the shared JS
@@ -205,7 +205,7 @@ test.describe('Navigation and Focus Audits', () => {
         await expect(trigger).toBeFocused();
     });
 
-    test('Theme selection persists across page navigation', async ({ page }) => {
+    test('Theme selection persists across page navigation @smoke', async ({ page }) => {
         await gotoAndAssertSite(page, '/');
 
         const themeToggle = page.locator('[data-theme-toggle]').first();
