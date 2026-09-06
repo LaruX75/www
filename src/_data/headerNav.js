@@ -806,10 +806,30 @@ module.exports = {
   megaMenuWork: {
     fi: {
       layout: "four-columns",
+      overviewLinks: [
+        {
+          title: "Yliopistotyö",
+          href: "/tyoni-yliopistonlehtorina/",
+          icon: "bi bi-briefcase me-2",
+          description: "Roolikuvaus yliopistonlehtorina ja akateemisen työn kokonaiskuva."
+        },
+        {
+          title: "Ansioluettelo",
+          href: "/cv/",
+          icon: "bi bi-file-person me-2",
+          description: "Koulutus, työkokemus ja keskeiset akateemiset meriitit."
+        },
+        {
+          title: "Palkinnot",
+          href: "/palkinnot/",
+          icon: "bi bi-award me-2",
+          description: "Saadut tunnustukset opetuksesta ja avoimesta tieteestä."
+        }
+      ],
       sections: [
         {
-          heading: "Yliopistotyö",
-          headingHref: "/tyoni-yliopistonlehtorina/",
+          heading: "Opetus",
+          headingHref: "/opetus/",
           links: [
             {
               title: "Opetus",
@@ -818,28 +838,22 @@ module.exports = {
               description: "Julkiset kurssisivut ja opetukseen liittyvät kokonaisuudet."
             },
             {
-              title: "Esitykset",
-              href: "/esitykset/",
-              icon: "bi bi-easel2 me-2",
-              description: "Luentoja, opetussisältöjä ja avoimia opetusmateriaaleja yliopistotyön näkökulmasta."
-            },
-            {
               title: "Opetusportfolio",
               href: "/portfolio/",
               icon: "bi bi-folder me-2",
               description: "Pedagoginen ajattelu, opetusosaaminen ja opetustyön kehittäminen."
             },
             {
-              title: "Ansioluettelo",
-              href: "/cv/",
-              icon: "bi bi-file-person me-2",
-              description: "Koulutus, työkokemus ja asiantuntijuuden kuvaus."
-            },
-            {
               title: "Opiskelijapalaute",
               href: "/opiskelijoiden-antamaa-palautetta/",
               icon: "bi bi-chat-square-text me-2",
               description: "Kurssikohtainen opiskelijapalaute yliopisto-opintojaksoilta ja opetuksen kehittäminen."
+            },
+            {
+              title: "Esitykset",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2",
+              description: "Luentoja ja opetusmateriaaleja julkisen esitysarkiston kautta."
             }
           ]
         },
@@ -848,16 +862,22 @@ module.exports = {
           headingHref: "/tutkimus/",
           links: [
             {
-              title: "Väitöskirja",
-              href: "/vaitoskirja/",
-              icon: "bi bi-mortarboard-fill me-2",
-              description: "Lectio-video, väitöskirja ja neljä osajulkaisua samassa kokonaisuudessa."
+              title: "Tutkimus",
+              href: "/tutkimus/",
+              icon: "bi bi-search me-2",
+              description: "Tutkimushankkeet, aiheet ja koottu julkaisukuva."
             },
             {
               title: "Julkaisuluettelo",
               href: "/julkaisut/",
               icon: "bi bi-journal-text me-2",
               description: "Tieteelliset julkaisut ja viitetiedot koottuna yhteen näkymään."
+            },
+            {
+              title: "Väitöskirja",
+              href: "/vaitoskirja/",
+              icon: "bi bi-mortarboard-fill me-2",
+              description: "Lectio-video, väitöskirja ja neljä osajulkaisua samassa kokonaisuudessa."
             },
             {
               title: "Opinnäytetyöt",
@@ -872,7 +892,13 @@ module.exports = {
           headingHref: "/yhteiskunnallinen-vuorovaikutus/",
           links: [
             {
-              title: "Lausunnot ja kannanotot",
+              title: "Yhteiskunnallinen vuorovaikutus",
+              href: "/yhteiskunnallinen-vuorovaikutus/",
+              icon: "bi bi-diagram-3 me-2",
+              description: "Miten tutkimus ja opetus jatkuvat lausunnoissa, mediassa ja päätöksenteossa."
+            },
+            {
+              title: "Lausunnot",
               href: "/lausunnot/#lausunnot",
               icon: "bi bi-file-earmark-text me-2",
               description: "Tutkimustiedon ja asiantuntijuuden vieminen valmisteluun ja julkiseen keskusteluun."
@@ -886,26 +912,52 @@ module.exports = {
           ]
         },
         {
-          heading: "Täydennyskoulutukset (Larux t:mi)",
+          heading: "Täydennyskoulutus",
           headingHref: "/kouluttaja/",
           links: [
+            {
+              title: "Kouluttaja",
+              href: "/kouluttaja/",
+              icon: "bi bi-briefcase me-2",
+              description: "Koulutus- ja asiantuntijapalvelut Larux t:mi:n kautta."
+            },
             {
               title: "Koulutuspalaute",
               href: "/koulutuspalaute/",
               icon: "bi bi-chat-square-quote me-2",
               description: "Täydennyskoulutusten ja asiantuntijatilaisuuksien palautteen kooste 2017–2026."
+            },
+            {
+              title: "Esitykset / koulutusmateriaalit",
+              href: "/esitykset/",
+              icon: "bi bi-easel2 me-2",
+              description: "Esityksiä ja asiantuntijasisältöjä, joita hyödynnän myös täydennyskoulutuksissa. Sama julkinen esitysarkisto."
             }
           ]
         }
-      ],
-      cta: {
-        title: "Larux t:mi",
-        description: "Koulutukset tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta.",
-        href: "/kouluttaja/",
-        label: "Tutustu palveluihin"
-      }
+      ]
     },
     en: {
+      overviewLinks: [
+        {
+          title: "My Work as a University Lecturer",
+          href: "/en/work/",
+          icon: "bi bi-briefcase me-2",
+          description: "Role overview and the whole academic work profile."
+        },
+        {
+          title: "Curriculum Vitae",
+          href: "/en/cv/",
+          icon: "bi bi-file-person me-2",
+          description: "Education, experience, and key academic merits."
+        },
+        {
+          title: "Awards",
+          href: "/en/awards/",
+          icon: "bi bi-award me-2",
+          description: "Recognition received for teaching and open science work."
+        }
+      ],
       sections: [
         {
           heading: "University Work",

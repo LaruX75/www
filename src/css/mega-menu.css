@@ -390,6 +390,46 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   display: none !important;
 }
 
+.mega-overview-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.35rem 0.6rem 0.9rem;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid var(--menu-divider);
+}
+
+.mega-overview-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.7rem !important;
+  border-radius: 999px;
+  border: 1px solid var(--menu-divider);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--menu-text);
+  background: transparent;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.mega-overview-link:hover,
+.mega-overview-link:focus-visible {
+  color: var(--evelenty-accent);
+  border-color: var(--evelenty-accent);
+  background: var(--site-accent-soft, rgba(47, 75, 102, 0.08));
+  transform: none;
+  text-decoration: none;
+}
+
+.mega-overview-link i {
+  font-size: 0.95rem;
+  margin: 0 !important;
+}
+
 .contact-mega-cols section {
   min-width: 0;
 }
@@ -648,6 +688,41 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   color: var(--mobile-nav-muted);
   font-size: 0.88rem;
   line-height: 1.45;
+}
+
+.mobile-nav-overview-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid var(--mobile-nav-soft-border);
+}
+
+.mobile-nav-overview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 40px;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--mobile-nav-soft-border);
+  background: var(--mobile-nav-soft-bg);
+  color: var(--mobile-nav-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.mobile-nav-overview-link:hover,
+.mobile-nav-overview-link:focus-visible {
+  color: var(--evelenty-accent);
+  text-decoration: none;
+}
+
+.mobile-nav-overview-link i {
+  font-size: 0.95rem;
 }
 
 .mobile-nav-section-grid {
