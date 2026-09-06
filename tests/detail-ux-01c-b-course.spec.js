@@ -39,8 +39,12 @@ test.describe("A. Positive — 405040Y peer group (small, exact expectation)", (
       expect(html, "peer section present").toContain('content-detail-course-peers');
       const peerCount = (html.match(/course-peer-item/g) || []).length;
       expect(peerCount, "exactly 2 peers rendered").toBe(2);
-      expect(html, "descriptive line names the course").toContain(
-        "Muut opintojakson 405040Y"
+      // COURSE-RELATION-UX-01: 405040Y now renders implementation-scoped
+      // copy (all 3 luentos share courseId=405040Y AND periodId=2026-2027-a).
+      // Heading + descriptive line name the implementation, not the
+      // course alone. Peer count is unchanged.
+      expect(html, "descriptive line names the course implementation").toContain(
+        "Muut kurssitoteutuksen 405040Y (2026-2027-a) materiaalit"
       );
     });
 
@@ -58,8 +62,11 @@ test.describe("B. Bounded — 410014Y peer group capped at PEER_LIMIT", () => {
     const html = await page.request.get(PAGES.boundedCourseLuento1).then((r) => r.text());
     const peerCount = (html.match(/course-peer-item/g) || []).length;
     expect(peerCount, "PEER_LIMIT cap = 6").toBe(PEER_LIMIT);
-    expect(html, "descriptive line names the course").toContain(
-      "Muut opintojakson 410014Y"
+    // COURSE-RELATION-UX-01: 410014Y items lack canonical periodId, so
+    // the adaptive selection falls back to courseId-only membership.
+    // Copy makes the cross-implementation ambiguity explicit.
+    expect(html, "descriptive line names the course in fallback phrasing").toContain(
+      "Materiaaleja opintojaksolta 410014Y"
     );
   });
 });
