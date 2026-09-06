@@ -19,7 +19,7 @@ const PAGES = {
   courseLuento2: "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/",
   courseLuento3: "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/",
   boundedCourseLuento1: "/presentations/ss-1-luento-tieto-ja-viestintatekniikan-perusteet-opintojaksolla-tvt-opetuskayton-h/",
-  historical410017Y: "/presentations/ss-luento-2-teoria-410014y-tieto-ja-viestintatekniikka-pedagogisena-valineena/",
+  historical410017Y: "/presentations/ss-luento-1-tieto-ja-viestintatekniikka-pedagogisena-tyovalineena-aani-ja-diat-eiva/",
   kempele: "/presentations/kempele-veso-2026/",
   coursePage: "/opetus/teknologiatuettu-oppiminen/2026-2027-a/"
 };
@@ -104,8 +104,8 @@ test.describe("C. Course-level fallback (periodId absent) — 410014Y", () => {
   });
 });
 
-test.describe("D. Course-level fallback (periodId absent) — 410017Y-family (falsification case)", () => {
-  test("historical 410014Y record 'Luento 2. Teoria' fallback + no backlink", async ({ page }) => {
+test.describe("D. Course-level fallback (periodId absent) — 410014Y-family (falsification case)", () => {
+  test("unconfirmed historical 410014Y record remains fallback + no backlink", async ({ page }) => {
     const html = await page.request.get(PAGES.historical410017Y).then((r) => r.text());
     if (html.length < 500) {
       // Fixture file not built — skip rather than fail on env drift.
