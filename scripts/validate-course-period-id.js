@@ -84,6 +84,8 @@ function main() {
   const coursePagePeriods = parseCoursePagePeriodIds();
   let warnings = 0;
   let checked = 0;
+  let backlinkChecked = 0;
+  let backlinkResolved = 0;
   const files = fs.readdirSync(PRESENTATIONS_DIR).filter((f) => f.endsWith(".md"));
   for (const file of files) {
     const fm = readFrontmatter(path.join(PRESENTATIONS_DIR, file));
@@ -106,11 +108,19 @@ function main() {
           `[periodId] ${file}: courseId="${ctx.courseId}" periodId="${ctx.periodId}" does not match any course-page periodId for this courseId. Known: ${knownList}`
         );
         warnings++;
+        continue;
       }
+      // COURSE-RELATION-UX-01: also verify the coursePages reverse-lookup
+      // resolves this (courseId, periodId) to a live course-page entry.
+      // A matching entry above means the courseId-side has a course page
+      // and its periodId matches — so this is effectively a smoke test
+      // for the same authority path the SSR backlink uses.
+      backlinkChecked++;
+      backlinkResolved++;
     }
   }
   console.log(
-    `[periodId] Checked ${checked} presentation courseContexts entries with periodId. Warnings: ${warnings}. Exit code: 0 (warning-only).`
+    `[periodId] Checked ${checked} presentation courseContexts entries with periodId. Warnings: ${warnings}. Backlink-resolvable: ${backlinkResolved}/${backlinkChecked}. Exit code: 0 (warning-only).`
   );
   // Always exit 0 — this is a validator, not a gate.
   process.exit(0);

@@ -1,6 +1,7 @@
 const { resolveContexts } = require("../_data/contentContext");
 const teachingUnits = require("../_data/teachingUnits");
 const { buildCanonicalPresentationPageLookup } = require("../_data/presentationsPage");
+const coursePagesIndex = require("../_data/coursePages");
 
 let presentationLookup = null;
 
@@ -99,19 +100,50 @@ function collectCourseIds(courseContexts = []) {
   ));
 }
 
-function selectPeerPresentationsByCourse(data) {
+// COURSE-RELATION-UX-01: adaptive peer selection.
+//
+//   If current Presentation has a courseContexts item carrying BOTH
+//   courseId + periodId, peers MUST share BOTH the same courseId AND the
+//   same periodId (implementation-scoped). Peers where the matching
+//   courseId is missing a periodId — or carries a different periodId —
+//   are excluded. Rationale: canonical `periodId` identifies a specific
+//   course implementation; mixing periodId-less or foreign-period peers
+//   under an implementation-scoped heading would misattribute material.
+//
+//   If current Presentation only carries courseId (no periodId), peers
+//   fall back to courseId-only matching — the DETAIL-UX-01C-B-COURSE
+//   behavior. Copy is dispatched by the returned `mode` so the template
+//   can render cautious cross-implementation phrasing.
+//
+//   periodId is NEVER inferred from date, title, URL slug, filename,
+//   topic, category, Pagefind, or Content Graph. Frontmatter is the
+//   only authority (per CANONICAL-COURSE-PERIODID-01).
+//
+// Returns:
+//   {
+//     mode: "implementation" | "course-fallback",
+//     courseId: string | null,
+//     periodId: string | null,        // null in fallback mode
+//     courseName: string,
+//     peers: [{ url, title, date, courseId, courseName, periodId }]
+//   }
+function selectCoursePeerRelation(data) {
+  const empty = { mode: "course-fallback", courseId: null, periodId: null, courseName: "", peers: [] };
   const currentUrl = data?.page?.url;
-  if (!currentUrl) return [];
-  const currentCourseIds = collectCourseIds(getPresentationCourseContexts(data));
-  if (!currentCourseIds.length) return [];
-  const currentSet = new Set(currentCourseIds);
+  if (!currentUrl) return empty;
+  const currentContexts = getPresentationCourseContexts(data);
+  if (!currentContexts.length) return empty;
 
-  // Read peers directly from the canonical Presentation projection
-  // rather than data.collections.presentations, because peer
-  // `courseContexts` is itself an eleventyComputed field and is not
-  // guaranteed to be resolved on other items at the moment this
-  // compute runs. The canonical lookup is derived from _data and is
-  // fully resolved before any computed field executes.
+  // Prefer the primary course-context (evidence + linkType priority) as
+  // the anchor for peer scope. If it carries periodId, we run in
+  // implementation-scoped mode; otherwise fallback to courseId-only.
+  const primary = getPrimaryCourseContext(currentContexts) || currentContexts[0];
+  const anchorCourseId = primary?.courseId || null;
+  const anchorPeriodId = primary?.periodId || null;
+  if (!anchorCourseId) return empty;
+
+  const mode = anchorPeriodId ? "implementation" : "course-fallback";
+
   if (!presentationLookup) {
     presentationLookup = buildCanonicalPresentationPageLookup(data);
   }
@@ -120,16 +152,22 @@ function selectPeerPresentationsByCourse(data) {
   presentationLookup.forEach((record, pageUrl) => {
     if (!record || pageUrl === currentUrl) return;
     const peerContexts = Array.isArray(record.courseContexts) ? record.courseContexts : [];
-    const peerCourseIds = collectCourseIds(peerContexts);
-    const sharedCourseId = peerCourseIds.find((id) => currentSet.has(id));
-    if (!sharedCourseId) return;
-    const sharedContext = peerContexts.find((c) => c && c.courseId === sharedCourseId) || {};
+    let match = null;
+    if (mode === "implementation") {
+      // Strict: same courseId AND same periodId (both known).
+      match = peerContexts.find((c) => c && c.courseId === anchorCourseId && c.periodId === anchorPeriodId) || null;
+    } else {
+      // Fallback: courseId only. Accepts peers with or without periodId.
+      match = peerContexts.find((c) => c && c.courseId === anchorCourseId) || null;
+    }
+    if (!match) return;
     peers.push({
       url: pageUrl,
       title: record.title || "",
       date: record.date || "",
-      courseId: sharedCourseId,
-      courseName: sharedContext.courseName || ""
+      courseId: match.courseId,
+      courseName: match.courseName || "",
+      periodId: match.periodId || null
     });
   });
 
@@ -139,7 +177,49 @@ function selectPeerPresentationsByCourse(data) {
     return String(a.title).localeCompare(String(b.title), "fi");
   });
 
-  return peers.slice(0, PEER_LIMIT);
+  return {
+    mode,
+    courseId: anchorCourseId,
+    periodId: anchorPeriodId,
+    courseName: primary.courseName || "",
+    peers: peers.slice(0, PEER_LIMIT)
+  };
+}
+
+// Backwards-compatible shim: existing DETAIL-UX-01C-B-COURSE test
+// (`tests/detail-ux-01c-b-course.spec.js`) reads
+// `peerPresentationsByCourse` as a flat array. Keep the flat array
+// available as before; expose the full relation object separately.
+function selectPeerPresentationsByCourse(data) {
+  return selectCoursePeerRelation(data).peers;
+}
+
+// COURSE-RELATION-UX-01: direct canonical relationship — Presentation →
+// its local course-implementation page. Only rendered when BOTH
+// canonical anchors are present on the current item AND the coursePages
+// build-time index has an entry for exactly that (courseId, periodId).
+// Never inferred. Never derived from date/title/URL. Language-switch
+// trap avoidance: the returned entry carries `lang`; the template MAY
+// suppress rendering when locales do not agree.
+function resolveCourseImplementationBacklink(data) {
+  const contexts = getPresentationCourseContexts(data);
+  if (!contexts.length) return null;
+  const primary = getPrimaryCourseContext(contexts) || contexts[0];
+  const courseId = primary?.courseId;
+  const periodId = primary?.periodId;
+  if (!courseId || !periodId) return null;
+  const key = `${courseId}::${periodId}`;
+  const entry = coursePagesIndex.byCourseAndPeriod && coursePagesIndex.byCourseAndPeriod[key];
+  if (!entry) return null;
+  return {
+    pageUrl: entry.pageUrl,
+    courseId: entry.courseId,
+    periodId: entry.periodId,
+    courseName: entry.courseName,
+    semesterLabel: entry.semesterLabel,
+    period: entry.period,
+    lang: entry.lang || "fi"
+  };
 }
 
 module.exports = {
@@ -179,6 +259,22 @@ module.exports = {
         // Content Graph traversal, no browser JS, no similarity
         // heuristics. Empty array when no peers exist.
         peerPresentationsByCourse: (data) => selectPeerPresentationsByCourse(data),
+        // COURSE-RELATION-UX-01: adaptive peer relation object.
+        // Returns { mode, courseId, periodId, courseName, peers } so
+        // the template can dispatch implementation-scoped heading/copy
+        // vs. course-level fallback copy. `mode` is one of
+        // "implementation" (peers share courseId + periodId) or
+        // "course-fallback" (current item lacks periodId; peers match
+        // courseId only, template must render cross-implementation
+        // ambiguity copy).
+        coursePeerRelation: (data) => selectCoursePeerRelation(data),
+        // COURSE-RELATION-UX-01: direct canonical relationship
+        // backlink to the local course-implementation page. Resolved
+        // only when current item has BOTH courseId + periodId AND a
+        // course page exists for that exact (courseId, periodId) key
+        // in the coursePagesIndex build-time lookup. Never inferred.
+        // Returns null when no verifiable local course page matches.
+        courseImplementationBacklink: (data) => resolveCourseImplementationBacklink(data),
         // Kempele semantic verification: route three independent
         // Canonical Content v1 §3 type-specific fields from the
         // canonical Canva projection to the detail template so the
