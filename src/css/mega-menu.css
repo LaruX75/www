@@ -400,6 +400,13 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   border-bottom: 1px solid var(--menu-divider);
 }
 
+/* Span the full width when the overview strip is placed inside a
+   grid-8-4 mega-wrap (Minä), so it doesn't collapse into the left column
+   alongside sections and showcase. */
+.mega-wrap.grid-8-4 > .mega-overview-strip {
+  grid-column: 1 / -1;
+}
+
 .mega-overview-link {
   display: inline-flex !important;
   align-items: center;

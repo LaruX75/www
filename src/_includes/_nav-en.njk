@@ -19,6 +19,7 @@
           <div id="megaMenuMeEn" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeEn">
             <div class="mega-wrap grid-8-4">
               {{ nav.mobileJumpLink(navMe.url or '/en/about/', navMe.title or 'Me', jumpPagePrefix) }}
+              {{ nav.overviewStrip(meMegaMenu.overviewLinks, "Profile overview") }}
               <div class="mega-left three-cols">
                 {% for section in meMegaMenu.sections %}
                   <section>
@@ -107,15 +108,7 @@
             {% else %}
             <div class="mega-wrap grid-8-4">
               {{ nav.mobileJumpLink(navWork.url or '/en/work/', navWork.title or 'Work', jumpPagePrefix) }}
-              {% if workMegaMenu.overviewLinks %}
-                <nav class="mega-overview-strip" aria-label="Work overview">
-                  {% for link in workMegaMenu.overviewLinks %}
-                    <a class="mega-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                      <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
-                    </a>
-                  {% endfor %}
-                </nav>
-              {% endif %}
+              {{ nav.overviewStrip(workMegaMenu.overviewLinks, "Work overview") }}
               <div class="mega-left three-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
@@ -499,6 +492,7 @@
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navMe.url or '/en/about/' }}">Open Me page</a>
+          {{ nav.mobileOverviewStrip(meMegaMenu.overviewLinks, "Profile overview") }}
           <div class="mobile-nav-section-grid">
             {% for section in meMegaMenu.sections %}
               <section class="mobile-nav-section-card">
@@ -529,15 +523,7 @@
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navWork.url or '/en/work/' }}">Open Work page</a>
-          {% if workMegaMenu.overviewLinks %}
-            <nav class="mobile-nav-overview-strip" aria-label="Work overview">
-              {% for link in workMegaMenu.overviewLinks %}
-                <a class="mobile-nav-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                  <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
-                </a>
-              {% endfor %}
-            </nav>
-          {% endif %}
+          {{ nav.mobileOverviewStrip(workMegaMenu.overviewLinks, "Work overview") }}
           <div class="mobile-nav-section-grid">
             {% for section in workMegaMenu.sections %}
               <section class="mobile-nav-section-card">

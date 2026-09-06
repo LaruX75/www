@@ -44,3 +44,44 @@
 <a class="mega-mobile-jump" href="{{ url }}" aria-label="{{ jumpPrefix }} {{ title }}"><i class="bi bi-arrow-up-right-circle me-2"></i>{{ jumpPrefix }} {{ title }}</a>
 {%- endif %}
 {% endmacro %}
+
+{#
+  Compact horizontal overview strip rendered above the grouped-route
+  sections of a mega-menu (desktop). Shared by Työ and Minä.
+
+  Introduced by MEGAMENU-IA-01 (inline in Työ) and extracted here in
+  MEGAMENU-SYSTEM-01B when Minä became the second consumer.
+
+  Each link entry must have {title, href, icon} and may have
+  {description, external}. Description is intentionally not rendered
+  in the strip — chips stay compact. Callers pass an `aria-label`
+  string that names the strip in the current locale.
+#}
+{% macro overviewStrip(links, ariaLabel) %}
+{% if links %}
+<nav class="mega-overview-strip" aria-label="{{ ariaLabel }}">
+  {% for link in links %}
+    <a class="mega-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+      <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+    </a>
+  {% endfor %}
+</nav>
+{% endif %}
+{% endmacro %}
+
+{#
+  Compact horizontal overview strip rendered inside the mobile
+  offcanvas `<details>` block, above the section grid. Uses larger
+  touch targets than the desktop variant.
+#}
+{% macro mobileOverviewStrip(links, ariaLabel) %}
+{% if links %}
+<nav class="mobile-nav-overview-strip" aria-label="{{ ariaLabel }}">
+  {% for link in links %}
+    <a class="mobile-nav-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+      <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
+    </a>
+  {% endfor %}
+</nav>
+{% endif %}
+{% endmacro %}

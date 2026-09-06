@@ -373,32 +373,27 @@ module.exports = {
   ],
   megaMenuMe: {
     fi: {
-      sections: [
+      overviewLinks: [
         {
-          heading: "Jari lyhyesti",
-          links: [
-            {
-              title: "Tietoa minusta",
-              href: "/tietoa/",
-              icon: "bi bi-info-circle me-2",
-              menuLink: true,
-              description: "Henkilökuva, elämä ja harrastukset."
-            },
-            {
-              title: "Ansioluettelo",
-              href: "/cv/",
-              icon: "bi bi-file-earmark-person me-2",
-              menuLink: true,
-              description: "Koulutus, kokemus ja keskeiset akateemiset meriitit."
-            },
-            {
-              title: "Palkinnot",
-              href: "/palkinnot/",
-              icon: "bi bi-award me-2",
-              description: "Saadut tunnustukset opetuksen ja avoimen tieteen työstä."
-            }
-          ]
+          title: "Tietoa minusta",
+          href: "/tietoa/",
+          icon: "bi bi-info-circle me-2",
+          description: "Henkilökuva, elämä ja harrastukset."
         },
+        {
+          title: "Ansioluettelo",
+          href: "/cv/",
+          icon: "bi bi-file-earmark-person me-2",
+          description: "Koulutus, kokemus ja keskeiset akateemiset meriitit."
+        },
+        {
+          title: "Palkinnot",
+          href: "/palkinnot/",
+          icon: "bi bi-award me-2",
+          description: "Saadut tunnustukset opetuksen ja avoimen tieteen työstä."
+        }
+      ],
+      sections: [
         {
           heading: "Vapaa-aika",
           links: [
@@ -455,32 +450,27 @@ module.exports = {
       }
     },
     en: {
-      sections: [
+      overviewLinks: [
         {
-          heading: "About Jari",
-          links: [
-            {
-              title: "About me",
-              href: "/en/about/",
-              icon: "bi bi-info-circle me-2",
-              menuLink: true,
-              description: "Biography, life and hobbies."
-            },
-            {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
-              icon: "bi bi-file-earmark-person me-2",
-              menuLink: true,
-              description: "Education, experience, and key academic merits."
-            },
-            {
-              title: "Awards",
-              href: "/en/awards/",
-              icon: "bi bi-award me-2",
-              description: "Recognition received for teaching and open science work."
-            }
-          ]
+          title: "About me",
+          href: "/en/about/",
+          icon: "bi bi-info-circle me-2",
+          description: "Biography, life and hobbies."
         },
+        {
+          title: "Curriculum Vitae",
+          href: "/en/cv/",
+          icon: "bi bi-file-earmark-person me-2",
+          description: "Education, experience, and key academic merits."
+        },
+        {
+          title: "Awards",
+          href: "/en/awards/",
+          icon: "bi bi-award me-2",
+          description: "Recognition received for teaching and open science work."
+        }
+      ],
+      sections: [
         {
           heading: "Free Time",
           links: [
