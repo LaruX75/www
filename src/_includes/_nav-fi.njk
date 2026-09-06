@@ -19,6 +19,7 @@
           <div id="megaMenuMeFi" class="dropdown-menu mega-menu-panel p-0 border-0" aria-labelledby="megaToggleMeFi">
             <div class="mega-wrap grid-8-4">
               {{ nav.mobileJumpLink(navMe.url or '/tietoa/', navMe.title or 'Minä', jumpPagePrefix) }}
+              {{ nav.overviewStrip(meMegaMenu.overviewLinks, "Profiilin yleiskatsaus") }}
               <div class="mega-left three-cols">
                 {% for section in meMegaMenu.sections %}
                   <section>
@@ -64,15 +65,7 @@
             {% if workMegaMenu.layout == "four-columns" %}
             <div class="mega-wrap">
               {{ nav.mobileJumpLink(navWork.url or '/tyoni-yliopistonlehtorina/', navWork.title or 'Työ', jumpPagePrefix) }}
-              {% if workMegaMenu.overviewLinks %}
-                <nav class="mega-overview-strip" aria-label="Työn yleiskatsaus">
-                  {% for link in workMegaMenu.overviewLinks %}
-                    <a class="mega-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                      <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
-                    </a>
-                  {% endfor %}
-                </nav>
-              {% endif %}
+              {{ nav.overviewStrip(workMegaMenu.overviewLinks, "Työn yleiskatsaus") }}
               <div class="mega-left four-cols">
                 {% for section in workMegaMenu.sections %}
                   <section>
@@ -511,6 +504,7 @@
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navMe.url or '/tietoa/' }}">Avaa Minä-sivu</a>
+          {{ nav.mobileOverviewStrip(meMegaMenu.overviewLinks, "Profiilin yleiskatsaus") }}
           <div class="mobile-nav-section-grid">
             {% for section in meMegaMenu.sections %}
               <section class="mobile-nav-section-card">
@@ -541,15 +535,7 @@
         </summary>
         <div class="mobile-nav-card-body">
           <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
-          {% if workMegaMenu.overviewLinks %}
-            <nav class="mobile-nav-overview-strip" aria-label="Työn yleiskatsaus">
-              {% for link in workMegaMenu.overviewLinks %}
-                <a class="mobile-nav-overview-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                  <i class="{{ link.icon }}"></i><span>{{ link.title }}</span>
-                </a>
-              {% endfor %}
-            </nav>
-          {% endif %}
+          {{ nav.mobileOverviewStrip(workMegaMenu.overviewLinks, "Työn yleiskatsaus") }}
           <div class="mobile-nav-section-grid">
             {% for section in workMegaMenu.sections %}
               <section class="mobile-nav-section-card">
