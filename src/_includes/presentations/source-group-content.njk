@@ -5,14 +5,20 @@
   {% set sourceFeaturedBadgeLabel = "Latest" %}
   {% set sourceNoLinkLabel = "No link" %}
   {% set sourceNotAvailableLabel = "Not available" %}
+  {% set sourceLocalDetailLabel = "Open presentation page" %}
+  {% set sourceCanvaLabel = "Open presentation in Canva" %}
 {% else %}
   {% set sourceFeaturedBadgeLabel = "Uusin" %}
   {% set sourceNoLinkLabel = "Ei linkkiä" %}
   {% set sourceNotAvailableLabel = "Ei saatavilla" %}
+  {% set sourceLocalDetailLabel = "Avaa esityssivu" %}
+  {% set sourceCanvaLabel = "Avaa esitys Canvassa" %}
 {% endif %}
 
 {% if sourceFeatured %}
   {% set sourceFeaturedHref = sourceFeatured.sourceUrl or sourceFeatured.externalUrl or sourceFeatured.url or sourceFeatured.landingUrl or sourceFeatured.pageUrl or sourceFeatured.localPageUrl or "" %}
+  {% set sourceFeaturedPageHref = sourceFeatured.localPageUrl or sourceFeatured.pageUrl or "" %}
+  {% set sourceFeaturedHasLocalCanvaDetail = sourceSection.key == "canva" and sourceFeaturedPageHref and sourceFeaturedPageHref != sourceFeaturedHref %}
   <div class="card border-0 shadow-sm mb-4 overflow-hidden">
     <div class="d-flex align-items-stretch">
       <div class="flex-shrink-0 overflow-hidden">
@@ -29,12 +35,25 @@
           {% endif %}
           <span class="badge text-bg-warning text-dark fw-semibold" style="font-size:.65rem;">{{ sourceFeaturedBadgeLabel }}</span>
         </p>
-        <h3 class="h6 fw-bold mb-1 lh-sm">{{ sourceFeatured.title }}</h3>
+        <h3 class="h6 fw-bold mb-1 lh-sm">
+          {% if sourceFeaturedHasLocalCanvaDetail %}
+            <a href="{{ sourceFeaturedPageHref }}" class="text-decoration-none">{{ sourceFeatured.title }}</a>
+          {% else %}
+            {{ sourceFeatured.title }}
+          {% endif %}
+        </h3>
         {% if sourceFeatured.description %}
           <p class="text-muted small mb-2">{{ sourceFeatured.description | truncate(140) }}</p>
         {% endif %}
         {% if sourceFeaturedHref %}
+          {% if sourceFeaturedHasLocalCanvaDetail %}
+          <div class="d-flex flex-wrap gap-2 align-items-center">
+            <a href="{{ sourceFeaturedPageHref }}" class="btn btn-primary btn-sm rounded-pill px-3">{{ sourceLocalDetailLabel }} <i class="bi bi-arrow-right"></i></a>
+            <a href="{{ sourceFeaturedHref }}"{% if sourceFeaturedHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ sourceCanvaLabel }} <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+          {% else %}
           <a href="{{ sourceFeaturedHref }}"{% if sourceFeaturedHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-primary btn-sm rounded-pill px-3 align-self-start">{{ sourceSection.ctaLabel }} <i class="bi bi-arrow-up-right"></i></a>
+          {% endif %}
         {% endif %}
       </div>
     </div>
@@ -76,6 +95,7 @@
           {% set sourceHref = item.sourceUrl or item.externalUrl or item.url or item.landingUrl or item.pageUrl or item.localPageUrl or "" %}
           {% set pageHref = item.localPageUrl or item.pageUrl or "" %}
           {% set pageHrefVisible = pageHref and pageHref != sourceHref %}
+          {% set hasLocalCanvaDetail = sourceSection.key == "canva" and pageHrefVisible %}
           {% if sourceSection.key == "youtubeVideos" %}
             <tr>
               <td>
@@ -129,7 +149,9 @@
                 {% endif %}
               </td>
               <td>
-                {% if sourceHref %}
+                {% if hasLocalCanvaDetail %}
+                  <a href="{{ pageHref }}" class="text-decoration-none fw-semibold">{{ item.title }}</a>
+                {% elif sourceHref %}
                   <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="text-decoration-none fw-semibold">{{ item.title }}</a>
                 {% else %}
                   <span class="fw-semibold">{{ item.title }}</span>
@@ -148,12 +170,17 @@
                 {% endif %}
               </td>
               <td class="text-center text-nowrap">
-                {% if sourceHref %}
+                {% if hasLocalCanvaDetail %}
+                  <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <a href="{{ pageHref }}" class="btn btn-primary btn-sm rounded-pill px-3">{{ sourceLocalDetailLabel }}</a>
+                    <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ sourceCanvaLabel }} <i class="bi bi-arrow-up-right"></i></a>
+                  </div>
+                {% elif sourceHref %}
                   <a href="{{ sourceHref }}"{% if sourceHref.startsWith("http") %} target="_blank" rel="noopener noreferrer"{% endif %} class="btn btn-outline-primary btn-sm rounded-pill px-2" title="{{ sourceSection.ctaLabel }}" aria-label="{{ sourceSection.ctaLabel }}"><i class="bi bi-arrow-up-right"></i></a>
                 {% else %}
                   <span class="text-muted small">{{ sourceNoLinkLabel }}</span>
                 {% endif %}
-                {% if pageHrefVisible %}
+                {% if pageHrefVisible and not hasLocalCanvaDetail %}
                   <a href="{{ pageHref }}" class="btn btn-outline-secondary btn-sm rounded-pill px-2" title="{{ sourceSection.detailCtaLabel }}" aria-label="{{ sourceSection.detailCtaLabel }}"><i class="bi bi-file-earmark-text"></i></a>
                 {% endif %}
               </td>
