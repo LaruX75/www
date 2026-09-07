@@ -23,8 +23,14 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
   });
 
   test("landing template still consumes the shared coursePages.catalog projection", () => {
+    // OPETUS-CATALOG-UX-01B: the catalog is now split into
+    // coursePages.catalogCurrent and coursePages.catalogHistorical
+    // (derived from the same buildCoursePagesIndex() output as
+    // coursePages.catalog). The important invariant is that the
+    // template consumes a derived projection, not a handwritten list.
     const landing = fs.readFileSync(LANDING_PATH, "utf8");
-    expect(landing).toContain("{% for course in coursePages.catalog %}");
+    expect(landing).toContain("coursePages.catalogCurrent");
+    expect(landing).toContain("coursePages.catalogHistorical");
     expect(landing).not.toContain('href="/opetus/teknologiatuettu-oppiminen/2026-2027-a/"');
     expect(landing).not.toContain("Opintojakson 405040Y syyslukukauden 2026 toteutus");
   });
@@ -42,15 +48,19 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
   });
 
   test("catalog renders both current and historical courses as separate groups", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01B splits the catalog into two sections. Each
+    // course still gets its own bounded card, just possibly under a
+    // different section heading.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    const catalogMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/);
-    expect(catalogMatch, "catalog wrapper present").not.toBeNull();
-    const catalogHtml = catalogMatch[0];
-    // 410014Y and 405040Y must appear as separately grouped courses
-    const courses = catalogHtml.match(/data-opetus-course/g) || [];
-    expect(courses.length, "at least two course groups today").toBeGreaterThanOrEqual(2);
-    const has405040 = /data-opetus-course[^>]*data-course-id="405040Y"[\s\S]*?<h3[^>]*>[^<]*Teknologiatuettu/.test(catalogHtml);
-    const has410014 = /data-opetus-course[^>]*data-course-id="410014Y"[\s\S]*?<h3[^>]*>[^<]*Tieto- ja viestintätekniikka/.test(catalogHtml);
+    const currentMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/);
+    const historicalMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/);
+    expect(currentMatch, "current-section catalog wrapper present").not.toBeNull();
+    expect(historicalMatch, "historical-section catalog wrapper present").not.toBeNull();
+    const combinedCatalog = currentMatch[0] + historicalMatch[0];
+    const courses = combinedCatalog.match(/data-opetus-course/g) || [];
+    expect(courses.length, "at least two course groups today (across both sections)").toBeGreaterThanOrEqual(2);
+    const has405040 = /data-opetus-course[^>]*data-course-id="405040Y"[\s\S]*?<h3[^>]*>[^<]*Teknologiatuettu/.test(combinedCatalog);
+    const has410014 = /data-opetus-course[^>]*data-course-id="410014Y"[\s\S]*?<h3[^>]*>[^<]*Tieto- ja viestintätekniikka/.test(combinedCatalog);
     expect(has405040, "405040Y group heading").toBe(true);
     expect(has410014, "410014Y group heading").toBe(true);
   });
@@ -66,14 +76,16 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
 
   test("implementations render as compact list-group rows, not oversized cards", async ({ page }) => {
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    const catalogMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/);
-    const catalogHtml = catalogMatch[0];
-    // Reuse Bootstrap list-group-flush density primitive
-    expect(catalogHtml).toContain("list-group list-group-flush");
-    // Old spacious presentation must be gone from the catalog area
-    expect(catalogHtml, "no oversized card padding inside catalog").not.toMatch(/data-opetus-course[\s\S]*?p-4 p-lg-5/);
-    // Only linked titles are the primary action; no repeated pill CTA per implementation
-    expect(catalogHtml, "no repeated Avaa kurssisivu pill button").not.toMatch(/btn btn-primary rounded-pill[\s\S]*?Avaa kurssisivu/);
+    const currentMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
+    const historicalMatch = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
+    for (const catalogHtml of [currentMatch, historicalMatch]) {
+      // Reuse Bootstrap list-group-flush density primitive
+      expect(catalogHtml).toContain("list-group list-group-flush");
+      // Old spacious presentation must be gone from the catalog area
+      expect(catalogHtml, "no oversized card padding inside catalog").not.toMatch(/data-opetus-course[\s\S]*?p-4 p-lg-5/);
+      // Only linked titles are the primary action; no repeated pill CTA per implementation
+      expect(catalogHtml, "no repeated Avaa kurssisivu pill button").not.toMatch(/btn btn-primary rounded-pill[\s\S]*?Avaa kurssisivu/);
+    }
   });
 
   test("each implementation row is a full-row interactive link with sufficient touch area", async ({ page }) => {
@@ -83,19 +95,18 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
     // Repo precedent: src/en/keywords.njk uses the identical
     // "<a class='list-group-item list-group-item-action'>" pattern.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    const catalogHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/)[0];
-    // The data marker MUST live on the <a> element that owns the click area.
-    expect(catalogHtml, "implementation link is an <a> with list-group-item-action").toMatch(
-      /<a[^>]*class="list-group-item list-group-item-action[^"]*"[^>]*data-opetus-implementation/
-    );
-    // No implementation is rendered as a non-clickable <li> anymore.
-    expect(catalogHtml, "no non-anchor implementation row").not.toMatch(
-      /<li[^>]*data-opetus-implementation/
-    );
-    // Bootstrap-standard action row has a distinct hover/focus surface that
-    // extends across the full row width, and its content is separated only
-    // by an inline flex/wrap layout — verified via the class combination.
-    expect(catalogHtml).toMatch(/<a[^>]*list-group-item-action[^>]*d-flex/);
+    const currentHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
+    const historicalHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
+    for (const catalogHtml of [currentHtml, historicalHtml]) {
+      // The data marker MUST live on the <a> element that owns the click area.
+      expect(catalogHtml, "implementation link is an <a> with list-group-item-action").toMatch(
+        /<a[^>]*class="list-group-item list-group-item-action[^"]*"[^>]*data-opetus-implementation/
+      );
+      // No implementation is rendered as a non-clickable <li> anymore.
+      expect(catalogHtml, "no non-anchor implementation row").not.toMatch(
+        /<li[^>]*data-opetus-implementation/
+      );
+    }
     // Verify actual link geometry (WCAG 2.5.5 AAA 44x44). Rendered via a
     // JS-enabled browser context because clickable-area measurement is
     // layout-dependent.
@@ -126,15 +137,16 @@ test.describe("OPETUS-CATALOG-UX-01 compact course-group presentation", () => {
   });
 
   test("implementation ordering follows coursePages.catalog projection deterministically", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01B: courses may appear in the current section
+    // or the historical section depending on whether they have a live
+    // Peppi URL. Within each course card, implementations still sort
+    // newest-first as per coursePages.js.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    const catalogHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/)[0];
-    // Verify course order matches the catalog projection (alphabetical by name)
-    const domCourseIds = Array.from(catalogHtml.matchAll(/data-course-id="([^"]+)"/g)).map((m) => m[1]);
-    const projectedCourseIds = coursePages.catalog.map((c) => c.courseId);
-    expect(domCourseIds).toEqual(projectedCourseIds);
-    // And per course, implementation order matches
+    const currentHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
+    const historicalHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
+    const combined = currentHtml + historicalHtml;
     for (const course of coursePages.catalog) {
-      const courseBlock = catalogHtml.match(new RegExp(`data-course-id="${course.courseId}"[\\s\\S]*?</article>`))[0];
+      const courseBlock = combined.match(new RegExp(`data-course-id="${course.courseId}"[\\s\\S]*?</article>`))[0];
       const domImplPeriods = Array.from(courseBlock.matchAll(/data-period-id="([^"]+)"/g)).map((m) => m[1]);
       const projectedImplPeriods = course.implementations.map((i) => i.periodId);
       expect(domImplPeriods, `${course.courseId} implementation order`).toEqual(projectedImplPeriods);

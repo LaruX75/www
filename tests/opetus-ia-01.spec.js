@@ -160,9 +160,16 @@ test.describe("H. Accessibility / semantics", () => {
   });
 
   test("section headings use <h2> and are labeled", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01B replaced the single "Kurssitoteutukset"
+    // section with two labeled sections: "Nykyinen opetus" (current
+    // teaching) and "Aiemmat kurssitoteutukset" (historical
+    // implementations). Both are h2 with aria-labelledby matching the
+    // heading id.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    expect(html, "course implementations h2 exists")
-      .toMatch(/<h2[^>]*id="opetus-kurssitoteutukset-heading"[^>]*>[^<]*Kurssitoteutukset[^<]*<\/h2>/);
+    expect(html, "current teaching h2 exists")
+      .toMatch(/<h2[^>]*id="opetus-nykyinen-heading"[^>]*>[^<]*Nykyinen opetus[^<]*<\/h2>/);
+    expect(html, "historical implementations h2 exists")
+      .toMatch(/<h2[^>]*id="opetus-aiemmat-heading"[^>]*>[^<]*Aiemmat kurssitoteutukset[^<]*<\/h2>/);
     expect(html, "adjacent surfaces h2 exists")
       .toMatch(/<h2[^>]*id="opetus-liittyvat-heading"[^>]*>/);
   });
