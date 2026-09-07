@@ -39,8 +39,14 @@ test.describe("OPETUS-CATALOG-01A derived SSR catalog", () => {
   });
 
   test("landing consumes the shared catalog projection instead of a handwritten course inventory", () => {
+    // OPETUS-CATALOG-UX-01B derived the catalog into two projections
+    // (coursePages.catalogCurrent, coursePages.catalogHistorical) built
+    // from the same buildCoursePagesIndex() output. The invariant that
+    // matters is: the template consumes derived data, never a handwritten
+    // course list.
     const landing = fs.readFileSync(path.join(ROOT, "src", "fi", "opetus.md"), "utf8");
-    expect(landing).toContain("{% for course in coursePages.catalog %}");
+    expect(landing).toContain("coursePages.catalogCurrent");
+    expect(landing).toContain("coursePages.catalogHistorical");
     expect(landing).not.toContain('href="/opetus/teknologiatuettu-oppiminen/2026-2027-a/"');
     expect(landing).not.toContain("Opintojakson 405040Y syyslukukauden 2026 toteutus");
   });

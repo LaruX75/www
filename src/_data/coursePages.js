@@ -68,6 +68,65 @@ function parseCoursePage(filePath) {
   };
 }
 
+// OPETUS-CATALOG-UX-01B classifier. Derived at build time from the
+// canonical/local `academicYear` field on the course-page frontmatter,
+// compared against the University of Oulu academic-year calendar which
+// runs from 1 August to 31 July. An implementation is "current" iff its
+// academic year has not ended yet — i.e., its start year is >= the
+// start year of the academic year in progress today. A future year
+// counts as current so that "just announced" implementations appear
+// under Nykyinen opetus, not under Aiemmat kurssitoteutukset.
+//
+// This is deliberately temporal, not a source/orientation signal:
+// - The presence of a `peppiUrl` (or any other resource pointer) is NOT
+//   authoritative for temporal status. A historical implementation can
+//   legitimately still carry a Peppi archive link.
+// - No new field is stored on Presentation records or on
+//   `courseContexts[]`. No `current: true` / `archived: true` boolean.
+// - The comparison is numeric on the four-digit start year of the
+//   `academicYear` string (e.g., "2013–2014" → 2013, "2026–2027" →
+//   2026) so it is robust across en-dash / hyphen usage.
+
+function extractAcademicYearStart(academicYear) {
+  if (typeof academicYear !== "string") return NaN;
+  const m = academicYear.trim().match(/^(\d{4})[–—-](\d{4})$/);
+  return m ? Number(m[1]) : NaN;
+}
+
+function computeCurrentAcademicYearStart(today) {
+  const now = today instanceof Date ? today : new Date();
+  const y = now.getUTCFullYear();
+  const m = now.getUTCMonth(); // Jan = 0, Aug = 7
+  return m >= 7 ? y : y - 1;
+}
+
+function isCurrentImplementation(impl, today) {
+  const implStart = extractAcademicYearStart(impl && impl.academicYear);
+  if (!Number.isFinite(implStart)) return false;
+  return implStart >= computeCurrentAcademicYearStart(today);
+}
+
+// Same course group can contain both current and historical
+// implementations. Split each group's implementations by the classifier;
+// keep the deterministic order already established by buildCatalog().
+// The `today` override exists for deterministic testing; production
+// build-time calls with no argument use the current wall-clock date.
+function splitCatalogByCurrency(catalog, today) {
+  const current = [];
+  const historical = [];
+  for (const group of catalog) {
+    const currentImpls = group.implementations.filter((i) => isCurrentImplementation(i, today));
+    const historicalImpls = group.implementations.filter((i) => !isCurrentImplementation(i, today));
+    if (currentImpls.length) {
+      current.push({ ...group, implementations: currentImpls });
+    }
+    if (historicalImpls.length) {
+      historical.push({ ...group, implementations: historicalImpls });
+    }
+  }
+  return { current, historical };
+}
+
 function buildCatalog(entries) {
   const groups = Object.create(null);
   for (const entry of entries) {
@@ -123,6 +182,9 @@ function buildCoursePagesIndex() {
     byKey[key] = entry;
   }
 
+  const catalog = buildCatalog(Object.values(byKey));
+  const catalogSplit = splitCatalogByCurrency(catalog);
+
   return {
     // Serializable shape — Eleventy _data files are JSON-serialised into
     // the data cascade. Cannot expose a live Map here.
@@ -130,9 +192,17 @@ function buildCoursePagesIndex() {
     all: Object.values(byKey),
     // Catalog projection for /opetus/. It reuses the exact same locally
     // canonical course-page metadata as the Presentation backlink lookup.
-    catalog: buildCatalog(Object.values(byKey))
+    catalog,
+    // OPETUS-CATALOG-UX-01B: current vs historical split derived from
+    // the peppiUrl signal. See isCurrentImplementation() for the rule.
+    catalogCurrent: catalogSplit.current,
+    catalogHistorical: catalogSplit.historical
   };
 }
 
 module.exports = buildCoursePagesIndex();
 module.exports.buildCoursePagesIndex = buildCoursePagesIndex;
+module.exports.isCurrentImplementation = isCurrentImplementation;
+module.exports.splitCatalogByCurrency = splitCatalogByCurrency;
+module.exports.extractAcademicYearStart = extractAcademicYearStart;
+module.exports.computeCurrentAcademicYearStart = computeCurrentAcademicYearStart;
