@@ -22,6 +22,7 @@ courseContexts:
       Materiaalin metadatassa tai sisällössä esiintyy kurssikoodi 410014Y. Lisätunnisteet: Tieto- ja viestintätekniikka
       pedagogisena työvälineenä.
     courseId: 410014Y
+    periodId: "2014-2015-a"
     courseSourceReferenceIds:
       - turn23search228
       - turn19search200
