@@ -90,6 +90,17 @@
   margin: 0;
 }
 
+/* DETAIL-HERO-UX-02 opt-in variant. Consumers whose canonical titles
+   are frequently long (currently: Presentations imported from
+   SlideShare, where the title often carries the courseId + full course
+   name + subtitle in one string) pass titleMode="compact" to detail-hero
+   to activate this scoped smaller typography. Default titles unchanged. */
+.content-detail-title--compact {
+  font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+
 .content-detail-lead {
   color: var(--bs-secondary-color);
   font-size: clamp(1.05rem, 2vw, 1.28rem);

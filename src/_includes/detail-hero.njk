@@ -58,6 +58,16 @@
     {% endcall %}
 #}
 
+{#
+  DETAIL-HERO-UX-02 opt-in:
+    `titleMode="compact"` scopes a smaller responsive title typography
+    variant to consumers whose canonical titles are frequently long
+    (currently: Presentations, especially imported SlideShare lecture
+    titles that include the courseId + full course name + subtitle in
+    one string). Default remains unchanged for every other consumer.
+    The variant is a CSS class only — no title parsing, no canonical
+    field change.
+#}
 {% macro heroShell(
   variant,
   eyebrow,
@@ -67,14 +77,15 @@
   aside=null,
   eyebrowPagefindIgnore=false,
   titlePagefindWeight=null,
-  leadPagefindWeight=null
+  leadPagefindWeight=null,
+  titleMode=null
 ) %}
 <section class="content-detail-hero content-detail-hero--{{ variant }} py-5 border-bottom">
   <div class="site-shell">
     <div class="content-detail-hero-grid{% if not aside %} content-detail-hero-grid--single{% endif %}">
       <div class="content-detail-copy">
         <p class="content-detail-eyebrow mb-2"{% if eyebrowPagefindIgnore %} data-pagefind-ignore{% endif %}>{{ eyebrow }}</p>
-        <h1 class="content-detail-title mb-3"{% if titlePagefindWeight %} data-pagefind-weight="{{ titlePagefindWeight }}"{% endif %}>{{ title }}</h1>
+        <h1 class="content-detail-title{% if titleMode == "compact" %} content-detail-title--compact{% endif %} mb-3"{% if titlePagefindWeight %} data-pagefind-weight="{{ titlePagefindWeight }}"{% endif %}>{{ title }}</h1>
         {% if lead %}<p class="content-detail-lead mb-{{ leadMb }}"{% if leadPagefindWeight %} data-pagefind-weight="{{ leadPagefindWeight }}"{% endif %}>{{ lead | safe }}</p>{% endif %}
         {{ caller() }}
       </div>

@@ -30,13 +30,30 @@ test.describe("A. 405040Y implementation-scoped peer group (courseId + periodId)
     luento2: PAGES.courseLuento2,
     luento3: PAGES.courseLuento3
   })) {
-    test(`${name}: heading is 'Samassa kurssitoteutuksessa' and copy names the implementation`, async ({ page }) => {
+    test(`${name}: unified Kurssitoteutus section names the implementation via user-safe labels`, async ({ page }) => {
+      // PRESENTATION-COMPOSITION-01: the backlink and peer sections are
+      // combined into a single "Kurssitoteutus" section whenever a
+      // verified course-implementation backlink exists (always true for
+      // 405040Y). The section:
+      //   - carries the shared "content-detail-course-peers--implementation"
+      //     class so implementation-mode CSS keeps applying
+      //   - identifies the implementation via user-safe labels
+      //     (courseName + semesterLabel) — never raw periodId
+      //   - shows the peer sub-heading "Muut tämän toteutuksen materiaalit"
+      //   - does NOT surface course-fallback ambiguity copy
       const html = await page.request.get(url).then((r) => r.text());
-      expect(html, "heading Samassa kurssitoteutuksessa").toContain("Samassa kurssitoteutuksessa");
+      expect(html, "unified Kurssitoteutus heading").toMatch(/<h2[^>]*id="kurssitoteutus-heading"[^>]*>[^<]*Kurssitoteutus[^<]*<\/h2>/);
+      expect(html, "peer sub-heading").toContain("Muut tämän toteutuksen materiaalit");
       expect(html, "implementation-scoped modifier class").toContain("content-detail-course-peers--implementation");
       expect(html, "does NOT carry course-fallback class").not.toContain("content-detail-course-peers--course-fallback");
-      expect(html, "copy names courseId 405040Y").toContain("405040Y");
-      expect(html, "copy names periodId 2026-2027-a").toContain("2026-2027-a");
+      expect(html, "user-safe implementation identity: courseName").toContain("Teknologiatuettu oppiminen ja työskentely");
+      expect(html, "user-safe implementation identity: semesterLabel").toContain("Syyslukukausi 2026");
+      // periodId remains in machine-readable data attributes, but must
+      // not surface in user-visible Kurssitoteutus copy.
+      const courseSection = html.match(/<section class="content-detail-course-implementation[\s\S]*?<\/section>/);
+      expect(courseSection, "Kurssitoteutus section present").not.toBeNull();
+      const courseText = courseSection[0].replace(/<[^>]*>/g, " ");
+      expect(courseText, "no raw periodId in user-visible copy").not.toContain("2026-2027-a");
       // Must NOT show implementation-implying course-fallback copy on this branch.
       expect(html, "no cross-implementation ambiguity phrasing").not.toContain("Aineisto voi olla eri vuosien toteutuksista");
     });
@@ -61,7 +78,7 @@ test.describe("B. Course-implementation backlink on 405040Y pages", () => {
   })) {
     test(`${name}: backlink section rendered with correct course-page URL`, async ({ page }) => {
       const html = await page.request.get(url).then((r) => r.text());
-      expect(html, "backlink aside present").toContain('class="content-detail-course-implementation"');
+      expect(html, "backlink section present").toContain("content-detail-course-implementation");
       expect(html, "backlink heading Kurssitoteutus").toContain("Kurssitoteutus");
       expect(html, "backlink resolves to /opetus/teknologiatuettu-oppiminen/2026-2027-a/")
         .toContain(`href="${PAGES.coursePage}"`);

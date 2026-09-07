@@ -407,6 +407,21 @@ const CANVA_KEYWORD_RULES = [
   { terms: ["syntyvyys", "kouluikaluokat", "vaest"], keywords: ["väestöennuste"] }
 ];
 
+// PRESENTATION-COMPOSITION-01: descriptions are user-visible lead copy
+// on the Presentation detail hero. Only genuinely human-written text
+// belongs there. The previous transcript-excerpt fallback (removed
+// below) surfaced first-slide raw content — often URL dumps, bullet
+// lists, or repeated titles — as if it were a description. Root-cause
+// evidence: `ss-luento-3-suunnittelu-ja-pedagogiset-mallit-410014y-…`
+// rendered "410014Y … Suunnittelu ja pedagogiset mallit • http://www.edu.fi/…
+// • http://www.oph.fi/… • http://oulunopetussuunnitelma.wordpress.com/…"
+// as the hero lead because slideshare-content.json entry 25871563 has
+// an empty `description` and its transcript begins with a source-URL
+// list.
+//
+// Transcripts remain available for Pagefind's separate index (they are
+// read directly from slideshare-content.json into the Pagefind stream);
+// this change only stops them from being reused as user-facing prose.
 function deriveSlideshareDescription(item = {}, match = null) {
   const localDescription = String(item?.description || "").trim();
   if (!isGenericSlideshareDescription(localDescription)) return localDescription;
@@ -416,9 +431,9 @@ function deriveSlideshareDescription(item = {}, match = null) {
     return remoteDescription;
   }
 
-  const transcriptLead = transcriptExcerpt(match?.transcript || "");
-  if (transcriptLead) return transcriptLead;
-
+  // No genuine human description available. Return the generic local
+  // value so downstream generic-detection can decide to omit the lead
+  // rather than fabricate one from raw transcript content.
   return localDescription;
 }
 

@@ -22,7 +22,14 @@ layout: base.njk
   {% set sourceText = "YouTube" %}
 {% endif %}
 {% set isVideoPreview = publicSourceHref and ("youtube.com" in publicSourceHref or "youtu.be" in publicSourceHref) %}
-{% set hasPresentationContext = event or audience or presentationContextSummary or teachingUnitLabel or kategoria or jarjestaja or location %}
+{# PRESENTATION-COMPOSITION-01: the KURSSITOTEUTUS section below owns
+   the course-implementation identity (courseId + courseName + semester).
+   Käyttöyhteys must not repeat that same relationship via
+   `presentationContextSummary` when a verified implementation backlink
+   exists, or the same fact reads twice. Suppress it there; the
+   Käyttöyhteys card still renders for its other independent fields. #}
+{% set showContextSummary = presentationContextSummary and not courseImplementationBacklink %}
+{% set hasPresentationContext = event or audience or showContextSummary or teachingUnitLabel or kategoria or jarjestaja or location %}
 {# Kempele semantic verification: three INDEPENDENT canonical
    Presentation type-specific fields (Canonical Content v1 §3):
      location   — geographic place        (e.g. "Kempele")
@@ -75,7 +82,8 @@ layout: base.njk
   aside=(presentationHeroAside if thumbnail else null),
   eyebrowPagefindIgnore=true,
   titlePagefindWeight="10",
-  leadPagefindWeight="6"
+  leadPagefindWeight="6",
+  titleMode="compact"
 ) %}
   <div class="content-detail-meta" aria-label="Esityksen perustiedot" data-pagefind-ignore>
     <span>{{ sourceText }}</span>
@@ -141,7 +149,7 @@ layout: base.njk
               <dd>{{ audience }}</dd>
             </div>
             {% endif %}
-            {% if presentationContextSummary %}
+            {% if showContextSummary %}
             <div>
               <dt>Opetuskonteksti</dt>
               <dd>{{ presentationContextSummary }}</dd>
@@ -158,60 +166,46 @@ layout: base.njk
         {% endif %}
       </div>
 
-      {# COURSE-RELATION-UX-01: adaptive peer section.
-           mode="implementation" — current item has courseId + periodId
-             AND ≥1 canonical peer shares BOTH. Heading names the
-             specific implementation.
-           mode="course-fallback" — current item has courseId but
-             periodId is unknown; peers match courseId only and copy
-             makes cross-implementation ambiguity explicit.
-           periodId is never inferred (per CANONICAL-COURSE-PERIODID-01).
-           Empty state → whole section omitted (no placeholder text).
-           DETAIL-UX-01C-B-COURSE regression counts preserved by
-           adaptive fallback branch. Sequence order NOT introduced —
-           DETAIL-UX-SEQUENCE-01 stays CLOSED / DEFERRED. #}
-      {% if coursePeerRelation and coursePeerRelation.peers and coursePeerRelation.peers.length %}
-      <section class="content-detail-course-peers content-detail-course-peers--{{ coursePeerRelation.mode }}" aria-labelledby="samalla-kurssilla-heading">
-        <h2 id="samalla-kurssilla-heading" class="h5 fw-bold mb-3">
-          {% if coursePeerRelation.mode == "implementation" %}
+      {# PRESENTATION-COMPOSITION-01: Kurssitoteutus — unified course
+         relationship section. Combines:
+           1. Course-implementation backlink (when a verified local
+              /opetus/ page exists for the exact (courseId, periodId)).
+           2. Same-implementation / same-course peers.
+         Same conditions as before — the underlying data helpers
+         (`courseImplementationBacklink`, `coursePeerRelation`) are
+         unchanged. The two used to render as separate sibling sections,
+         which repeated the "this belongs to course X" fact twice and
+         fragmented the user's view of the course relationship. The
+         combined section shows the course identity once, then the
+         actions and peers as one coherent group.
+
+         Deliberate rendering rules:
+           • Opaque `periodId` (e.g. "2013-2014-a") is never surfaced;
+             we use only trusted display labels (`courseName`,
+             `semesterLabel`, `period` letter, `academicYear`).
+           • In implementation mode the header shows the specific
+             implementation identity via `semesterLabel`.
+           • In course-fallback mode the copy still explains the
+             cross-implementation ambiguity.
+           • Empty state (no backlink AND no peers) → section omitted.
+         COURSE-RELATION-UX-01 peer semantics and cap unchanged.
+         DETAIL-UX-SEQUENCE-01 remains CLOSED / DEFERRED — no
+         sequence metadata is introduced. #}
+      {% set hasBacklink = courseImplementationBacklink and (courseImplementationBacklink.lang == currentLang or (currentLang == "fi" and courseImplementationBacklink.lang == "fi")) %}
+      {% set hasPeers = coursePeerRelation and coursePeerRelation.peers and coursePeerRelation.peers.length %}
+      {% if hasBacklink or hasPeers %}
+      <section class="content-detail-course-implementation{% if hasPeers %} content-detail-course-peers content-detail-course-peers--{{ coursePeerRelation.mode }}{% endif %}" aria-labelledby="kurssitoteutus-heading">
+        <h2 id="kurssitoteutus-heading" class="h5 fw-bold mb-2">
+          {% if hasBacklink %}
+            {{ "Course implementation" if currentLang == "en" else "Kurssitoteutus" }}
+          {% elif coursePeerRelation.mode == "implementation" %}
             {{ "In the same course implementation" if currentLang == "en" else "Samassa kurssitoteutuksessa" }}
           {% else %}
             {{ "From the same course" if currentLang == "en" else "Samalta opintojaksolta" }}
           {% endif %}
         </h2>
-        {% if coursePeerRelation.mode == "implementation" %}
-          <p class="text-muted small mb-3">
-            {% if currentLang == "en" %}Other materials from course implementation {{ coursePeerRelation.courseId }} ({{ coursePeerRelation.periodId }}).{% else %}Muut kurssitoteutuksen {{ coursePeerRelation.courseId }} ({{ coursePeerRelation.periodId }}) materiaalit.{% endif %}
-          </p>
-        {% else %}
-          <p class="text-muted small mb-3">
-            {% if currentLang == "en" %}Materials from course {{ coursePeerRelation.courseId }}{% if coursePeerRelation.courseName %} — {{ coursePeerRelation.courseName }}{% endif %}. Content may come from different yearly implementations.{% else %}Materiaaleja opintojaksolta {{ coursePeerRelation.courseId }}{% if coursePeerRelation.courseName %} — {{ coursePeerRelation.courseName }}{% endif %}. Aineisto voi olla eri vuosien toteutuksista.{% endif %}
-          </p>
-        {% endif %}
-        <ul class="list-unstyled mb-0 d-grid gap-2">
-          {% for peer in coursePeerRelation.peers %}
-          <li class="course-peer-item">
-            <a href="{{ peer.url }}" class="fw-semibold text-decoration-none d-block">{{ peer.title }}</a>
-            {% if peer.date %}<div class="text-muted small">{{ peer.date | dateFormat }}</div>{% endif %}
-          </li>
-          {% endfor %}
-        </ul>
-      </section>
-      {% endif %}
 
-      {# COURSE-RELATION-UX-01: DIRECT canonical relationship —
-         Presentation → its local course-implementation page. Rendered
-         only when a build-time reverse-lookup finds an exact
-         (courseId, periodId) match in src/opetus/*.md frontmatter. NOT
-         site orientation, NOT return-to-origin, NOT primary CTA. Not
-         rendered on Presentations without periodId (410014Y-class
-         historical). Not rendered when the current locale would trap
-         users in a wrong-locale course page. #}
-      {% if courseImplementationBacklink and (courseImplementationBacklink.lang == currentLang or (currentLang == "fi" and courseImplementationBacklink.lang == "fi")) %}
-      <aside class="content-detail-course-implementation" aria-labelledby="kurssitoteutus-heading">
-        <p class="text-uppercase small text-muted fw-semibold mb-1" id="kurssitoteutus-heading">
-          {{ "Course implementation" if currentLang == "en" else "Kurssitoteutus" }}
-        </p>
+        {% if hasBacklink %}
         <p class="mb-2 fw-semibold">
           {{ courseImplementationBacklink.courseName }}
           {% if courseImplementationBacklink.semesterLabel or courseImplementationBacklink.period %}
@@ -224,10 +218,31 @@ layout: base.njk
             </span>
           {% endif %}
         </p>
-        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ courseImplementationBacklink.pageUrl }}">
-          {{ "Open course page" if currentLang == "en" else "Avaa kurssisivu" }}
-        </a>
-      </aside>
+        <p class="mb-3">
+          <a class="btn btn-outline-primary rounded-pill px-4" href="{{ courseImplementationBacklink.pageUrl }}">
+            {{ "Open course page" if currentLang == "en" else "Avaa kurssisivu" }}
+          </a>
+        </p>
+        {% elif hasPeers and coursePeerRelation.mode == "course-fallback" %}
+        <p class="text-muted small mb-3">
+          {% if currentLang == "en" %}Materials from course {{ coursePeerRelation.courseId }}{% if coursePeerRelation.courseName %} — {{ coursePeerRelation.courseName }}{% endif %}. Content may come from different yearly implementations.{% else %}Materiaaleja opintojaksolta {{ coursePeerRelation.courseId }}{% if coursePeerRelation.courseName %} — {{ coursePeerRelation.courseName }}{% endif %}. Aineisto voi olla eri vuosien toteutuksista.{% endif %}
+        </p>
+        {% endif %}
+
+        {% if hasPeers %}
+        <p class="text-uppercase small text-muted fw-semibold mb-2">
+          {{ "Other materials from this implementation" if currentLang == "en" else "Muut tämän toteutuksen materiaalit" }}
+        </p>
+        <ul class="list-unstyled mb-0 d-grid gap-2">
+          {% for peer in coursePeerRelation.peers %}
+          <li class="course-peer-item">
+            <a href="{{ peer.url }}" class="fw-semibold text-decoration-none d-block">{{ peer.title }}</a>
+            {% if peer.date %}<div class="text-muted small">{{ peer.date | dateFormat }}</div>{% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </section>
       {% endif %}
 
       <div class="content-detail-related content-detail-related--presentation">

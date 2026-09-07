@@ -227,7 +227,27 @@ module.exports = {
     lang: "fi",
     eleventyComputed: {
         layout: () => "presentation-item.njk",
-        description: (data) => getPresentationRecord(data)?.description,
+        // PRESENTATION-COMPOSITION-01: fold the "no genuine description
+        // available" case (empty or placeholder "SlideShare-esitys") to
+        // null so downstream consumers omit their description surface
+        // rather than render placeholder text. This complements the
+        // getSlideshareDescription() change in presentationsPage.js
+        // that stopped falling back to raw transcript excerpts.
+        //   • Presentation hero lead is skipped (detail-hero.njk :78)
+        //   • `<meta name="description">` and OG/Twitter description in
+        //     _meta.njk fall back to the site description
+        //   • JSON-LD description falls back to the site description
+        //   • Pagefind indexing remains unchanged: it reads the
+        //     rendered HTML, not this eleventyComputed value.
+        description: (data) => {
+          const raw = String(getPresentationRecord(data)?.description || "").trim();
+          if (!raw) return undefined;
+          const normalized = raw.toLowerCase();
+          if (normalized === "slideshare-esitys" || normalized === "slideshare presentation" || normalized === "." || normalized === "-") {
+            return undefined;
+          }
+          return raw;
+        },
         categories: (data) => getPresentationRecord(data)?.categories,
         keywords: (data) => getPresentationRecord(data)?.keywords,
         source: (data) => getPresentationRecord(data)?.source || data.source,
