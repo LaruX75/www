@@ -64,8 +64,46 @@ function parseCoursePage(filePath) {
     period: extractCourseField(fm, "period") || "",
     creditsLabel: extractCourseStringField(fm, "creditsLabel") || "",
     teachingUnitLabel: extractCourseStringField(fm, "teachingUnitLabel") || "",
+    // OPETUS-CATALOG-UX-01B: `peppiUrl` presence is the authoritative
+    // signal that this implementation exists in the University of Oulu
+    // study guide right now. It is curated per-page from Peppi and can
+    // only be added when the implementation is live. Historical
+    // pre-Peppi-migration implementations deliberately omit it because
+    // the study guide has no detail data for those years (verified in
+    // PEPPI-API-SUITABILITY-01). Consumed by isCurrentImplementation()
+    // to drive the SSR current-vs-historical split on /opetus/.
+    peppiUrl: extractCourseStringField(fm, "peppiUrl") || "",
     lang: extractCourseStringField(fm, "lang") || "fi"
   };
+}
+
+// OPETUS-CATALOG-UX-01B classifier. Deliberately narrow: only presence
+// of a Peppi study-guide URL on the implementation frontmatter counts as
+// "currently published". This is not a new canonical status field on
+// Presentation frontmatter; it is a page-derived rule on already-existing
+// course-page metadata. No `current: true` / `archived: true` boolean is
+// stored anywhere.
+function isCurrentImplementation(impl) {
+  return typeof impl.peppiUrl === "string" && impl.peppiUrl.trim() !== "";
+}
+
+// Same course group can contain both current and historical
+// implementations. Split each group's implementations by the classifier;
+// keep the deterministic order already established by buildCatalog().
+function splitCatalogByCurrency(catalog) {
+  const current = [];
+  const historical = [];
+  for (const group of catalog) {
+    const currentImpls = group.implementations.filter(isCurrentImplementation);
+    const historicalImpls = group.implementations.filter((i) => !isCurrentImplementation(i));
+    if (currentImpls.length) {
+      current.push({ ...group, implementations: currentImpls });
+    }
+    if (historicalImpls.length) {
+      historical.push({ ...group, implementations: historicalImpls });
+    }
+  }
+  return { current, historical };
 }
 
 function buildCatalog(entries) {
@@ -123,6 +161,9 @@ function buildCoursePagesIndex() {
     byKey[key] = entry;
   }
 
+  const catalog = buildCatalog(Object.values(byKey));
+  const catalogSplit = splitCatalogByCurrency(catalog);
+
   return {
     // Serializable shape — Eleventy _data files are JSON-serialised into
     // the data cascade. Cannot expose a live Map here.
@@ -130,9 +171,15 @@ function buildCoursePagesIndex() {
     all: Object.values(byKey),
     // Catalog projection for /opetus/. It reuses the exact same locally
     // canonical course-page metadata as the Presentation backlink lookup.
-    catalog: buildCatalog(Object.values(byKey))
+    catalog,
+    // OPETUS-CATALOG-UX-01B: current vs historical split derived from
+    // the peppiUrl signal. See isCurrentImplementation() for the rule.
+    catalogCurrent: catalogSplit.current,
+    catalogHistorical: catalogSplit.historical
   };
 }
 
 module.exports = buildCoursePagesIndex();
 module.exports.buildCoursePagesIndex = buildCoursePagesIndex;
+module.exports.isCurrentImplementation = isCurrentImplementation;
+module.exports.splitCatalogByCurrency = splitCatalogByCurrency;
