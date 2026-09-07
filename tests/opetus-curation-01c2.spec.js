@@ -151,23 +151,47 @@ test.describe("E. /opetus/ catalog auto-discovers the new implementation", () =>
   });
 
   test("catalog remains derived from src/opetus/*.md (no handwritten catalog entry)", () => {
+    // OPETUS-CATALOG-UX-01B split the catalog into two projections
+    // (coursePages.catalogCurrent, coursePages.catalogHistorical) built
+    // from the same buildCoursePagesIndex() output. The invariant that
+    // matters here is: neither the new 2014-2015 URL nor the existing
+    // 2013-2014 URL is handwritten in the template.
     const landing = fs.readFileSync(path.join(ROOT, "src", "fi", "opetus.md"), "utf8");
-    expect(landing).toContain("{% for course in coursePages.catalog %}");
+    expect(landing).toContain("coursePages.catalogCurrent");
+    expect(landing).toContain("coursePages.catalogHistorical");
     // No handwritten reference to the new 2014 implementation URL
     expect(landing).not.toContain('href="/opetus/tieto-ja-viestintatekniikka-pedagogisena-tyovalineena/2014-2015-a/"');
     // Nor to the 2013 implementation URL
     expect(landing).not.toContain('href="/opetus/tieto-ja-viestintatekniikka-pedagogisena-tyovalineena/2013-2014-a/"');
   });
 
-  test("OPETUS-CATALOG-UX-01 full-row implementation link markup remains intact", async ({ page }) => {
+  test("both 410014Y implementations land under Aiemmat kurssitoteutukset (not under Nykyinen opetus)", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01B: the academicYear classifier routes any
+    // implementation whose academic year is earlier than today's to the
+    // historical section. Both 2013-2014 and 2014-2015 are historical.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    const catalog = html.match(/<div class="vstack gap-3" data-opetus-catalog>[\s\S]*?<\/section>/)[0];
-    // Full-row interactive anchor
-    expect(catalog).toMatch(/<a[^>]*class="list-group-item list-group-item-action[^"]*"[^>]*data-opetus-implementation/);
-    // No pill CTA per implementation
-    expect(catalog).not.toMatch(/btn btn-primary rounded-pill[\s\S]*?Avaa kurssisivu/);
-    // No oversized padding on catalog cards
-    expect(catalog).not.toMatch(/data-opetus-course[\s\S]*?p-4 p-lg-5/);
+    const current = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
+    const historical = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
+    expect(historical).toContain('data-course-id="410014Y"');
+    expect(historical).toContain('data-period-id="2014-2015-a"');
+    expect(historical).toContain('data-period-id="2013-2014-a"');
+    expect(current).not.toContain('data-course-id="410014Y"');
+    expect(current).not.toContain('data-period-id="2014-2015-a"');
+    expect(current).not.toContain('data-period-id="2013-2014-a"');
+  });
+
+  test("OPETUS-CATALOG-UX-01 full-row implementation link markup remains intact in both sections", async ({ page }) => {
+    const html = await page.request.get(OPETUS).then((r) => r.text());
+    const current = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
+    const historical = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
+    for (const catalog of [current, historical]) {
+      // Full-row interactive anchor
+      expect(catalog).toMatch(/<a[^>]*class="list-group-item list-group-item-action[^"]*"[^>]*data-opetus-implementation/);
+      // No pill CTA per implementation
+      expect(catalog).not.toMatch(/btn btn-primary rounded-pill[\s\S]*?Avaa kurssisivu/);
+      // No oversized padding on catalog cards
+      expect(catalog).not.toMatch(/data-opetus-course[\s\S]*?p-4 p-lg-5/);
+    }
   });
 });
 
