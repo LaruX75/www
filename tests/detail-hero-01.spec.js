@@ -91,7 +91,11 @@ for (const [domain, page] of Object.entries(PAGES)) {
         // Migrated: shared .content-detail-hero + variant modifier
         expect(html, `${page.url} carries content-detail-hero section`).toContain("content-detail-hero");
         expect(html, `${page.url} carries variant modifier`).toContain(`content-detail-hero--${page.variant}`);
-        expect(html, `${page.url} title uses shared .content-detail-title class`).toContain('class="content-detail-title mb-3"');
+        // DETAIL-HERO-UX-02 opt-in variant: Presentation hero also carries
+        // the scoped compact typography class. Every migrated consumer
+        // still uses the shared .content-detail-title base class and
+        // preserves the mb-3 spacing utility.
+        expect(html, `${page.url} title uses shared .content-detail-title class`).toMatch(/class="content-detail-title(?: content-detail-title--compact)? mb-3"/);
       } else {
         // Thesis: kept its own card+badge hero pattern on purpose
         expect(html, `${page.url} thesis card hero present`).toMatch(/card shadow-sm/);
@@ -148,7 +152,7 @@ test.describe("Detail hero — cross-domain invariants", () => {
     for (const [name, cfg] of migrated) {
       const html = await pw.request.get(cfg.url).then((r) => r.text());
       expect(html, `${name}: .content-detail-eyebrow`).toContain('class="content-detail-eyebrow mb-2"');
-      expect(html, `${name}: .content-detail-title mb-3`).toContain('class="content-detail-title mb-3"');
+      expect(html, `${name}: .content-detail-title mb-3`).toMatch(/class="content-detail-title(?: content-detail-title--compact)? mb-3"/);
       expect(html, `${name}: variant modifier`).toContain(`content-detail-hero--${cfg.variant}`);
     }
   });

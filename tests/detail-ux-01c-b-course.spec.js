@@ -39,13 +39,20 @@ test.describe("A. Positive — 405040Y peer group (small, exact expectation)", (
       expect(html, "peer section present").toContain('content-detail-course-peers');
       const peerCount = (html.match(/course-peer-item/g) || []).length;
       expect(peerCount, "exactly 2 peers rendered").toBe(2);
-      // COURSE-RELATION-UX-01: 405040Y now renders implementation-scoped
-      // copy (all 3 luentos share courseId=405040Y AND periodId=2026-2027-a).
-      // Heading + descriptive line name the implementation, not the
-      // course alone. Peer count is unchanged.
-      expect(html, "descriptive line names the course implementation").toContain(
-        "Muut kurssitoteutuksen 405040Y (2026-2027-a) materiaalit"
+      // PRESENTATION-COMPOSITION-01: the previous descriptive line
+      // ("Muut kurssitoteutuksen 405040Y (2026-2027-a) materiaalit")
+      // echoed the raw periodId in user-visible copy. The unified
+      // Kurssitoteutus section identifies the implementation via
+      // user-safe labels (courseName + semesterLabel) above the peers.
+      // The peer sub-heading is a stable, user-safe label. Peer count
+      // is unchanged from COURSE-RELATION-UX-01.
+      expect(html, "peer sub-heading names 'this implementation'").toContain(
+        "Muut tämän toteutuksen materiaalit"
       );
+      const courseSection = html.match(/<section class="content-detail-course-implementation[\s\S]*?<\/section>/);
+      expect(courseSection, "Kurssitoteutus section present").not.toBeNull();
+      const courseText = courseSection[0].replace(/<[^>]*>/g, " ");
+      expect(courseText, "no raw periodId in user-visible copy").not.toContain("2026-2027-a");
     });
 
     test(`${name} does NOT link back to itself`, async ({ page }) => {
