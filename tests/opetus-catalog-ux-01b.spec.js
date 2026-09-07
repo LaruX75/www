@@ -2,7 +2,12 @@ const fs = require("fs");
 const path = require("path");
 const { test, expect } = require("@playwright/test");
 const coursePages = require("../src/_data/coursePages");
-const { isCurrentImplementation, splitCatalogByCurrency } = require("../src/_data/coursePages");
+const {
+  isCurrentImplementation,
+  splitCatalogByCurrency,
+  extractAcademicYearStart,
+  computeCurrentAcademicYearStart
+} = require("../src/_data/coursePages");
 
 const OPETUS = "/opetus/";
 const ROOT = path.resolve(__dirname, "..");
@@ -11,37 +16,78 @@ const LANDING_PATH = path.join(ROOT, "src", "fi", "opetus.md");
 test.describe.configure({ mode: "serial" });
 
 test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
-  test.describe("A. Grouping helper (peppiUrl → current)", () => {
-    test("isCurrentImplementation is true only when a live peppiUrl is present", () => {
-      expect(isCurrentImplementation({ peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027" })).toBe(true);
-      expect(isCurrentImplementation({ peppiUrl: "" })).toBe(false);
-      expect(isCurrentImplementation({})).toBe(false);
-      expect(isCurrentImplementation({ peppiUrl: "   " })).toBe(false);
+  test.describe("A. Grouping helper (academicYear → current/historical)", () => {
+    test("extractAcademicYearStart parses en-dash, em-dash and plain-hyphen 'YYYY–YYYY' identifiers", () => {
+      expect(extractAcademicYearStart("2026–2027")).toBe(2026);
+      expect(extractAcademicYearStart("2013—2014")).toBe(2013);
+      expect(extractAcademicYearStart("2015-2016")).toBe(2015);
+      expect(extractAcademicYearStart(" 2020–2021 ")).toBe(2020);
+      expect(Number.isNaN(extractAcademicYearStart(""))).toBe(true);
+      expect(Number.isNaN(extractAcademicYearStart(undefined))).toBe(true);
+      expect(Number.isNaN(extractAcademicYearStart("2026"))).toBe(true);
     });
 
-    test("splitCatalogByCurrency routes each implementation by peppiUrl signal, preserving grouping order", () => {
+    test("computeCurrentAcademicYearStart follows Oulu's 1 Aug – 31 Jul academic year", () => {
+      // Jan through Jul: current academic year started the PREVIOUS calendar year.
+      expect(computeCurrentAcademicYearStart(new Date(Date.UTC(2027, 0, 15)))).toBe(2026);
+      expect(computeCurrentAcademicYearStart(new Date(Date.UTC(2027, 6, 31)))).toBe(2026);
+      // Aug through Dec: current academic year started this calendar year.
+      expect(computeCurrentAcademicYearStart(new Date(Date.UTC(2027, 7, 1)))).toBe(2027);
+      expect(computeCurrentAcademicYearStart(new Date(Date.UTC(2027, 11, 31)))).toBe(2027);
+    });
+
+    test("isCurrentImplementation compares implementation academic year against the current academic year", () => {
+      const septemberThisYear = new Date(Date.UTC(2026, 8, 7)); // 2026-09-07 — Nykyinen: 2026–2027
+      // Current or upcoming implementations classify as current.
+      expect(isCurrentImplementation({ academicYear: "2026–2027" }, septemberThisYear)).toBe(true);
+      expect(isCurrentImplementation({ academicYear: "2027–2028" }, septemberThisYear)).toBe(true);
+      // Older academic years classify as historical.
+      expect(isCurrentImplementation({ academicYear: "2013–2014" }, septemberThisYear)).toBe(false);
+      expect(isCurrentImplementation({ academicYear: "2014–2015" }, septemberThisYear)).toBe(false);
+      expect(isCurrentImplementation({ academicYear: "2025–2026" }, septemberThisYear)).toBe(false);
+      // Missing / malformed academic year is treated as unclassified → historical.
+      expect(isCurrentImplementation({}, septemberThisYear)).toBe(false);
+      expect(isCurrentImplementation({ academicYear: "" }, septemberThisYear)).toBe(false);
+    });
+
+    test("A resource pointer (peppiUrl or any external URL) does NOT determine temporal status", () => {
+      // peppiUrl is a source/orientation link, not a status field. Even
+      // if a historical implementation carries an archive Peppi link, it
+      // must remain historical.
+      const septemberThisYear = new Date(Date.UTC(2026, 8, 7));
+      const historicalWithPeppi = {
+        academicYear: "2013–2014",
+        peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/410014Y/3213?period=2013-2014"
+      };
+      expect(isCurrentImplementation(historicalWithPeppi, septemberThisYear)).toBe(false);
+      // And the converse: a current implementation without a Peppi link
+      // (pending curation) must still be classified as current.
+      const currentWithoutPeppi = { academicYear: "2026–2027" };
+      expect(isCurrentImplementation(currentWithoutPeppi, septemberThisYear)).toBe(true);
+    });
+
+    test("splitCatalogByCurrency routes each implementation by academic-year comparison, preserving grouping order", () => {
+      const septemberThisYear = new Date(Date.UTC(2026, 8, 7));
       const stub = [
         {
           courseId: "TEST1",
           courseName: "Test course 1",
           implementations: [
-            { periodId: "future-a", academicYear: "2027–2028", peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/TEST1/9999?period=2027-2028" },
-            { periodId: "past-a", academicYear: "2020–2021", peppiUrl: "" }
+            { periodId: "future-a", academicYear: "2027–2028" },
+            { periodId: "past-a", academicYear: "2020–2021" }
           ]
         },
         {
           courseId: "TEST2",
           courseName: "Test course 2 archival-only",
           implementations: [
-            { periodId: "only-past-a", academicYear: "2015–2016", peppiUrl: "" }
+            { periodId: "only-past-a", academicYear: "2015–2016" }
           ]
         }
       ];
-      const { current, historical } = splitCatalogByCurrency(stub);
-      // Current: TEST1 with only the future impl; TEST2 excluded.
+      const { current, historical } = splitCatalogByCurrency(stub, septemberThisYear);
       expect(current.map((c) => c.courseId)).toEqual(["TEST1"]);
       expect(current[0].implementations.map((i) => i.periodId)).toEqual(["future-a"]);
-      // Historical: TEST1 with past impl + TEST2 with only-past.
       expect(historical.map((c) => c.courseId)).toEqual(["TEST1", "TEST2"]);
       expect(historical[0].implementations.map((i) => i.periodId)).toEqual(["past-a"]);
       expect(historical[1].implementations.map((i) => i.periodId)).toEqual(["only-past-a"]);
@@ -79,7 +125,7 @@ test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
   });
 
   test.describe("C. Section membership today", () => {
-    test("405040Y (with peppiUrl) is only in the current section", async ({ page }) => {
+    test("405040Y (academicYear 2026–2027, current) is only in the current section", async ({ page }) => {
       const html = await page.request.get(OPETUS).then((r) => r.text());
       const currentHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
       const historicalHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
@@ -89,7 +135,7 @@ test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
       expect(historicalHtml).not.toContain('data-period-id="2026-2027-a"');
     });
 
-    test("410014Y / 2013–2014 (no peppiUrl) is only in the historical section", async ({ page }) => {
+    test("410014Y / 2013–2014 (older academic year, historical) is only in the historical section", async ({ page }) => {
       const html = await page.request.get(OPETUS).then((r) => r.text());
       const currentHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
       const historicalHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
@@ -170,30 +216,30 @@ test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
   });
 
   test.describe("F. Future compatibility with OPETUS-CURATION-01C2 (2014-2015)", () => {
-    test("the grouping helper would land a hypothetical no-peppi 2014-2015 impl under historical", () => {
-      // This mirrors the frontmatter shape that PR #227 introduces.
-      // isCurrentImplementation must return false — the impl has no peppiUrl.
+    test("the grouping helper would land a hypothetical 2014-2015 impl under historical", () => {
+      // This mirrors the frontmatter shape PR #227 introduces. The
+      // classifier compares academicYear against today's academic year;
+      // 2014-2015 is well in the past regardless of whether the page
+      // happens to carry a Peppi archive link.
+      const septemberThisYear = new Date(Date.UTC(2026, 8, 7));
       const future2014 = {
         courseId: "410014Y",
         periodId: "2014-2015-a",
         academicYear: "2014–2015",
-        semesterLabel: "Syksy 2014",
-        peppiUrl: ""
+        semesterLabel: "Syksy 2014"
       };
-      expect(isCurrentImplementation(future2014)).toBe(false);
-      // In splitCatalogByCurrency the impl lands in `historical`, keeping
-      // the 410014Y course card grouped with its existing historical 2013 sibling.
+      expect(isCurrentImplementation(future2014, septemberThisYear)).toBe(false);
       const stub = [
         {
           courseId: "410014Y",
           courseName: "Tieto- ja viestintätekniikka pedagogisena työvälineenä",
           implementations: [
             future2014,
-            { periodId: "2013-2014-a", academicYear: "2013–2014", semesterLabel: "Syksy 2013", peppiUrl: "" }
+            { periodId: "2013-2014-a", academicYear: "2013–2014", semesterLabel: "Syksy 2013" }
           ]
         }
       ];
-      const { current, historical } = splitCatalogByCurrency(stub);
+      const { current, historical } = splitCatalogByCurrency(stub, septemberThisYear);
       expect(current).toEqual([]);
       expect(historical.length).toBe(1);
       expect(historical[0].implementations.map((i) => i.periodId)).toEqual(["2014-2015-a", "2013-2014-a"]);

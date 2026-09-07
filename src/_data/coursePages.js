@@ -64,38 +64,59 @@ function parseCoursePage(filePath) {
     period: extractCourseField(fm, "period") || "",
     creditsLabel: extractCourseStringField(fm, "creditsLabel") || "",
     teachingUnitLabel: extractCourseStringField(fm, "teachingUnitLabel") || "",
-    // OPETUS-CATALOG-UX-01B: `peppiUrl` presence is the authoritative
-    // signal that this implementation exists in the University of Oulu
-    // study guide right now. It is curated per-page from Peppi and can
-    // only be added when the implementation is live. Historical
-    // pre-Peppi-migration implementations deliberately omit it because
-    // the study guide has no detail data for those years (verified in
-    // PEPPI-API-SUITABILITY-01). Consumed by isCurrentImplementation()
-    // to drive the SSR current-vs-historical split on /opetus/.
-    peppiUrl: extractCourseStringField(fm, "peppiUrl") || "",
     lang: extractCourseStringField(fm, "lang") || "fi"
   };
 }
 
-// OPETUS-CATALOG-UX-01B classifier. Deliberately narrow: only presence
-// of a Peppi study-guide URL on the implementation frontmatter counts as
-// "currently published". This is not a new canonical status field on
-// Presentation frontmatter; it is a page-derived rule on already-existing
-// course-page metadata. No `current: true` / `archived: true` boolean is
-// stored anywhere.
-function isCurrentImplementation(impl) {
-  return typeof impl.peppiUrl === "string" && impl.peppiUrl.trim() !== "";
+// OPETUS-CATALOG-UX-01B classifier. Derived at build time from the
+// canonical/local `academicYear` field on the course-page frontmatter,
+// compared against the University of Oulu academic-year calendar which
+// runs from 1 August to 31 July. An implementation is "current" iff its
+// academic year has not ended yet — i.e., its start year is >= the
+// start year of the academic year in progress today. A future year
+// counts as current so that "just announced" implementations appear
+// under Nykyinen opetus, not under Aiemmat kurssitoteutukset.
+//
+// This is deliberately temporal, not a source/orientation signal:
+// - The presence of a `peppiUrl` (or any other resource pointer) is NOT
+//   authoritative for temporal status. A historical implementation can
+//   legitimately still carry a Peppi archive link.
+// - No new field is stored on Presentation records or on
+//   `courseContexts[]`. No `current: true` / `archived: true` boolean.
+// - The comparison is numeric on the four-digit start year of the
+//   `academicYear` string (e.g., "2013–2014" → 2013, "2026–2027" →
+//   2026) so it is robust across en-dash / hyphen usage.
+
+function extractAcademicYearStart(academicYear) {
+  if (typeof academicYear !== "string") return NaN;
+  const m = academicYear.trim().match(/^(\d{4})[–—-](\d{4})$/);
+  return m ? Number(m[1]) : NaN;
+}
+
+function computeCurrentAcademicYearStart(today) {
+  const now = today instanceof Date ? today : new Date();
+  const y = now.getUTCFullYear();
+  const m = now.getUTCMonth(); // Jan = 0, Aug = 7
+  return m >= 7 ? y : y - 1;
+}
+
+function isCurrentImplementation(impl, today) {
+  const implStart = extractAcademicYearStart(impl && impl.academicYear);
+  if (!Number.isFinite(implStart)) return false;
+  return implStart >= computeCurrentAcademicYearStart(today);
 }
 
 // Same course group can contain both current and historical
 // implementations. Split each group's implementations by the classifier;
 // keep the deterministic order already established by buildCatalog().
-function splitCatalogByCurrency(catalog) {
+// The `today` override exists for deterministic testing; production
+// build-time calls with no argument use the current wall-clock date.
+function splitCatalogByCurrency(catalog, today) {
   const current = [];
   const historical = [];
   for (const group of catalog) {
-    const currentImpls = group.implementations.filter(isCurrentImplementation);
-    const historicalImpls = group.implementations.filter((i) => !isCurrentImplementation(i));
+    const currentImpls = group.implementations.filter((i) => isCurrentImplementation(i, today));
+    const historicalImpls = group.implementations.filter((i) => !isCurrentImplementation(i, today));
     if (currentImpls.length) {
       current.push({ ...group, implementations: currentImpls });
     }
@@ -183,3 +204,5 @@ module.exports = buildCoursePagesIndex();
 module.exports.buildCoursePagesIndex = buildCoursePagesIndex;
 module.exports.isCurrentImplementation = isCurrentImplementation;
 module.exports.splitCatalogByCurrency = splitCatalogByCurrency;
+module.exports.extractAcademicYearStart = extractAcademicYearStart;
+module.exports.computeCurrentAcademicYearStart = computeCurrentAcademicYearStart;

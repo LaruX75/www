@@ -36,53 +36,77 @@ is not yet complete.
 
 ## 3. Grouping rule (SSR-derived, no canonical status field)
 
-An implementation is **current** iff its course-page frontmatter carries
-a non-empty **`course.peppiUrl`**. Otherwise it is **historical**.
+An implementation is **current** iff the four-digit start year of its
+course-page frontmatter `academicYear` field is greater than or equal to
+the start year of the University of Oulu academic year in progress
+today.
 
-Why this signal:
+Formally:
 
-- `peppiUrl` is a hand-curated pointer at the University of Oulu study
-  guide URL for that specific implementation. It can only be added when
-  the implementation is live in that guide.
-- Historical pre-Peppi-migration implementations deliberately omit it
-  because the University's study guide has no detail data for those
-  years — verified in `docs/peppi-api-suitability-01-audit-2026-09-06.md`
-  (the backend `/api/course/{unitId}?period=YYYY-YYYY` returns 404 for
-  pre-Peppi curricula).
-- It is not a status boolean tacked onto Presentation records or a new
-  taxonomy. It is a page-level metadata field that already exists on the
-  current 405040Y course page and is deliberately absent from the
-  merged 2013 historical page.
-- It handles the future case symmetrically: when the site adds a new
-  currently-taught implementation, curators add its `peppiUrl` and the
-  catalog auto-classifies it. When an implementation drops out of the
-  current guide, curators remove `peppiUrl` and it auto-moves to the
-  historical section.
+- Oulu's academic year runs **1 August → 31 July**. The academic year
+  in progress today has start year equal to `today.getUTCFullYear()`
+  when the UTC month is Aug–Dec, or `today.getUTCFullYear() - 1` when
+  it is Jan–Jul.
+- Implementation `academicYear` is a string of the form `YYYY–YYYY`
+  (en-dash, em-dash and plain hyphen accepted). Start year =
+  `Number(YYYY[0])`.
+- An implementation is `current` iff `implStart >= currentStart`. An
+  academic year strictly earlier than today's is historical.
+- A future academic year (e.g., `2027–2028` while today's academic year
+  starts 2026) also classifies as current, so a "just announced"
+  implementation is visible under Nykyinen opetus rather than hiding in
+  the archive.
+
+Why this rule (over the earlier `peppiUrl` proxy):
+
+- `peppiUrl` is a **source / orientation link**, not a status field.
+  Peppi archive URLs can legitimately be curated on historical pages
+  (Peppi retains at least course-title-level historical records — see
+  `docs/peppi-api-suitability-01-audit-2026-09-06.md`), and a current
+  implementation may temporarily lack a Peppi link while curation is
+  pending. Neither case should flip the temporal grouping.
+- `academicYear` is direct temporal evidence. It is already present on
+  every course page for other display purposes; classification is a
+  pure read of that same string.
+- Nothing is stored on Presentation records or on `courseContexts[]`.
+  Zero new fields. No `current: true` / `archived: true` boolean. No
+  new taxonomy or context vocabulary. No Canonical Content v1 change.
 
 Implementation:
 
-- `src/_data/coursePages.js` gained one field extraction (`peppiUrl`) and
-  two small helpers:
-  - `isCurrentImplementation(impl)` — presence-of-peppiUrl predicate.
-  - `splitCatalogByCurrency(catalog)` — walks the existing `catalog`
-    projection and produces `{ current, historical }`, each carrying
-    the SAME course-group shape with implementations filtered by the
-    predicate. Course groups with only historical implementations are
-    excluded from `current`, and vice versa. Ordering within each group
-    is preserved from `buildCatalog()` (course by courseName ASC, then
-    implementations by `academicYear` DESC).
-- Two new module exports on the data cascade: `coursePages.catalogCurrent`
-  and `coursePages.catalogHistorical`.
-- Zero new fields on any Presentation record. Zero new fields on
-  `courseContexts[]`. Zero new taxonomy or context vocabulary. No
-  canonical schema change.
+- `src/_data/coursePages.js` exposes four small pure functions in
+  addition to the existing catalog projection:
+  - `extractAcademicYearStart(academicYear)` — regex-parses `YYYY–YYYY`
+    variants and returns the integer start year (`NaN` when malformed
+    or absent).
+  - `computeCurrentAcademicYearStart(today)` — deterministic
+    Aug 1 – Jul 31 wall-clock rule; `today` is overridable for tests.
+  - `isCurrentImplementation(impl, today)` — the classifier.
+  - `splitCatalogByCurrency(catalog, today)` — walks the existing
+    `catalog` projection and produces `{ current, historical }`.
+    Course groups with only historical implementations are excluded
+    from `current`, and vice versa. Ordering within each group is
+    preserved from `buildCatalog()`.
+- Two module exports on the data cascade: `coursePages.catalogCurrent`
+  and `coursePages.catalogHistorical`. Production builds pass no
+  `today` argument and use the wall-clock date; tests pass an explicit
+  `Date` for determinism.
+
+Deliberate simplification: this slice does **not** add a `peppiUrl`
+extraction to `src/_data/coursePages.js`. It was briefly added in an
+earlier version of this branch as the proxy classifier and has been
+removed — no other consumer of the projection uses it.
 
 ## 4. Current vs historical semantics today
 
-| Implementation | peppiUrl on course page | Section |
+| Implementation | academicYear | Section |
 |---|---|---|
-| 405040Y / `2026-2027-a` (Syyslukukausi 2026) | present (live Peppi link) | **Nykyinen opetus** |
-| 410014Y / `2013-2014-a` (Syksy 2013) | absent (pre-Peppi historical) | **Aiemmat kurssitoteutukset** |
+| 405040Y / `2026-2027-a` (Syyslukukausi 2026) | `2026–2027` (start = 2026, current) | **Nykyinen opetus** |
+| 410014Y / `2013-2014-a` (Syksy 2013) | `2013–2014` (start = 2013, past) | **Aiemmat kurssitoteutukset** |
+
+For reference, the wall-clock rule applied at closure time (today =
+2026-09-07 UTC): September → month index 8 ≥ 7 → current academic-year
+start = 2026. Both classifications above follow directly.
 
 Verified against the fresh built `_site/opetus/index.html`:
 
@@ -223,19 +247,21 @@ Metrics: `outputs/opetus-catalog-ux-01/metrics.json`.
 ## 12. Forward compatibility with PR #227 (OPETUS-CURATION-01C2)
 
 PR #227 is a bounded implementation slice that adds 410014Y /
-`2014-2015-a` (Syksy 2014). The new course page it introduces
-deliberately has no `peppiUrl` — Peppi has no detail data for 2014-2015
-either. Under this closure's rule, that implementation must land under
-"Aiemmat kurssitoteutukset" inside the same 410014Y course card as the
-existing 2013 sibling, newest first.
+`2014-2015-a` (Syksy 2014). The new course page it introduces carries
+`academicYear: "2014–2015"`. Under this closure's `academicYear`-based
+rule, that implementation lands under "Aiemmat kurssitoteutukset"
+inside the same 410014Y course card as the existing 2013 sibling,
+newest first — regardless of whether the page happens to also carry a
+Peppi archive link.
 
 `tests/opetus-catalog-ux-01b.spec.js` group **F** proves this
 programmatically without depending on PR #227:
 
-- `isCurrentImplementation({ …, peppiUrl: "" })` → `false`.
+- `isCurrentImplementation({ academicYear: "2014–2015" }, <today>)` →
+  `false` for any `today` from the 2015-2016 academic year onwards.
 - `splitCatalogByCurrency([{ courseId: "410014Y", implementations:
-  [2014, 2013] }])` → `historical` contains one 410014Y group whose
-  `implementations.map(i => i.periodId)` is `["2014-2015-a",
+  [2014, 2013] }], <today>)` → `historical` contains one 410014Y group
+  whose `implementations.map(i => i.periodId)` is `["2014-2015-a",
   "2013-2014-a"]`, and `current` is empty.
 
 When PR #227 lands after this slice, its own catalog assertions
@@ -288,11 +314,12 @@ Build: `npm run build:local` — exit 0.
 
 Test batch (Playwright, static `_site` serve):
 
-- `tests/opetus-catalog-ux-01b.spec.js` — **new: 16 tests across
-  7 groups (A grouping helper, B rendered sections, C section
+- `tests/opetus-catalog-ux-01b.spec.js` — **19 tests across 7 groups
+  (A grouping helper — 6 tests including one that pins "a source link
+  does not determine temporal status", B rendered sections, C section
   membership today, D component language preserved, E section-level
-  counts + grammar, F forward compatibility with PR #227, G
-  architecture boundaries). 16/16 green.**
+  counts + grammar, F forward compatibility with PR #227 via
+  `academicYear` comparison, G architecture boundaries). 19/19 green.**
 - `tests/opetus-catalog-ux-01.spec.js` — adjacent: 12/12 green (three
   regex-based assertions updated to walk BOTH catalog sections; test
   intent preserved).
@@ -306,7 +333,7 @@ Test batch (Playwright, static `_site` serve):
 - `tests/course-relation-ux-01.spec.js` — adjacent: 20/20 green.
 - `tests/opetus-curation-01b2.spec.js` — adjacent: 4/4 green.
 
-Combined batch: **76/76 green.**
+Combined batch: **79/79 green.**
 
 ## 16. Changed files
 
@@ -317,9 +344,11 @@ Combined batch: **76/76 green.**
   `courseCountBadge()` macro; manual-curation notice added under the
   historical section; row layout stacked (title above meta);
   `bg-transparent` on every row.
-- `src/_data/coursePages.js` — extracts `peppiUrl` from each course
-  page; exports `isCurrentImplementation`, `splitCatalogByCurrency`,
-  `catalogCurrent`, `catalogHistorical`.
+- `src/_data/coursePages.js` — exposes `extractAcademicYearStart`,
+  `computeCurrentAcademicYearStart`, `isCurrentImplementation`,
+  `splitCatalogByCurrency`, `catalogCurrent`, `catalogHistorical`. The
+  classifier reads only the `academicYear` field that is already part
+  of the existing course-page projection.
 - `tests/opetus-catalog-ux-01.spec.js` — three assertions updated for
   the two-section structure; test intent preserved (courses render as
   distinct groups, list-group-item-action row, no oversized CTA).
