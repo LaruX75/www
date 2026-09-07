@@ -167,10 +167,17 @@ test.describe("H. Accessibility / semantics", () => {
       .toMatch(/<h2[^>]*id="opetus-liittyvat-heading"[^>]*>/);
   });
 
-  test("primary CTA to course is a real SSR link with expected text", async ({ page }) => {
+  test("primary SSR link to the course page exists", async ({ page }) => {
+    // OPETUS-CATALOG-UX-01: the /opetus/ catalog no longer duplicates a large
+    // primary-pill CTA on every implementation. The affordance is now the
+    // linked implementation title inside the compact course-group card
+    // (Precedent: presentations context-group linked rows). The important
+    // invariant preserved by this test is that the /opetus/ landing carries
+    // a real SSR anchor to the 405040Y course-implementation page — not the
+    // exact button styling that has since been replaced.
     const html = await page.request.get(OPETUS).then((r) => r.text());
-    expect(html, "btn-primary CTA to course present in SSR").toMatch(
-      new RegExp(`<a[^>]*class="btn btn-primary[^"]*"[^>]*href="${COURSE.replace(/\//g, "\\/")}"[^>]*>[^<]*Avaa kurssisivu[^<]*<\\/a>`)
+    expect(html, "SSR link to course page present").toMatch(
+      new RegExp(`<a[^>]*href="${COURSE.replace(/\//g, "\\/")}"[^>]*>`)
     );
   });
 });
