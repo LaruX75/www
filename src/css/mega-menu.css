@@ -603,6 +603,86 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   gap: 0.7rem;
 }
 
+/* Audit prototype: one interaction shell, while Nunjucks still owns every link. */
+.mobile-panel-prototype {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mobile-panel-prototype-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mobile-panel-prototype-heading,
+.mobile-panel-prototype-header h6 {
+  margin: 0;
+  color: var(--mobile-nav-text);
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.mobile-panel-prototype-header {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.mobile-panel-prototype-back,
+.mobile-panel-prototype-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.72rem 0.85rem;
+  color: var(--mobile-nav-text);
+  font: inherit;
+  font-weight: 750;
+  text-align: left;
+  text-decoration: none;
+  border: 1px solid var(--mobile-nav-soft-border);
+  border-radius: 0.9rem;
+  background: var(--mobile-nav-soft-bg);
+}
+
+.mobile-panel-prototype-back {
+  justify-content: flex-start;
+  width: fit-content;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.88rem;
+}
+
+.mobile-panel-prototype-row:hover,
+.mobile-panel-prototype-row:focus-visible,
+.mobile-panel-prototype-back:hover,
+.mobile-panel-prototype-back:focus-visible {
+  color: var(--mega-nav-hover-color);
+  text-decoration: none;
+}
+
+.mobile-panel-prototype-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.mobile-panel-prototype-row i {
+  color: var(--mega-icon-color);
+}
+
+.mobile-panel-prototype-choices {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.mobile-nav-panel.is-panel-enhanced .mobile-nav-feature-grid,
+.mobile-nav-panel.is-panel-enhanced .mobile-nav-card-stack {
+  display: none;
+}
+
 .mobile-nav-card {
   border: 1px solid var(--mobile-nav-card-border);
   border-radius: 1.15rem;

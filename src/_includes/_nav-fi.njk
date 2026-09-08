@@ -458,6 +458,82 @@
       </button>
     </div>
 
+    <div class="mobile-panel-prototype" data-mobile-panel-system aria-label="Mobiilivalikon paneeliprototyyppi">
+      <section class="mobile-panel-prototype-panel" data-mobile-panel="root">
+        <h6 class="mobile-panel-prototype-heading">Päävalikko</h6>
+        <div class="mobile-panel-prototype-choices">
+          <a class="mobile-panel-prototype-row" href="{{ navMe.url or '/tietoa/' }}"><span><i class="{{ navMe.icon or 'bi bi-person-fill' }}"></i>Minä</span></a>
+          <button class="mobile-panel-prototype-row" type="button" data-mobile-panel-open="work"><span><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i>Työ</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          <a class="mobile-panel-prototype-row" href="{{ navPolitics.url or '/politiikka/' }}"><span><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i>Politiikka</span></a>
+          <a class="mobile-panel-prototype-row" href="{{ navWritings.url or '/kynasta/' }}"><span><i class="{{ navWritings.icon or 'bi bi-pencil-fill' }}"></i>Kynästä</span></a>
+          <button class="mobile-panel-prototype-row" type="button" data-mobile-panel-open="media"><span><i class="{{ navMedia.icon or 'bi bi-camera-reels-fill' }}"></i>Mediassa</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          <button class="mobile-panel-prototype-row" type="button" data-mobile-panel-open="contact"><span><i class="{{ navContact.icon or 'bi bi-envelope' }}"></i>Ota yhteyttä</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+        </div>
+      </section>
+
+      <section class="mobile-panel-prototype-panel" data-mobile-panel="work" aria-labelledby="mobilePanelWorkTitle">
+        <div class="mobile-panel-prototype-header">
+          <button class="mobile-panel-prototype-back" type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button>
+          <h6 id="mobilePanelWorkTitle" tabindex="-1">Työ</h6>
+        </div>
+        <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
+        <div class="mobile-panel-prototype-choices">
+          {% for section in workMegaMenu.sections %}
+            <button class="mobile-panel-prototype-row" type="button" data-mobile-panel-open="work-{{ loop.index }}"><span>{{ section.heading }}</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+          {% endfor %}
+        </div>
+      </section>
+
+      {% for section in workMegaMenu.sections %}
+        <section class="mobile-panel-prototype-panel" data-mobile-panel="work-{{ loop.index }}" aria-labelledby="mobilePanelWorkSection{{ loop.index }}Title">
+          <div class="mobile-panel-prototype-header">
+            <button class="mobile-panel-prototype-back" type="button" data-mobile-panel-back="work"><i class="bi bi-arrow-left" aria-hidden="true"></i> Työ</button>
+            <h6 id="mobilePanelWorkSection{{ loop.index }}Title" tabindex="-1">{{ section.heading }}</h6>
+          </div>
+          {% if section.headingHref %}<a class="mobile-nav-primary-link" href="{{ section.headingHref }}">Avaa {{ section.heading }}-sivu</a>{% endif %}
+          <div class="mobile-panel-prototype-choices">
+            {% for link in section.links %}
+              {% if link.href != section.headingHref %}
+                <a class="mobile-panel-prototype-row" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+
+      <section class="mobile-panel-prototype-panel" data-mobile-panel="media" aria-labelledby="mobilePanelMediaTitle">
+        <div class="mobile-panel-prototype-header">
+          <button class="mobile-panel-prototype-back" type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button>
+          <h6 id="mobilePanelMediaTitle" tabindex="-1">Mediassa</h6>
+        </div>
+        <a class="mobile-nav-primary-link" href="{{ navMedia.url or '/mediassa/' }}">Avaa Mediassa-sivu</a>
+        <div class="mobile-panel-prototype-choices">
+          {% for section in mediaMegaMenu.sections %}
+            {% for link in section.links %}
+              {% if link.href != (navMedia.url or '/mediassa/') %}
+                <a class="mobile-panel-prototype-row" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+
+      <section class="mobile-panel-prototype-panel" data-mobile-panel="contact" aria-labelledby="mobilePanelContactTitle">
+        <div class="mobile-panel-prototype-header">
+          <button class="mobile-panel-prototype-back" type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button>
+          <h6 id="mobilePanelContactTitle" tabindex="-1">Ota yhteyttä</h6>
+        </div>
+        <a class="mobile-nav-primary-link" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa yhteystiedot</a>
+        <div class="mobile-panel-prototype-choices">
+          {% for column in contactMegaMenu.columns %}
+            {% for link in column.links %}
+              <a class="mobile-panel-prototype-row" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
     <div class="mobile-nav-feature-grid">
       <a class="mobile-nav-feature-card{% if page.url == '/' %} is-active{% endif %}" href="{{ navHome.url or '/' }}">
         <span class="mobile-nav-feature-icon"><i class="{{ navHome.icon or 'bi bi-house-door-fill' }}"></i></span>

@@ -63,6 +63,54 @@
         }
       }
 
+      // MOBILE-NAV-PANEL-SYSTEM-01 audit prototype: Nunjucks renders every
+      // panel and link. This controller only switches the visible SSR panel
+      // and restores focus on Back/close; it has no navigation data model.
+      const mobilePanelSystem = document.querySelector('[data-mobile-panel-system]');
+      if (mobilePanelSystem) {
+        const mobileOffcanvas = mobilePanelSystem.closest('.offcanvas');
+        const mobilePanels = Array.from(mobilePanelSystem.querySelectorAll('[data-mobile-panel]'));
+        const mobilePanelReturns = new Map();
+        let currentMobilePanel = 'root';
+
+        const showMobilePanel = (panelId, returnTarget = null) => {
+          const target = mobilePanels.find((panel) => panel.dataset.mobilePanel === panelId);
+          if (!target) return;
+          mobilePanels.forEach((panel) => {
+            panel.hidden = panel !== target;
+          });
+          if (returnTarget) mobilePanelReturns.set(panelId, returnTarget);
+          currentMobilePanel = panelId;
+          const heading = target.querySelector('h6[tabindex="-1"]');
+          if (heading) heading.focus();
+        };
+
+        mobilePanelSystem.classList.add('is-panel-enhanced');
+        if (mobileOffcanvas) mobileOffcanvas.classList.add('is-panel-enhanced');
+        showMobilePanel('root');
+
+        mobilePanelSystem.querySelectorAll('[data-mobile-panel-open]').forEach((control) => {
+          control.addEventListener('click', () => {
+            showMobilePanel(control.dataset.mobilePanelOpen, control);
+          });
+        });
+
+        mobilePanelSystem.querySelectorAll('[data-mobile-panel-back]').forEach((control) => {
+          control.addEventListener('click', () => {
+            const returnTarget = mobilePanelReturns.get(currentMobilePanel);
+            showMobilePanel(control.dataset.mobilePanelBack);
+            if (returnTarget && returnTarget.isConnected) returnTarget.focus();
+          });
+        });
+
+        if (mobileOffcanvas) {
+          mobileOffcanvas.addEventListener('hidden.bs.offcanvas', () => {
+            mobilePanelReturns.clear();
+            showMobilePanel('root');
+          });
+        }
+      }
+
       // Sticky header transparency logic
       const navbar = document.querySelector('.site-navbar');
       if (navbar) {
