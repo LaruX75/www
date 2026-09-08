@@ -125,14 +125,15 @@ test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
   });
 
   test.describe("C. Section membership today", () => {
-    test("405040Y (academicYear 2026–2027, current) is only in the current section", async ({ page }) => {
+    test("405040Y implementations split between current 2026-2027 and historical 2025-2026 sections", async ({ page }) => {
       const html = await page.request.get(OPETUS).then((r) => r.text());
       const currentHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="current"[\s\S]*?<\/section>/)[0];
       const historicalHtml = html.match(/<div class="vstack gap-3" data-opetus-catalog="historical"[\s\S]*?<\/section>/)[0];
       expect(currentHtml).toContain('data-course-id="405040Y"');
-      expect(historicalHtml).not.toContain('data-course-id="405040Y"');
+      expect(historicalHtml).toContain('data-course-id="405040Y"');
       expect(currentHtml).toContain('data-period-id="2026-2027-a"');
       expect(historicalHtml).not.toContain('data-period-id="2026-2027-a"');
+      expect(historicalHtml).toContain('data-period-id="2025-2026-b"');
     });
 
     test("410014Y / 2013–2014 (older academic year, historical) is only in the historical section", async ({ page }) => {
@@ -198,12 +199,12 @@ test.describe("OPETUS-CATALOG-UX-01B current vs historical split", () => {
       const html = await page.request.get(OPETUS).then((r) => r.text());
       const currentSection = html.match(/id="opetus-nykyinen-heading"[\s\S]*?<\/section>/)[0];
       const historicalSection = html.match(/id="opetus-aiemmat-heading"[\s\S]*?<\/section>/)[0];
-      // With today's inventory, both sections have 1 course, so both badges must say "1 kurssi".
+      // The current section has 405040Y; historical has 405040Y and 410014Y.
       expect(currentSection).toMatch(/1 kurssi\b/);
-      expect(historicalSection).toMatch(/1 kurssi\b/);
-      // No leaked plural form when count is 1.
+      expect(historicalSection).toMatch(/2 kurssia\b/);
+      // Singular and plural forms follow their respective counts.
       expect(currentSection.match(/1 kurssia/)).toBeNull();
-      expect(historicalSection.match(/1 kurssia/)).toBeNull();
+      expect(historicalSection.match(/2 kurssi\b/)).toBeNull();
     });
 
     test("no hard-coded catalog counts in the landing template", () => {

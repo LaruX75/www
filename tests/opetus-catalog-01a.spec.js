@@ -5,6 +5,7 @@ const coursePages = require("../src/_data/coursePages");
 
 const OPETUS = "/opetus/";
 const COURSE = "/opetus/teknologiatuettu-oppiminen/2026-2027-a/";
+const HISTORICAL_COURSE = "/opetus/teknologiatuettu-oppiminen/2025-2026-b/";
 const ROOT = path.resolve(__dirname, "..");
 
 test.describe.configure({ mode: "serial" });
@@ -16,12 +17,18 @@ test.describe("OPETUS-CATALOG-01A derived SSR catalog", () => {
       courseId: "405040Y",
       courseName: "Teknologiatuettu oppiminen ja työskentely"
     });
-    expect(currentCourse.implementations).toHaveLength(1);
-    expect(currentCourse.implementations[0]).toMatchObject({
-      periodId: "2026-2027-a",
-      academicYear: "2026–2027",
-      pageUrl: COURSE
-    });
+    expect(currentCourse.implementations).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        periodId: "2026-2027-a",
+        academicYear: "2026–2027",
+        pageUrl: COURSE
+      }),
+      expect.objectContaining({
+        periodId: "2025-2026-b",
+        academicYear: "2025-2026",
+        pageUrl: HISTORICAL_COURSE
+      })
+    ]));
   });
 
   test("landing renders course to implementation hierarchy in SSR HTML with JavaScript disabled", async ({ browser }) => {
