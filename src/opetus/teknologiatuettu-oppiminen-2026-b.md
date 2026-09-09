@@ -36,10 +36,7 @@ course:
       time: "12:15-14:00"
       room: "L2 Martti Ahtisaari -sali"
       title: "Johdanto"
-      presentationPageUrl: null
-      material:
-        url: "https://canva.link/plg8i1sco89t66w"
-        label: "Avaa luentomateriaali"
+      presentationPageUrl: /presentations/405040y-luento-1-johdanto-2026-b/
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=456c4852-2269-4cbb-b9d0-b3cb00cf784c"
         label: "Katso tallenne (Panopto)"
@@ -48,10 +45,7 @@ course:
       time: "10:15-12:00"
       room: "L10 OP-sali"
       title: "Digitaalinen osaaminen"
-      presentationPageUrl: null
-      material:
-        url: "https://canva.link/gotmw1ihohslnb8"
-        label: "Avaa luentomateriaali"
+      presentationPageUrl: /presentations/405040y-luento-2-digitaalinen-osaaminen-2026-b/
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=2e6f14a2-c306-4b0f-9f3c-b3cd00a20501"
         label: "Katso tallenne (Panopto)"
@@ -60,10 +54,7 @@ course:
       time: "10:15-12:00"
       room: "TA105 Arina-sali"
       title: "Ohjelmointiosaaminen"
-      presentationPageUrl: null
-      material:
-        url: "https://canva.link/6p8ra9g7z216azi"
-        label: "Avaa luentomateriaali"
+      presentationPageUrl: /presentations/405040y-luento-3-ohjelmointiosaaminen-2026-b/
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=9cebf200-5b83-4032-9570-b3d400a27161"
         label: "Katso tallenne (Panopto)"
@@ -72,10 +63,7 @@ course:
       time: "10:15-12:00"
       room: "TA105 Arina-sali"
       title: "Medialukutaito"
-      presentationPageUrl: null
-      material:
-        url: "https://canva.link/wn36nr8vfdyyqxs"
-        label: "Avaa luentomateriaali"
+      presentationPageUrl: /presentations/405040y-luento-4-medialukutaito-2026-b/
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dfd521ff-feeb-4b0d-b1a4-b3d800b0e74d"
         label: "Katso tallenne (Panopto)"
