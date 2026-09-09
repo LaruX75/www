@@ -182,42 +182,36 @@ course:
         <thead>
           <tr>
             <th scope="col" class="text-nowrap">#</th>
-            <th scope="col">Päivämäärä ja aika</th>
-            <th scope="col">Paikka</th>
-            <th scope="col">Aihe</th>
-            <th scope="col">Materiaali</th>
+            <th scope="col" style="min-width: 12rem">Aikataulu ja paikka</th>
+            <th scope="col" style="min-width: 14rem">Aihe</th>
+            <th scope="col" class="text-center" style="width: 140px">Esikatselu</th>
+            <th scope="col" style="min-width: 12rem">Materiaali</th>
           </tr>
         </thead>
         <tbody>
           {% for lecture in course.lectures %}
             <tr data-course-lecture data-lecture-number="{{ lecture.number }}">
               <th scope="row" class="text-nowrap">{{ lecture.number }}</th>
-              <td class="text-nowrap">
+              <td class="course-lecture-schedule">
                 <div>{{ lecture.date | dateFormat }}</div>
                 <div class="text-muted small">{{ lecture.time }}</div>
-              </td>
-              <td>{{ lecture.room }}</td>
-              <td>
-                {% if lecture.presentation and lecture.presentation.thumbnail %}
-                <div class="course-lecture-topic d-flex align-items-start gap-3">
-                  <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link flex-shrink-0" aria-label="Esityksen esikatselu">
-                    <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
-                  </a>
-                  <div class="course-lecture-topic-body">
-                    <div class="fw-semibold">{{ lecture.title }}</div>
-                    {% if lecture.externalSpeaker %}
-                      <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
-                    {% endif %}
-                  </div>
-                </div>
-                {% else %}
-                <div class="fw-semibold">{{ lecture.title }}</div>
+                <div class="small">Luento {{ lecture.number }}</div>
                 {% if lecture.externalSpeaker %}
                   <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
                 {% endif %}
+                <div class="course-lecture-room">{{ lecture.room }}</div>
+              </td>
+              <td class="course-lecture-title-cell">
+                <div class="fw-semibold">{{ lecture.title }}</div>
+              </td>
+              <td class="course-lecture-thumbnail-cell text-center">
+                {% if lecture.presentation and lecture.presentation.thumbnail %}
+                  <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link d-inline-block" aria-label="Esityksen esikatselu">
+                    <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
+                  </a>
                 {% endif %}
               </td>
-              <td>
+              <td class="course-lecture-material-cell">
                 {% if lecture.presentation %}
                   <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
                   <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
@@ -341,9 +335,6 @@ course:
   width: 100%;
   aspect-ratio: 596 / 335;
   object-fit: cover;
-}
-.course-lecture-topic-body {
-  min-width: 0;
 }
 @media (max-width: 480px) {
   .course-lecture-preview-link {

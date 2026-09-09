@@ -1,21 +1,30 @@
 const { test, expect } = require("@playwright/test");
 
 /*
- * OPETUS-CANVA-THUMBNAILS-01A — 405040Y course pages surface canonical
- * Canva cover previews grouped with the lecture title (Aihe cell) for
- * each lecture that has a canonical Presentation with a local thumbnail.
- * The Material column remains action-oriented (text links only).
+ * OPETUS-CANVA-THUMBNAILS-01A — 405040Y course pages present each lecture
+ * row in five semantic columns:
+ *
+ *   1. sequence number
+ *   2. Aikataulu ja paikka  (date / time / "Luento X" / optional
+ *                            externalSpeaker / room LAST)
+ *   3. Aihe                 (title only)
+ *   4. Esikatselu           (canonical Canva thumbnail only, empty for
+ *                            Kopiosto)
+ *   5. Materiaali           (Avaa esitys, Panopto, other material actions
+ *                            — no preview image)
  *
  * Guards:
  *   1. All eight canonical Presentation records resolve /images/canva-thumbnails/*.png
- *   2. Autumn 2026-A course page renders four previews (lectures 1-4) in the Aihe cell
- *   3. Spring 2026-B course page renders four previews (lectures 1-4) in the Aihe cell
+ *   2. Autumn 2026-A course page renders four previews (lectures 1-4) in the Esikatselu cell
+ *   3. Spring 2026-B course page renders four previews (lectures 1-4) in the Esikatselu cell
  *   4. Every preview links to the canonical Presentation pageUrl (never direct to Canva)
- *   5. Material cell contains the "Avaa esitys" text link but NOT the preview image
- *   6. Kopiosto rows have no fabricated preview thumbnail
- *   7. SSR-only: previews present when JavaScript is disabled
- *   8. No horizontal overflow at 320px or 390px viewports
- *   9. Canva source URLs are NOT reintroduced on course pages
+ *   5. Title cell contains only the title, no preview image
+ *   6. Material cell contains the "Avaa esitys" text link but no preview image
+ *   7. Schedule cell groups date + time + "Luento X" + room, room LAST
+ *   8. Kopiosto rows have no fabricated preview thumbnail
+ *   9. SSR-only: previews present when JavaScript is disabled
+ *  10. No horizontal overflow at 320px or 390px viewports
+ *  11. Canva source URLs are NOT reintroduced on course pages
  */
 
 const COURSE_URLS = {
@@ -24,17 +33,17 @@ const COURSE_URLS = {
 };
 
 const AUTUMN_LECTURES = [
-  { number: 1, landing: "/presentations/405040y-luento-1-johdanto-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-a.png" },
-  { number: 2, landing: "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.png" },
-  { number: 3, landing: "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-3-tekoalylukutaito-2026-a.png" },
-  { number: 4, landing: "/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-4-media-ja-informaatiolukutaito-2026-a.png" }
+  { number: 1, landing: "/presentations/405040y-luento-1-johdanto-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-a.png", title: "Johdanto", room: "L2 Martti Ahtisaari" },
+  { number: 2, landing: "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.png", title: "Digitaalinen osaaminen vuonna 2026 – DigComp 3.0", room: "L2 Martti Ahtisaari" },
+  { number: 3, landing: "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-3-tekoalylukutaito-2026-a.png", title: "Tekoälylukutaito", room: "L2 Martti Ahtisaari" },
+  { number: 4, landing: "/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/", thumbnail: "/images/canva-thumbnails/405040y-luento-4-media-ja-informaatiolukutaito-2026-a.png", title: "Media- ja informaatiolukutaito tekoälyn aikakaudella", room: "L2 Martti Ahtisaari" }
 ];
 
 const SPRING_LECTURES = [
-  { number: 1, landing: "/presentations/405040y-luento-1-johdanto-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-b.png" },
-  { number: 2, landing: "/presentations/405040y-luento-2-digitaalinen-osaaminen-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-2026-b.png" },
-  { number: 3, landing: "/presentations/405040y-luento-3-ohjelmointiosaaminen-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-3-ohjelmointiosaaminen-2026-b.png" },
-  { number: 4, landing: "/presentations/405040y-luento-4-medialukutaito-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-4-medialukutaito-2026-b.png" }
+  { number: 1, landing: "/presentations/405040y-luento-1-johdanto-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-b.png", title: "Johdanto", room: "L2 Martti Ahtisaari -sali" },
+  { number: 2, landing: "/presentations/405040y-luento-2-digitaalinen-osaaminen-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-2026-b.png", title: "Digitaalinen osaaminen", room: "L10 OP-sali" },
+  { number: 3, landing: "/presentations/405040y-luento-3-ohjelmointiosaaminen-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-3-ohjelmointiosaaminen-2026-b.png", title: "Ohjelmointiosaaminen", room: "TA105 Arina-sali" },
+  { number: 4, landing: "/presentations/405040y-luento-4-medialukutaito-2026-b/", thumbnail: "/images/canva-thumbnails/405040y-luento-4-medialukutaito-2026-b.png", title: "Medialukutaito", room: "TA105 Arina-sali" }
 ];
 
 const AUTUMN_CANVA_SHORTCUTS = [
@@ -77,11 +86,11 @@ test.describe("2026-A course page previews", () => {
   });
 
   for (const lecture of AUTUMN_LECTURES) {
-    test(`autumn lecture ${lecture.number} preview links to canonical landing`, async ({ page }) => {
+    test(`autumn lecture ${lecture.number} preview lives in Esikatselu cell + links to canonical landing`, async ({ page }) => {
       await page.goto(COURSE_URLS.autumn);
       const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
-      const previewLink = row.locator(`.course-lecture-topic a.course-lecture-preview-link[href="${lecture.landing}"]`);
-      await expect(previewLink, `preview link to ${lecture.landing} inside title cell`).toHaveCount(1);
+      const previewLink = row.locator(`.course-lecture-thumbnail-cell a.course-lecture-preview-link[href="${lecture.landing}"]`);
+      await expect(previewLink, `preview link to ${lecture.landing} inside Esikatselu cell`).toHaveCount(1);
       const img = previewLink.locator("img.course-lecture-preview");
       await expect(img).toHaveAttribute("src", lecture.thumbnail);
       await expect(img).toHaveAttribute("loading", "lazy");
@@ -113,11 +122,11 @@ test.describe("2026-B course page previews", () => {
   });
 
   for (const lecture of SPRING_LECTURES) {
-    test(`spring lecture ${lecture.number} preview links to canonical landing`, async ({ page }) => {
+    test(`spring lecture ${lecture.number} preview lives in Esikatselu cell + links to canonical landing`, async ({ page }) => {
       await page.goto(COURSE_URLS.spring);
       const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
-      const previewLink = row.locator(`.course-lecture-topic a.course-lecture-preview-link[href="${lecture.landing}"]`);
-      await expect(previewLink, `preview link to ${lecture.landing} inside title cell`).toHaveCount(1);
+      const previewLink = row.locator(`.course-lecture-thumbnail-cell a.course-lecture-preview-link[href="${lecture.landing}"]`);
+      await expect(previewLink, `preview link to ${lecture.landing} inside Esikatselu cell`).toHaveCount(1);
       const img = previewLink.locator("img.course-lecture-preview");
       await expect(img).toHaveAttribute("src", lecture.thumbnail);
       await expect(img).toHaveAttribute("loading", "lazy");
@@ -141,6 +150,25 @@ test.describe("2026-B course page previews", () => {
   });
 });
 
+test.describe("Title column carries only the title (no preview image)", () => {
+  for (const [label, url, lectures] of [
+    ["autumn", COURSE_URLS.autumn, AUTUMN_LECTURES],
+    ["spring", COURSE_URLS.spring, SPRING_LECTURES]
+  ]) {
+    for (const lecture of lectures) {
+      test(`${label} lecture ${lecture.number} Aihe cell has title but no preview img`, async ({ page }) => {
+        await page.goto(url);
+        const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
+        const titleCell = row.locator("td.course-lecture-title-cell");
+        await expect(titleCell).toHaveCount(1);
+        await expect(titleCell).toContainText(lecture.title);
+        await expect(titleCell.locator("img.course-lecture-preview")).toHaveCount(0);
+        await expect(titleCell.locator("a.course-lecture-preview-link")).toHaveCount(0);
+      });
+    }
+  }
+});
+
 test.describe("Material column stays action-oriented (no preview image)", () => {
   for (const [label, url, lectures] of [
     ["autumn", COURSE_URLS.autumn, AUTUMN_LECTURES],
@@ -150,13 +178,45 @@ test.describe("Material column stays action-oriented (no preview image)", () => 
       test(`${label} lecture ${lecture.number} Material cell has no preview image`, async ({ page }) => {
         await page.goto(url);
         const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
-        // Row-level: the "Avaa esitys" link exists (in Material cell).
         const openLink = row.locator(`a[href="${lecture.landing}"]`, { hasText: /Avaa esitys/ });
         await expect(openLink).toHaveCount(1);
-        // The Material cell containing "Avaa esitys" MUST NOT contain a
-        // preview thumbnail. Locate that specific <td> and assert.
-        const materialCell = row.locator("td", { hasText: "Avaa esitys" });
+        const materialCell = row.locator("td.course-lecture-material-cell");
+        await expect(materialCell).toHaveCount(1);
         await expect(materialCell.locator("img.course-lecture-preview")).toHaveCount(0);
+      });
+    }
+  }
+});
+
+test.describe("Schedule column groups date/time/session/room with room LAST", () => {
+  for (const [label, url, lectures] of [
+    ["autumn", COURSE_URLS.autumn, AUTUMN_LECTURES],
+    ["spring", COURSE_URLS.spring, SPRING_LECTURES]
+  ]) {
+    for (const lecture of lectures) {
+      test(`${label} lecture ${lecture.number} schedule cell contains date+time+"Luento X"+room, room last`, async ({ page }) => {
+        const html = await page.request.get(url).then((r) => r.text());
+        // Extract the specific row's HTML
+        const rowRe = new RegExp(`<tr[^>]*data-lecture-number="${lecture.number}"[\\s\\S]*?</tr>`, "i");
+        const rowMatch = html.match(rowRe);
+        expect(rowMatch, `row for lecture ${lecture.number}`).not.toBeNull();
+        const rowHtml = rowMatch[0];
+        // Locate the schedule cell and extract its inner HTML
+        const scheduleRe = /<td[^>]*course-lecture-schedule[^>]*>([\s\S]*?)<\/td>/i;
+        const scheduleMatch = rowHtml.match(scheduleRe);
+        expect(scheduleMatch, "course-lecture-schedule cell present").not.toBeNull();
+        const scheduleHtml = scheduleMatch[1];
+        // Time
+        expect(scheduleHtml, "time present in schedule cell").toContain(">");
+        // "Luento X" ordinal
+        expect(scheduleHtml, `"Luento ${lecture.number}" text present`).toMatch(new RegExp(`Luento\\s+${lecture.number}\\b`));
+        // Room present
+        const roomEscape = lecture.room.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        expect(scheduleHtml, `room "${lecture.room}" present`).toMatch(new RegExp(roomEscape));
+        // Room must be LAST — no non-whitespace text after room string in the cell body
+        const roomIdx = scheduleHtml.lastIndexOf(lecture.room);
+        const trailing = scheduleHtml.slice(roomIdx + lecture.room.length).replace(/<[^>]*>/g, "").replace(/\s+/g, "");
+        expect(trailing, `no text after room in schedule cell (got "${trailing}")`).toBe("");
       });
     }
   }

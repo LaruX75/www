@@ -18,17 +18,18 @@ Implementation complete. Draft PR pending. Do NOT merge.
 ## Scope
 
 Add canonical, locally-hosted Canva cover thumbnails for the eight canonical
-405040Y lecture Presentations and render an SSR preview grouped with the
-lecture title (Aihe cell) on both course-implementation pages. The
-Materiaali column stays action-oriented (text links only):
+405040Y lecture Presentations and present each lecture row as five semantic
+columns on both course-implementation pages:
 
 - Autumn 2026 (`/opetus/teknologiatuettu-oppiminen/2026-2027-a/`) lectures 1–4
 - Spring 2026 VAKA ABCDE (`/opetus/teknologiatuettu-oppiminen/2025-2026-b/`) lectures 1–4
 
 Kopiosto guest lectures stay external and receive no fabricated preview.
 
-**UX rule:** the Presentation thumbnail is grouped with the lecture title;
-the Material column remains action-oriented.
+**Final UX rule:** Course lecture rows separate schedule/context, title,
+visual identity, and actions into distinct columns. Date/time/session/room
+stay together in the schedule column with room LAST; title has its own
+column; thumbnail has its own column; Material remains action-oriented.
 
 ## 1. Authenticated Canva asset acquisition (8/8)
 
@@ -138,52 +139,60 @@ Both course pages already resolved `lecture.presentation` through
 `buildCanonicalPresentationPageLookup(data)` (via COURSE-PAGE-01 and
 its spring 2026-B counterpart).
 
-The **Aihe** (topic/title) cell composes the preview horizontally with
-the lecture title using a flex row. When `lecture.presentation.thumbnail`
-exists, the row shows [thumbnail | title + optional externalSpeaker].
-When absent (Kopiosto rows), the cell falls back to plain title markup:
+The Luennot section table now presents each lecture row as five semantic
+columns:
+
+| Col | Header | Content |
+| --- | --- | --- |
+| 1 | `#` | `lecture.number` (row header). |
+| 2 | `Aikataulu ja paikka` | `lecture.date` → `lecture.time` → `Luento {{ number }}` → optional `Vierailuluento: {{ externalSpeaker }}` → `lecture.room` (LAST). |
+| 3 | `Aihe` | `lecture.title` only. |
+| 4 | `Esikatselu` | Canonical Canva thumbnail linked to `lecture.presentation.pageUrl` when present; empty cell for Kopiosto rows. |
+| 5 | `Materiaali` | Actions: `Avaa esitys` text link + Panopto recording + material fallback. No preview image. |
+
+The **schedule** cell groups scheduling context in one block with room
+always last:
 
 ```njk
-<td>
+<td class="course-lecture-schedule">
+  <div>{{ lecture.date | dateFormat }}</div>
+  <div class="text-muted small">{{ lecture.time }}</div>
+  <div class="small">Luento {{ lecture.number }}</div>
+  {% if lecture.externalSpeaker %}
+    <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
+  {% endif %}
+  <div class="course-lecture-room">{{ lecture.room }}</div>
+</td>
+```
+
+The **title** cell carries only `lecture.title`:
+
+```njk
+<td class="course-lecture-title-cell">
+  <div class="fw-semibold">{{ lecture.title }}</div>
+</td>
+```
+
+The **thumbnail** cell carries only the preview link when a canonical
+thumbnail exists (empty `<td>` for Kopiosto rows):
+
+```njk
+<td class="course-lecture-thumbnail-cell text-center">
   {% if lecture.presentation and lecture.presentation.thumbnail %}
-  <div class="course-lecture-topic d-flex align-items-start gap-3">
-    <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link flex-shrink-0" aria-label="Esityksen esikatselu">
+    <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link d-inline-block" aria-label="Esityksen esikatselu">
       <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
     </a>
-    <div class="course-lecture-topic-body">
-      <div class="fw-semibold">{{ lecture.title }}</div>
-      {% if lecture.externalSpeaker %}
-      <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
-      {% endif %}
-    </div>
-  </div>
-  {% else %}
-  <div class="fw-semibold">{{ lecture.title }}</div>
-  ...
   {% endif %}
 </td>
 ```
 
-The **Materiaali** cell is action-oriented: "Avaa esitys" text link
-plus the Panopto recording block. No preview image lives here anymore.
-
-```njk
-<td>
-  {% if lecture.presentation %}
-  <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
-  <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
-  {% elif ... %}
-  ...
-  {% if lecture.recording %}
-  <div class="mt-2">... Panopto ...</div>
-  {% endif %}
-</td>
-```
+The **material** cell is action-only: `Avaa esitys` text link, Panopto,
+and the existing material fallback branch. No preview image.
 
 Behaviour:
 
-- Preview links to the canonical Presentation `pageUrl` (never directly
-  to Canva) and lives in the Aihe cell, grouped with the title.
+- Preview lives in the Esikatselu cell, links to the canonical
+  Presentation `pageUrl` (never directly to Canva).
 - The separate "Avaa esitys" text link stays in the Material cell; the
   preview link and the text link have distinct short accessible names
   (`aria-label="Esityksen esikatselu"` vs the visible "Avaa esitys"
@@ -191,12 +200,22 @@ Behaviour:
   naming.
 - The Material column stays action-oriented (Avaa esitys + Panopto);
   the cover is content identity, not an action.
+- The Aihe column carries only the title (title is visually primary and
+  gets its own horizontal space instead of sharing a flex row with the
+  thumbnail).
 - When `lecture.presentation` is absent (Kopiosto rows both semesters),
-  no preview is rendered and no thumbnail is fabricated.
+  no preview is rendered and no thumbnail is fabricated; the Esikatselu
+  `<td>` renders empty.
+- Room is always the LAST line of the schedule cell, so scanning down
+  the schedule column always ends on "where".
+- `lecture.externalSpeaker` (e.g. `Kopiosto`) is session context and
+  therefore belongs with the schedule column above the room, not with
+  the title.
 - Panopto recording block and the existing `elif lecture.material`
   branch are unchanged.
 - Lecture order is unchanged.
-- The existing responsive table remains authoritative for row layout.
+- The existing responsive table (`.table-responsive` wrapper) remains
+  authoritative for row layout on narrow viewports.
 
 ## 5. Accessibility and mobile behaviour
 
@@ -206,18 +225,21 @@ Behaviour:
 - Keyboard focus lands on both links (the preview link is not
   `tabindex="-1"`). Focus indicator is Bootstrap's default focus ring on
   anchor elements, which is visible via `a11y.css`.
-- The preview and the title live in a `.course-lecture-topic` flex row
-  (`d-flex align-items-start gap-3`); `.flex-shrink-0` on the preview
-  keeps the thumbnail at its target width and `.course-lecture-topic-body`
-  gets `min-width: 0` so long titles wrap naturally instead of pushing
-  the preview off-cell.
+- Left-to-right cell order matches the intended semantic reading order:
+  sequence → schedule/context → title → visual → actions.
 - CSS: `.course-lecture-preview-link { max-width: 120px; }` on desktop
   caps the clickable frame within the "Target preview width approximately
   112–120px" band. `.course-lecture-preview` uses
   `width: 100%; aspect-ratio: 596/335; object-fit: cover;` so the image
   scales inside its container. A single narrow-viewport media query
   shrinks the frame to 88px below 480px viewport width so the thumbnail
-  never dominates the title cell on 320px / 390px screens.
+  never dominates the row on 320px / 390px screens.
+- Column widths are hinted via `<th style="min-width: 12rem">` on the
+  schedule and Material headers, `<th style="min-width: 14rem">` on
+  Aihe, and `<th style="width: 140px">` on Esikatselu. The
+  `.table-responsive` wrapper preserves the existing narrow-viewport
+  behaviour (horizontal scroll inside the wrapper, no page-level
+  overflow).
 - 320px and 390px viewports verified via a Playwright spec that measures
   `document.documentElement.scrollWidth` after navigating to each
   course page.
@@ -254,24 +276,34 @@ Presentation URLs. **8/8 PASS.** Verified by:
 
 ### SSR previews (Playwright)
 
-`tests/opetus-canva-thumbnails-01a.spec.js` — 52 assertions:
+`tests/opetus-canva-thumbnails-01a.spec.js` — 68 assertions:
 
 - Autumn 2026-A: exactly 4 previews, each linking to the correct
-  canonical landing *inside the `.course-lecture-topic` (Aihe) cell*;
-  each `<img>` has `loading="lazy"`, `decoding="async"`, `alt=""`; the
-  separate "Avaa esitys" text link is retained in the Material cell
-  per lecture; no direct Canva shortcut re-introduced.
+  canonical landing *inside the Esikatselu cell*
+  (`td.course-lecture-thumbnail-cell`); each `<img>` has
+  `loading="lazy"`, `decoding="async"`, `alt=""`; the separate "Avaa
+  esitys" text link is retained in the Material cell per lecture; no
+  direct Canva shortcut re-introduced.
 - Spring 2026-B: same guards on 4 previews.
+- **Title-column guard:** for each of the 8 lecture rows the Aihe
+  `<td>` (`.course-lecture-title-cell`) is asserted to contain the
+  lecture title and NO preview image / preview link — the title
+  column carries only the title.
 - **Material-column guard:** for each of the 8 lecture rows the
-  Material `<td>` (the cell containing "Avaa esitys") is asserted to
-  contain NO `img.course-lecture-preview` — the preview is grouped
-  with the title, not with the actions.
+  Materiaali `<td>` (`.course-lecture-material-cell`) is asserted to
+  contain NO `img.course-lecture-preview` — the preview is separated
+  from actions.
+- **Schedule-column grouping guard:** for each of the 8 lecture rows
+  the Aikataulu ja paikka `<td>` (`.course-lecture-schedule`) is
+  asserted to contain the lecture-specific "Luento N" ordinal text
+  AND the lecture's room string, with the row's room appearing LAST
+  in the cell body (no text after it).
 - Kopiosto rows (lecture 5 both semesters): no preview markup anywhere.
 - SSR-only: previews present with JavaScript disabled on both pages.
 - Mobile: `document.documentElement.scrollWidth ≤ viewport.width` at
   320px and 390px on both pages.
 
-**52/52 PASS.**
+**68/68 PASS.**
 
 ### Adjacent regression tests (Playwright)
 
