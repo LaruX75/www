@@ -2,7 +2,7 @@
 
 ## Status
 
-IMPLEMENTED ON BRANCH / CI PENDING
+CLOSED / GREEN / MAIN
 
 ## Scope
 
@@ -43,6 +43,42 @@ Focused Playwright coverage now requires:
 - Kopiosto guest lectures to remain non-canonical.
 
 Full build / verify / Playwright validation is delegated to GitHub CI on the draft PR.
+
+## Closure
+
+PR [#238](https://github.com/LaruX75/www/pull/238) merged to `main` with
+normal merge commit `366a1f96f31f1c989b4338faa08dca9227fd9977`. The feature
+head `8e6d5c6a5bd69bb88d4f766a893d510ef7abea7f` is preserved in merge history.
+
+- Autumn 2026 lecture 4 and spring 2026 lectures 1-4 have canonical
+  Presentation detail pages.
+- Course pages route to those details through `presentationPageUrl`; direct
+  Canva duplication was removed from the corresponding course rows.
+- Canva remains the canonical Presentation source, while Panopto remains
+  course-page-owned.
+- Kopiosto remains external and non-canonical.
+- The periodId regression test now validates semantic invariants rather than
+  a historical repository-wide count.
+
+Validation completed on the merged head:
+
+- `canonicalCoursePeriodId`: 16/16 PASS.
+- PeriodId validator: 0 warnings, 15/15 backlinks resolvable.
+- GitHub Staging checks: build, verify, and Playwright PASS.
+
+Architecture status:
+
+```text
+Canonical Content v1: UNCHANGED
+Pagefind: UNCHANGED
+Public JSON: UNCHANGED
+Runtime JSON: UNCHANGED
+AC1: CLOSED / GREEN / MAIN
+```
+
+No further implementation is required. Any thumbnail work, metadata
+expansion, taxonomy change, Pagefind change, sequence semantics, or Kopiosto
+canonicalization would require a separately justified bounded workstream.
 
 ## PeriodId validator reconciliation
 
