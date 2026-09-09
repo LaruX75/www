@@ -466,13 +466,13 @@
           <small>Nopea kokonaiskuva.</small>
         </span>
       </a>
-      <a class="mobile-nav-feature-card{% if page.url and ('/tyoni-yliopistonlehtorina/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url) %} is-active{% endif %}" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">
+      <button class="mobile-nav-feature-card mobile-nav-panel-trigger{% if page.url and ('/tyoni-yliopistonlehtorina/' in page.url or '/yhteiskunnallinen-vuorovaikutus/' in page.url) %} is-active{% endif %}" type="button" data-mobile-panel-open="work">
         <span class="mobile-nav-feature-icon"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i></span>
         <span>
           <strong>Työ</strong>
           <small>Opetus, tutkimus ja yhteiskunnallinen vuorovaikutus.</small>
         </span>
-      </a>
+      </button>
       <a class="mobile-nav-feature-card{% if page.url and '/politiikka/' in page.url %} is-active{% endif %}" href="{{ navPolitics.url or '/politiikka/' }}">
         <span class="mobile-nav-feature-icon"><i class="{{ navPolitics.icon or 'bi bi-bank2' }}"></i></span>
         <span>
@@ -487,13 +487,29 @@
           <small>Kirjoitukset, puheet ja lausunnot.</small>
         </span>
       </a>
-      <a class="mobile-nav-feature-card{% if page.url and '/mediassa/' in page.url %} is-active{% endif %}" href="/mediassa/">
+      <button class="mobile-nav-feature-card mobile-nav-panel-trigger{% if page.url and '/mediassa/' in page.url %} is-active{% endif %}" type="button" data-mobile-panel-open="media">
         <span class="mobile-nav-feature-icon"><i class="bi bi-camera-reels-fill"></i></span>
         <span>
           <strong>Mediassa</strong>
           <small>Haastattelut, podcastit ja videoesiintymiset.</small>
         </span>
-      </a>
+      </button>
+    </div>
+
+    <button class="mobile-nav-panel-trigger mobile-nav-contact-trigger" type="button" data-mobile-panel-open="contact">
+      <span><i class="{{ navContact.icon or 'bi bi-envelope' }}"></i>Ota yhteyttä</span><i class="bi bi-chevron-right" aria-hidden="true"></i>
+    </button>
+
+    <div class="mobile-nav-panel-system" data-mobile-panel-system aria-label="Mobiilivalikon tarkemmat valinnat">
+      <section data-mobile-panel="work" aria-labelledby="mobilePanelWorkTitle">
+        <div class="mobile-nav-panel-header"><button type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button><h6 id="mobilePanelWorkTitle" tabindex="-1">Työ</h6></div>
+        <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
+        {{ nav.mobileOverviewStrip(workMegaMenu.overviewLinks, "Työn yleiskatsaus") }}
+        <div class="mobile-nav-panel-choices">{% for section in workMegaMenu.sections %}<button type="button" data-mobile-panel-open="work-{{ loop.index }}"><span>{{ section.heading }}</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>{% endfor %}</div>
+      </section>
+      {% for section in workMegaMenu.sections %}<section data-mobile-panel="work-{{ loop.index }}" aria-labelledby="mobilePanelWork{{ loop.index }}Title"><div class="mobile-nav-panel-header"><button type="button" data-mobile-panel-back="work"><i class="bi bi-arrow-left" aria-hidden="true"></i> Työ</button><h6 id="mobilePanelWork{{ loop.index }}Title" tabindex="-1">{{ section.heading }}</h6></div>{% if section.headingHref %}<a class="mobile-nav-primary-link" href="{{ section.headingHref }}">Avaa {{ section.heading }}-sivu</a>{% endif %}<div class="mobile-nav-panel-choices">{% for link in section.links %}{% if link.href != section.headingHref %}<a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>{% endif %}{% endfor %}</div></section>{% endfor %}
+      <section data-mobile-panel="media" aria-labelledby="mobilePanelMediaTitle"><div class="mobile-nav-panel-header"><button type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button><h6 id="mobilePanelMediaTitle" tabindex="-1">Mediassa</h6></div><a class="mobile-nav-primary-link" href="{{ navMedia.url or '/mediassa/' }}">Avaa Mediassa-sivu</a><div class="mobile-nav-panel-choices">{% for section in mediaMegaMenu.sections %}{% for link in section.links %}{% if link.href != (navMedia.url or '/mediassa/') %}<a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>{% endif %}{% endfor %}{% endfor %}</div></section>
+      <section data-mobile-panel="contact" aria-labelledby="mobilePanelContactTitle"><div class="mobile-nav-panel-header"><button type="button" data-mobile-panel-back="root"><i class="bi bi-arrow-left" aria-hidden="true"></i> Päävalikko</button><h6 id="mobilePanelContactTitle" tabindex="-1">Ota yhteyttä</h6></div><a class="mobile-nav-primary-link" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa yhteystiedot</a><div class="mobile-nav-panel-choices">{% for column in contactMegaMenu.columns %}{% for link in column.links %}<a href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}><span><i class="{{ link.icon }}"></i>{{ link.title }}</span></a>{% endfor %}{% endfor %}</div></section>
     </div>
 
     <div class="mobile-nav-card-stack" aria-label="Tarkemmat valinnat">
@@ -521,29 +537,6 @@
                       <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
                     </a>
                   {% endif %}
-                {% endfor %}
-              </section>
-            {% endfor %}
-          </div>
-        </div>
-      </details>
-
-      <details class="mobile-nav-card">
-        <summary>
-          <span class="mobile-nav-card-title"><i class="{{ navWork.icon or 'bi bi-briefcase-fill' }}"></i>Työ</span>
-          <span class="mobile-nav-card-desc">Yliopistotyö, tutkimus ja yhteiskunnallinen vuorovaikutus.</span>
-        </summary>
-        <div class="mobile-nav-card-body">
-          <a class="mobile-nav-primary-link" href="{{ navWork.url or '/tyoni-yliopistonlehtorina/' }}">Avaa Työ-sivu</a>
-          {{ nav.mobileOverviewStrip(workMegaMenu.overviewLinks, "Työn yleiskatsaus") }}
-          <div class="mobile-nav-section-grid">
-            {% for section in workMegaMenu.sections %}
-              <section class="mobile-nav-section-card">
-                <h6>{{ section.heading }}</h6>
-                {% for link in section.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
-                  </a>
                 {% endfor %}
               </section>
             {% endfor %}
@@ -633,66 +626,6 @@
         </div>
       </details>
 
-      <details class="mobile-nav-card">
-        <summary>
-          <span class="mobile-nav-card-title"><i class="bi bi-camera-reels-fill"></i>Mediassa</span>
-          <span class="mobile-nav-card-desc">Haastattelut, podcastit, videot ja julkiset asiantuntijaroolit.</span>
-        </summary>
-        <div class="mobile-nav-card-body">
-          <a class="mobile-nav-primary-link" href="/mediassa/">Avaa Mediassa-sivu</a>
-          <p class="mobile-nav-note">Tämä reitti kokoaa muiden tuottamat mediaosumat erilleen omista kirjoituksista ja puheenvuoroista.</p>
-          <div class="mobile-nav-section-grid">
-            <section class="mobile-nav-section-card">
-              <h6>Nopeat reitit</h6>
-              <a class="mobile-nav-link" href="/mediassa/#media-reitit">
-                <span><i class="bi bi-signpost-split"></i>Kolme reittiä</span>
-              </a>
-              <a class="mobile-nav-link" href="/mediassa/#media-nostot">
-                <span><i class="bi bi-stars"></i>Nostot</span>
-              </a>
-              <a class="mobile-nav-link" href="/mediassa/#media-arkisto">
-                <span><i class="bi bi-collection"></i>Kaikki mediaosumat</span>
-              </a>
-            </section>
-            <section class="mobile-nav-section-card">
-              <h6>Sisältötyypit</h6>
-              <a class="mobile-nav-link" href="/mediassa/?type=article">
-                <span><i class="bi bi-newspaper"></i>Lehtijutut</span>
-              </a>
-              <a class="mobile-nav-link" href="/mediassa/?type=podcast">
-                <span><i class="bi bi-broadcast"></i>Podcastit</span>
-              </a>
-              <a class="mobile-nav-link" href="/mediassa/?type=video">
-                <span><i class="bi bi-camera-video"></i>Videot</span>
-              </a>
-            </section>
-          </div>
-        </div>
-      </details>
-
-      <details class="mobile-nav-card">
-        <summary>
-          <span class="mobile-nav-card-title"><i class="{{ navContact.icon or 'bi bi-envelope' }}"></i>Ota yhteyttä</span>
-          <span class="mobile-nav-card-desc">Sähköposti, some ja yhteydenottolomake.</span>
-        </summary>
-        <div class="mobile-nav-card-body">
-          <a class="mobile-nav-primary-link" href="{{ navContact.url or '/yhteystiedot/' }}">Avaa yhteystiedot</a>
-          <div class="mobile-nav-section-grid">
-            {% for column in contactMegaMenu.columns %}
-              <section class="mobile-nav-section-card">
-                <h6>{{ column.heading }}</h6>
-              {% if column.links %}
-                {% for link in column.links %}
-                  <a class="mobile-nav-link" href="{{ link.href }}"{% if link.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
-                    <span><i class="{{ link.icon }}"></i>{{ link.title }}</span>
-                  </a>
-                {% endfor %}
-              {% endif %}
-              </section>
-            {% endfor %}
-          </div>
-        </div>
-      </details>
     </div>
   </div>
 </div>

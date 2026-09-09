@@ -611,6 +611,26 @@ html:not([data-bs-theme="dark"]):not(.a11y-high-contrast) .mega-menu-panel a i {
   overflow: clip;
 }
 
+.mobile-nav-panel-trigger,
+.mobile-nav-panel-choices > a,
+.mobile-nav-panel-choices > button,
+.mobile-nav-panel-header button {
+  display: flex; align-items: center; justify-content: space-between; gap: .75rem;
+  width: 100%; min-height: 44px; padding: .72rem .85rem; color: var(--mobile-nav-text);
+  font: inherit; font-weight: 750; text-align: left; text-decoration: none;
+  border: 1px solid var(--mobile-nav-soft-border); border-radius: .9rem;
+  background: var(--mobile-nav-soft-bg);
+}
+.mobile-nav-feature-grid .mobile-nav-panel-trigger { appearance: none; }
+.mobile-nav-contact-trigger { margin-top: .7rem; }
+.mobile-nav-panel-system { display: grid; gap: .75rem; margin-top: .75rem; }
+.mobile-nav-panel-system [data-mobile-panel] { display: grid; gap: .75rem; }
+.mobile-nav-panel-system .mobile-nav-primary-link { min-height: 44px; }
+.mobile-nav-panel-system .mobile-nav-overview-link { min-height: 44px; }
+.mobile-nav-panel-header { display: grid; gap: .55rem; }
+.mobile-nav-panel-header h6 { margin: 0; font-size: .82rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.mobile-nav-panel-header button { width: fit-content; min-height: 44px; padding: .45rem .65rem; }
+.mobile-nav-panel-choices { display: grid; gap: .45rem; }
 .mobile-nav-card summary {
   display: grid;
   gap: 0.25rem;
