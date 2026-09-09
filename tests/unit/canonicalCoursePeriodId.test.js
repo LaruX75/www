@@ -20,8 +20,8 @@ const {
  *   `courseContexts[].periodId` is OPTIONAL.
  *   Absence is meaningful ("course-level membership only; specific
  *   implementation not known canonically").
- *   The 3 verified 405040Y luento files carry exactly periodId
- *   "2026-2027-a". No other Presentation carries a periodId.
+ *   A periodId is valid only when its (courseId, periodId) tuple is
+ *   confirmed by canonical course-page frontmatter.
  *   No inference from date, title, URL slug, topic, category,
  *   Pagefind, Content Graph, or filename.
  */
@@ -35,15 +35,20 @@ function readAllPresentationContexts() {
   });
 }
 
-describe("CANONICAL-COURSE-PERIODID-01: 405040Y frontmatter carries periodId", () => {
-  const expectedFiles = new Set([
-    "405040y-luento-1-johdanto-2026-a.md",
-    "405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.md",
-    "405040y-luento-3-tekoalylukutaito-2026-a.md"
+describe("CANONICAL-COURSE-PERIODID-01: verified 405040Y implementations carry exact periodIds", () => {
+  const expectedFiles = new Map([
+    ["405040y-luento-1-johdanto-2026-a.md", "2026-2027-a"],
+    ["405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.md", "2026-2027-a"],
+    ["405040y-luento-3-tekoalylukutaito-2026-a.md", "2026-2027-a"],
+    ["405040y-luento-4-media-ja-informaatiolukutaito-2026-a.md", "2026-2027-a"],
+    ["405040y-luento-1-johdanto-2026-b.md", "2025-2026-b"],
+    ["405040y-luento-2-digitaalinen-osaaminen-2026-b.md", "2025-2026-b"],
+    ["405040y-luento-3-ohjelmointiosaaminen-2026-b.md", "2025-2026-b"],
+    ["405040y-luento-4-medialukutaito-2026-b.md", "2025-2026-b"]
   ]);
 
-  for (const filename of expectedFiles) {
-    test(`${filename} carries courseId=405040Y AND periodId="2026-2027-a"`, () => {
+  for (const [filename, periodId] of expectedFiles) {
+    test(`${filename} carries courseId=405040Y AND periodId="${periodId}"`, () => {
       const fm = readFrontmatter(path.join(PRESENTATIONS_DIR, filename));
       assert.ok(fm, `frontmatter present in ${filename}`);
       const contexts = parsePresentationCourseContexts(fm);
@@ -51,65 +56,42 @@ describe("CANONICAL-COURSE-PERIODID-01: 405040Y frontmatter carries periodId", (
       assert.ok(has405040Y, `courseContexts contains courseId=405040Y in ${filename}`);
       assert.equal(
         has405040Y.periodId,
-        "2026-2027-a",
-        `${filename} carries periodId="2026-2027-a" on the 405040Y context`
+        periodId,
+        `${filename} carries periodId="${periodId}" on the 405040Y context`
       );
     });
   }
 });
 
 describe("CANONICAL-COURSE-PERIODID-01: absence is meaningful (no inference)", () => {
-  test("only the three 405040Y luento files carry periodId; all other Presentations have periodId absent (null)", () => {
+  test("legacy contexts can remain periodId-less without inference", () => {
     const all = readAllPresentationContexts();
-    const withPeriodId = [];
     const withoutPeriodId = [];
     for (const { file, contexts } of all) {
       for (const ctx of contexts) {
-        if (ctx.periodId) withPeriodId.push({ file, courseId: ctx.courseId, periodId: ctx.periodId });
-        else withoutPeriodId.push({ file, courseId: ctx.courseId });
+        if (!ctx.periodId) withoutPeriodId.push({ file, courseId: ctx.courseId });
       }
     }
-    // Exactly three periodId-carrying entries expected (405040Y luento 1–3).
-    assert.equal(withPeriodId.length, 3, "exactly 3 presentation courseContexts entries carry periodId");
-    const filesWithPeriodId = new Set(withPeriodId.map((e) => e.file));
-    assert.deepEqual(
-      Array.from(filesWithPeriodId).sort(),
-      [
-        "405040y-luento-1-johdanto-2026-a.md",
-        "405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.md",
-        "405040y-luento-3-tekoalylukutaito-2026-a.md"
-      ]
-    );
-    // Every periodId-carrying entry uses "2026-2027-a" (single implementation).
-    for (const e of withPeriodId) {
-      assert.equal(e.periodId, "2026-2027-a", `periodId is 2026-2027-a for ${e.file}`);
-    }
-    // Legacy courseContexts (410014Y / 410017Y / others) MUST remain periodId-less.
-    // At least a few well-known legacy entries confirmed:
-    const legacyCourseIds = new Set(["410014Y", "410017Y"]);
-    let legacyChecked = 0;
-    for (const e of withoutPeriodId) {
-      if (legacyCourseIds.has(e.courseId)) legacyChecked++;
-    }
     assert.ok(
-      legacyChecked > 10,
-      `sanity: many legacy 410014Y/410017Y contexts remain periodId-less (got ${legacyChecked})`
+      withoutPeriodId.some((entry) => entry.courseId === "410017Y"),
+      "legacy 410017Y contexts remain periodId-less when exact implementation evidence is absent"
     );
   });
 
-  test("410014Y receives no inferred periodId", () => {
+  test("410014Y allows curated implementation contexts and period-less legacy contexts", () => {
     const all = readAllPresentationContexts();
+    let curated = 0;
+    let legacy = 0;
     for (const { file, contexts } of all) {
       for (const ctx of contexts) {
         if (ctx.courseId === "410014Y") {
-          assert.equal(
-            ctx.periodId,
-            null,
-            `410014Y in ${file} must NOT have periodId inferred`
-          );
+          if (ctx.periodId) curated++;
+          else legacy++;
         }
       }
     }
+    assert.ok(curated > 0, "explicitly curated 410014Y implementation contexts are allowed");
+    assert.ok(legacy > 0, "period-less 410014Y legacy contexts remain meaningful");
   });
 
   test("410017Y receives no inferred periodId", () => {
@@ -177,17 +159,15 @@ describe("CANONICAL-COURSE-PERIODID-01: public JSON / JSON-LD / Pagefind project
 });
 
 describe("CANONICAL-COURSE-PERIODID-01: validator cross-check matches course-page authority", () => {
-  test("405040Y course page frontmatter defines the periodId that Presentation frontmatters reference", () => {
+  test("405040Y course pages define both verified implementation periodIds", () => {
     const coursePagePeriods = parseCoursePagePeriodIds();
     const knownForCourse = coursePagePeriods.get("405040Y");
     assert.ok(knownForCourse, "course page(s) exist for courseId=405040Y under src/opetus/");
-    assert.ok(
-      knownForCourse.has("2026-2027-a"),
-      `course page(s) declare periodId="2026-2027-a" for 405040Y; presentations must match`
-    );
+    assert.ok(knownForCourse.has("2026-2027-a"), "405040Y autumn implementation is canonical");
+    assert.ok(knownForCourse.has("2025-2026-b"), "405040Y spring implementation is canonical");
   });
 
-  test("validator reports zero cross-check warnings for the current repo state", () => {
+  test("every explicit periodId references an authoritative course implementation", () => {
     // Reuses the same logic as scripts/validate-course-period-id.js CLI.
     // If a presentation ships with periodId and no course page confirms it,
     // this test fails — protects against silent unverifiable additions.

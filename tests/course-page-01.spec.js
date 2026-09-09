@@ -12,7 +12,7 @@ test.describe.configure({ mode: "serial" });
  *   3. Five lecture rows render
  *   4. Known lecture dates + times are present
  *   5. Peppi URL is correct
- *   6. Lecture 1-3 materials link to canonical local /presentations/… landings
+ *   6. Lecture 1-4 materials link to canonical local /presentations/… landings
  *   7. Canva source URLs are NOT duplicated on the course page as substitutes
  *      for canonical landings (canonical landings must be used when they exist)
  *   8. Kopiosto lecture does NOT appear as a canonical Presentation in the archive
@@ -24,14 +24,15 @@ const COURSE_URL = "/opetus/teknologiatuettu-oppiminen/2026-2027-a/";
 const CANVA_URLS = [
   "https://canva.link/rd3kruke4i7fzns",
   "https://canva.link/vmsct2fivgoxykk",
-  "https://canva.link/666rwb1kr9owlhh"
+  "https://canva.link/666rwb1kr9owlhh",
+  "https://canva.link/yrtz7vbd2ofhlwk"
 ];
 const LOCAL_LANDINGS = [
   "/presentations/405040y-luento-1-johdanto-2026-a/",
   "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/",
-  "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/"
+  "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/",
+  "/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/"
 ];
-const LECTURE_4_CANVA_URL = "https://canva.link/yrtz7vbd2ofhlwk";
 
 test.describe("Page renders with course identity", () => {
   test("route resolves and contains 405040Y", async ({ page }) => {
@@ -81,7 +82,7 @@ test.describe("Lecture schedule (5 lectures)", () => {
 });
 
 test.describe("Canonical Presentation integration", () => {
-  test("lecture 1-3 materials link to local canonical /presentations/… landings", async ({ page }) => {
+  test("lecture 1-4 materials link to local canonical /presentations/… landings", async ({ page }) => {
     const html = await page.request.get(COURSE_URL).then((r) => r.text());
     for (const landing of LOCAL_LANDINGS) {
       expect(html, `course page must link to canonical landing ${landing}`).toContain(landing);
@@ -96,9 +97,6 @@ test.describe("Canonical Presentation integration", () => {
   });
 
   test("canva.link source URLs are NOT the material links on the course page", async ({ page }) => {
-    // The canonical local landing is the target; canva.link belongs on the
-    // Presentation landing page as "Avaa materiaali". The course page must
-    // not shortcut past the landing.
     const html = await page.request.get(COURSE_URL).then((r) => r.text());
     for (const canva of CANVA_URLS) {
       expect(html, `course page must NOT expose ${canva} directly`).not.toContain(canva);
@@ -106,8 +104,6 @@ test.describe("Canonical Presentation integration", () => {
   });
 
   test("canonical Presentation landings expose the Canva source URL (canonical semantics preserved)", async ({ page }) => {
-    // Sanity: landings themselves DO carry the source URL — this proves we
-    // didn't strip the Canva URL from the canonical record.
     for (let i = 0; i < LOCAL_LANDINGS.length; i += 1) {
       const html = await page.request.get(LOCAL_LANDINGS[i]).then((r) => r.text());
       expect(html, `landing ${LOCAL_LANDINGS[i]} carries canva URL ${CANVA_URLS[i]}`).toContain(CANVA_URLS[i]);
@@ -127,8 +123,6 @@ test.describe("Panopto recording links (student-only)", () => {
   test("all five exact Panopto URLs are present on the course page", async ({ page }) => {
     await page.goto(COURSE_URL);
     for (const url of RECORDING_URLS) {
-      // Browsers decode HTML entities when parsing href attributes, so
-      // matching the DOM link avoids &amp; escaping in the raw HTML.
       const link = page.locator(`a[href="${url}"]`);
       await expect(link, `exact Panopto URL must be present: ${url}`).toHaveCount(1);
     }
@@ -168,10 +162,11 @@ test.describe("Panopto recording links (student-only)", () => {
 });
 
 test.describe("Lecture 4 and 5 published materials", () => {
-  test("lecture 4 exposes its exact authorized Canva material", async ({ page }) => {
+  test("lecture 4 routes through its canonical Presentation detail", async ({ page }) => {
     await page.goto(COURSE_URL);
     const row = page.locator('[data-course-lecture][data-lecture-number="4"]');
-    await expect(row.locator(`a[href="${LECTURE_4_CANVA_URL}"]`)).toHaveCount(1);
+    await expect(row.locator('a[href="/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/"]')).toHaveCount(1);
+    await expect(row.locator('a[href="https://canva.link/yrtz7vbd2ofhlwk"]')).toHaveCount(0);
   });
 
   test("lecture 5 notes cover later slides and the recording screen-sharing issue", async ({ page }) => {
@@ -185,8 +180,6 @@ test.describe("Lecture 4 and 5 published materials", () => {
 
 test.describe("Kopiosto exclusion", () => {
   test("Kopiosto lecture is NOT a canonical Presentation", async ({ page }) => {
-    // No permalink /presentations/…-kopiosto…/ should have been created.
-    // We check both a targeted probe and the presentation archive contents.
     const probe = await page.request.get("/presentations/405040y-luento-5-kopiosto-2026-a/");
     expect(probe.ok(), "Kopiosto lecture must NOT have a canonical Presentation landing").toBeFalsy();
   });
@@ -227,7 +220,6 @@ test.describe("Thesis teaser", () => {
   test("required heading + at least 3 destination links", async ({ page }) => {
     const html = await page.request.get(COURSE_URL).then((r) => r.text());
     expect(html).toContain("Tule tekemään opinnäytteitä näistä aiheista");
-    // Real existing destinations we chose:
     expect(html).toContain("/avainsanat/tekoalylukutaito/");
     expect(html).toContain("/avainsanat/opettajankoulutus/");
     expect(html).toContain("/opinnaytteet/gradut/");
