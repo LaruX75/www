@@ -43,3 +43,12 @@ Focused Playwright coverage now requires:
 - Kopiosto guest lectures to remain non-canonical.
 
 Full build / verify / Playwright validation is delegated to GitHub CI on the draft PR.
+
+## PeriodId validator reconciliation
+
+The original count-based regression fixture reflected the first three autumn
+2026 Presentation records only. Later canonically curated 410014Y history and
+the verified 405040Y autumn lecture 4 and spring lectures 1–4 legitimately
+expanded `periodId` usage. The validator now checks optionality and verifies
+each explicit `(courseId, periodId)` against authoritative course-page
+frontmatter instead of enforcing a repository-wide historical count.
