@@ -70,7 +70,13 @@ course:
       room: L2 Martti Ahtisaari
       title: Media- ja informaatiolukutaito tekoälyn aikakaudella
       presentationPageUrl: null
-      note: "Esityslinkki julkaistaan luennon lähestyessä."
+      material:
+        url: "https://canva.link/yrtz7vbd2ofhlwk"
+        label: "Avaa luentomateriaali"
+      recording:
+        url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=849dfd2f-fa80-40d3-82fe-b4bf00790cef"
+        label: "Katso tallenne (Panopto)"
+        note: "Kurssin opiskelijoille tarkoitettu tallenne. Vaatii Oulun yliopiston kirjautumisen."
     - number: 5
       date: 2026-09-09
       time: "08:15–10:00"
@@ -78,7 +84,11 @@ course:
       title: Kopioston asiantuntijaluento
       presentationPageUrl: null
       externalSpeaker: Kopiosto
-      note: "Vierailuluento Kopiostosta. Materiaalilinkki ja tarkka otsikko lisätään luennon lähestyessä."
+      note: "Vierailijan diasetti julkaistaan, kun se on saatavilla."
+      recording:
+        url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dde89e81-12d8-4038-b9f2-b4c00071ce5e"
+        label: "Katso tallenne (Panopto)"
+        note: "Tallenteen alkuosassa oli vaikeuksia ruudunjaon kanssa. Suosittelemme katsomaan tallenteen myöhemmin julkaistavan diasetin kanssa. Kurssin opiskelijoille tarkoitettu tallenne vaatii Oulun yliopiston kirjautumisen."
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom course-page-hero">
@@ -200,6 +210,9 @@ course:
                 {% if lecture.presentation %}
                   <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
                   <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
+                {% elif lecture.material %}
+                  <a href="{{ lecture.material.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none fw-semibold">{{ lecture.material.label }} <i class="bi bi-arrow-up-right ms-1"></i></a>
+                  {% if lecture.material.note %}<div class="text-muted small mt-1">{{ lecture.material.note }}</div>{% endif %}
                 {% elif lecture.note %}
                   <span class="text-muted small">{{ lecture.note }}</span>
                 {% else %}

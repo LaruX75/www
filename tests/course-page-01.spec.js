@@ -31,6 +31,7 @@ const LOCAL_LANDINGS = [
   "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/",
   "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/"
 ];
+const LECTURE_4_CANVA_URL = "https://canva.link/yrtz7vbd2ofhlwk";
 
 test.describe("Page renders with course identity", () => {
   test("route resolves and contains 405040Y", async ({ page }) => {
@@ -40,7 +41,7 @@ test.describe("Page renders with course identity", () => {
     expect(html, "course code 405040Y must appear").toContain("405040Y");
     expect(html, "course title must appear").toContain("Teknologiatuettu oppiminen ja työskentely");
     expect(html, "credits must appear").toContain("4 op");
-    expect(html, "period + academic year must appear").toContain("Periodi A");
+    expect(html, "period + academic year must appear").toContain("periodi A");
     expect(html, "academic year must appear").toMatch(/2026[–-]2027/);
   });
 
@@ -118,10 +119,12 @@ test.describe("Panopto recording links (student-only)", () => {
   const RECORDING_URLS = [
     "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=3c21fa8e-3e26-4ce6-8c7e-b4b10072fab9&start=501.570238",
     "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=b1f5fb3f-0322-4fa9-81b0-b4b80073be05",
-    "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=3661d140-99c4-4dda-89cd-b4bb006934a7&start=15.108464"
+    "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=3661d140-99c4-4dda-89cd-b4bb006934a7&start=15.108464",
+    "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=849dfd2f-fa80-40d3-82fe-b4bf00790cef",
+    "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dde89e81-12d8-4038-b9f2-b4c00071ce5e"
   ];
 
-  test("all three exact Panopto URLs are present on the course page", async ({ page }) => {
+  test("all five exact Panopto URLs are present on the course page", async ({ page }) => {
     await page.goto(COURSE_URL);
     for (const url of RECORDING_URLS) {
       // Browsers decode HTML entities when parsing href attributes, so
@@ -131,10 +134,10 @@ test.describe("Panopto recording links (student-only)", () => {
     }
   });
 
-  test("exactly three recording links rendered", async ({ page }) => {
+  test("exactly five recording links rendered", async ({ page }) => {
     await page.goto(COURSE_URL);
     const recordingLinks = await page.locator('a[href*="oulu.cloud.panopto.eu"]').count();
-    expect(recordingLinks, "exactly 3 Panopto recording links expected").toBe(3);
+    expect(recordingLinks, "exactly 5 Panopto recording links expected").toBe(5);
   });
 
   test("recording links are external (target=_blank, rel noopener)", async ({ page }) => {
@@ -154,13 +157,29 @@ test.describe("Panopto recording links (student-only)", () => {
     expect(html, "recording note must say Oulu login required").toMatch(/Vaatii Oulun yliopiston kirjautumisen/);
   });
 
-  test("lectures 4 and 5 do NOT expose recording links", async ({ page }) => {
+  test("lectures 4 and 5 each expose exactly one Panopto recording", async ({ page }) => {
     await page.goto(COURSE_URL);
     for (const n of [4, 5]) {
       const row = page.locator(`[data-course-lecture][data-lecture-number="${n}"]`);
       const rowRecordingLinks = await row.locator('a[href*="oulu.cloud.panopto.eu"]').count();
-      expect(rowRecordingLinks, `lecture ${n} must not have a recording link`).toBe(0);
+      expect(rowRecordingLinks, `lecture ${n} must have exactly one recording link`).toBe(1);
     }
+  });
+});
+
+test.describe("Lecture 4 and 5 published materials", () => {
+  test("lecture 4 exposes its exact authorized Canva material", async ({ page }) => {
+    await page.goto(COURSE_URL);
+    const row = page.locator('[data-course-lecture][data-lecture-number="4"]');
+    await expect(row.locator(`a[href="${LECTURE_4_CANVA_URL}"]`)).toHaveCount(1);
+  });
+
+  test("lecture 5 notes cover later slides and the recording screen-sharing issue", async ({ page }) => {
+    const html = await page.request.get(COURSE_URL).then((r) => r.text());
+    const lecture5 = html.match(/<tr[^>]*data-lecture-number="5"[\s\S]*?<\/tr>/i);
+    expect(lecture5, "lecture 5 row must render").not.toBeNull();
+    expect(lecture5[0], "lecture 5 must say the guest slides will be published later").toMatch(/diasetti julkaistaan.*saatavilla/i);
+    expect(lecture5[0], "lecture 5 must document the initial screen-sharing issue").toMatch(/alkuosassa.*ruudunjaon/i);
   });
 });
 
