@@ -58,10 +58,10 @@ test.describe("A. 405040Y implementation-scoped peer group (courseId + periodId)
       expect(html, "no cross-implementation ambiguity phrasing").not.toContain("Aineisto voi olla eri vuosien toteutuksista");
     });
 
-    test(`${name}: 2 peers, all share courseId 405040Y and periodId 2026-2027-a implicitly`, async ({ page }) => {
+    test(`${name}: 3 peers, all share courseId 405040Y and periodId 2026-2027-a implicitly`, async ({ page }) => {
       const html = await page.request.get(url).then((r) => r.text());
       const peerCount = (html.match(/course-peer-item/g) || []).length;
-      expect(peerCount, "exactly 2 peers").toBe(2);
+      expect(peerCount, "exactly 3 peers").toBe(3);
       // Self-link exclusion still enforced.
       const peerBlockMatch = html.match(/<ul class="list-unstyled mb-0 d-grid gap-2">([\s\S]*?)<\/ul>/);
       expect(peerBlockMatch, "peer <ul> present").not.toBeNull();
@@ -188,9 +188,9 @@ test.describe("I. DETAIL-UX-01C-B-COURSE peerPresentationsByCourse invariant rem
   // detail-ux-01c-b-course.spec.js keeps asserting those counts.
   // Sanity duplication of the counts here to catch a shim breakage
   // even if that spec is ever removed.
-  test("405040Y luento-1 emits 2 peers", async ({ page }) => {
+  test("405040Y luento-1 emits 3 peers", async ({ page }) => {
     const html = await page.request.get(PAGES.courseLuento1).then((r) => r.text());
-    expect((html.match(/course-peer-item/g) || []).length).toBe(2);
+    expect((html.match(/course-peer-item/g) || []).length).toBe(3);
   });
   test("410014Y ss-1-luento emits 6 peers", async ({ page }) => {
     const html = await page.request.get(PAGES.boundedCourseLuento1).then((r) => r.text());

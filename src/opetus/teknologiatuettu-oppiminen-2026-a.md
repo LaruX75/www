@@ -205,6 +205,11 @@ course:
               </td>
               <td>
                 {% if lecture.presentation %}
+                  {% if lecture.presentation.thumbnail %}
+                  <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link d-inline-block mb-2" aria-label="Esityksen esikatselu">
+                    <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
+                  </a>
+                  {% endif %}
                   <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
                   <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
                 {% elif lecture.material %}
@@ -318,6 +323,15 @@ course:
 .course-lecture-table th,
 .course-lecture-table td {
   vertical-align: top;
+}
+.course-lecture-preview-link {
+  max-width: 120px;
+}
+.course-lecture-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 596 / 335;
+  object-fit: cover;
 }
 .course-thesis-column {
   border-radius: 1rem;

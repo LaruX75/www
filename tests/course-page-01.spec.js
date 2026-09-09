@@ -165,7 +165,9 @@ test.describe("Lecture 4 and 5 published materials", () => {
   test("lecture 4 routes through its canonical Presentation detail", async ({ page }) => {
     await page.goto(COURSE_URL);
     const row = page.locator('[data-course-lecture][data-lecture-number="4"]');
-    await expect(row.locator('a[href="/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/"]')).toHaveCount(1);
+    // OPETUS-CANVA-THUMBNAILS-01A: two links to the canonical landing per row —
+    // one wrapping the preview thumbnail, one the "Avaa esitys" text link.
+    await expect(row.locator('a[href="/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/"]')).toHaveCount(2);
     await expect(row.locator('a[href="https://canva.link/yrtz7vbd2ofhlwk"]')).toHaveCount(0);
   });
 

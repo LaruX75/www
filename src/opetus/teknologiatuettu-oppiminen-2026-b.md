@@ -161,6 +161,11 @@ course:
             <td><div class="fw-semibold">{{ lecture.title }}</div>{% if lecture.externalSpeaker %}<div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>{% endif %}</td>
             <td>
               {% if lecture.presentation %}
+              {% if lecture.presentation.thumbnail %}
+              <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link d-inline-block mb-2" aria-label="Esityksen esikatselu">
+                <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
+              </a>
+              {% endif %}
               <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
               <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
               {% elif lecture.material %}
@@ -211,6 +216,8 @@ course:
 <style>
 .course-page-hero .lead { max-width: 60ch; }
 .course-lecture-table th, .course-lecture-table td { vertical-align: top; }
+.course-lecture-preview-link { max-width: 120px; }
+.course-lecture-preview { display: block; width: 100%; aspect-ratio: 596 / 335; object-fit: cover; }
 .course-thesis-column { border-radius: 1rem; background: var(--bs-body-bg); }
 .course-thesis-list { display: grid; gap: 0.9rem; }
 .course-thesis-item { padding-bottom: 0.75rem; border-bottom: 1px solid var(--bs-border-color-translucent); }
