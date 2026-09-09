@@ -198,18 +198,27 @@ course:
               </td>
               <td>{{ lecture.room }}</td>
               <td>
+                {% if lecture.presentation and lecture.presentation.thumbnail %}
+                <div class="course-lecture-topic d-flex align-items-start gap-3">
+                  <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link flex-shrink-0" aria-label="Esityksen esikatselu">
+                    <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
+                  </a>
+                  <div class="course-lecture-topic-body">
+                    <div class="fw-semibold">{{ lecture.title }}</div>
+                    {% if lecture.externalSpeaker %}
+                      <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
+                    {% endif %}
+                  </div>
+                </div>
+                {% else %}
                 <div class="fw-semibold">{{ lecture.title }}</div>
                 {% if lecture.externalSpeaker %}
                   <div class="text-muted small">Vierailuluento: {{ lecture.externalSpeaker }}</div>
                 {% endif %}
+                {% endif %}
               </td>
               <td>
                 {% if lecture.presentation %}
-                  {% if lecture.presentation.thumbnail %}
-                  <a href="{{ lecture.presentation.pageUrl }}" class="course-lecture-preview-link d-inline-block mb-2" aria-label="Esityksen esikatselu">
-                    <img src="{{ lecture.presentation.thumbnail }}" alt="" loading="lazy" decoding="async" width="596" height="335" class="course-lecture-preview img-fluid rounded">
-                  </a>
-                  {% endif %}
                   <a href="{{ lecture.presentation.pageUrl }}" class="text-decoration-none fw-semibold">Avaa esitys <i class="bi bi-arrow-right ms-1"></i></a>
                   <div class="text-muted small mt-1">Kanoninen esityssivu jarilaru.fi:ssä</div>
                 {% elif lecture.material %}
@@ -332,6 +341,14 @@ course:
   width: 100%;
   aspect-ratio: 596 / 335;
   object-fit: cover;
+}
+.course-lecture-topic-body {
+  min-width: 0;
+}
+@media (max-width: 480px) {
+  .course-lecture-preview-link {
+    max-width: 88px;
+  }
 }
 .course-thesis-column {
   border-radius: 1rem;

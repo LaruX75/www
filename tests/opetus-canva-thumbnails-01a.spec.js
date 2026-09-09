@@ -2,18 +2,20 @@ const { test, expect } = require("@playwright/test");
 
 /*
  * OPETUS-CANVA-THUMBNAILS-01A — 405040Y course pages surface canonical
- * Canva cover previews above the "Avaa esitys" link for each lecture
- * that has a canonical Presentation with a local thumbnail asset.
+ * Canva cover previews grouped with the lecture title (Aihe cell) for
+ * each lecture that has a canonical Presentation with a local thumbnail.
+ * The Material column remains action-oriented (text links only).
  *
  * Guards:
  *   1. All eight canonical Presentation records resolve /images/canva-thumbnails/*.png
- *   2. Autumn 2026-A course page renders four previews (lectures 1-4)
- *   3. Spring 2026-B course page renders four previews (lectures 1-4)
+ *   2. Autumn 2026-A course page renders four previews (lectures 1-4) in the Aihe cell
+ *   3. Spring 2026-B course page renders four previews (lectures 1-4) in the Aihe cell
  *   4. Every preview links to the canonical Presentation pageUrl (never direct to Canva)
- *   5. Kopiosto rows have no fabricated preview thumbnail
- *   6. SSR-only: previews present when JavaScript is disabled
- *   7. No horizontal overflow at 320px or 390px viewports
- *   8. Canva source URLs are NOT reintroduced on course pages
+ *   5. Material cell contains the "Avaa esitys" text link but NOT the preview image
+ *   6. Kopiosto rows have no fabricated preview thumbnail
+ *   7. SSR-only: previews present when JavaScript is disabled
+ *   8. No horizontal overflow at 320px or 390px viewports
+ *   9. Canva source URLs are NOT reintroduced on course pages
  */
 
 const COURSE_URLS = {
@@ -78,8 +80,8 @@ test.describe("2026-A course page previews", () => {
     test(`autumn lecture ${lecture.number} preview links to canonical landing`, async ({ page }) => {
       await page.goto(COURSE_URLS.autumn);
       const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
-      const previewLink = row.locator(`a.course-lecture-preview-link[href="${lecture.landing}"]`);
-      await expect(previewLink, `preview link to ${lecture.landing}`).toHaveCount(1);
+      const previewLink = row.locator(`.course-lecture-topic a.course-lecture-preview-link[href="${lecture.landing}"]`);
+      await expect(previewLink, `preview link to ${lecture.landing} inside title cell`).toHaveCount(1);
       const img = previewLink.locator("img.course-lecture-preview");
       await expect(img).toHaveAttribute("src", lecture.thumbnail);
       await expect(img).toHaveAttribute("loading", "lazy");
@@ -114,8 +116,8 @@ test.describe("2026-B course page previews", () => {
     test(`spring lecture ${lecture.number} preview links to canonical landing`, async ({ page }) => {
       await page.goto(COURSE_URLS.spring);
       const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
-      const previewLink = row.locator(`a.course-lecture-preview-link[href="${lecture.landing}"]`);
-      await expect(previewLink, `preview link to ${lecture.landing}`).toHaveCount(1);
+      const previewLink = row.locator(`.course-lecture-topic a.course-lecture-preview-link[href="${lecture.landing}"]`);
+      await expect(previewLink, `preview link to ${lecture.landing} inside title cell`).toHaveCount(1);
       const img = previewLink.locator("img.course-lecture-preview");
       await expect(img).toHaveAttribute("src", lecture.thumbnail);
       await expect(img).toHaveAttribute("loading", "lazy");
@@ -137,6 +139,27 @@ test.describe("2026-B course page previews", () => {
       expect(html, `must not link to ${shortcut}`).not.toContain(shortcut);
     }
   });
+});
+
+test.describe("Material column stays action-oriented (no preview image)", () => {
+  for (const [label, url, lectures] of [
+    ["autumn", COURSE_URLS.autumn, AUTUMN_LECTURES],
+    ["spring", COURSE_URLS.spring, SPRING_LECTURES]
+  ]) {
+    for (const lecture of lectures) {
+      test(`${label} lecture ${lecture.number} Material cell has no preview image`, async ({ page }) => {
+        await page.goto(url);
+        const row = page.locator(`[data-course-lecture][data-lecture-number="${lecture.number}"]`);
+        // Row-level: the "Avaa esitys" link exists (in Material cell).
+        const openLink = row.locator(`a[href="${lecture.landing}"]`, { hasText: /Avaa esitys/ });
+        await expect(openLink).toHaveCount(1);
+        // The Material cell containing "Avaa esitys" MUST NOT contain a
+        // preview thumbnail. Locate that specific <td> and assert.
+        const materialCell = row.locator("td", { hasText: "Avaa esitys" });
+        await expect(materialCell.locator("img.course-lecture-preview")).toHaveCount(0);
+      });
+    }
+  }
 });
 
 test.describe("Kopiosto rows carry no fabricated preview", () => {
