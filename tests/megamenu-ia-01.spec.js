@@ -230,17 +230,17 @@ test.describe("G. No runtime JSON is fetched for the new mega-menu content", () 
   });
 });
 
-test.describe("H. Mobile Työ panel renders the overview strip and the four choices", () => {
-  test("mobile Työ panel contains overview-strip and four section choices", async ({ page }) => {
+test.describe("H. Mobile Työ card renders the overview strip and the four columns", () => {
+  test("mobile Työ details block contains overview-strip and four section-cards", async ({ page }) => {
     const html = await page.request.get("/").then((r) => r.text());
-    const mobileTyo = html.match(/<section data-mobile-panel="work"[\s\S]*?<\/section>/);
-    expect(mobileTyo, "mobile Työ panel present").not.toBeNull();
+    const mobileTyo = html.match(/<details class="mobile-nav-card">\s*<summary>\s*<span class="mobile-nav-card-title"><i[^>]*><\/i>Työ<\/span>[\s\S]*?<\/details>/);
+    expect(mobileTyo, "mobile Työ details block present").not.toBeNull();
     const block = mobileTyo[0];
     expect(block, "mobile overview strip present").toMatch(/mobile-nav-overview-strip/);
     expect(block).toMatch(/mobile-nav-overview-link[^>]*href="\/tyoni-yliopistonlehtorina\/"/);
     expect(block).toMatch(/mobile-nav-overview-link[^>]*href="\/cv\/"/);
     expect(block).toMatch(/mobile-nav-overview-link[^>]*href="\/palkinnot\/"/);
-    const choices = block.match(/data-mobile-panel-open="work-\d+"/g) || [];
-    expect(choices.length, "four mobile section choices").toBe(4);
+    const sectionCards = block.match(/<section class="mobile-nav-section-card">/g) || [];
+    expect(sectionCards.length, "four mobile section cards").toBe(4);
   });
 });
