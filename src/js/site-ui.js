@@ -64,31 +64,6 @@
       }
 
       // Sticky header transparency logic
-      const mobilePanelSystem = document.querySelector('[data-mobile-panel-system]');
-      if (mobilePanelSystem) {
-        const offcanvas = mobilePanelSystem.closest('.offcanvas');
-        const panels = Array.from(mobilePanelSystem.querySelectorAll('[data-mobile-panel]'));
-        const returns = new Map();
-        let current = 'root';
-        const show = (id, trigger = null) => {
-          const target = panels.find((panel) => panel.dataset.mobilePanel === id);
-          if (!target) return;
-          panels.forEach((panel) => { panel.hidden = panel !== target; });
-          if (trigger) returns.set(id, trigger);
-          current = id;
-          target.querySelector('h6[tabindex="-1"]')?.focus();
-        };
-        const panelControls = offcanvas || mobilePanelSystem;
-        panelControls.querySelectorAll('[data-mobile-panel-open]').forEach((control) => control.addEventListener('click', () => show(control.dataset.mobilePanelOpen, control)));
-        panelControls.querySelectorAll('[data-mobile-panel-back]').forEach((control) => control.addEventListener('click', () => {
-          const trigger = returns.get(current);
-          show(control.dataset.mobilePanelBack);
-          trigger?.isConnected && trigger.focus();
-        }));
-        offcanvas?.addEventListener('hidden.bs.offcanvas', () => { returns.clear(); current = 'root'; panels.forEach((panel) => { panel.hidden = true; }); });
-        panels.forEach((panel) => { panel.hidden = true; });
-      }
-
       const navbar = document.querySelector('.site-navbar');
       if (navbar) {
         // Keep header alignment and look consistent on all pages.
