@@ -69,10 +69,7 @@ course:
       time: "08:15–10:00"
       room: L2 Martti Ahtisaari
       title: Media- ja informaatiolukutaito tekoälyn aikakaudella
-      presentationPageUrl: null
-      material:
-        url: "https://canva.link/yrtz7vbd2ofhlwk"
-        label: "Avaa luentomateriaali"
+      presentationPageUrl: /presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=849dfd2f-fa80-40d3-82fe-b4bf00790cef"
         label: "Katso tallenne (Panopto)"
