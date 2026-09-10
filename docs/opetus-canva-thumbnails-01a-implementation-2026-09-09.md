@@ -2,13 +2,17 @@
 
 ## Status
 
-Implementation complete. Draft PR pending. Do NOT merge.
+**OPETUS CANVA THUMBNAILS 01A = CLOSED / GREEN / MAIN.**
 
-- Baseline: `d5900fb65fab2890155faa0082c5dd4ba699f94f` (origin/main)
-- Branch: `feat/opetus-canva-thumbnails-01a`
-- Follows: `docs/405040y-presentation-canonicalization-2026-09-09.md` (PR #238) CLOSED / GREEN / MAIN
-- Follows: `docs/detail-ux-01c-relevant-next-content-audit-2026-09-04.md` Part A canonical thumbnail flow
-- Follows: `docs/course-relation-ux-01-closure-2026-09-06.md`
+- PR [#240](https://github.com/LaruX75/www/pull/240) merged to `main` on 2026-09-10.
+- Merge SHA: `0b3eaf5dc93adadd76c66d334b5f4b450337250c`.
+- Feature head preserved in merge history: `9716cac3423e9a84b5d76d50d5f65531a5b6e58b`.
+- The final 5-column course-page UX (schedule/context → title → thumbnail → actions) is live on `main`.
+- Baseline pre-merge: `d5900fb65fab2890155faa0082c5dd4ba699f94f` (origin/main).
+- Feature branch: `feat/opetus-canva-thumbnails-01a`.
+- Follows: `docs/405040y-presentation-canonicalization-2026-09-09.md` (PR #238) CLOSED / GREEN / MAIN.
+- Follows: `docs/detail-ux-01c-relevant-next-content-audit-2026-09-04.md` Part A canonical thumbnail flow.
+- Follows: `docs/course-relation-ux-01-closure-2026-09-06.md`.
 - Canonical Content v1: **UNCHANGED**
 - Pagefind: **UNCHANGED**
 - Public JSON: **UNCHANGED**
