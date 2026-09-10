@@ -34,11 +34,11 @@ test.describe("A. Positive — 405040Y peer group (small, exact expectation)", (
     luento2: PAGES.courseLuento2,
     luento3: PAGES.courseLuento3
   })) {
-    test(`${name} shows exactly 2 course peers (3 lectures in group minus self)`, async ({ page }) => {
+    test(`${name} shows exactly 3 course peers (4 lectures in group minus self)`, async ({ page }) => {
       const html = await page.request.get(url).then((r) => r.text());
       expect(html, "peer section present").toContain('content-detail-course-peers');
       const peerCount = (html.match(/course-peer-item/g) || []).length;
-      expect(peerCount, "exactly 2 peers rendered").toBe(2);
+      expect(peerCount, "exactly 3 peers rendered").toBe(3);
       // PRESENTATION-COMPOSITION-01: the previous descriptive line
       // ("Muut kurssitoteutuksen 405040Y (2026-2027-a) materiaalit")
       // echoed the raw periodId in user-visible copy. The unified
@@ -149,7 +149,7 @@ test.describe("E. Meaningful without JavaScript (SSR-only render)", () => {
     const html = await page.request.get(PAGES.courseLuento1).then((r) => r.text());
     expect(html, "peer section in SSR HTML").toContain('content-detail-course-peers');
     const peerCount = (html.match(/course-peer-item/g) || []).length;
-    expect(peerCount, "2 peer items in SSR HTML").toBe(2);
+    expect(peerCount, "3 peer items in SSR HTML").toBe(3);
     await ctx.close();
   });
 

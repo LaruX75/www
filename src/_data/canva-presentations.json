@@ -2584,5 +2584,133 @@
       "note": "Ei liitetä opintojaksoon."
     },
     "publicUrl": "https://www.canva.com/d/d6ho42WobmfnVvc"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-a.png",
+    "title": "405040Y Luento 1: Johdanto (2026 A)",
+    "summary": "Opintojakson 405040Y Teknologiatuettu oppiminen ja työskentely (4 op) avaava luento syyslukukauden 2026 periodissa A lukuvuonna 2026–2027.",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAG29zybS5g/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-08-25",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAG29zybS5g/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a.png",
+    "title": "405040Y Luento 2: Digitaalinen osaaminen vuonna 2026 – DigComp 3.0",
+    "summary": "Opintojakson 405040Y luento digitaalisen osaamisen viitekehyksestä (DigComp 3.0) syyslukukauden 2026 periodissa A lukuvuonna 2026–2027.",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAHT7HRSXpU/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-09-01",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAHT7HRSXpU/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-3-tekoalylukutaito-2026-a.png",
+    "title": "405040Y Luento 3: Tekoälylukutaito",
+    "summary": "Opintojakson 405040Y luento tekoälylukutaidon perusteista ja pedagogisista ulottuvuuksista syyslukukauden 2026 periodissa A lukuvuonna 2026–2027.",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAHUIPqmXF8/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-09-03",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAHUIPqmXF8/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-4-media-ja-informaatiolukutaito-2026-a.png",
+    "title": "405040Y Luento 4: Media- ja informaatiolukutaito tekoälyn aikakaudella",
+    "summary": "Opintojakson 405040Y luento media- ja informaatiolukutaidosta tekoälyn aikakaudella syyslukukauden 2026 periodissa A lukuvuonna 2026–2027.",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAHUiWcmiXM/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-09-08",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAHUiWcmiXM/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-1-johdanto-2026-b.png",
+    "title": "405040Y Luento 1: Johdanto",
+    "summary": "Opintojakson 405040Y johdantoluento kevätlukukauden 2026 VAKA ABCDE -toteutuksessa (periodi B lukuvuonna 2025–2026).",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAGbinJj3qY/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-01-07",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAGbinJj3qY/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-2-digitaalinen-osaaminen-2026-b.png",
+    "title": "405040Y Luento 2: Digitaalinen osaaminen",
+    "summary": "Opintojakson 405040Y luento digitaalisesta osaamisesta kevätlukukauden 2026 VAKA ABCDE -toteutuksessa (periodi B lukuvuonna 2025–2026).",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAGcMikkGGQ/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-01-09",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAGcMikkGGQ/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-3-ohjelmointiosaaminen-2026-b.png",
+    "title": "405040Y Luento 3: Ohjelmointiosaaminen",
+    "summary": "Opintojakson 405040Y luento ohjelmointiosaamisesta kevätlukukauden 2026 VAKA ABCDE -toteutuksessa (periodi B lukuvuonna 2025–2026).",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAGdezSMbr0/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-01-13",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAGdezSMbr0/view"
+  },
+  {
+    "thumbnail": "/images/canva-thumbnails/405040y-luento-4-medialukutaito-2026-b.png",
+    "title": "405040Y Luento 4: Medialukutaito",
+    "summary": "Opintojakson 405040Y luento medialukutaidosta kevätlukukauden 2026 VAKA ABCDE -toteutuksessa (periodi B lukuvuonna 2025–2026).",
+    "location": "Oulu",
+    "link": "https://www.canva.com/design/DAGi9AsWlIk/view",
+    "folder": "Koulutukset, kurssimateriaalit ja opetuksen kehitystyö",
+    "date": "2026-01-16",
+    "lang": "fi",
+    "jarjestaja": "Oulun yliopisto",
+    "courseReview": {
+      "status": "accepted",
+      "note": "Kurssin 405040Y kanoninen luento; kurssisemantiikka hallinnoidaan Presentation-tietueessa (courseContexts)."
+    },
+    "publicUrl": "https://www.canva.com/design/DAGi9AsWlIk/view"
   }
 ]

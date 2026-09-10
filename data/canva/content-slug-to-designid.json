@@ -68,5 +68,53 @@
     "siteTitle": "VESO 2024 – Tekoäly opetuksessa",
     "reason": "Tietue 66 'VESO 2024 – Tekoäly opetuksessa' vastaa täydellisesti: sama päivämäärä (2024-08-30), sama järjestäjä (Simon kunta) ja sama aihe (tekoäly opetuksessa VESO-päivänä)."
   },
-  "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/": null
+  "/presentations/syntyvyys-ja-kouluik-luokat-oulussa-2026/": null,
+  "/presentations/405040y-luento-1-johdanto-2026-a/": {
+    "designId": "DAG29zybS5g",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 1: Johdanto (2026 A)",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y syksyn 2026 (periodi A) luentoa 1 varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/": {
+    "designId": "DAHT7HRSXpU",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 2: Digitaalinen osaaminen vuonna 2026 – DigComp 3.0",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y syksyn 2026 (periodi A) luentoa 2 (DigComp 3.0) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/": {
+    "designId": "DAHUIPqmXF8",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 3: Tekoälylukutaito",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y syksyn 2026 (periodi A) luentoa 3 (Tekoälylukutaito) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-4-media-ja-informaatiolukutaito-2026-a/": {
+    "designId": "DAHUiWcmiXM",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 4: Media- ja informaatiolukutaito tekoälyn aikakaudella",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y syksyn 2026 (periodi A) luentoa 4 (media- ja informaatiolukutaito) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-1-johdanto-2026-b/": {
+    "designId": "DAGbinJj3qY",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 1: Johdanto",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y kevään 2026 VAKA ABCDE -toteutuksen (periodi B) luentoa 1 varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-2-digitaalinen-osaaminen-2026-b/": {
+    "designId": "DAGcMikkGGQ",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 2: Digitaalinen osaaminen",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y kevään 2026 VAKA ABCDE -toteutuksen (periodi B) luentoa 2 (digitaalinen osaaminen) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A)."
+  },
+  "/presentations/405040y-luento-3-ohjelmointiosaaminen-2026-b/": {
+    "designId": "DAGdezSMbr0",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 3: Ohjelmointiosaaminen",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y kevään 2026 VAKA ABCDE -toteutuksen (periodi B) luentoa 3 (ohjelmointiosaaminen) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A). Canva-designin sisäinen työnimi on 'Luento 4: Ohjelmointiosaaminen'; kurssitoteutuksessa tämä on sekvenssin luento 3."
+  },
+  "/presentations/405040y-luento-4-medialukutaito-2026-b/": {
+    "designId": "DAGi9AsWlIk",
+    "confidence": "high",
+    "siteTitle": "405040Y Luento 4: Medialukutaito",
+    "reason": "Kanonisen Presentation-tietueen ainoa Canva-lähdemateriaali kurssin 405040Y kevään 2026 VAKA ABCDE -toteutuksen (periodi B) luentoa 4 (medialukutaito) varten. Design-ID on todennettu Canva Connect API:sta (OPETUS-CANVA-THUMBNAILS-01A). Canva-designin sisäinen työnimi on 'Luento 5. Medialukutaito'; kurssitoteutuksessa tämä on sekvenssin luento 4."
+  }
 }

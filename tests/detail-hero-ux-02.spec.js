@@ -120,7 +120,7 @@ test.describe("C. Kurssitoteutus is one coherent section", () => {
     // Peer sub-heading and non-empty peer list
     expect(html).toContain("Muut tämän toteutuksen materiaalit");
     const peerCount = (html.match(/course-peer-item/g) || []).length;
-    expect(peerCount, "exactly 2 peers").toBe(2);
+    expect(peerCount, "exactly 3 peers").toBe(3);
     // Never surfaces raw periodId
     expect(html).not.toContain("2026-2027-a</");
     // Section still carries the implementation-mode CSS modifier for

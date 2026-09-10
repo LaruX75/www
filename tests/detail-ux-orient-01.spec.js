@@ -235,11 +235,11 @@ test.describe("G. Primary actions preserved in hero (unchanged by orient move)",
 });
 
 test.describe("H. DETAIL-UX-01C-B-COURSE invariants preserved", () => {
-  test(`405040Y luento-1: Samalla kurssilla section preserved with 2 peers`, async ({ page }) => {
+  test(`405040Y luento-1: Samalla kurssilla section preserved with 3 peers`, async ({ page }) => {
     const html = await getHtml(page.request, PAGES.presentationCourse);
     expect(html, "course-peers section").toContain('content-detail-course-peers');
     const peerCount = (html.match(/course-peer-item/g) || []).length;
-    expect(peerCount, "2 peers on 405040Y").toBe(2);
+    expect(peerCount, "3 peers on 405040Y").toBe(3);
   });
 
   test(`Kempele: no course-peers section (negative control)`, async ({ page }) => {

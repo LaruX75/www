@@ -96,7 +96,7 @@ describe("presentationResearchTopics", () => {
       presets: getPresentationResearchPresets(item.topics || [])
     }));
 
-    assert.equal(items.length, 217);
+    assert.equal(items.length, 225);
     assert.deepEqual(
       mapped.map((entry) => entry.id),
       before

@@ -88,7 +88,11 @@ test.describe("Non-Canva presentations (SlideShare) unchanged", () => {
 
 test.describe("Presentation without any thumbnail — hero fallback", () => {
   test("no aside markup, single-column hero fallback preserved", async ({ page }) => {
-    const html = await page.request.get("/presentations/405040y-luento-1-johdanto-2026-a/").then((r) => r.text());
+    // OPETUS-CANVA-THUMBNAILS-01A gave the eight 405040Y canonical
+    // lectures local Canva thumbnails, so we test the hero fallback on a
+    // presentation whose canonical .md still has neither a frontmatter
+    // thumbnail nor a canonical Canva projection.
+    const html = await page.request.get("/presentations/opi-oulu-2026-tekoalyaiheinen-paneelikeskustelu/").then((r) => r.text());
     expect(html, "no aside").not.toContain("content-detail-visual");
     expect(html, "single-column hero grid class").toContain("content-detail-hero-grid--single");
   });
