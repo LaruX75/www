@@ -2,7 +2,6 @@ module.exports = {
   "14-3-rantapohja-uuden-oulun-kasvaneet-voimavarat-ovat-olleet-hyodyksi-alueellemme": ["political"],
   "541": ["political"],
   "asukasvaikuttaminen-koetaan-puutteelliseksi": ["political"],
-  "digitaaliset-valineet-kouluissa-%e2%80%89joko-olisi-aika-tarjota-opettajille-riittavat-tiedot-ja-taidot-uusien-me": ["expert"],
   "etaopetuksen-laatuun-kiinnitettava-huomiota": ["expert"],
   "ihmistieteille-uudet-tilat-osallistavassa-suunnitteluprosessissa": ["expert"],
   "jaalin-urheilualueen-rakennustyot-on-aloitettava-vuonna-2013": ["political"],
