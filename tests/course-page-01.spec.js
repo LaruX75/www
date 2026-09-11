@@ -171,11 +171,14 @@ test.describe("Lecture 4 and 5 published materials", () => {
     await expect(row.locator('a[href="https://canva.link/yrtz7vbd2ofhlwk"]')).toHaveCount(0);
   });
 
-  test("lecture 5 notes cover later slides and the recording screen-sharing issue", async ({ page }) => {
+  test("lecture 5 links the supplied Kopiosto material and retains the recording screen-sharing note", async ({ page }) => {
     const html = await page.request.get(COURSE_URL).then((r) => r.text());
     const lecture5 = html.match(/<tr[^>]*data-lecture-number="5"[\s\S]*?<\/tr>/i);
     expect(lecture5, "lecture 5 row must render").not.toBeNull();
-    expect(lecture5[0], "lecture 5 must say the guest slides will be published later").toMatch(/diasetti julkaistaan.*saatavilla/i);
+    expect(lecture5[0], "lecture 5 must link to the supplied Kopiosto material").toContain("kopiostofi-my.sharepoint.com");
+    expect(lecture5[0], "lecture 5 must label the material link").toContain("Avaa luentomateriaali");
+    expect(lecture5[0], "lecture 5 must not announce unavailable slides").not.toMatch(/diasetti julkaistaan.*saatavilla/i);
+    expect(lecture5[0], "lecture 5 must not refer to later-published slides").not.toMatch(/myöhemmin julkaistavan diasetin/i);
     expect(lecture5[0], "lecture 5 must document the initial screen-sharing issue").toMatch(/alkuosassa.*ruudunjaon/i);
   });
 });

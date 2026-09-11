@@ -81,11 +81,13 @@ course:
       title: Kopioston asiantuntijaluento
       presentationPageUrl: null
       externalSpeaker: Kopiosto
-      note: "Vierailijan diasetti julkaistaan, kun se on saatavilla."
+      material:
+        url: "https://kopiostofi-my.sharepoint.com/personal/mikko_loyttyniemi_kopiosto_fi/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fmikko%5Floyttyniemi%5Fkopiosto%5Ffi%2FDocuments%2FTiedostot%2FKoulutukset%2F2026%2009%2009%20OKL%20Oulun%20yliopisto%2C%20tekij%C3%A4noikeudet%2Epdf&parent=%2Fpersonal%2Fmikko%5Floyttyniemi%5Fkopiosto%5Ffi%2FDocuments%2FTiedostot%2FKoulutukset&ga=1"
+        label: "Avaa luentomateriaali"
       recording:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=dde89e81-12d8-4038-b9f2-b4c00071ce5e"
         label: "Katso tallenne (Panopto)"
-        note: "Tallenteen alkuosassa oli vaikeuksia ruudunjaon kanssa. Suosittelemme katsomaan tallenteen myöhemmin julkaistavan diasetin kanssa. Kurssin opiskelijoille tarkoitettu tallenne vaatii Oulun yliopiston kirjautumisen."
+        note: "Tallenteen alkuosassa oli vaikeuksia ruudunjaon kanssa. Kurssin opiskelijoille tarkoitettu tallenne vaatii Oulun yliopiston kirjautumisen."
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom course-page-hero">
