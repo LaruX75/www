@@ -105,7 +105,7 @@
                   {% if item.data.categories %}
                     <div class="taxonomy-term-row" aria-label="Kategoriat">
                       {% for cat in item.data.categories | take(3) %}
-                        <a href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>
+                        {% if cat | taxonomyIndexed(collections.categoryList, 2) %}<a href="/kategoriat/{{ cat | slugify }}/">{{ cat }}</a>{% else %}<span>{{ cat }}</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -153,6 +153,15 @@
 
   const list = root.querySelector('[data-taxonomy-list]');
   const keywordName = list?.dataset.keywordName || '';
+  let indexedCategories = new Map();
+
+  try {
+    const response = await fetch('/data/taxonomy-index.json');
+    const index = response.ok ? await response.json() : null;
+    indexedCategories = new Map((index?.categories || []).map((term) => [term.name, term.href]));
+  } catch (_) {
+    // Missing route data degrades metadata terms to plain text.
+  }
 
   // Hydrate: fetch /data/content.json ja renderoi KAIKKI avainsanan itemit
   if (list && keywordName) {
@@ -178,11 +187,6 @@
       .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
   }
   const _dateFmt = new Intl.DateTimeFormat('fi-FI', { day: 'numeric', month: 'long', year: 'numeric' });
-  function _slugify(s) {
-    return String(s || '').toLowerCase()
-      .normalize('NFD').replace(/[̀-ͯ]/g, '')
-      .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-  }
   function renderTaxonomyItem(item) {
     const dateStr = item.date ? _dateFmt.format(new Date(item.date)) : '';
     const typeKey = item.taxonomyTypeKey || '';
@@ -190,7 +194,7 @@
     const desc = item.description || '';
     const cats = (item.categories || []).slice(0, 3);
     const catHtml = cats.length
-      ? `<div class="taxonomy-term-row" aria-label="Kategoriat">${cats.map(c => `<a href="/kategoriat/${_slugify(c)}/">${_escHtml(c)}</a>`).join('')}</div>`
+      ? `<div class="taxonomy-term-row" aria-label="Kategoriat">${cats.map(c => indexedCategories.has(c) ? `<a href="${_escHtml(indexedCategories.get(c))}">${_escHtml(c)}</a>` : `<span>${_escHtml(c)}</span>`).join('')}</div>`
       : '';
     return `<article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="${_escHtml(typeKey)}">
   <div class="taxonomy-list-date">

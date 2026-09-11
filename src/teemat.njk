@@ -127,7 +127,11 @@
             {% if item.data.categories and item.data.categories.length %}
               <div class="topic-profile-terms">
                 {% for category in item.data.categories | take(2) %}
+                  {% if category | taxonomyIndexed(collections.categoryList, 2) %}
                   <a href="/kategoriat/{{ category | slugify }}/">{{ category }}</a>
+                  {% else %}
+                  <span>{{ category }}</span>
+                  {% endif %}
                 {% endfor %}
               </div>
             {% endif %}

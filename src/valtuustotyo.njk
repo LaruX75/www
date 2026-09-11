@@ -123,10 +123,10 @@ schemaMentions:
                 </td>
                 <td class="col-taxonomy">
                   <div class="mb-1">
-                    {% for cat in row.categories %}<a href="/kategoriat/{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>{% endfor %}
+                    {% for cat in row.categories %}{% if cat | taxonomyIndexed(collections.categoryList, 2) %}<a href="/kategoriat/{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>{% else %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                   </div>
                   <div>
-                    {% for kw in row.keywords %}<a href="/avainsanat/{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>{% endfor %}
+                    {% for kw in row.keywords %}{% if kw | taxonomyIndexed(collections.keywordList, 3) %}<a href="/avainsanat/{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>{% else %}<span class="badge text-bg-light text-dark border me-1">{{ kw }}</span>{% endif %}{% endfor %}
                   </div>
                 </td>
                 <td class="col-action text-center">
@@ -242,10 +242,10 @@ schemaMentions:
                 </td>
                 <td class="col-taxonomy">
                   <div class="mb-1">
-                    {% for cat in row.categories %}<a href="/kategoriat/{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>{% endfor %}
+                    {% for cat in row.categories %}{% if cat | taxonomyIndexed(collections.categoryList, 2) %}<a href="/kategoriat/{{ cat | slugify }}/" class="badge text-bg-secondary me-1 text-decoration-none">{{ cat }}</a>{% else %}<span class="badge text-bg-secondary me-1">{{ cat }}</span>{% endif %}{% endfor %}
                   </div>
                   <div>
-                    {% for kw in row.keywords %}<a href="/avainsanat/{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>{% endfor %}
+                    {% for kw in row.keywords %}{% if kw | taxonomyIndexed(collections.keywordList, 3) %}<a href="/avainsanat/{{ kw | slugify }}/" class="badge text-bg-light text-dark border me-1 text-decoration-none">{{ kw }}</a>{% else %}<span class="badge text-bg-light text-dark border me-1">{{ kw }}</span>{% endif %}{% endfor %}
                   </div>
                 </td>
               </tr>
