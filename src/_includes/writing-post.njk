@@ -4,6 +4,7 @@ layout: base.njk
 {% set currentLang = lang or (page.url | langFromUrl) %}
 {% set currentTags = tags or [] %}
 {% set isEnglish = currentLang == "en" %}
+{% set isOpinion = type == "mielipide" %}
 {% set externalSourceHref = "" %}
 {# DETAIL-UX-ORIENT-01: `orientationCtx` retained for the return-link
    fallback href. Dynamic per writing type via sidebarContext (matches
@@ -36,11 +37,30 @@ layout: base.njk
   {% set externalSourceHref = sourceUrl %}
 {% endif %}
 
+{# DETAIL-HERO-UX-03: descriptions are historical archive metadata, so
+   opinions promote one only when it is a concise, human-readable lead.
+   This stays in the Writing presentation layer; canonical content is not
+   changed and rejected descriptions simply leave the hero lead absent. #}
+{% set descriptionCandidate = (description or "") | trim %}
+{% set descriptionCandidateLower = descriptionCandidate | lower %}
+{% set descriptionIsUrlHeavy = "://" in descriptionCandidate or "www." in descriptionCandidateLower %}
+{% set descriptionIsFragment = "..." in descriptionCandidate or "…" in descriptionCandidate %}
+{% set descriptionLooksLikeMarkup = "<" in descriptionCandidate or ">" in descriptionCandidate %}
+{% set opinionHeroLead = subtitle or null %}
+{% if isOpinion and not opinionHeroLead and descriptionCandidate and descriptionCandidate.length <= 260 and not descriptionIsUrlHeavy and not descriptionIsFragment and not descriptionLooksLikeMarkup and not descriptionCandidateLower.startsWith("http") %}
+  {% set opinionHeroLead = descriptionCandidate %}
+{% endif %}
+
 {% set sectionLabel = "Kirjoitus" %}
 {% set isQuestionHour = agenda_title == "Valtuuston kyselytunti" or ("Valtuuston kyselytunti" in (contexts or [])) %}
 
 {% if isEnglish %}
   {% set sectionLabel = "Text" %}
+{% endif %}
+
+{% set writingCtaLabel = "Open source" if isEnglish else "Avaa lähde" %}
+{% if isOpinion and externalSourceHref and publication %}
+  {% set writingCtaLabel = ("Read original article — " if isEnglish else "Lue alkuperäinen kirjoitus — ") ~ publication %}
 {% endif %}
 
 {% if isQuestionHour %}
@@ -89,10 +109,17 @@ layout: base.njk
   variant="writing",
   eyebrow=sectionLabel,
   title=title,
-  lead=(subtitle or null),
+  lead=(opinionHeroLead if isOpinion else (subtitle or null)),
   leadMb="2",
-  aside=(writingHeroAside if thumbnail else null)
+  aside=(writingHeroAside if thumbnail else null),
+  titleMode=("compact" if isOpinion and thumbnail and title.length >= 100 else null)
 ) %}
+  {% if isOpinion and (publication or date) %}
+  <div class="content-detail-meta" aria-label="{{ 'Opinion details' if isEnglish else 'Mielipidekirjoituksen tiedot' }}">
+    {% if publication %}<span>{{ publication }}</span>{% endif %}
+    {% if date %}<span>{{ date | dateFormat }}</span>{% endif %}
+  </div>
+  {% endif %}
   {# DETAIL-UX-ORIENT-01: hero-actions renders ONLY when a real
      primary action (external source) exists. Writing pages without
      a source drop the hero-actions row entirely — no empty wrapper,
@@ -101,7 +128,7 @@ layout: base.njk
   {% if externalSourceHref %}
   <div class="content-detail-actions">
     <a href="{{ externalSourceHref }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill px-4">
-      {{ "Open source" if isEnglish else "Avaa lähde" }}
+      {{ writingCtaLabel }}
       <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i>
     </a>
   </div>
@@ -114,7 +141,7 @@ layout: base.njk
       <div class="card shadow-sm">
         <div class="card-body">
           <dl class="writing-post-meta">
-            {% if date %}
+            {% if date and not isOpinion %}
               <div>
                 <dt>{{ "Date" if isEnglish else "Päiväys" }}</dt>
                 <dd>{{ date | dateFormat }}</dd>
@@ -140,7 +167,7 @@ layout: base.njk
                 <dt>{{ "Context" if isEnglish else "Tilaisuus" }}</dt>
                 <dd>{{ event }}</dd>
               </div>
-            {% elif publication %}
+            {% elif publication and not isOpinion %}
               <div>
                 <dt>{{ "Publication" if isEnglish else "Julkaisupaikka" }}</dt>
                 <dd>{{ publication }}</dd>
@@ -158,7 +185,7 @@ layout: base.njk
                 <dd>{{ diaryNumber }}</dd>
               </div>
             {% endif %}
-            {% if externalSourceHref %}
+            {% if externalSourceHref and not isOpinion %}
               <div class="writing-post-meta__source">
                 <dt>{{ "Original source" if isEnglish else "Alkuperäinen julkaisu" }}</dt>
                 <dd>
