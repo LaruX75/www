@@ -38,5 +38,5 @@
 {% endmacro %}
 
 {% macro itemUrl(item) %}
-  {{ item.data.sourceUrl or item.url }}
+  {{ item.url or item.data.sourceUrl }}
 {% endmacro %}

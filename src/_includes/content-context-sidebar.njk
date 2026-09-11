@@ -187,7 +187,7 @@
     <ol class="content-context-related content-context-related--same-meeting">
       {% for item in sameMeetingGroup.items %}
       <li>
-        <a href="{{ item.url }}">{{ item.title }}</a>
+        <a href="{{ item.data.pageUrl or item.url }}">{{ item.title }}</a>
         <span>{{ item.typeLabel }}{% if item.detailLabel %} · {{ item.detailLabel }}{% endif %}</span>
       </li>
       {% endfor %}
@@ -296,7 +296,7 @@
     <ol class="content-context-related">
       {% for item in relatedItems %}
       <li>
-        <a href="{{ item.url }}">{{ item.title }}</a>
+        <a href="{{ item.data.pageUrl or item.url }}">{{ item.title }}</a>
         <span>{{ item.typeLabel }}</span>
       </li>
       {% endfor %}
