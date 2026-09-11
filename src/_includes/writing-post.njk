@@ -79,7 +79,7 @@ layout: base.njk
 {% if thumbnail %}
 <aside class="content-detail-visual" aria-label="{{ 'Preview' if isEnglish else 'Esikatselu' }}">
   <div class="content-detail-thumb">
-    <img src="{{ thumbnail }}" alt="{{ title }}" loading="lazy" decoding="async">
+    <img src="{{ thumbnail }}" alt="{{ imageAlt or title }}" loading="lazy" decoding="async">
   </div>
 </aside>
 {% endif %}

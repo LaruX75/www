@@ -98,7 +98,7 @@
             {% endif %}
           </div>
           {% if featuredItem.data.thumbnail %}
-            <img class="taxonomy-feature-image" src="{{ featuredItem.data.thumbnail }}" alt="{{ featuredItem.data.title }}" loading="lazy" decoding="async">
+            <img class="taxonomy-feature-image" src="{{ featuredItem.data.thumbnail }}" alt="{{ featuredItem.data.imageAlt or featuredItem.data.title }}" loading="lazy" decoding="async">
           {% endif %}
         </section>
         {% endif %}
