@@ -32,6 +32,16 @@ function contentTypeLabel(data = {}, tags = [], lang = "fi") {
   const keywords = normalizeTerms(data.keywords || []);
   const type = data.type || "";
   const speechContext = String(data.speechContext || "").trim();
+  const thesisRole = String(data.thesisRole || "").trim();
+  const mediaRole = String(data.mediaRole || "").trim();
+  const contentType = String(data.contentType || "").trim();
+
+  // Relationship to a thesis or source document is more informative than its
+  // generic format. These are existing controlled role values.
+  if (thesisRole === "advised") return lang === "en" ? "Advised thesis" : "Ohjattu opinnäyte";
+  if (thesisRole === "reviewed") return lang === "en" ? "Reviewed thesis" : "Tarkastettu opinnäyte";
+  if (mediaRole === "expertAssignment" || contentType === "expertAssignment") return lang === "en" ? "Expert role" : "Asiantuntijarooli";
+
   if (data.mediaType === "video") return lang === "en" ? "Video" : "Video";
   if (data.mediaType === "podcast") return lang === "en" ? "Podcast" : "Podcast";
   if (data.mediaType === "radio") return lang === "en" ? "Radio" : "Radio";

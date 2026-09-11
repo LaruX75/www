@@ -19,6 +19,7 @@
 
 const { deriveThesisMetadata } = require("./thesisDerivedMetadata");
 const { buildThesisCslItem } = require("./thesisCsl");
+const { thesisPageUrl } = require("./thesisIdentity");
 
 function thesisSlug(link) {
   const numeric = String(link || "").match(/\/(\d+)\/?$/);
@@ -52,10 +53,15 @@ function toCollectionItem(thesis, thesisRole) {
 
   const year = parseYear(thesis.year);
   const slug = thesisSlug(link);
+  const pageUrl = thesisPageUrl(link);
   const { categories, contexts } = deriveThesisMetadata(thesis);
 
+  if (!pageUrl) return null;
+
   return {
-    url: link,
+    // Virtual collection items are consumed as content cards. Their primary
+    // destination must therefore be the generated thesis detail page.
+    url: pageUrl,
     inputPath: `/virtual/theses/${slug}.json`,
     fileSlug: `thesis-${slug}`,
     date: toDate(year),
@@ -72,6 +78,8 @@ function toCollectionItem(thesis, thesisRole) {
       tags: ["theses"],  // topicItemScore tunnistaa collection-jasenyyden
       type: "thesis",
       contentType: "thesis",
+      pageUrl,
+      sourceUrl: link,
 
       // Thesis-spesifiset kentat
       thesisType: thesis.type || null,
@@ -98,7 +106,7 @@ function toCollectionItem(thesis, thesisRole) {
       // already use. Additive only — every existing field above is
       // preserved byte-identically. Phase 3+ will migrate consumers.
       csl: buildThesisCslItem({
-        pageUrl: `/opinnaytteet/${thesisSlug(link).replace(/^oulurepo-/, "")}/`,
+        pageUrl,
         sourceUrl: link,
         title,
         authors: normalizeArray(thesis.authors),

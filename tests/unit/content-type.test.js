@@ -117,6 +117,16 @@ describe("contentTypeLabel", () => {
   });
 
   describe("mediaType", () => {
+    test("role semantics win over a press-release source format", () => {
+      assert.equal(contentTypeLabel({ contentType: "expertAssignment", mediaRole: "expertAssignment", mediaType: "pressRelease" }, [], "fi"), "Asiantuntijarooli");
+      assert.equal(contentTypeLabel({ mediaType: "pressRelease" }, [], "fi"), "Tiedote");
+    });
+
+    test("thesis roles do not fall back to generic writing labels", () => {
+      assert.equal(contentTypeLabel({ thesisRole: "advised", thesisType: "masterThesis" }, [], "fi"), "Ohjattu opinnäyte");
+      assert.equal(contentTypeLabel({ thesisRole: "reviewed" }, [], "fi"), "Tarkastettu opinnäyte");
+    });
+
     test("mediaType=video => 'Video'", () => {
       assert.equal(contentTypeLabel({ mediaType: "video" }, [], "fi"), "Video");
       assert.equal(contentTypeLabel({ mediaType: "video" }, [], "en"), "Video");
