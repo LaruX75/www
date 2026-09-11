@@ -148,7 +148,7 @@
                   {% if item.data.keywords %}
                     <div class="taxonomy-term-row" aria-label="Avainsanat">
                       {% for key in item.data.keywords | take(3) %}
-                        <a href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>
+                        {% if key | taxonomyIndexed(collections.keywordList, 3) %}<a href="/avainsanat/{{ key | slugify }}/">{{ key }}</a>{% else %}<span>{{ key }}</span>{% endif %}
                       {% endfor %}
                     </div>
                   {% endif %}
@@ -195,8 +195,17 @@
     const root = document.currentScript.previousElementSibling;
     if (!root) return;
 
-    const list = root.querySelector('[data-taxonomy-list]');
-    const categoryName = list?.dataset.categoryName || '';
+  const list = root.querySelector('[data-taxonomy-list]');
+  const categoryName = list?.dataset.categoryName || '';
+  let indexedKeywords = new Map();
+
+  try {
+    const response = await fetch('/data/taxonomy-index.json');
+    const index = response.ok ? await response.json() : null;
+    indexedKeywords = new Map((index?.keywords || []).map((term) => [term.name, term.href]));
+  } catch (_) {
+    // Missing route data degrades metadata terms to plain text.
+  }
 
     // Hydrate: fetch /data/content.json ja renderoi KAIKKI kategorian itemit
     if (list && categoryName) {
@@ -231,11 +240,6 @@
         .replaceAll('"', '&quot;').replaceAll("'", '&#39;');
     }
     const _dateFmt = new Intl.DateTimeFormat('fi-FI', { day: 'numeric', month: 'long', year: 'numeric' });
-    function _slugify(s) {
-      return String(s || '').toLowerCase()
-        .normalize('NFD').replace(/[̀-ͯ]/g, '')
-        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    }
     function renderTaxonomyItem(item) {
       const dateStr = item.date ? _dateFmt.format(new Date(item.date)) : '';
       const typeKey = item.taxonomyTypeKey || '';
@@ -243,7 +247,7 @@
       const desc = item.description || '';
       const keywords = (item.keywords || []).slice(0, 3);
       const kwHtml = keywords.length
-        ? `<div class="taxonomy-term-row" aria-label="Avainsanat">${keywords.map(k => `<a href="/avainsanat/${_slugify(k)}/">${_escHtml(k)}</a>`).join('')}</div>`
+        ? `<div class="taxonomy-term-row" aria-label="Avainsanat">${keywords.map(k => indexedKeywords.has(k) ? `<a href="${_escHtml(indexedKeywords.get(k))}">${_escHtml(k)}</a>` : `<span>${_escHtml(k)}</span>`).join('')}</div>`
         : '';
       return `<article class="taxonomy-list-item" data-taxonomy-item data-taxonomy-type="${_escHtml(typeKey)}">
   <div class="taxonomy-list-date">
