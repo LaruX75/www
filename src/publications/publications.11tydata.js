@@ -4,6 +4,10 @@ const writingRoles = require("../_data/writingRoles");
 const { resolveContexts } = require("../_data/contentContext");
 
 function resolveCanonicalRedirect(data) {
+  const explicitTarget = typeof data?.legacyRedirectTo === "string" ? data.legacyRedirectTo.trim() : "";
+  if (explicitTarget) {
+    return { from: data?.page?.url || "", to: explicitTarget };
+  }
   const redirectsByUrl = data?.publicationDetailPages?.manualRedirectsByFromUrl || {};
   const pageUrl = data?.page?.url || "";
   return redirectsByUrl[pageUrl] || null;
