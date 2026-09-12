@@ -6,8 +6,10 @@ const {
   buildPresentationFilterYears,
   buildPresentationSourceSections,
   buildCanonicalPresentationItems,
-  buildCanonicalPresentationPageRecords
+  buildCanonicalPresentationPageRecords,
+  buildPresentationsPageModel
 } = require("../../src/_data/presentationsPage");
+const { readLocalPresentationSources } = require("../../src/_data/presentationSources");
 
 describe("buildCanonicalPresentationPageRecords", () => {
   test("sailyttaa detailisivun nykyiset kentat ja kayttaa canonical itemia fallbackina", () => {
@@ -123,6 +125,30 @@ describe("buildCanonicalPresentationPageRecords", () => {
 });
 
 describe("buildCanonicalPresentationItems", () => {
+  test("projects the verified 7LPyHCnuYJE talk once with a local landing", () => {
+    const matches = buildPresentationsPageModel({}).items.filter((item) =>
+      item.sourceUrl === "https://www.youtube.com/watch?v=7LPyHCnuYJE"
+    );
+
+    assert.equal(matches.length, 1);
+    const [item] = matches;
+    assert.equal(item.title, "Millainen on nykyaikainen oppimisympäristö");
+    assert.equal(item.date, "2017-01-25");
+    assert.equal(item.sourceKey, "curatedVideos");
+    assert.equal(item.sourceUrl, "https://www.youtube.com/watch?v=7LPyHCnuYJE");
+    assert.equal(item.externalUrl, "https://www.youtube.com/watch?v=7LPyHCnuYJE");
+    assert.equal(item.localPageUrl, "/presentations/millainen-on-nykyaikainen-oppimisymparisto/");
+    assert.equal(item.landingType, "localDetail");
+    assert.equal(item.landingUrl, "/presentations/millainen-on-nykyaikainen-oppimisymparisto/");
+    assert.equal(item.event, "Oppimisympäristön kehittäminen / workshop, Oulun yliopisto");
+
+    const [localDetail] = readLocalPresentationSources().filter((detail) =>
+      detail.sourceUrl === "https://www.youtube.com/watch?v=7LPyHCnuYJE"
+    );
+    assert.ok(localDetail);
+    assert.deepEqual(localDetail.contexts, []);
+  });
+
   test("projects matched local-detail contexts onto canonical items without recomputing unmatched canonicals", () => {
     const items = buildCanonicalPresentationItems({
       presentations: [
