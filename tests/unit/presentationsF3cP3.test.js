@@ -106,14 +106,31 @@ describe("F3C-P3 presentation canonical integration", () => {
     assert.equal(decisionCounts.IS_DISTINCT_LOCAL_PRESENTATION, 11);
     assert.equal(decisionCounts.CANNOT_DETERMINE || 0, 0);
 
-    const expectedCanonicalCount = startingItems.length + decisionCounts.IS_DISTINCT_LOCAL_PRESENTATION;
+    // ESITYKSET-DUPLICATES-01 (2026-09-12): a supersede-* audit trail
+    // may reroute a decision to a different effective humanDecision at
+    // build time. Count effective (post-supersede) decisions when
+    // predicting how many items applyAcceptedPresentationCuration
+    // actually pushes, otherwise the canonical count will drift when
+    // a decision is superseded.
+    const effectiveCounts = {};
+    decisionRows.forEach(([, decision]) => {
+      const effective = decision.supersededBy || decision.humanDecision;
+      effectiveCounts[effective] = (effectiveCounts[effective] || 0) + 1;
+    });
+    assert.equal(effectiveCounts.IS_DISTINCT_LOCAL_PRESENTATION, 8);
+    assert.equal(effectiveCounts.MATCHES_EXISTING_CANONICAL, 4);
+    assert.equal(effectiveCounts.ALTERNATE_REPRESENTATION, 12);
+
+    const expectedCanonicalCount = startingItems.length + effectiveCounts.IS_DISTINCT_LOCAL_PRESENTATION;
     assert.equal(startingItems.length, 214);
     assert.equal(items.length, expectedCanonicalCount);
-    assert.equal(items.length, 225);
+    assert.equal(items.length, 222);
 
     decisionRows.forEach(([caseId, decision]) => {
-      if (decision.humanDecision === "MATCHES_EXISTING_CANONICAL") {
-        const item = findCanonicalPresentation(items, decision.humanCanonicalId);
+      const effectiveDecision = decision.supersededBy || decision.humanDecision;
+      const effectiveCanonicalId = decision.supersededByCanonicalId || decision.humanCanonicalId;
+      if (effectiveDecision === "MATCHES_EXISTING_CANONICAL") {
+        const item = findCanonicalPresentation(items, effectiveCanonicalId);
         assert.ok(item, caseId);
         assert.equal(item.localPageUrl, decision.detailUrl);
         assert.equal(item.hasLocalDetail, true);
@@ -130,8 +147,8 @@ describe("F3C-P3 presentation canonical integration", () => {
         return;
       }
 
-      if (decision.humanDecision === "ALTERNATE_REPRESENTATION") {
-        const item = findCanonicalPresentation(items, decision.humanCanonicalId);
+      if (effectiveDecision === "ALTERNATE_REPRESENTATION") {
+        const item = findCanonicalPresentation(items, effectiveCanonicalId);
         assert.ok(item, caseId);
         assert.ok(
           toArray(item.representations).some((representation) =>
@@ -144,7 +161,7 @@ describe("F3C-P3 presentation canonical integration", () => {
         return;
       }
 
-      if (decision.humanDecision === "IS_DISTINCT_LOCAL_PRESENTATION") {
+      if (effectiveDecision === "IS_DISTINCT_LOCAL_PRESENTATION") {
         const item = items.find((candidate) => candidate.localPageUrl === decision.detailUrl);
         assert.ok(item, caseId);
         assert.equal(item.curationStatus, "human-approved-distinct-local-presentation");

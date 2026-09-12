@@ -129,18 +129,30 @@
     "detailUrl": "/presentations/405040y-luento-1-johdanto-2026-a/",
     "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
     "humanCanonicalId": "",
-    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 1 (Johdanto). Canva short-link source has no matching prior canonical Canva record."
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 1 (Johdanto). Canva short-link source has no matching prior canonical Canva record.",
+    "supersededBy": "MATCHES_EXISTING_CANONICAL",
+    "supersededByCanonicalId": "DAG29zybS5g",
+    "supersededAt": "2026-09-12",
+    "supersededReason": "OPETUS-CANVA-THUMBNAILS-01A (PR #240, merged 2026-09-10) added a canonical Canva projection (src/_data/canva-presentations.json + data/canva/content-slug-to-designid.json entry) for this slug. The prior IS_DISTINCT_LOCAL_PRESENTATION verdict became stale: the Canva record now provides the canonical identity, and this local .md must be represented as its local landing (MATCHES_EXISTING_CANONICAL) rather than as a second canonical item. Original humanDecision retained above for audit."
   },
   "P2-23": {
     "detailUrl": "/presentations/405040y-luento-2-digitaalinen-osaaminen-digcomp-2026-a/",
     "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
     "humanCanonicalId": "",
-    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 2 (Digitaalinen osaaminen – DigComp 3.0). Canva short-link source has no matching prior canonical Canva record."
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 2 (Digitaalinen osaaminen – DigComp 3.0). Canva short-link source has no matching prior canonical Canva record.",
+    "supersededBy": "MATCHES_EXISTING_CANONICAL",
+    "supersededByCanonicalId": "DAHT7HRSXpU",
+    "supersededAt": "2026-09-12",
+    "supersededReason": "OPETUS-CANVA-THUMBNAILS-01A (PR #240, merged 2026-09-10) added a canonical Canva projection (src/_data/canva-presentations.json + data/canva/content-slug-to-designid.json entry) for this slug. The prior IS_DISTINCT_LOCAL_PRESENTATION verdict became stale: the Canva record now provides the canonical identity, and this local .md must be represented as its local landing (MATCHES_EXISTING_CANONICAL) rather than as a second canonical item. Original humanDecision retained above for audit."
   },
   "P2-24": {
     "detailUrl": "/presentations/405040y-luento-3-tekoalylukutaito-2026-a/",
     "humanDecision": "IS_DISTINCT_LOCAL_PRESENTATION",
     "humanCanonicalId": "",
-    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 3 (Tekoälylukutaito). Canva short-link source has no matching prior canonical Canva record."
+    "humanNotes": "COURSE-PAGE-01 2026-09-04: distinct local presentation for course 405040Y periodi A 2026 luento 3 (Tekoälylukutaito). Canva short-link source has no matching prior canonical Canva record.",
+    "supersededBy": "MATCHES_EXISTING_CANONICAL",
+    "supersededByCanonicalId": "DAHUIPqmXF8",
+    "supersededAt": "2026-09-12",
+    "supersededReason": "OPETUS-CANVA-THUMBNAILS-01A (PR #240, merged 2026-09-10) added a canonical Canva projection (src/_data/canva-presentations.json + data/canva/content-slug-to-designid.json entry) for this slug. The prior IS_DISTINCT_LOCAL_PRESENTATION verdict became stale: the Canva record now provides the canonical identity, and this local .md must be represented as its local landing (MATCHES_EXISTING_CANONICAL) rather than as a second canonical item. Original humanDecision retained above for audit."
   }
 }
