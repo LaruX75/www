@@ -499,6 +499,23 @@ function getYouTubeId(url = "") {
   return "";
 }
 
+function getYouTubePlaylistId(url = "") {
+  const value = String(url || "").trim();
+  if (!value) return "";
+
+  try {
+    const parsed = new URL(value);
+    const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+    if (host === "youtu.be" || host.endsWith("youtube.com")) {
+      return parsed.searchParams.get("list") || "";
+    }
+  } catch (_) {
+    return "";
+  }
+
+  return "";
+}
+
 function sourceIdentifierForUrl(url = "") {
   const canvaId = getCanvaDesignId(url);
   if (canvaId) return `canva:${canvaId}`;
@@ -1306,14 +1323,25 @@ function createCanonicalSlideshareItems(rows = []) {
 }
 
 function buildCanonicalPresentationItems(sourceData = {}) {
+  const curatedVideoSeries = createCanonicalVideoSeriesItems(sourceData.videoSeries);
+  const curatedPlaylistIds = new Set(
+    toArray(sourceData.videoSeries)
+      .map((item) => getYouTubePlaylistId(item?.externalUrl || item?.url))
+      .filter(Boolean)
+  );
+  // Curated series own their exact YouTube playlist identity. Keep API rows
+  // for all other playlists; this is not a general external-URL de-duplication.
+  const youtubePlaylists = createCanonicalYoutubePlaylistItems(sourceData.youtubeRows)
+    .filter((item) => !curatedPlaylistIds.has(getYouTubePlaylistId(item?.sourceUrl || item?.url)));
+
   const items = sortCanonicalItems([
     ...createCanonicalAoeItems(sourceData.aoeRows),
     ...createCanonicalCanvaItems(sourceData.canvaRows, sourceData.canvaLookup),
     ...createCanonicalCustomMaterialItems(sourceData.customMaterials),
     ...createCanonicalCuratedVideoItems(sourceData.curatedVideos),
-    ...createCanonicalVideoSeriesItems(sourceData.videoSeries),
+    ...curatedVideoSeries,
     ...createCanonicalYoutubeVideoItems(sourceData.youtubeVideos),
-    ...createCanonicalYoutubePlaylistItems(sourceData.youtubeRows),
+    ...youtubePlaylists,
     ...createCanonicalSlideshareItems(sourceData.slideshareItems)
   ]);
 
