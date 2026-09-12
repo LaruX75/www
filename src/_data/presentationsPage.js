@@ -413,6 +413,62 @@ function readAcceptedPresentationCurationDecisions() {
   return JSON.parse(fs.readFileSync(ACCEPTED_PRESENTATION_CURATION_DECISIONS_PATH, "utf8"));
 }
 
+// Recognised humanDecision values for accepted-decisions.json entries.
+// New values must be added here first; otherwise resolveEffectiveDecision
+// rejects them and the build fails. See
+// docs/presentations-local-detail-curation-schema-2026-09-12.md.
+const VALID_HUMAN_DECISIONS = new Set([
+  "MATCHES_EXISTING_CANONICAL",
+  "ALTERNATE_REPRESENTATION",
+  "IS_DISTINCT_LOCAL_PRESENTATION",
+  "CANNOT_DETERMINE",
+  "UNDECIDED"
+]);
+
+// Returns the currently-effective decision for a curation entry.
+//
+// If none of the supersede-* metadata is present, the original
+// humanDecision / humanCanonicalId are returned as-is.
+//
+// If any supersede-* field is present, the FULL audit-trail set is
+// required (supersededBy + supersededAt + supersededReason); the build
+// fails if any of them is missing. supersededBy must be one of the
+// recognised VALID_HUMAN_DECISIONS values (silent fallback to the
+// original humanDecision is intentionally NOT provided — a bad
+// supersede-tag must be visible in CI).
+function resolveEffectiveDecision(caseId, decision = {}) {
+  const anySupersedeField =
+    decision.supersededBy !== undefined ||
+    decision.supersededByCanonicalId !== undefined ||
+    decision.supersededAt !== undefined ||
+    decision.supersededReason !== undefined;
+
+  if (!anySupersedeField) {
+    return {
+      effectiveDecision: decision.humanDecision,
+      effectiveCanonicalId: decision.humanCanonicalId || ""
+    };
+  }
+
+  if (!decision.supersededBy) {
+    throw new Error(`Curation decision ${caseId}: supersededBy is required when any supersede-* metadata is present.`);
+  }
+  if (!VALID_HUMAN_DECISIONS.has(decision.supersededBy)) {
+    throw new Error(`Curation decision ${caseId}: supersededBy value "${decision.supersededBy}" is not a recognised humanDecision. Valid values: ${[...VALID_HUMAN_DECISIONS].join(", ")}`);
+  }
+  if (!decision.supersededAt) {
+    throw new Error(`Curation decision ${caseId}: supersededAt is required when supersededBy is set (audit trail must be complete).`);
+  }
+  if (!decision.supersededReason) {
+    throw new Error(`Curation decision ${caseId}: supersededReason is required when supersededBy is set (audit trail must be complete).`);
+  }
+
+  return {
+    effectiveDecision: decision.supersededBy,
+    effectiveCanonicalId: decision.supersededByCanonicalId || decision.humanCanonicalId || ""
+  };
+}
+
 function getYouTubeId(url = "") {
   const value = String(url || "").trim();
   if (!value) return "";
@@ -694,16 +750,68 @@ function projectLocalDetailContextsToCanonicalItems(items = [], localDetails = [
   );
 
   return toArray(items).map((item) => {
+    const matchedUrls = matchedLocalPresentationUrls(item);
+    const matchingDetail = matchedUrls
+      .map((pageUrl) => localDetailsByPageUrl.get(pageUrl))
+      .find(Boolean);
+
     const contexts = normalizeContexts([
       ...toArray(item.contexts),
-      ...matchedLocalPresentationUrls(item).flatMap((pageUrl) => {
+      ...matchedUrls.flatMap((pageUrl) => {
         const detail = localDetailsByPageUrl.get(pageUrl);
         return Array.isArray(detail?.contexts) ? detail.contexts : [];
       })
     ]);
 
-    if (!contexts.length) return item;
-    return { ...item, contexts };
+    let nextItem = contexts.length ? { ...item, contexts } : item;
+
+    // ESITYKSET-DUPLICATES-01: prefer the local .md's authored copy
+    // for description/categories/topics ONLY when the item carries
+    // curationStatus === "human-approved-local-detail-match", i.e. a
+    // human reviewer has explicitly chosen this local .md as the
+    // canonical landing (via MATCHES_EXISTING_CANONICAL, possibly
+    // through supersededBy). Do NOT widen this to "any matched local
+    // detail": the audit against BEFORE/AFTER built HTML showed that
+    // several local .md files carry a boilerplate description like
+    // "SlideShare-esitys" or a bare "." — using local as an
+    // unconditional authority would regress ~10 public presentation
+    // cards to weaker copy. The narrow curationStatus gate makes the
+    // authority relationship explicit and reviewer-controlled. See
+    // docs/presentations-local-detail-curation-schema-2026-09-12.md
+    // and docs/esitykset-dup-405040y-b1-nonduplicating-luentos-followup-2026-09-12.md.
+    if (matchingDetail && item.curationStatus === "human-approved-local-detail-match") {
+      const trimmedLocalDescription = String(matchingDetail.description || "").trim();
+      if (trimmedLocalDescription) {
+        nextItem = { ...nextItem, description: trimmedLocalDescription };
+      }
+
+      const localCategories = toArray(matchingDetail.categories)
+        .map((value) => String(value || "").trim())
+        .filter(Boolean);
+      const localTopics = toArray(matchingDetail.topics)
+        .map((value) => String(value || "").trim())
+        .filter(Boolean);
+
+      if (localCategories.length) {
+        nextItem = { ...nextItem, categories: localCategories };
+      }
+
+      if (localCategories.length || localTopics.length) {
+        // Re-run the same union that withPresentationSemantics does
+        // (topics ∪ categories ∪ keywords), now with the local
+        // detail's authored categories/topics injected. `keywords`
+        // stayed on the item from the earlier semantics pass, so we
+        // don't need to re-read them here.
+        const nextTopics = uniqueStrings([
+          ...toArray(nextItem.topics),
+          ...localCategories,
+          ...localTopics
+        ]);
+        nextItem = { ...nextItem, topics: nextTopics };
+      }
+    }
+
+    return nextItem;
   });
 }
 
@@ -986,10 +1094,12 @@ function applyAcceptedPresentationCuration(items = [], sourceData = {}) {
       throw new Error(`Accepted presentation curation decision ${caseId} does not resolve to a local detail record: ${detailUrl}`);
     }
 
-    if (decision.humanDecision === "MATCHES_EXISTING_CANONICAL") {
-      const match = findCanonicalPresentationByDecisionId(nextItems, decision.humanCanonicalId);
+    const { effectiveDecision, effectiveCanonicalId } = resolveEffectiveDecision(caseId, decision);
+
+    if (effectiveDecision === "MATCHES_EXISTING_CANONICAL") {
+      const match = findCanonicalPresentationByDecisionId(nextItems, effectiveCanonicalId);
       if (!match) {
-        throw new Error(`Accepted match ${caseId} target not found: ${decision.humanCanonicalId}`);
+        throw new Error(`Accepted match ${caseId} target not found: ${effectiveCanonicalId}`);
       }
       const index = itemIndexByKey().get(match);
       nextItems[index] = addRepresentation({
@@ -1008,10 +1118,10 @@ function applyAcceptedPresentationCuration(items = [], sourceData = {}) {
       return;
     }
 
-    if (decision.humanDecision === "ALTERNATE_REPRESENTATION") {
-      const match = findCanonicalPresentationByDecisionId(nextItems, decision.humanCanonicalId);
+    if (effectiveDecision === "ALTERNATE_REPRESENTATION") {
+      const match = findCanonicalPresentationByDecisionId(nextItems, effectiveCanonicalId);
       if (!match) {
-        throw new Error(`Accepted alternate representation ${caseId} target not found: ${decision.humanCanonicalId}`);
+        throw new Error(`Accepted alternate representation ${caseId} target not found: ${effectiveCanonicalId}`);
       }
       const index = itemIndexByKey().get(match);
       nextItems[index] = addRepresentation({
@@ -1025,7 +1135,7 @@ function applyAcceptedPresentationCuration(items = [], sourceData = {}) {
       return;
     }
 
-    if (decision.humanDecision === "IS_DISTINCT_LOCAL_PRESENTATION") {
+    if (effectiveDecision === "IS_DISTINCT_LOCAL_PRESENTATION") {
       const distinctItem = addRepresentation(
         createCanonicalDistinctLocalPresentation(detail),
         createPresentationRepresentation(detail, {
@@ -1555,6 +1665,7 @@ module.exports = {
   PRESENTATION_SOURCE_LABELS,
   PUBLIC_PRESENTATION_FIELDS,
   PUBLIC_PRESENTATION_LEGACY_FIELDS,
+  VALID_HUMAN_DECISIONS,
   buildPresentationsPageSourceData,
   buildLegacyPresentationSourceBuckets,
   buildCanonicalPresentationItems,
@@ -1565,6 +1676,7 @@ module.exports = {
   buildPresentationFilterTopics,
   buildPublicPresentationLegacyBuckets,
   buildPresentationsPageModel,
+  resolveEffectiveDecision,
   decodeHtmlEntities,
   transcriptExcerpt
 };

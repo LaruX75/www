@@ -96,7 +96,11 @@ describe("presentationResearchTopics", () => {
       presets: getPresentationResearchPresets(item.topics || [])
     }));
 
-    assert.equal(items.length, 225);
+    // ESITYKSET-DUPLICATES-01 (2026-09-12): supersede of P2-22/23/24
+    // (405040Y syksy 2026-A luennot 1/2/3) collapsed 3 previously-
+    // duplicated canonical items into their matched Canva projections,
+    // moving the count from 225 to 222.
+    assert.equal(items.length, 222);
     assert.deepEqual(
       mapped.map((entry) => entry.id),
       before
