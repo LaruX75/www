@@ -1,6 +1,7 @@
 const path = require("path");
 const writingRoles = require("../_data/writingRoles");
 const { resolveContexts } = require("../_data/contentContext");
+const { getLegacyBlogProjection, validateLegacyBlogProjection } = require("../_data/legacyBlogProjection");
 
 function toArray(value) {
   if (Array.isArray(value)) {
@@ -25,6 +26,10 @@ module.exports = {
   tags: "blog",
   lang: "fi",
   eleventyComputed: {
+    legacyBlogProjection: (data) => getLegacyBlogProjection(data.page?.inputPath),
+    legacyBlogSemanticClass: (data) => getLegacyBlogProjection(data.page?.inputPath)?.semanticClass || null,
+    activeBlog: (data) => Boolean(getLegacyBlogProjection(data.page?.inputPath)?.activeBlog),
+    historicalArchive: (data) => Boolean(getLegacyBlogProjection(data.page?.inputPath)?.historicalArchive),
     writingRoles: (data) => resolveWritingRoles(data),
     contexts: (data) => resolveContexts(data),
     tags: (data) => {
@@ -55,3 +60,6 @@ module.exports = {
     return `/${y}/${m}/${day}/${data.page.fileSlug}/`;
   }
 };
+
+// Fail the build if a new or renamed legacy source bypasses the curated map.
+validateLegacyBlogProjection();

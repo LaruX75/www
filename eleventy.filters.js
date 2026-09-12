@@ -130,7 +130,8 @@ function computeRelatedContent(collections, pageUrl, categories, keywords, tags,
 
 function uniqueContentItems(collections) {
   const sources = [
-    ...(collections?.blog || []),
+    // Active discovery must not inherit historical WordPress storage identity.
+    ...(collections?.activeBlog || collections?.blog || []),
     ...(collections?.publications || []),
     ...(collections?.politics || []),
     ...(collections?.media || []),

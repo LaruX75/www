@@ -16,6 +16,7 @@ const getTaxonomyType = require("./src/_utils/getTaxonomyType");
 // + in src/valtuustotyo.njk. Consolidated so a future change to the
 // membership rule updates one place.
 const { isCouncilSpeech } = require("./src/_utils/councilSpeech");
+const { getLegacyBlogProjection } = require("./src/_data/legacyBlogProjection");
 
 module.exports = function registerCollections(eleventyConfig) {
   const ACADEMIC_TERMS = [
@@ -32,6 +33,10 @@ module.exports = function registerCollections(eleventyConfig) {
     const date = item?.date || item?.data?.date || 0;
     const timestamp = new Date(date).getTime();
     return Number.isFinite(timestamp) ? timestamp : 0;
+  }
+
+  function isActiveBlog(item) {
+    return Boolean(item?.data?.activeBlog ?? getLegacyBlogProjection(item?.inputPath)?.activeBlog);
   }
 
   // getTaxonomyType(item) — src/_utils/getTaxonomyType.js
@@ -184,9 +189,24 @@ module.exports = function registerCollections(eleventyConfig) {
       .sort((a, b) => b.date - a.date);
   });
 
+  eleventyConfig.addCollection("activeBlog", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/blog/*.md")
+      .filter(isActiveBlog)
+      .sort((a, b) => b.date - a.date);
+  });
+
+  eleventyConfig.addCollection("historicalBlog", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/blog/*.md")
+      .filter((item) => !isActiveBlog(item))
+      .sort((a, b) => b.date - a.date);
+  });
+
   eleventyConfig.addCollection("blogAcademic", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/blog/*.md")
+      .filter(isActiveBlog)
       .filter(item => {
         const cats = (item.data.categories || []).map(c => c.toLowerCase());
         return cats.some(c => ACADEMIC_TERMS.some(term => c.includes(term)));
@@ -197,6 +217,7 @@ module.exports = function registerCollections(eleventyConfig) {
   eleventyConfig.addCollection("blogEn", function (collectionApi) {
     return collectionApi
       .getFilteredByGlob("src/blog/*.md")
+      .filter(isActiveBlog)
       .filter(item => item.data.lang === "en")
       .sort((a, b) => b.date - a.date);
   });
