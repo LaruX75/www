@@ -71,5 +71,7 @@ the canonical thesis detail records and external source semantics were already
 correct. Canonical Content v1, Pagefind, public JSON, source/landing semantics,
 and AC1 remain unchanged.
 
-CONTENT-ROLE-PROJECTION-01 = VERIFIED LOCALLY / READY FOR PR
+Merge commit: `0cf2a72be909aefd57c1318dccbf9f8b160f51e0`
+
+CONTENT-ROLE-PROJECTION-01 = CLOSED / GREEN / MAIN
 AC1 = CLOSED / GREEN
