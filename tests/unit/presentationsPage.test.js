@@ -125,6 +125,65 @@ describe("buildCanonicalPresentationPageRecords", () => {
 });
 
 describe("buildCanonicalPresentationItems", () => {
+  test("keeps curated YouTube playlist series as the single projected owner", () => {
+    const verkkolive = "PLDG0jxUrk8z19_ThqBiynpYG4g-mjwgpt";
+    const laitenurkka = "PLDG0jxUrk8z2E7S2ggyzt0bIBXiDEgXob";
+    const unrelatedPlaylist = "PL-unrelated-playlist";
+
+    const items = buildCanonicalPresentationItems({
+      videoSeries: [
+        {
+          title: "Jari Larun verkkolive",
+          url: "/2020/03/12/jari-larun-verkkolive/",
+          externalUrl: `https://www.youtube.com/playlist?list=${verkkolive}`,
+          date: "2020-03-12"
+        },
+        {
+          title: "Larun laitenurkka: opetusteknologia läpivalaisussa",
+          url: `https://www.youtube.com/playlist?list=${laitenurkka}`,
+          externalUrl: `https://www.youtube.com/playlist?list=${laitenurkka}`
+        }
+      ],
+      youtubeRows: [
+        {
+          title: "FIN: Jarin verkkolive",
+          url: `https://www.youtube.com/playlist?list=${verkkolive}`,
+          publishedAt: "2020-03-22T11:59:24Z"
+        },
+        {
+          title: "Larun laitenurkka: opetusteknologia läpivalaisussa",
+          url: `https://www.youtube.com/playlist?list=${laitenurkka}`,
+          publishedAt: "2021-06-09T12:49:20Z"
+        },
+        {
+          title: "Unrelated playlist",
+          url: `https://www.youtube.com/playlist?list=${unrelatedPlaylist}`,
+          publishedAt: "2022-01-01T00:00:00Z"
+        }
+      ],
+      youtubeVideos: [
+        {
+          title: "Ordinary YouTube video",
+          url: "https://www.youtube.com/watch?v=ordinary-video-id",
+          publishedAt: "2022-02-02T00:00:00Z"
+        }
+      ],
+      applyAcceptedCuration: false
+    });
+
+    for (const playlistId of [verkkolive, laitenurkka]) {
+      const matches = items.filter((item) =>
+        (item.sourceUrl || item.externalUrl || item.url).includes(`list=${playlistId}`)
+      );
+      assert.equal(matches.length, 1);
+      assert.equal(matches[0].sourceKey, "videoSeries");
+      assert.equal(matches[0].landingType, "externalSource");
+    }
+
+    assert.equal(items.filter((item) => item.sourceKey === "youtube" && item.sourceUrl.includes(unrelatedPlaylist)).length, 1);
+    assert.equal(items.filter((item) => item.sourceKey === "youtubeVideos" && item.sourceUrl.includes("ordinary-video-id")).length, 1);
+  });
+
   test("projects the verified 7LPyHCnuYJE talk once with a local landing", () => {
     const matches = buildPresentationsPageModel({}).items.filter((item) =>
       item.sourceUrl === "https://www.youtube.com/watch?v=7LPyHCnuYJE"
