@@ -232,6 +232,20 @@ const CURATED_VIDEO_ITEMS = [
     external: true
   },
   {
+    title: "Millainen on nykyaikainen oppimisympäristö",
+    url: "https://www.youtube.com/watch?v=7LPyHCnuYJE",
+    pageUrl: "/presentations/millainen-on-nykyaikainen-oppimisymparisto/",
+    externalUrl: "https://www.youtube.com/watch?v=7LPyHCnuYJE",
+    thumbnail: "https://i.ytimg.com/vi/7LPyHCnuYJE/hqdefault.jpg",
+    date: "2017-01-25",
+    badgeText: "Asiantuntijapuheenvuoro",
+    listText: "Oulun yliopiston oppimisympäristöjen kehittämisen workshop",
+    description: "YouTubessa 25.1.2017 julkaistu asiantuntijapuheenvuoro Oulun yliopiston oppimisympäristöjen kehittämisen workshopista.",
+    sourceLabel: "YouTube / oma puheenvuoro",
+    event: "Oppimisympäristön kehittäminen / workshop, Oulun yliopisto",
+    external: true
+  },
+  {
     title: "Teknologia, oppiminen ja osaaminen yhteiskunnassa - videotallenne",
     url: "https://www.youtube.com/watch?v=SoeW6zexrWQ",
     pageUrl: "/presentations/ss-teknologia-oppiminen-ja-osaaminen-yhteiskunnassa-uudet-teknologiat-isannan-vai-r/",
@@ -1227,6 +1241,7 @@ function createCanonicalCuratedVideoItems(rows = []) {
     thumbnail: item?.thumbnail || "",
     description: item?.description || "",
     date: item?.date || "",
+    event: item?.event || "",
     badgeText: item?.badgeText || "Video / tallenne"
   }, "curatedVideos")));
 }
