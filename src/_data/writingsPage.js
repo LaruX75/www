@@ -1,5 +1,6 @@
 const toPublicContentRecord = require("../_utils/toPublicContentRecord");
 const { buildPublicationsPageModel } = require("./publicationsPage");
+const { getLegacyBlogProjection } = require("./legacyBlogProjection");
 
 const PUBLIC_WRITINGS_PAGE_FIELDS = Object.freeze([
   "id",
@@ -362,15 +363,20 @@ function hasSectionKey(item = {}, sectionKey) {
   return toArray(item?.sectionKeys).includes(sectionKey);
 }
 
+function isHistoricalLegacyBlog(item = {}) {
+  const inputPath = item?.inputPath || item?.data?.page?.inputPath || item?.data?.inputPath;
+  return Boolean(getLegacyBlogProjection(inputPath)?.historicalArchive);
+}
+
 function collectSharedSourceItems(data = {}) {
   const collections = data.collections || {};
 
   return [
     ...toArray(collections.content),
-    ...toArray(collections.blog),
+    ...toArray(collections.activeBlog || collections.blog),
     ...toArray(collections.publications),
     ...toArray(collections.politics),
-  ];
+  ].filter((item) => !isHistoricalLegacyBlog(item));
 }
 
 function buildCanonicalWritingsPageItems(data = {}) {

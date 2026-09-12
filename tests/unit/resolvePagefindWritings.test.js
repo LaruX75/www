@@ -4,6 +4,7 @@ const assert = require("node:assert/strict");
 const {
   resolvePagefindDocument
 } = require("../../src/src.11tydata.js");
+const resolveSchemaType = require("../../src/_utils/resolveSchemaType");
 
 test("resolvePagefindDocument falls back to blog Pagefind filters for src/blog articles", () => {
   const doc = resolvePagefindDocument({
@@ -26,4 +27,25 @@ test("resolvePagefindDocument falls back to blog Pagefind filters for src/blog a
   assert.ok(doc.filters.some((filter) => filter.name === "Writings scope" && filter.value === "fi"));
   assert.equal(doc.meta.writingsContentType, "blogPost");
   assert.equal(doc.meta.writingsYear, "2025");
+});
+
+test("resolvePagefindDocument keeps historical blog routes out of active writings filters", () => {
+  const doc = resolvePagefindDocument({
+    page: {
+      url: "/2020/12/06/jari-larulle-kansallinen-avoimen-tieteen-palkinto/",
+      inputPath: "./src/blog/jari-larulle-kansallinen-avoimen-tieteen-palkinto.md",
+      date: new Date("2020-12-06T00:00:00Z")
+    },
+    tags: ["blog"]
+  });
+
+  assert.equal(doc, null);
+});
+
+test("historical blog projection resolves neutral WebPage JSON-LD", () => {
+  assert.deepEqual(resolveSchemaType({ tags: ["blog"], historicalArchive: true }), {
+    resolvedSchemaType: "WebPage",
+    pageBlockType: "webpage",
+    specialPageType: null
+  });
 });

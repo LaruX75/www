@@ -403,7 +403,7 @@ pageStyles:
 
 {% set allRecentItems = [] %}
 
-{% for post in collections.blog %}
+{% for post in collections.activeBlog %}
   {% set item = { sortTs: post.date | toTimestamp, type: "blog", dateLabel: post.date | dateFormat, title: post.data.title, href: post.url, desc: post.data.description, isExternal: false } %}
   {% set _ = (allRecentItems.push(item), null) %}
 {% endfor %}

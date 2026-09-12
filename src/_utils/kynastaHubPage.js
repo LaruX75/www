@@ -24,7 +24,7 @@
  * sorting or slicing.
  *
  * Sources (audited 2026-09-02):
- *   blog             → collections.blog
+ *   blog             → collections.activeBlog
  *   opinion          → collections.pub_mielipide     (type == "mielipide")
  *   column           → collections.pub_kolumni       (type == "kolumni")
  *   councilSpeech    → collections.pub_puhe filtered by isCouncilSpeech()
@@ -157,7 +157,7 @@ function buildKynastaHubModel({ collections, lang = "fi" } = {}) {
   const normalizedLang = pickString(lang).toLowerCase() === "en" ? "en" : "fi";
 
   const writings = {
-    blog: groupFromCollection(filterByLang(c.blog, normalizedLang), "blog"),
+    blog: groupFromCollection(filterByLang(c.activeBlog || c.blog, normalizedLang), "blog"),
     opinion: groupFromCollection(filterByLang(c.pub_mielipide, normalizedLang), "opinion"),
     column: groupFromCollection(filterByLang(c.pub_kolumni, normalizedLang), "column")
   };

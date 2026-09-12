@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 
 const BLOG_QUERY = "Kandao";
 const BLOG_TITLE_FRAGMENT = "Larun laitenurkka testaa: Kandao 360 kokouskamerat";
+const HISTORICAL_AWARD = "Jari Larulle kansallinen avoimen tieteen palkinto";
+const HISTORICAL_PRESENTATION = "TVT-Koulun johtamisen välineenä luento";
+const ACTIVE_COMMENTARY = "Kehuttua: Koulutusteknologian perusopintojen johdantoluento";
 
 function visibleRows(page) {
   return page.locator('#blog-tbody tr[data-blog-row]:not([hidden])');
@@ -24,11 +27,15 @@ test.describe("pagefind blog list convergence", () => {
     await page.goto("/blogi/");
 
     const expectedCount = await archiveCountFromBadge(page);
-    expect(expectedCount).toBeGreaterThan(50);
+    expect(expectedCount).toBe(55);
     await expect(allRows(page)).toHaveCount(expectedCount);
     await expect(page.locator('#blog-tbody tr[data-blog-row]:not([hidden])')).toHaveCount(expectedCount);
     await expect(page.locator("section.blog-routes[data-pagefind-ignore]")).toHaveCount(1);
     await expect(page.locator("[data-blog-list][data-pagefind-ignore]")).toHaveCount(1);
+    await expect(page.locator("[data-blog-historical-archive][data-pagefind-ignore] tbody tr")).toHaveCount(25);
+    await expect(page.locator("[data-blog-active-archive]")).not.toContainText(HISTORICAL_AWARD);
+    await expect(page.locator("[data-blog-active-archive]")).not.toContainText(HISTORICAL_PRESENTATION);
+    await expect(page.locator("[data-blog-historical-archive]")).toContainText(HISTORICAL_AWARD);
 
     await context.close();
   });
@@ -44,7 +51,7 @@ test.describe("pagefind blog list convergence", () => {
     await page.goto("/blogi/");
 
     const totalRows = await allRows(page).count();
-    expect(totalRows).toBeGreaterThan(50);
+    expect(totalRows).toBe(55);
     await expect(visibleRows(page)).toHaveCount(10);
     const initialFirstHref = await visibleRows(page).locator("a.text-decoration-none").first().getAttribute("href");
 
@@ -75,7 +82,7 @@ test.describe("pagefind blog list convergence", () => {
     await page.goto("/en/blog/");
 
     const expectedCount = await archiveCountFromBadge(page);
-    expect(expectedCount).toBeGreaterThan(50);
+    expect(expectedCount).toBe(55);
     await expect(allRows(page)).toHaveCount(expectedCount);
     await expect(visibleRows(page)).toHaveCount(10);
 
@@ -84,5 +91,13 @@ test.describe("pagefind blog list convergence", () => {
       .poll(() => visibleRows(page).count(), { timeout: 15000 })
       .toBeGreaterThan(0);
     await expect(visibleRows(page).filter({ hasText: BLOG_TITLE_FRAGMENT })).toHaveCount(1);
+  });
+
+  test("theme projections keep active commentary while excluding historical blog records", async ({ page }) => {
+    await page.goto("/teemat/opettajankoulutus/");
+
+    const blogGroup = page.locator(".topic-profile-group--blogPost");
+    await expect(blogGroup).toContainText(ACTIVE_COMMENTARY);
+    await expect(blogGroup).not.toContainText(HISTORICAL_PRESENTATION);
   });
 });

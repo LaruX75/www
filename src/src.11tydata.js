@@ -34,6 +34,7 @@ const {
 } = require("./_data/presentationsPage");
 const { buildThesisFindExploreDocument } = require("./_utils/thesesFindExplore");
 const { buildPublicationFindExploreDocument } = require("./_utils/publicationsFindExplore");
+const { getLegacyBlogProjection } = require("./_data/legacyBlogProjection");
 
 const writingsLookupCache = new WeakMap();
 const publicationsLookupCache = new WeakMap();
@@ -56,6 +57,12 @@ function resolveFallbackWritingsPagefindRecord(data) {
   const tagSet = new Set(Array.isArray(data?.tags) ? data.tags : []);
   const isBlog = inputPath.includes("src/blog/") || tagSet.has("blog");
   if (!isBlog) return null;
+
+  // Historical WordPress routes remain searchable pages, but must not be
+  // projected into the active Find & Explore writings collection.
+  if (data?.historicalArchive || getLegacyBlogProjection(inputPath)?.historicalArchive) {
+    return null;
+  }
 
   return {
     contentType: "blogPost",

@@ -17,7 +17,8 @@ function resolveSchemaType(data) {
   let resolvedSchemaType = d.schemaType || null;
 
   if (!resolvedSchemaType) {
-    if (type === "esitys") resolvedSchemaType = "PresentationDigitalDocument";
+    if (d.historicalArchive) resolvedSchemaType = "WebPage";
+    else if (type === "esitys") resolvedSchemaType = "PresentationDigitalDocument";
     else if (type === "tieteellinen") resolvedSchemaType = "ScholarlyArticle";
     else if (type === "mielipide") resolvedSchemaType = "OpinionNewsArticle";
     else if (type === "kolumni") resolvedSchemaType = "NewsArticle";

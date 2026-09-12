@@ -43,9 +43,10 @@ layout: base.njk
     } %}
     {% set catBase = "/en/categories/" if currentLang == "en" else "/kategoriat/" %}
     {% set kwBase = "/en/keywords/" if currentLang == "en" else "/avainsanat/" %}
-    {% set allBlogPosts = collections.blog | sort(true, false, "date") %}
-    {% set latestPosts = allBlogPosts | take(3) %}
-    {% set archiveTerms = allBlogPosts | archiveTermCloud(12, "categories") %}
+    {% set activeBlogPosts = collections.activeBlog | sort(true, false, "date") %}
+    {% set historicalBlogPosts = collections.historicalBlog | sort(true, false, "date") %}
+    {% set latestPosts = activeBlogPosts | take(3) %}
+    {% set archiveTerms = activeBlogPosts | archiveTermCloud(12, "categories") %}
     <h1 class="display-6 fw-bold mb-2">{{ title }}</h1>
     <p class="text-muted">{{ txt.hero }}</p>
     {% if currentLang == "en" %}
@@ -98,10 +99,10 @@ layout: base.njk
 
 <section id="blog-table-section" class="py-4">
   <div class="site-shell">
-    <div class="card shadow-sm" data-pagefind-ignore data-blog-list>
+    <div class="card shadow-sm" data-pagefind-ignore data-blog-list data-blog-active-archive>
       <div class="card-header bg-transparent d-flex align-items-center justify-content-between">
-        <h2 class="h4 mb-0">{{ txt.all }}</h2>
-        <span class="badge text-bg-secondary">{{ allBlogPosts.length }}</span>
+        <h2 class="h4 mb-0">{{ "Blog posts" if currentLang == "en" else "Blogikirjoitukset" }}</h2>
+        <span class="badge text-bg-secondary">{{ activeBlogPosts.length }}</span>
       </div>
       <div class="card-body p-0">
         <div class="p-3 bg-light border-bottom">
@@ -141,7 +142,7 @@ layout: base.njk
               </tr>
             </thead>
             <tbody id="blog-tbody">
-              {% for post in allBlogPosts %}
+              {% for post in activeBlogPosts %}
               {% set desc = post.data.description or (post.content | excerpt) %}
               <tr
                 data-blog-row
@@ -183,10 +184,10 @@ layout: base.njk
             <caption class="visually-hidden">
               <noscript>
                 {% if currentLang == "en" %}
-                All {{ allBlogPosts.length }} canonical blog posts are rendered directly into this archive.
+                All {{ activeBlogPosts.length }} active blog posts are rendered directly into this archive.
                 Search, sorting and pagination require JavaScript.
                 {% else %}
-                Kaikki {{ allBlogPosts.length }} kanonista blogikirjoitusta on renderöity suoraan tähän arkistoon.
+                Kaikki {{ activeBlogPosts.length }} aktiivista blogikirjoitusta on renderöity suoraan tähän arkistoon.
                 Haku, lajittelu ja sivutus vaativat JavaScriptiä.
                 {% endif %}
               </noscript>
@@ -208,6 +209,30 @@ layout: base.njk
           <ul id="blog-pagination" class="pagination pagination-sm mb-0 flex-wrap"></ul>
         </nav>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 border-top" aria-labelledby="historical-blog-heading" data-pagefind-ignore data-blog-historical-archive>
+  <div class="site-shell">
+    <header class="mb-3">
+      <p class="content-context-kicker mb-1">{{ "Historical archive" if currentLang == "en" else "Historiallinen arkisto" }}</p>
+      <h2 id="historical-blog-heading" class="h4 mb-2">{{ "Earlier legacy material" if currentLang == "en" else "Vanhempi arkistoaineisto" }}</h2>
+      <p class="text-muted mb-0">{{ "Not every historical WordPress page is a blog post. These routes are retained for continuity." if currentLang == "en" else "Kaikki vanhat WordPress-sivut eivät ole blogikirjoituksia. Reitit säilyvät historian ja linkkien jatkuvuuden vuoksi." }}</p>
+    </header>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover align-middle mb-0">
+        <thead><tr><th scope="col">{{ txt.date }}</th><th scope="col">{{ txt.title }}</th><th scope="col">{{ "Archive material" if currentLang == "en" else "Arkistoaineisto" }}</th></tr></thead>
+        <tbody>
+          {% for post in historicalBlogPosts %}
+          <tr>
+            <td>{{ post.date | dateFormat }}</td>
+            <td><a href="{{ post.url }}">{{ post.data.title }}</a></td>
+            <td class="small text-muted">{{ "Historical page" if currentLang == "en" else "Vanha arkistosivu" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
