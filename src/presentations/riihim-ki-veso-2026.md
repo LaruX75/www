@@ -1,5 +1,5 @@
 ---
-title: "Riihimäki VESO 2026"
+title: "Ihmeitä tekevä tekoäly vai tavallinen työkalu. Askeleita kohti tekoäly(luku)taitoa (Riihimäki)"
 description: "Riihimäen koulujen opettajien täydennyskoulutuspäivä tekoälyn opetuskäytöstä ja digitaalisista oppimisympäristöistä."
 date: 2026-01-22
 url: "https://www.canva.com/d/ScsvKi3eW0eKoYS"
