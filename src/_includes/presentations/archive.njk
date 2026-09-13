@@ -59,15 +59,26 @@
         </div>
 
         <div class="presentation-archive-root" data-presentation-find-explore data-locale="{{ archiveLocale }}">
-          {% if archiveLocale == "fi" %}
+          {% if archiveLocale == "en" %}
+          <div class="starter-chips" data-starter-chips aria-label="Start here: quick starts to presentation themes">
+            <p class="starter-chips-eyebrow">Start here</p>
+            <ul class="starter-chips-list">
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Koulutusteknologia" data-starter-chip-event="change">Educational technology</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Opettajankoulutus" data-starter-chip-event="change">Teacher education</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="AI literacy" data-starter-chip-event="change">AI literacy</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="sosiaalinen media" data-starter-chip-event="change">Social media</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="mobiilioppiminen" data-starter-chip-event="change">Mobile learning</button></li>
+            </ul>
+          </div>
+          {% else %}
           <div class="starter-chips" data-starter-chips aria-label="Aloita tästä: valmiit esitysteemat">
             <p class="starter-chips-eyebrow">Aloita tästä</p>
             <ul class="starter-chips-list">
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="AI literacy" data-starter-chip-event="change">AI literacy</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Tekoäly" data-starter-chip-event="change">Tekoäly</button></li>
               <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Koulutusteknologia" data-starter-chip-event="change">Koulutusteknologia</button></li>
               <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Opettajankoulutus" data-starter-chip-event="change">Opettajankoulutus</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Mobiilioppiminen" data-starter-chip-event="change">Mobiilioppiminen</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Tekoälylukutaito" data-starter-chip-event="change">Tekoälylukutaito</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="sosiaalinen media" data-starter-chip-event="change">Sosiaalinen media</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="mobiilioppiminen" data-starter-chip-event="change">Mobiilioppiminen</button></li>
             </ul>
           </div>
           {% endif %}
