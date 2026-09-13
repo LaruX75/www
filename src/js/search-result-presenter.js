@@ -57,6 +57,29 @@
     return String(lang || "").toLowerCase().startsWith("en") ? "en" : "fi";
   }
 
+  // Tunnistaa onko URL ulkoinen (avautuu uuteen valilehteen). Hostname-
+  // guard:issa "jarilaru.fi" ja window.location.hostname lasketaan
+  // sisaisiksi vaikka URL olisi absoluuttinen.
+  const LOCAL_HOSTNAMES = new Set(["jarilaru.fi", "www.jarilaru.fi"]);
+
+  function isExternalUrl(rawUrl) {
+    const value = String(rawUrl || "").trim();
+    if (!value) return false;
+    try {
+      const parsed = new URL(value);
+      if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return false;
+      const hostname = parsed.hostname.toLowerCase();
+      if (LOCAL_HOSTNAMES.has(hostname)) return false;
+      const localHostname = typeof window !== "undefined" && window.location && window.location.hostname
+        ? String(window.location.hostname).toLowerCase()
+        : "";
+      if (localHostname && hostname === localHostname) return false;
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   // PF3: user-facing content-family labels deliberately Finnish across
   // FI and EN mounts so the visible label matches the Pagefind
   // `Sisältö:*` filter value. Do not localise here.
@@ -250,7 +273,18 @@
     const entry = projectEntry(data);
     const url = escapeHtml(entry.url);
     const title = escapeHtml(entry.title);
-    const titleMarkup = `<a class="find-explore-result-title" href="${url}">${title}</a>`;
+    const external = isExternalUrl(entry.url);
+    const externalAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
+    const externalIcon = external
+      ? ' <i class="bi bi-box-arrow-up-right ms-1 opacity-75" aria-hidden="true"></i>'
+      : "";
+    const externalAriaLabelSuffix = external
+      ? ` (${searchSurfaceLanguage() === "en" ? "opens in a new tab" : "avautuu uuteen välilehteen"})`
+      : "";
+    const ariaLabelAttr = external
+      ? ` aria-label="${title}${escapeHtml(externalAriaLabelSuffix)}"`
+      : "";
+    const titleMarkup = `<a class="find-explore-result-title" href="${url}"${externalAttrs}${ariaLabelAttr}>${title}${externalIcon}</a>`;
     if (entry.kind === "media" && entry.thumbnailUrl) {
       return `<li class="find-explore-result find-explore-result--${escapeHtml(entry.kind)} find-explore-result--with-thumbnail" data-search-result-kind="${escapeHtml(entry.kind)}">
       <div class="find-explore-result-media-layout">
@@ -275,6 +309,7 @@
     primaryMetaFor,
     yearFor,
     projectEntry,
+    isExternalUrl,
     renderFamilyHeader,
     renderPrimaryMetaLine,
     renderExcerpt,
