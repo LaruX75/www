@@ -48,9 +48,7 @@ function auditPage({ label, htmlPath, expectedLocale }) {
 
   const localScripts = $('script[src]').map((_, el) => $(el).attr("src")).get();
   [
-    "/js/pe-list-render.js",
     "/js/content-presets.js",
-    "/js/content-engine.js",
     "/js/presentations-page.js"
   ].forEach((src) => {
     assert(localScripts.includes(src), `${label}: missing script ${src}`);

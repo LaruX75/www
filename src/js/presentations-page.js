@@ -29,10 +29,6 @@
   const KEY_SEP = "";
 
   function ensureDeps() {
-    if (!global.ContentEngine || typeof global.ContentEngine.prefetch !== "function") {
-      console.error("presentations-page: /js/content-engine.js puuttuu");
-      return false;
-    }
     if (!global.ContentPresets || typeof global.ContentPresets.queryPreset !== "function") {
       console.error("presentations-page: /js/content-presets.js puuttuu");
       return false;
@@ -68,22 +64,20 @@
     return map;
   }
 
-  function cardKeyForItem(item) {
-    if (!item) return "";
-    const url = item.landingUrl
-      || item.localPageUrl
-      || item.pageUrl
-      || item.url
-      || item.externalUrl
-      || item.sourceUrl
-      || "";
-    return url + KEY_SEP + (item.title || "");
-  }
-
   function cardKeyForNode(node) {
     const url = node.getAttribute("data-presentation-card-url") || "";
     const title = node.getAttribute("data-presentation-card-title") || "";
     return url + KEY_SEP + title;
+  }
+
+  function readSearchRecord(node) {
+    try {
+      const record = JSON.parse(node.getAttribute("data-presentation-search-record") || "");
+      if (!record || typeof record !== "object" || Array.isArray(record)) return null;
+      return record;
+    } catch (_) {
+      return null;
+    }
   }
 
   function collectCards(root) {
@@ -127,17 +121,18 @@
     if (state.year) filters.year = Number(state.year);
     if (state.topic) filters.topics = state.topic;
 
-    return global.ContentPresets.queryPreset(items, "FindExplore:presentations", {
+    // SSR already supplies date-desc card order. Query without a sort rule so
+    // filtering retains that DOM order without sending the date again.
+    return global.ContentPresets.queryPreset(items, {
+      source: "presentationsPage",
       search: state.search,
       filters
     }).items;
   }
 
-  // SSR renders every canonical card visible. As soon as JS runs, hide
-  // cards past the first page-size so hydration lands on the same
-  // opening subset the old client-render path used to produce. This
-  // pre-render sync step minimizes flash between paint and the async
-  // ContentEngine.prefetch that follows.
+  // SSR renders every canonical card visible. As soon as JS runs, hide cards
+  // past the first page-size so hydration lands on the interactive default
+  // without a separate data request.
   function applyInitialPagination(root) {
     const cards = collectCards(root);
     cards.forEach((card, index) => {
@@ -171,7 +166,7 @@
       if (state.page > totalPages) state.page = totalPages;
       const start = (state.page - 1) * ARCHIVE_PAGE_SIZE;
       const pageItems = filteredItems.slice(start, start + ARCHIVE_PAGE_SIZE);
-      const visibleKeys = new Set(pageItems.map(cardKeyForItem));
+      const visibleKeys = new Set(pageItems.map((item) => item.cardKey));
 
       cards.forEach((card) => {
         const key = cardKeyForNode(card);
@@ -230,35 +225,32 @@
     renderVisibility();
   }
 
-  async function init() {
+  function recordsFromCards(root) {
+    const cards = collectCards(root);
+    const records = cards.map((card) => {
+      const record = readSearchRecord(card);
+      if (!record) return null;
+      return { ...record, cardKey: cardKeyForNode(card) };
+    });
+    return records.every(Boolean) ? records : null;
+  }
+
+  function init() {
     if (!ensureDeps()) return;
 
     const archiveRoots = Array.from(document.querySelectorAll("[data-presentation-find-explore]"));
     if (!archiveRoots.length) return;
 
-    // Synchronous, pre-fetch: hide cards past the first page immediately so
-    // hydration matches the interactive default. Runs before the async
-    // ContentEngine.prefetch below.
-    archiveRoots.forEach(applyInitialPagination);
-
-    let items = [];
-    try {
-      const fetched = await global.ContentEngine.prefetch("presentationsPage");
-      if (Array.isArray(fetched)) items = fetched;
-    } catch (error) {
-      console.error("presentations-page: filter data fetch failed", error);
-    }
-
-    if (!items.length) {
-      // Filter data unavailable — restore the complete SSR archive so
-      // the canonical archive remains usable, and leave filter controls
-      // in place but functionally inert (they will not throw; state
-      // just never reaches renderVisibility).
-      archiveRoots.forEach(showAllCards);
-      return;
-    }
-
-    archiveRoots.forEach((root) => wireArchive(root, items));
+    archiveRoots.forEach((root) => {
+      const items = recordsFromCards(root);
+      if (!items || !items.length) {
+        // A malformed SSR record must not hide canonical cards.
+        showAllCards(root);
+        return;
+      }
+      applyInitialPagination(root);
+      wireArchive(root, items);
+    });
   }
 
   if (document.readyState === "loading") {

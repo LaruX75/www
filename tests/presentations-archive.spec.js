@@ -142,13 +142,40 @@ for (const pageCase of PAGES) {
     });
 
     test('JS hydration reduces visible archive to the initial page size', async ({ page }) => {
+      const jsonRequests = [];
+      page.on('request', (request) => {
+        if (request.url().includes('/data/presentations-page.json')) {
+          jsonRequests.push(request.url());
+        }
+      });
       await page.goto(pageCase.url);
       const archive = page.locator('[data-presentation-find-explore]');
       await expect(archive).toBeVisible();
-      // JS init hides cards past the first page immediately, then the
-      // async ContentEngine.prefetch confirms filter default. Visible
-      // count should settle at the archive page size (12).
+      // The archive gets its filter records from SSR card metadata, so no
+      // canonical JSON request is needed before settling at 12 visible cards.
       await expect(archive.locator(VISIBLE_CARD)).toHaveCount(12);
+      expect(jsonRequests).toEqual([]);
+    });
+
+    test('SSR metadata preserves search fields beyond visible card copy', async ({ page }) => {
+      await page.goto(pageCase.url);
+      const archive = page.locator('[data-presentation-find-explore]');
+      const title = 'Supporting Fab Lab facilitators to develop pedagogical practices to improve learning in digital fabrication activities';
+      const card = archive.locator(ANY_CARD).filter({ hasText: title });
+
+      await expect(card).toHaveCount(1);
+      const record = await card.getAttribute('data-presentation-search-record');
+      expect(record).toBeTruthy();
+      const parsed = JSON.parse(record);
+      expect(parsed.categories).toContain('Teknologia ja digitaalisuus');
+      expect(parsed.keywords).toContain('maker-kasvatus');
+      expect(parsed.topics.length).toBeGreaterThan(3);
+
+      // maker-kasvatus is absent from the visible title, truncated description,
+      // event, type and first three topic chips. It must still find this card.
+      await archive.locator('[data-presentation-control="search"]').fill('maker-kasvatus');
+      await expect(archive.locator(VISIBLE_CARD)).toHaveCount(1);
+      await expect(archive.locator(VISIBLE_CARD)).toContainText(title);
     });
 
     test('a card outside the initial page becomes visible via filter', async ({ page }) => {
@@ -198,39 +225,20 @@ for (const pageCase of PAGES) {
   });
 }
 
-test.describe('Presentations archive progressive-enhancement failure path', () => {
+test.describe('Presentations archive SSR metadata integrity', () => {
   for (const pageCase of PAGES) {
-    test(`${pageCase.name}: /data/presentations-page.json fetch failure falls back to full SSR archive`, async ({ page }) => {
-      // Simulate the runtime filter-data endpoint being unavailable. The
-      // page must not turn this into loss of the canonical archive: the
-      // SSR-rendered 218 cards must remain visible so the user can still
-      // browse presentations.
-      await page.route('**/data/presentations-page.json', (route) =>
-        route.fulfill({ status: 500, contentType: 'application/json', body: '{}' })
-      );
-
+    test(`${pageCase.name}: every SSR card carries parseable filter metadata`, async ({ page }) => {
       await page.goto(pageCase.url);
-
-      // Allow the async ContentEngine.prefetch to complete/fail and the
-      // fallback path (showAllCards) to run.
-      await page.waitForFunction(() => {
-        const hidden = document.querySelectorAll(
-          '[data-presentation-results] article.presentation-archive-card[hidden]'
-        ).length;
-        const total = document.querySelectorAll(
-          '[data-presentation-results] article.presentation-archive-card'
-        ).length;
-        return total > 200 && hidden === 0;
-      }, undefined, { timeout: 15000 });
-
-      const total = await page.locator(
-        `[data-presentation-results] ${ANY_CARD}`
-      ).count();
-      const hidden = await page.locator(
-        `[data-presentation-results] ${ANY_CARD}[hidden]`
-      ).count();
-      expect(total).toBeGreaterThanOrEqual(200);
-      expect(hidden).toBe(0);
+      const metadata = await page.locator(`[data-presentation-results] ${ANY_CARD}`)
+        .evaluateAll((cards) => cards.map((card) => card.getAttribute('data-presentation-search-record')));
+      expect(metadata.length).toBeGreaterThanOrEqual(200);
+      for (const record of metadata) {
+        const parsed = JSON.parse(record || '');
+        expect(typeof parsed.title).toBe('string');
+        expect(Array.isArray(parsed.topics)).toBe(true);
+        expect(Array.isArray(parsed.categories)).toBe(true);
+        expect(Array.isArray(parsed.keywords)).toBe(true);
+      }
     });
   }
 });

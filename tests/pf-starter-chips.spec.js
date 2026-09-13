@@ -59,8 +59,8 @@ test.describe("PF-STARTER-CHIPS /esitykset/", () => {
 
     // At least one presentation card remains visible after applying
     // the chip. presentation-archive-card is the runtime's card class.
-    const cards = page.locator("article.presentation-archive-card");
-    await expect(cards.first()).toBeVisible({ timeout: 10000 });
+    const visibleCards = page.locator("article.presentation-archive-card:not([hidden])");
+    await expect(visibleCards.first()).toBeVisible({ timeout: 10000 });
   });
 });
 
