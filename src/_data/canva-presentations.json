@@ -44,39 +44,6 @@
     "publicUrl": "https://www.canva.com/design/DAHI6X6dR_g/_Jy-hfDeDZU5UA6DVkWjrQ/view"
   },
   {
-    "thumbnail": "/images/canva-thumbnails/sivistysverkosto-4-5.png",
-    "title": "Sivistysverkosto 4.5.",
-    "summary": "Tekoälyn ajankohtaiset teemat sivistysverkoston asiantuntijapuheenvuorossa keväällä 2026.",
-    "location": "Oulu",
-    "keywords": [
-      "koulutus",
-      "kuntatalous",
-      "opetussuunnitelma",
-      "palveluverkko",
-      "sivistyslautakunta",
-      "sivistysverkosto",
-      "tekoäly"
-    ],
-    "link": "https://www.canva.com/d/kJtKo_ZUxCFEOTn",
-    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
-    "date": "2026-05-04",
-    "lang": "fi",
-    "jarjestaja": "Kokoomus / Oulun paikallisyhdistysten sivistysverkosto",
-    "kategoria": "muu",
-    "paakortti": false,
-    "asiantuntijaprofiili": [
-      "asiantuntija"
-    ],
-    "sivuyhteys": [
-      "tyoni-yliopistonlehtorina"
-    ],
-    "publicUrl": "https://canva.link/vqtdccorb3yxb9h",
-    "courseReview": {
-      "status": "rejected",
-      "note": "Ei liitetä opintojaksoon."
-    }
-  },
-  {
     "thumbnail": "/images/canva-thumbnails/itk2026-millaisia-ovat-tekoalyaikakauden-opettajaprofiilit.png",
     "title": "ITK2026 millaisia ovat tekoälyaikakauden opettajaprofiilit",
     "summary": "Millaisia opettajaprofiileja tekoälyaikakaudella tarvitaan? ITK 2026 -konferenssin asiantuntijapuheenvuoro.",
@@ -325,46 +292,6 @@
       "mediassa"
     ],
     "publicUrl": "https://canva.link/gkabrxufe8dhnjp",
-    "courseReview": {
-      "status": "rejected",
-      "note": "Ei liitetä opintojaksoon."
-    }
-  },
-  {
-    "thumbnail": "/images/canva-thumbnails/finnish-teacher-education-professional-development.png",
-    "title": "Finnish Teacher Education & Professional Development",
-    "summary": "Overview of Finnish teacher education and professional development: autonomy, trust culture and fragmentation. Kosovo.",
-    "location": "Kosovo",
-    "keywords": [
-      "Finland model",
-      "Finnish model",
-      "Kosovo",
-      "Suomi-malli",
-      "VESO",
-      "digital competence",
-      "opettajankoulutus",
-      "professional development",
-      "teacher autonomy",
-      "teacher education",
-      "täydennyskoulutus"
-    ],
-    "link": "https://www.canva.com/d/Hlih1iAZAFJZTxM",
-    "folder": "Asiantuntijapuheenvuorot, konferenssit, tapahtumat ja webinaarit",
-    "date": "2025-09-22",
-    "lang": "en",
-    "jarjestaja": "TkaEdite (Kosovon-Suomen yhteishanke)",
-    "kategoria": "kansainvälinen-konferenssi",
-    "paareitti": "route:koulutukset",
-    "paakortti": true,
-    "asiantuntijaprofiili": [
-      "tutkija",
-      "yliopistonlehtori"
-    ],
-    "sivuyhteys": [
-      "tutkimus",
-      "tyoni-yliopistonlehtorina"
-    ],
-    "publicUrl": "https://canva.link/vqtdccorb3yxb9h",
     "courseReview": {
       "status": "rejected",
       "note": "Ei liitetä opintojaksoon."

@@ -122,9 +122,9 @@ describe("F3C-P3 presentation canonical integration", () => {
     assert.equal(effectiveCounts.ALTERNATE_REPRESENTATION, 12);
 
     const expectedCanonicalCount = startingItems.length + effectiveCounts.IS_DISTINCT_LOCAL_PRESENTATION;
-    assert.equal(startingItems.length, 214);
+    assert.equal(startingItems.length, 213);
     assert.equal(items.length, expectedCanonicalCount);
-    assert.equal(items.length, 222);
+    assert.equal(items.length, 221);
 
     decisionRows.forEach(([caseId, decision]) => {
       const effectiveDecision = decision.supersededBy || decision.humanDecision;
