@@ -21,6 +21,13 @@ function hasValue(value) {
   return String(value || "").trim().length > 0;
 }
 
+function toIsoDate(value) {
+  if (!value) return "";
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toISOString().slice(0, 10);
+}
+
 function normalizeLocalUrl(url = "") {
   const value = String(url || "").trim();
   if (!value || /^https?:\/\//i.test(value)) return "";
@@ -324,6 +331,7 @@ function buildPresentationExistingHtmlRecord(item = {}, htmlRouteMap = new Map()
     sourceType: item.sourceType || "",
     mediaType: item.mediaType || "",
     presentationYear: String(item.year || "").trim(),
+    presentationDate: toIsoDate(item.date),
     presentationDescription: String(item.description || "").trim(),
     presentationTopics: uniqueStrings(item.topics || []),
     presentationContexts: uniqueStrings(item.contexts || []),
@@ -428,6 +436,7 @@ function buildPresentationPagefindFilters(record = {}) {
     PresentationMediaType: hasValue(record.mediaType) ? [String(record.mediaType)] : [],
     PresentationSourceType: hasValue(record.sourceType) ? [String(record.sourceType)] : [],
     PresentationYear: hasValue(record.presentationYear) ? [String(record.presentationYear)] : [],
+    PresentationType: hasValue(record.presentationType) ? [String(record.presentationType)] : [],
     PresentationTopic: toArray(record.presentationTopics).map((value) => String(value)).filter(Boolean),
     PresentationContext: presentationContexts,
     "Research context": presentationContexts.includes("research") ? ["research"] : [],
@@ -441,24 +450,32 @@ function buildPresentationPagefindFilters(record = {}) {
 }
 
 function buildPresentationPagefindMeta(record = {}) {
-  return {
+  const contexts = toArray(record.presentationContexts);
+  const researchPresets = toArray(record.presentationResearchPresets);
+  const researchPresetLabels = toArray(record.presentationResearchPresetLabels);
+  const candidate = {
     title: record.canonicalTitle || "",
     PresentationId: record.canonicalPresentationId || "",
-    PresentationContext: toArray(record.presentationContexts).join("|"),
-    ResearchContext: toArray(record.presentationContexts).includes("research") ? "research" : "",
+    PresentationContext: contexts.join("|"),
+    ResearchContext: contexts.includes("research") ? "research" : "",
     PresentationYear: record.presentationYear || "",
     PresentationEvent: record.presentationEvent || "",
     PresentationType: record.presentationType || "",
     PresentationRole: record.presentationRole || "",
     PresentationLanguage: record.presentationLanguage || "",
-    PresentationResearchPreset: toArray(record.presentationResearchPresets).join("|"),
-    PresentationResearchPresetLabel: toArray(record.presentationResearchPresetLabels).join(" | "),
+    PresentationResearchPreset: researchPresets.join("|"),
+    PresentationResearchPresetLabel: researchPresetLabels.join(" | "),
     PresentationMediaType: record.mediaType || "",
     PresentationSourceType: record.sourceType || "",
     PresentationLandingType: record.landingType || "",
     PresentationLandingUrl: record.preferredLandingUrl || "",
-    PresentationIndexDocument: record.indexCandidateDocument || "custom-record"
+    PresentationIndexDocument: record.indexCandidateDocument || "custom-record",
+    PresentationDate: record.presentationDate || ""
   };
+
+  return Object.fromEntries(
+    Object.entries(candidate).filter(([, value]) => String(value || "").length > 0)
+  );
 }
 
 function extractTextFromHtml(html = "") {
@@ -493,13 +510,19 @@ function buildPresentationCustomRecord(record = {}, content = "") {
     ...toArray(record.presentationTopics)
   ].filter(Boolean);
 
-  return {
+  const customRecord = {
     url: record.preferredLandingUrl,
     language: record.pagefindLanguage || "fi",
     content: pieces.join("\n"),
     meta: buildPresentationPagefindMeta(record),
     filters: buildPresentationPagefindFilters(record)
   };
+
+  if (record.presentationDate) {
+    customRecord.sort = { date: record.presentationDate };
+  }
+
+  return customRecord;
 }
 
 module.exports = {
@@ -509,6 +532,8 @@ module.exports = {
   normalizeLocalUrl,
   normalizeAnyUrl,
   canonicalPresentationId,
+  pagefindLanguageFor,
+  toIsoDate,
   buildHtmlRouteMap,
   readBuiltPresentationData,
   buildPresentationExistingHtmlAudit,

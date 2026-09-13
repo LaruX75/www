@@ -35,6 +35,14 @@ const {
 const { buildThesisFindExploreDocument } = require("./_utils/thesesFindExplore");
 const { buildPublicationFindExploreDocument } = require("./_utils/publicationsFindExplore");
 const { getLegacyBlogProjection } = require("./_data/legacyBlogProjection");
+const {
+  getPresentationResearchPresets,
+  getPresentationResearchPresetLabels
+} = require("./_data/presentationResearchTopics");
+const {
+  canonicalPresentationId,
+  toIsoDate
+} = require("../scripts/_lib/presentationPagefind");
 
 const writingsLookupCache = new WeakMap();
 const publicationsLookupCache = new WeakMap();
@@ -190,37 +198,71 @@ function getPresentationsLookup(data) {
 }
 
 // Pure projection from an enriched canonical presentation item to the
-// Pagefind {filters, meta} shape. Extracted so unit tests can exercise
-// the projection without going through the filesystem-backed
-// buildPresentationsPageSourceData.
+// Pagefind {filters, meta, sort} shape. Extracted so unit tests can
+// exercise the projection without going through the filesystem-backed
+// buildPresentationsPageSourceData. The shape parity contract with the
+// postbuild custom-record builder (scripts/_lib/presentationPagefind.js)
+// is exercised by tests/unit/resolvePagefindPresentations.test.js.
 function projectPresentationRecord(item) {
   if (!item) return null;
+
+  const topics = normalizeFilterValues(item.topics, 6);
+  const contexts = normalizeFilterValues(item.contexts, 8);
+  const topicSource = Array.isArray(item.topics) ? item.topics : [];
+  const researchPresets = getPresentationResearchPresets(topicSource);
+  const researchPresetLabels = getPresentationResearchPresetLabels(topicSource);
+  const isoDate = toIsoDate(item.date);
+
+  // Kieli-filtteri emitoidaan universaalisti base.njk:sta (rivi 56)
+  // sivun currentLang-muuttujasta, joten sitä ei projisoida uudelleen
+  // täältä — muuten local-first-fragmentti sisältäisi Kieli:in kahdesti.
   const filters = [
     { name: "Sisältö", value: "Esitykset" },
     { name: "FindExplore", value: "presentations" }
   ];
 
-  if (item.year) {
-    filters.push({ name: "PresentationYear", value: String(item.year) });
+  if (item.landingType) filters.push({ name: "PresentationLandingType", value: String(item.landingType) });
+  if (item.mediaType) filters.push({ name: "PresentationMediaType", value: String(item.mediaType) });
+  if (item.sourceType) filters.push({ name: "PresentationSourceType", value: String(item.sourceType) });
+  if (item.year) filters.push({ name: "PresentationYear", value: String(item.year) });
+  if (item.presentationType) filters.push({ name: "PresentationType", value: String(item.presentationType) });
+  if (item.event) filters.push({ name: "PresentationEvent", value: String(item.event) });
+
+  topics.forEach((topic) => filters.push({ name: "PresentationTopic", value: topic }));
+  contexts.forEach((context) => filters.push({ name: "PresentationContext", value: context }));
+  if (contexts.includes("research")) {
+    filters.push({ name: "Research context", value: "research" });
   }
-  if (item.presentationType) {
-    filters.push({ name: "PresentationType", value: String(item.presentationType) });
-  }
-  normalizeFilterValues(item.topics, 6)
-    .forEach((topic) => filters.push({ name: "PresentationTopic", value: topic }));
-  normalizeFilterValues(item.contexts, 8)
-    .forEach((context) => {
-      if (context === "research") {
-        filters.push({ name: "Research context", value: "research" });
-      }
-    });
+  researchPresets.forEach((preset) => {
+    filters.push({ name: "PresentationResearchPreset", value: String(preset) });
+  });
 
   const meta = {};
+  if (item.title) meta.title = String(item.title);
+  const presentationId = canonicalPresentationId(item);
+  if (presentationId) meta.PresentationId = presentationId;
+  if (contexts.length) meta.PresentationContext = contexts.join("|");
+  if (contexts.includes("research")) meta.ResearchContext = "research";
   if (item.year) meta.PresentationYear = String(item.year);
-  if (item.presentationType) meta.PresentationType = String(item.presentationType);
   if (item.event) meta.PresentationEvent = String(item.event);
+  if (item.presentationType) meta.PresentationType = String(item.presentationType);
+  if (item.role) meta.PresentationRole = String(item.role);
+  const presentationLanguage = item.sourceLanguage || item.lang || "";
+  if (presentationLanguage) meta.PresentationLanguage = String(presentationLanguage);
+  if (researchPresets.length) meta.PresentationResearchPreset = researchPresets.join("|");
+  if (researchPresetLabels.length) meta.PresentationResearchPresetLabel = researchPresetLabels.join(" | ");
+  if (item.mediaType) meta.PresentationMediaType = String(item.mediaType);
+  if (item.sourceType) meta.PresentationSourceType = String(item.sourceType);
+  if (item.landingType) meta.PresentationLandingType = String(item.landingType);
+  if (item.landingUrl) meta.PresentationLandingUrl = String(item.landingUrl);
+  const indexDocument = String(item.pageUrl || item.localPageUrl || "").trim();
+  if (indexDocument) meta.PresentationIndexDocument = indexDocument;
+  if (isoDate) meta.PresentationDate = isoDate;
 
-  return { filters, meta };
+  const sort = {};
+  if (isoDate) sort.date = isoDate;
+
+  return { filters, meta, sort };
 }
 
 function resolvePagefindPresentations(data) {

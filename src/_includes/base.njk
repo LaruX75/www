@@ -63,6 +63,11 @@
   <span hidden data-pagefind-meta="{{ metaName }}:{{ metaValue }}"></span>
       {% endif %}
     {% endfor %}
+    {% for sortName, sortValue in (pagefindDocument.sort or {}) %}
+      {% if sortValue %}
+  <span hidden data-pagefind-sort="{{ sortName }}:{{ sortValue }}"></span>
+      {% endif %}
+    {% endfor %}
     {% if pagefindDocument.seedText %}
   <span hidden data-pagefind-body>{{ pagefindDocument.seedText }}</span>
     {% endif %}
