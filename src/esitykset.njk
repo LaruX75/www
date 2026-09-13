@@ -9,9 +9,7 @@ pageStyles:
   - /css/presentations-page.css
   - /css/starter-chips.css
 pageScripts:
-  - /js/pe-list-render.js
   - /js/content-presets.js
-  - /js/content-engine.js
   - /js/presentations-page.js
   - /js/starter-chips.js
 schemaAbout:
@@ -65,4 +63,4 @@ schemaMentions:
 {% include "presentations/archive.njk" %}
 {% include "presentations/background-and-sources.njk" %}
 
-{# Data ladataan async /data/presentations-page.json:sta. #}
+{# Archive cards are SSR-rendered; client filtering reads their metadata. #}
