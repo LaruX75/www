@@ -1,24 +1,24 @@
 <section class="py-5 presentation-analysis-era-section border-top" id="tausta-ja-lahteet" aria-labelledby="tausta-ja-lahteet-heading" data-presentation-mobile-priority="3">
   <div class="site-shell">
     <div class="presentation-section-head">
-      <p class="presentation-section-kicker mb-1">Tausta ja lähteet</p>
-      <h2 id="tausta-ja-lahteet-heading" class="presentation-section-title">Jos haluat tarkistaa taustan, jatka tänne</h2>
-      <p class="presentation-section-lead mb-0">Täältä löydät esitysten kehityskaaret, tilaisuuksiin liittyvät materiaalit sekä alkuperäiset Canva-, YouTube-, AOE- ja SlideShare-linkit.</p>
+      <p class="presentation-section-kicker mb-1">{{ "Tausta ja lähteet" | pageText(lang) }}</p>
+      <h2 id="tausta-ja-lahteet-heading" class="presentation-section-title">{{ "Jos haluat tarkistaa taustan, jatka tänne" | pageText(lang) }}</h2>
+      <p class="presentation-section-lead mb-0">{{ "Täältä löydät esitysten kehityskaaret, tilaisuuksiin liittyvät materiaalit sekä alkuperäiset Canva-, YouTube-, AOE- ja SlideShare-linkit." | pageText(lang) }}</p>
     </div>
 
     <div class="presentation-analysis-links mb-4">
       {% set presentationAnalysisTextWrap = false %}
 
-      {% set presentationAnalysisHref = "/esitykset/canva-analyysi/" %}
+      {% set presentationAnalysisHref = "/esitykset/canva-analyysi/" | localeUrl(lang) %}
       {% set presentationAnalysisIcon = "bi-bar-chart-line" %}
-      {% set presentationAnalysisTitle = "Canva-esitykset 2021-2026" %}
-      {% set presentationAnalysisDescription = "Uudempi esityskaari koulutuksista, tekoälylukutaidosta ja avoimista materiaaleista." %}
+      {% set presentationAnalysisTitle = "Canva-esitykset 2021-2026" | pageText(lang) %}
+      {% set presentationAnalysisDescription = "Uudempi esityskaari koulutuksista, tekoälylukutaidosta ja avoimista materiaaleista." | pageText(lang) %}
       {% include "presentations/analysis-link.njk" %}
 
-      {% set presentationAnalysisHref = "/esitykset/slideshare-analyysi/" %}
+      {% set presentationAnalysisHref = "/esitykset/slideshare-analyysi/" | localeUrl(lang) %}
       {% set presentationAnalysisIcon = "bi-collection-play" %}
-      {% set presentationAnalysisTitle = "SlideShare-esitykset 2009-2020" %}
-      {% set presentationAnalysisDescription = "Vanhempi esityskaari mobiilioppimisesta, CSCL:stä ja opettajankoulutuksesta." %}
+      {% set presentationAnalysisTitle = "SlideShare-esitykset 2009-2020" | pageText(lang) %}
+      {% set presentationAnalysisDescription = "Vanhempi esityskaari mobiilioppimisesta, CSCL:stä ja opettajankoulutuksesta." | pageText(lang) %}
       {% include "presentations/analysis-link.njk" %}
     </div>
 
@@ -26,8 +26,8 @@
       <details class="presentation-service-archive">
         <summary>
           <span>
-            <strong>Tilaisuudet ja palautteet</strong>
-            <span>{{ presentationContextItems | length }} tilaisuutta, joissa materiaali liittyy tiettyyn luentoon, koulutukseen, keynoteen tai työpajaan.</span>
+            <strong>{{ "Tilaisuudet ja palautteet" | pageText(lang) }}</strong>
+            <span>{{ presentationContextItems | length | pageText(lang) }} {{ "tilaisuutta, joissa materiaali liittyy tiettyyn luentoon, koulutukseen, keynoteen tai työpajaan." | pageText(lang) }}</span>
           </span>
         </summary>
         <div class="presentation-service-archive-body">
@@ -43,8 +43,8 @@
       <details class="presentation-service-archive">
         <summary>
           <span>
-            <strong>Esitykset käyttötavan mukaan</strong>
-            <span>Kaikki {{ presentationContextGroups.total }} esitystä käyttötavan mukaan: yliopistokurssit, täydennyskoulutukset, konferenssit, webinaarit ja työpajat.</span>
+            <strong>{{ "Esitykset käyttötavan mukaan" | pageText(lang) }}</strong>
+            <span>{{ "Kaikki" | pageText(lang) }} {{ presentationContextGroups.total | pageText(lang) }} {{ "esitystä käyttötavan mukaan: yliopistokurssit, täydennyskoulutukset, konferenssit, webinaarit ja työpajat." | pageText(lang) }}</span>
           </span>
         </summary>
         <div class="presentation-service-archive-body">
@@ -59,8 +59,8 @@
       <details class="presentation-service-archive" open>
         <summary>
           <span>
-            <strong>Alkuperäiset lähteet</strong>
-            <span>Canva-, YouTube-, AOE- ja SlideShare-linkit löytyvät omista koonneistaan, jos haluat tarkistaa lähteen tai etsiä tietyn palvelun sisältöjä.</span>
+            <strong>{{ "Alkuperäiset lähteet" | pageText(lang) }}</strong>
+            <span>{{ "Canva-, YouTube-, AOE- ja SlideShare-linkit löytyvät omista koonneistaan, jos haluat tarkistaa lähteen tai etsiä tietyn palvelun sisältöjä." | pageText(lang) }}</span>
           </span>
         </summary>
         <div class="presentation-service-archive-body">

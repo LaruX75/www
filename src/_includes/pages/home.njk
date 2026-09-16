@@ -1,0 +1,409 @@
+
+{% set uniquePresentationKeys = [] %}
+{% for item in ((canva and canva.tableRows) or []) %}
+  {% set key = ((item.sourceUrl or item.url or item.pageUrl or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in (collections.presentations or []) %}
+  {% set key = ((((item.data and (item.data.sourceUrl or item.data.url or item.url)) or "") ~ "|" ~ ((item.data and item.data.title) or ""))) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in ((finnaAoe and finnaAoe.rows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in (googleslides or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% for item in ((youtube and youtube.tableRows) or []) %}
+  {% set key = ((item.url or "") ~ "|" ~ (item.title or "")) | trim %}
+  {% if key != "|" and (uniquePresentationKeys.indexOf(key) == -1) %}
+    {% set _ = (uniquePresentationKeys.push(key), null) %}
+  {% endif %}
+{% endfor %}
+{% set heroPresentationCount = uniquePresentationKeys | length %}
+{% set heroPublicationCount = (researchfi or []) | length %}
+{% set heroOpinionCount = (collections.pub_mielipide or []) | length %}
+{% set heroSpeechCount = (collections.pub_puhe or []) | length %}
+{% set heroStatementItems = [] %}
+{% for item in (collections.publications or []) %}
+    {% if item.data.type == "lausunto" %}
+        {% set _ = (heroStatementItems.push(item), null) %}
+    {% endif %}
+{% endfor %}
+{% set heroStatementCount = heroStatementItems | length %}
+{% set heroMediaCount = ((mediaArchive and mediaArchive.all) or []) | length %}
+{% set homeCopy = {
+    heroTitle: "Kouluttaja, puhuja ja vaikuttaja koulutuksen tulevaisuuden puolesta.",
+    heroLead: "Etsitkö koulutusta, puheenvuoroa tai taustaa tekoälylukutaidosta, oppimisesta ja teknologian järkevästä käytöstä? Tältä sivustolta löydät Jari Larun työn, kirjoitukset, mediaosumat ja päätöksentekoon liittyvät aineistot.",
+    heroPanelText: "Luvut näyttävät, missä Jari Larun työ on ollut esillä: koulutuksissa, esityksissä, tutkimuksessa, lausunnoissa, mediassa, opinnäytteiden ohjauksessa ja poliittisissa puheenvuoroissa.",
+    pathsTitle: "Mitä etsit?",
+    pathsLead: "Valitse aloituskohta sen mukaan, etsitkö ammatillista taustaa, kirjoituksia ja puheenvuoroja, mediaosumia vai poliittista työtä.",
+    focusTitle: "Koulutukset, puheenvuorot ja sparraus",
+    focusLead: "Jari Larun käytännön työ näkyy koulutuksina, keynote-puheenvuoroina ja kehittämisen tukena. Tutkimus ja kunnallinen päätöksenteko tuovat siihen taustaa.",
+    recentTitle: "Viimeksi esillä",
+    recentLead: "Kirjoituksista, esityksistä, lausunnoista ja mediaosumista näet, mitä Jari Larun eri rooleissa on viimeksi tapahtunut."
+} | localizeCopy(lang) %}
+{% set heroStats = [
+    { count: heroPresentationCount, label: "Esitystä tai oppimateriaalia", href: "/esitykset/" },
+    { count: heroPublicationCount, label: "tieteellistä julkaisua", href: "/julkaisut/" },
+    { count: heroSpeechCount, label: "puheenvuoroa", href: "/valtuustotyo/#puheet" },
+    { count: theses.stats.total, label: "ohjattua opinnäytettä", href: "/opinnaytteet/" },
+    { count: heroMediaCount, label: "mediaosumaa", href: "/mediassa/" }
+] | localizeCopy(lang) %}
+
+<section class="section-flush home-hero-section" id="heroSection">
+    <div class="home-hero-backdrop" style="--hero-img: url('{{ '/img/WIN_20210329_16_06_01_Pro.jpg' | url }}')">
+        <div class="container home-hero-content">
+            <div class="row align-items-center g-4 g-lg-5">
+                <div class="col-lg-7">
+                    <p class="home-hero-eyebrow mb-2">{{ pageContent.etusivu.hero.eyebrow | pageText(lang) }}</p>
+                    <h1 class="home-hero-title mb-3">{{ homeCopy.heroTitle | pageText(lang) }}</h1>
+                    <p class="home-hero-lead mb-4">{{ homeCopy.heroLead | pageText(lang) }}</p>
+                    <div class="home-hero-actions">
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.intro.cta1.href | localeUrl(lang) }}">{{ pageContent.etusivu.intro.cta1.label | pageText(lang) }}</a>
+                        <a class="btn btn-light rounded-pill px-4" href="{{ "/tutkimus/#tutkimusnaytto" | localeUrl(lang) }}">{{ "Tutki tutkimusnäyttöä" | pageText(lang) }}</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="home-hero-panel">
+                        <p class="home-hero-panel-kicker">{{ "Näyttöä eri rooleista" | pageText(lang) }}</p>
+                        <p class="home-hero-panel-text">{{ homeCopy.heroPanelText | pageText(lang) }}</p>
+                        <dl class="home-hero-kpi-grid mb-0">
+                            {% for stat in heroStats | sort(true, false, "count") %}
+                            <div class="home-hero-kpi">
+                                <dd class="home-hero-kpi-value"><a class="home-hero-kpi-link" href="{{ stat.href | localeUrl(lang) }}">{{ stat.count | pageText(lang) }}</a></dd>
+                                <dt class="home-hero-kpi-label">{{ stat.label | pageText(lang) }}</dt>
+                            </div>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="home-hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z"/>
+        </svg>
+    </div>
+</section>
+
+<section class="py-5 home-paths-section home-paths-section--orientation" id="aloita" aria-labelledby="home-paths-heading">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ pageContent.etusivu.paths.sectionLabel | pageText(lang) }}</p>
+            <h2 class="home-section-title" id="home-paths-heading">{{ homeCopy.pathsTitle | pageText(lang) }}</h2>
+            <p class="home-section-lead mb-0">{{ homeCopy.pathsLead | pageText(lang) }}</p>
+        </div>
+
+        <div class="home-paths-grid" data-home-orientation-paths>
+            {% for card in pageContent.etusivu.paths.cards %}
+            <a href="{{ card.href | localeUrl(lang) }}" class="home-path-card">
+                <span class="home-path-icon" aria-hidden="true"><i class="bi {{ card.icon }}" aria-hidden="true"></i></span>
+                <span class="home-path-title">{{ card.title | pageText(lang) }}</span>
+                <span class="home-path-desc">{{ card.desc | pageText(lang) }}</span>
+                <span class="home-path-cta">{{ card.cta | pageText(lang) }}</span>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% set heroInitiativeCount = (collections.politics or []) | length %}
+{% set trainingMeta = (trainingFeedback and trainingFeedback.meta) or {} %}
+
+{# HOME-LANDING-01: latest-content role cards route through the existing
+   canonical Publications and Presentations pipelines and land on
+   canonical local detail pages (/julkaisut/{id}/ and /presentations/{slug}/),
+   not raw source URLs. See docs/home-landing-01-canonical-latest-2026-08-30.md. #}
+{% set roleLatestResearch = (publicationDetailPages.items or []) | sort(true, false, "date") | first %}
+{% set roleLatestPresentation = (collections.presentations or []) | sort(true, false, "date") | first %}
+{% set roleLatestCouncilSpeech = false %}
+{% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
+    {% if not roleLatestCouncilSpeech %}
+        {% set speechCtx = item.data.speechContext or "" %}
+        {% set forums = item.data.forum or [] %}
+        {% set isCouncil = speechCtx == "valtuusto" or speechCtx == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+        {% if isCouncil %}
+            {% set roleLatestCouncilSpeech = item %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% set roleLatestInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
+
+{% set homeRoleTopicSlugs = {
+    university: "opettajankoulutus",
+    politics: "oulun-palveluverkko-ja-kaupunkikehitys",
+    training: "tekoalylukutaito"
+} | localizeCopy(lang) %}
+
+{% set homeTopicSlugs = ["tekoalylukutaito", "opettajankoulutus", "oulun-palveluverkko-ja-kaupunkikehitys", "koulutusteknologia-ja-oppimisymparistot", "julkinen-asiantuntijuus-mediassa", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen"] %}
+{% set homeRecognitionItems = [
+    {
+        year: "2020",
+        title: "Kansallinen avoimen tieteen palkinto",
+        description: "Tunnustus avoimen tieteen, avoimen opetuksen ja opettajien tukemisen pitkäjänteisestä työstä."
+    },
+    {
+        year: "2014",
+        title: "Vuoden tieto- ja viestintätekniikkaopettaja",
+        description: "Tunnustus opetusteknologian tutkimuksen, opetuksen ja asiantuntijuuden yhdistämisestä."
+    }
+] | localizeCopy(lang) %}
+
+
+<section class="py-5 home-roles-section" id="roolit">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ "Kolme roolia · yksi jatkumo" | pageText(lang) }}</p>
+            <h2 class="home-section-title">{{ "Yliopistonlehtori · Kuntapäättäjä · Kouluttaja" | pageText(lang) }}</h2>
+            <p class="home-section-lead mb-0">{{ "Sivuston sisältö rakentuu näiden kolmen roolin ympärille. Kussakin kortissa näkyvät ajankohtainen työ, taustaluvut ja linkki syvempään aineistoon." | pageText(lang) }}</p>
+        </div>
+
+        <div class="home-roles-grid">
+            <article class="home-role-card home-role-card--university">
+                <p class="home-role-kicker">{{ "Yliopistotyö" | pageText(lang) }}</p>
+                <h3 class="home-role-title">{{ "Yliopistonlehtori" | pageText(lang) }}</h3>
+                <p class="home-role-subtitle">{{ "Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, KTK-tiedekunta, Oulun yliopisto." | pageText(lang) }}</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>{{ "tieteellistä julkaisua" | pageText(lang) }}</dt>
+                        <dd>{{ heroPublicationCount | pageText(lang) }}</dd>
+                    </div>
+                    <div>
+                        <dt>{{ "ohjattua opinnäytettä" | pageText(lang) }}</dt>
+                        <dd>{{ theses.stats.total | pageText(lang) }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">{{ "Ajankohtainen fokus" | pageText(lang) }}</p>
+                    <p class="home-role-focus-text">{{ "Generation AI -ohjelma, tekoälylukutaito ja opettajankoulutuksen kehittäminen." | pageText(lang) }}</p>
+                </div>
+                {% if roleLatestResearch and roleLatestResearch.pageUrl %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">{{ "Uusin julkaisu" | pageText(lang) }}</p>
+                    <a href="{{ roleLatestResearch.pageUrl | localeUrl(lang) }}" class="home-role-latest-link">{{ roleLatestResearch.title | truncate(90) | pageText(lang) }}</a>
+                    {% if roleLatestResearch.year %}<p class="home-role-latest-meta">{{ roleLatestResearch.year | pageText(lang) }}{% if roleLatestResearch.journal %} · {{ roleLatestResearch.journal | truncate(50) | pageText(lang) }}{% endif %}</p>{% endif %}
+                </div>
+                {% endif %}
+                <a class="home-role-cta" href="{{ "/tyoni-yliopistonlehtorina/" | localeUrl(lang) }}">{{ "Avaa yliopistotyö" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></a>
+            </article>
+
+            <article class="home-role-card home-role-card--politics">
+                <p class="home-role-kicker">{{ "Politiikka" | pageText(lang) }}</p>
+                <h3 class="home-role-title">{{ "Kuntapäättäjä" | pageText(lang) }}</h3>
+                <p class="home-role-subtitle">{{ "Kansallinen Kokoomus · 2. varavaltuutettu, sivistyslautakunnan jäsen, Oulun kaupunki." | pageText(lang) }}</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>{{ "puheenvuoroa" | pageText(lang) }}</dt>
+                        <dd>{{ heroSpeechCount | pageText(lang) }}</dd>
+                    </div>
+                    <div>
+                        <dt>{{ "valtuustoaloitetta" | pageText(lang) }}</dt>
+                        <dd>{{ heroInitiativeCount | pageText(lang) }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">{{ "Ajankohtainen fokus" | pageText(lang) }}</p>
+                    <p class="home-role-focus-text">{{ "Sivistys ja koulutus, palveluverkko sekä avoin ja tiedolla johdettu päätöksenteko." | pageText(lang) }}</p>
+                </div>
+                {% if roleLatestCouncilSpeech %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">{{ "Uusin valtuustopuheenvuoro" | pageText(lang) }}</p>
+                    <a href="{{ roleLatestCouncilSpeech.url | localeUrl(lang) }}" class="home-role-latest-link">{{ roleLatestCouncilSpeech.data.title | truncate(90) | pageText(lang) }}</a>
+                    <p class="home-role-latest-meta">{{ roleLatestCouncilSpeech.date | dateFormat | pageText(lang) }}</p>
+                </div>
+                {% elif roleLatestInitiative %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">{{ "Uusin aloite" | pageText(lang) }}</p>
+                    <a href="{{ roleLatestInitiative.url | localeUrl(lang) }}" class="home-role-latest-link">{{ roleLatestInitiative.data.title | truncate(90) | pageText(lang) }}</a>
+                    <p class="home-role-latest-meta">{{ roleLatestInitiative.date | dateFormat | pageText(lang) }}</p>
+                </div>
+                {% endif %}
+                <a class="home-role-cta" href="{{ "/politiikka/" | localeUrl(lang) }}">{{ "Avaa politiikka" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></a>
+            </article>
+
+            <article class="home-role-card home-role-card--training">
+                <p class="home-role-kicker">{{ "Larux t:mi" | pageText(lang) }}</p>
+                <h3 class="home-role-title">{{ "Kouluttaja" | pageText(lang) }}</h3>
+                <p class="home-role-subtitle">{{ "Sivutoimisesti täydennyskoulutuksia ja asiantuntijapuheenvuoroja tekoälystä, oppimisteknologiasta ja modernista pedagogiikasta." | pageText(lang) }}</p>
+                <dl class="home-role-facts">
+                    <div>
+                        <dt>{{ "vuoden koulutuskooste" | pageText(lang) }}</dt>
+                        <dd>{{ (trainingMeta.aikavali or "2017–") | pageText(lang) }}</dd>
+                    </div>
+                    <div>
+                        <dt>{{ "palautekeskiarvo" | pageText(lang) }}</dt>
+                        <dd class="home-role-facts-small">{{ (trainingMeta.kainutlaatuinenKeskiarvo or "—") | pageText(lang) }}</dd>
+                    </div>
+                </dl>
+                <div class="home-role-focus">
+                    <p class="home-role-focus-kicker">{{ "Ajankohtainen fokus" | pageText(lang) }}</p>
+                    <p class="home-role-focus-text">{{ "Tekoäly opetuksessa: käytännön työkalut, kokeilut ja opettajayhteisöjen sparraus." | pageText(lang) }}</p>
+                </div>
+                {% if roleLatestPresentation and roleLatestPresentation.url %}
+                <div class="home-role-latest">
+                    <p class="home-role-latest-kicker">{{ "Uusin esitys" | pageText(lang) }}</p>
+                    <a href="{{ roleLatestPresentation.url | localeUrl(lang) }}" class="home-role-latest-link">{{ roleLatestPresentation.data.title | truncate(90) | pageText(lang) }}</a>
+                    {% if roleLatestPresentation.data.date %}<p class="home-role-latest-meta">{{ roleLatestPresentation.data.date | dateFormat | pageText(lang) }}</p>{% endif %}
+                </div>
+                {% endif %}
+                <a class="home-role-cta" href="{{ "/kouluttaja/" | localeUrl(lang) }}">{{ "Avaa kouluttajapalvelut" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="py-4 home-recognition-section" id="tunnustettu-tyo" aria-labelledby="home-recognition-heading">
+    <div class="site-shell">
+        <div class="home-recognition-shell">
+            <div class="home-recognition-head">
+                <h2 class="home-recognition-title mb-2" id="home-recognition-heading">{{ "Tunnustettua työtä" | pageText(lang) }}</h2>
+                <p class="home-recognition-lead mb-0">{{ "Kaksi vahvaa henkilökohtaista tunnustusta, joiden taustat löytyvät palkintosivulta." | pageText(lang) }}</p>
+            </div>
+
+            <ul class="home-recognition-grid" aria-label="{{ "Keskeiset tunnustukset" | pageText(lang) }}">
+                {% for item in homeRecognitionItems %}
+                <li class="home-recognition-card">
+                    <p class="home-recognition-year">{{ item.year | pageText(lang) }}</p>
+                    <h3 class="home-recognition-card-title">{{ item.title | pageText(lang) }}</h3>
+                    <p class="home-recognition-card-text">{{ item.description | pageText(lang) }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="home-recognition-footer">
+                <a class="btn btn-outline-primary rounded-pill px-4" href="{{ "/palkinnot/" | localeUrl(lang) }}">{{ "Katso palkinnot ja tunnustukset" | pageText(lang) }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 home-milestones-section" id="aikajana">
+    <div class="site-shell">
+        {% set firstMilestone = milestones[0] %}
+        {% set lastMilestone = milestones[(milestones | length) - 1] %}
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ "Uran kaari ·" | pageText(lang) }} {{ firstMilestone.year | pageText(lang) }}–{{ lastMilestone.year | pageText(lang) }}</p>
+            <h2 class="home-section-title">{{ "Merkkitapahtumia tutkimuksen, opetuksen ja politiikan varrelta" | pageText(lang) }}</h2>
+            <p class="home-section-lead mb-0">{{ "Kuratoitu aikajana kertoo, miten työ on rakentunut kolmen roolin ympärille yli 20 vuoden aikana. Klikkaa merkkitapahtumaa siirtyäksesi asianomaiselle sivulle." | pageText(lang) }}</p>
+        </div>
+
+        <ul class="home-milestones-legend" aria-label="{{ "Merkkitapahtumien kategoriat" | pageText(lang) }}">
+            <li><span class="home-milestone-swatch home-milestone-swatch--tausta"></span> {{ "Tausta" | pageText(lang) }}</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--tutkimus"></span> {{ "Tutkimus" | pageText(lang) }}</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--opetus"></span> {{ "Opetus ja koulutus" | pageText(lang) }}</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--politiikka"></span> {{ "Politiikka" | pageText(lang) }}</li>
+            <li><span class="home-milestone-swatch home-milestone-swatch--palkinto"></span> {{ "Palkinto" | pageText(lang) }}</li>
+        </ul>
+
+        <div class="home-milestones-scroll" role="region" aria-label="{{ "Aikajana, vieritä horisontaalisesti" | pageText(lang) }}">
+            <ol class="home-milestones-track">
+                {% for milestone in milestones %}
+                {% if milestone.phaseStart %}
+                <li class="home-milestone-phase" aria-hidden="false">
+                    <p class="home-milestone-phase-label">{{ milestone.phaseStart.label | pageText(lang) }}</p>
+                    <h3 class="home-milestone-phase-title">{{ milestone.phaseStart.title | pageText(lang) }}</h3>
+                    <p class="home-milestone-phase-desc">{{ milestone.phaseStart.description | pageText(lang) }}</p>
+                </li>
+                {% endif %}
+                <li class="home-milestone home-milestone--{{ milestone.category }}{% if loop.index0 % 2 == 0 %} home-milestone--above{% else %} home-milestone--below{% endif %}">
+                    <a href="{{ milestone.href | localeUrl(lang) }}" class="home-milestone-card">
+                        <p class="home-milestone-category" data-year="{{ milestone.year }}">{{ milestone.category | capitalize | pageText(lang) }}</p>
+                        <h3 class="home-milestone-title">{{ milestone.title | pageText(lang) }}</h3>
+                        <p class="home-milestone-description">{{ milestone.description | pageText(lang) }}</p>
+                    </a>
+                    <div class="home-milestone-node">
+                        <span class="home-milestone-dot" aria-hidden="true"></span>
+                        <span class="home-milestone-year">{{ milestone.year | pageText(lang) }}</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <p class="home-milestones-hint text-muted small mb-0 mt-2">{{ "Vieritä sivusuuntaan nähdäksesi kaikki merkkitapahtumat →" | pageText(lang) }}</p>
+    </div>
+</section>
+
+<section class="py-5 bg-body-tertiary home-topics-section" id="teemat">
+    <div class="site-shell">
+        <div class="home-section-head">
+            <p class="home-section-kicker mb-1">{{ "Teemat läpi roolien" | pageText(lang) }}</p>
+            <h2 class="home-section-title">{{ "Samat aiheet jatkuvat tutkimuksesta opetukseen, kirjoituksiin ja päätöksentekoon" | pageText(lang) }}</h2>
+            <p class="home-section-lead mb-0">{{ "Teemaprofiili kokoaa aiheeseen liittyvät julkaisut, esitykset, kirjoitukset, lausunnot ja mediaosumat samalle sivulle. Numero kertoo, kuinka monta sisältöä kustakin teemasta on koottu." | pageText(lang) }}</p>
+        </div>
+
+        <div class="home-topics-grid">
+            {% for slug in homeTopicSlugs %}
+                {% set topic = false %}
+                {% for t in seoTopics %}{% if t.slug == slug %}{% set topic = t %}{% endif %}{% endfor %}
+                {% if topic %}
+                    {% set topicItemList = collections | topicItems(topic, 200) %}
+                    {% set researchList = researchfi | curatedResearchForTopic(topic.researchThemes or [], 200) %}
+                    {% set topicTotal = topicItemList.totalCount + researchList.length %}
+                    {% if topicTotal > 0 %}
+                    <a href="{{ "/teemat/" | localeUrl(lang) }}{{ topic.slug }}/" class="home-topic-pill">
+                        <p class="home-topic-pill-kicker">{{ topic.eyebrow | pageText(lang) }}</p>
+                        <p class="home-topic-pill-title">{{ topic.title | pageText(lang) }}</p>
+                        <p class="home-topic-pill-count">{{ topicTotal | pageText(lang) }} {{ "aiheeseen liittyvää sisältöä" | pageText(lang) }}</p>
+                        <span class="home-topic-pill-cta">{{ "Avaa teemaprofiili" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></span>
+                    </a>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="home-topics-footer">
+            <a href="{{ "/teemat/" | localeUrl(lang) }}" class="btn btn-outline-primary rounded-pill px-4">{{ "Kaikki teemaprofiilit" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></a>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 home-larux-section" id="koulutus">
+    <div class="site-shell">
+        <div class="home-larux-panel">
+            <div>
+                <p class="home-section-kicker mb-1">{{ "Larux t:mi" | pageText(lang) }}</p>
+                <h2 class="h3 mb-2">{{ "Koulutuksia, puheenvuoroja ja sparrausta" | pageText(lang) }}</h2>
+                <p class="mb-0 text-muted">{{ "Tarvitsetko tekoälyn, oppimisteknologian tai pedagogiikan asiantuntijaa tilaisuuteen, koulutukseen tai kehittämistyöhön? Laruxin kautta sovitaan käytännön yhteistyöstä." | pageText(lang) }}</p>
+            </div>
+            <div class="home-larux-actions">
+                <a class="btn btn-primary rounded-pill px-4" href="{{ "/kouluttaja/" | localeUrl(lang) }}">{{ "Tutustu Laruxin palveluihin" | pageText(lang) }}</a>
+                <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ "/esitykset/" | localeUrl(lang) }}">{{ "Katso esityksiä ja materiaaleja" | pageText(lang) }}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% set testimonialLang = lang or "fi" %}
+{% set testimonialPlacement = "home" %}
+{% include "testimonials.njk" %}
+
+<section class="py-5 bg-body-tertiary home-closing-section" id="yhteys">
+    <div class="site-shell">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="home-closing-panel text-center">
+                    <p class="text-uppercase text-muted fw-bold mb-2">{{ "Seuraava askel" | pageText(lang) }}</p>
+                    <h2 class="fw-bold mb-3">{{ pageContent.etusivu.closing.heading | pageText(lang) }}</h2>
+                    <p class="mb-4">{{ pageContent.etusivu.closing.text | pageText(lang) }}</p>
+                    <div class="home-closing-actions d-flex flex-wrap justify-content-center gap-2 mb-3">
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta1.href | localeUrl(lang) }}">{{ pageContent.etusivu.closing.cta1.label | pageText(lang) }}</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta2.href | localeUrl(lang) }}">{{ pageContent.etusivu.closing.cta2.label | pageText(lang) }}</a>
+                        <a class="btn btn-outline-secondary rounded-pill px-4" href="{{ pageContent.etusivu.closing.cta3.href | localeUrl(lang) }}">{{ pageContent.etusivu.closing.cta3.label | pageText(lang) }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

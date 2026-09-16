@@ -2,36 +2,36 @@
   <div class="site-shell">
     <div class="row g-4 align-items-center">
       <div class="col-lg-7">
-        <p class="text-uppercase text-muted fw-semibold small mb-2">Esitykset, koulutukset ja avoimet materiaalit</p>
-        <h1 class="display-5 fw-bold mb-3">Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit</h1>
-        <p class="lead mb-3">Jari Larun esitykset, koulutusaineistot, videotallenteet ja avoimet oppimateriaalit kokoavat yhteen teemoja, joista hän kouluttaa, opettaa ja puhuu eri yleisöille.</p>
-        <p class="text-muted mb-4">Voit aloittaa siitä, etsitkö keynote- ja konferenssipuheenvuoroja, koulutuksiin ja luentoihin liittyviä materiaaleja vai suoraan katsottavia ja jaettavia sisältöjä.</p>
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Esitykset, koulutukset ja avoimet materiaalit" | pageText(lang) }}</p>
+        <h1 class="display-5 fw-bold mb-3">{{ "Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit" | pageText(lang) }}</h1>
+        <p class="lead mb-3">{{ "Jari Larun esitykset, koulutusaineistot, videotallenteet ja avoimet oppimateriaalit kokoavat yhteen teemoja, joista hän kouluttaa, opettaa ja puhuu eri yleisöille." | pageText(lang) }}</p>
+        <p class="text-muted mb-4">{{ "Voit aloittaa siitä, etsitkö keynote- ja konferenssipuheenvuoroja, koulutuksiin ja luentoihin liittyviä materiaaleja vai suoraan katsottavia ja jaettavia sisältöjä." | pageText(lang) }}</p>
         <div class="d-flex flex-wrap gap-2">
-          <a href="#reitit" class="btn btn-primary rounded-pill px-4">Mistä aloittaa?</a>
-          <a href="#kokonaisuudet" class="btn btn-outline-secondary rounded-pill px-4">Katso kokonaisuudet</a>
-          <a href="#kaikki-esitykset" class="btn btn-outline-secondary rounded-pill px-4">Selaa kaikkia</a>
+          <a href="{{ "#reitit" | localeUrl(lang) }}" class="btn btn-primary rounded-pill px-4">{{ "Mistä aloittaa?" | pageText(lang) }}</a>
+          <a href="{{ "#kokonaisuudet" | localeUrl(lang) }}" class="btn btn-outline-secondary rounded-pill px-4">{{ "Katso kokonaisuudet" | pageText(lang) }}</a>
+          <a href="{{ "#kaikki-esitykset" | localeUrl(lang) }}" class="btn btn-outline-secondary rounded-pill px-4">{{ "Selaa kaikkia" | pageText(lang) }}</a>
         </div>
       </div>
       <div class="col-lg-5">
         <div class="card border-0 shadow-sm presentation-hero-panel">
           <div class="card-body p-4 p-xl-5">
-            <p class="presentation-hero-panel-kicker mb-3">Sivulla mukana</p>
+            <p class="presentation-hero-panel-kicker mb-3">{{ "Sivulla mukana" | pageText(lang) }}</p>
             <dl class="home-hero-kpi-grid mb-0">
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ presentationMaterialTotal }}</dd>
-                <dt class="home-hero-kpi-label">materiaalia yhteensä</dt>
+                <dd class="home-hero-kpi-value">{{ presentationMaterialTotal | pageText(lang) }}</dd>
+                <dt class="home-hero-kpi-label">{{ "materiaalia yhteensä" | pageText(lang) }}</dt>
               </div>
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ ((canva and canva.tableRows) or []) | length }}</dd>
-                <dt class="home-hero-kpi-label">Canva-esitystä</dt>
+                <dd class="home-hero-kpi-value">{{ (((canva and canva.tableRows) or []) | length) | pageText(lang) }}</dd>
+                <dt class="home-hero-kpi-label">{{ "Canva-esitystä" | pageText(lang) }}</dt>
               </div>
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{% if videoContentCount %}{{ videoContentCount }}{% else %}{{ presentationAnalysisCount }}{% endif %}</dd>
-                <dt class="home-hero-kpi-label">{% if videoContentCount %}videota tai tallennetta{% else %}taustakoontia{% endif %}</dt>
+                <dd class="home-hero-kpi-value">{% if videoContentCount %}{{ videoContentCount | pageText(lang) }}{% else %}{{ presentationAnalysisCount | pageText(lang) }}{% endif %}</dd>
+                <dt class="home-hero-kpi-label">{% if videoContentCount %}{{ "videota tai tallennetta" | pageText(lang) }}{% else %}{{ "taustakoontia" | pageText(lang) }}{% endif %}</dt>
               </div>
               <div class="home-hero-kpi">
-                <dd class="home-hero-kpi-value">{{ presentationContextItems | length }}</dd>
-                <dt class="home-hero-kpi-label">tilaisuutta ja käyttöyhteyttä</dt>
+                <dd class="home-hero-kpi-value">{{ presentationContextItems | length | pageText(lang) }}</dd>
+                <dt class="home-hero-kpi-label">{{ "tilaisuutta ja käyttöyhteyttä" | pageText(lang) }}</dt>
               </div>
             </dl>
           </div>
@@ -41,9 +41,9 @@
   </div>
 </section>
 
-<nav class="presentation-mobile-path" aria-label="Esityssivun tärkeimmät osiot">
-  <a class="btn presentation-mobile-path-link" href="#reitit">Aloita</a>
-  <a class="btn presentation-mobile-path-link" href="#kokonaisuudet">Kokonaisuudet</a>
-  <a class="btn presentation-mobile-path-link" href="#kaikki-esitykset">Kaikki</a>
-  <a class="btn presentation-mobile-path-link" href="#tausta-ja-lahteet">Tausta</a>
+<nav class="presentation-mobile-path" aria-label="{{ "Esityssivun tärkeimmät osiot" | pageText(lang) }}">
+  <a class="btn presentation-mobile-path-link" href="{{ "#reitit" | localeUrl(lang) }}">{{ "Aloita" | pageText(lang) }}</a>
+  <a class="btn presentation-mobile-path-link" href="{{ "#kokonaisuudet" | localeUrl(lang) }}">{{ "Kokonaisuudet" | pageText(lang) }}</a>
+  <a class="btn presentation-mobile-path-link" href="{{ "#kaikki-esitykset" | localeUrl(lang) }}">{{ "Kaikki" | pageText(lang) }}</a>
+  <a class="btn presentation-mobile-path-link" href="{{ "#tausta-ja-lahteet" | localeUrl(lang) }}">{{ "Tausta" | pageText(lang) }}</a>
 </nav>

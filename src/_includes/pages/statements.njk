@@ -1,0 +1,314 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0" lang="en">Original texts, quotations and source documents retain their original language, mainly Finnish.</p>{% endif %}
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set publicSpeechItems = [] %}
+{% for item in (collections.pub_puhe or []) %}
+  {% set speechContext = item.data.speechContext or "" %}
+  {% set forums = item.data.forum or [] %}
+  {% if speechContext %}
+    {% set isCouncilSpeech = speechContext == "valtuusto" or speechContext == "kyselytunti" %}
+  {% else %}
+    {% set isCouncilSpeech = item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+  {% endif %}
+  {% if not isCouncilSpeech %}
+    {% set _ = (publicSpeechItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set statementCount = statementItems | length %}
+{% set publicSpeechCount = publicSpeechItems | length %}
+
+<section class="expert-writings-page">
+
+<header class="ewp-hero">
+  <p class="ewp-kicker">{{ "Asiantuntijatyö ·" | pageText(lang) }} {{ statementCount | pageText(lang) }} {{ "lausuntoa ·" | pageText(lang) }} {{ publicSpeechCount | pageText(lang) }} {{ "julkista puhetta" | pageText(lang) }}</p>
+  <h1 class="ewp-title">{{ "Lausunnot ja julkiset puheet" | pageText(lang) }}</h1>
+  <p class="ewp-lead">{{ "Tällä sivulla ovat kootusti valmisteluprosesseihin annetut asiantuntijalausunnot sekä julkiset puheet (juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot). Molemmat ovat asiantuntijatyön ilmentymiä, joissa tutkimustieto ja opetusosaaminen viedään julkiseen keskusteluun tai päätöksenteon valmisteluun." | pageText(lang) }}</p>
+  <p class="ewp-cross">
+    <a href="{{ "/kynasta/" | localeUrl(lang) }}">{{ "← Kaikki kirjoitukset, puheet ja kannanotot" | pageText(lang) }}</a>
+  </p>
+</header>
+
+{% if statementItems.length %}
+<section class="ewp-section" id="lausunnot" aria-labelledby="lausunnot-heading">
+  <div class="ewp-section-head">
+    <p class="ewp-kicker">{{ "Lausunnot" | pageText(lang) }}</p>
+    <h2 id="lausunnot-heading">{{ "Asiantuntijalausunnot valmisteluprosesseihin" | pageText(lang) }}</h2>
+    <p class="ewp-section-lead">{{ "Lausunnot annetaan usein Lausuntopalvelu.fi:n kautta ministeriöiden ja virastojen valmisteluprosesseihin. Ne kohdistuvat suoraan valmisteluun, ohjaukseen ja julkiseen päätöksentekoon." | pageText(lang) }}</p>
+  </div>
+
+  <ol class="ewp-list">
+    {% for item in statementItems %}
+    <li class="ewp-item">
+      <p class="ewp-item-meta">{{ item.date | dateFormat | pageText(lang) }}{% if item.data.statementAuthority %} · {{ item.data.statementAuthority | pageText(lang) }}{% endif %}{% if item.data.diaryNumber %} {{ "· Dnro" | pageText(lang) }} {{ item.data.diaryNumber | pageText(lang) }}{% endif %}</p>
+      <h3 class="ewp-item-title"><a href="{{ item.url | localeUrl(lang) }}">{{ item.data.title | pageText(lang) }}</a></h3>
+      {% if item.data.subtitle %}
+      <p class="ewp-item-subtitle">{{ item.data.subtitle | pageText(lang) }}</p>
+      {% endif %}
+      {% if item.data.description %}
+      <p class="ewp-item-desc">{{ item.data.description | pageText(lang) }}</p>
+      {% endif %}
+      {% if item.data.publication %}
+      <p class="ewp-item-source">{{ "Julkaistu:" | pageText(lang) }} {{ item.data.publication | pageText(lang) }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+{% if publicSpeechItems.length %}
+<section class="ewp-section" id="julkiset-puheet" aria-labelledby="julkiset-puheet-heading">
+  <div class="ewp-section-head">
+    <p class="ewp-kicker">{{ "Julkiset puheet" | pageText(lang) }}</p>
+    <h2 id="julkiset-puheet-heading">{{ "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot" | pageText(lang) }}</h2>
+    <p class="ewp-section-lead">{{ "Julkisia puheenvuoroja, joita ei ole pidetty kaupunginvaltuustossa. Valtuustopuheet löytyvät omalta sivultaan." | pageText(lang) }}</p>
+  </div>
+
+  <ol class="ewp-list">
+    {% for item in publicSpeechItems %}
+    <li class="ewp-item">
+      <p class="ewp-item-meta">{{ item.date | dateFormat | pageText(lang) }}{% if item.data.event %} · {{ item.data.event | pageText(lang) }}{% endif %}</p>
+      <h3 class="ewp-item-title"><a href="{{ item.url | localeUrl(lang) }}">{{ item.data.title | pageText(lang) }}</a></h3>
+      {% if item.data.description %}
+      <p class="ewp-item-desc">{{ item.data.description | pageText(lang) }}</p>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endif %}
+
+<aside class="ewp-crosslinks">
+  <h2>{{ "Muualla sivustolla" | pageText(lang) }}</h2>
+  <ul>
+    <li><a href="{{ "/tutkimus/" | localeUrl(lang) }}">{{ "Tutkimus" | pageText(lang) }}</a> {{ "— julkaisut ja tutkimushankkeet, joiden pohjalta lausunnot rakentuvat" | pageText(lang) }}</li>
+    <li>
+      <a href="{{ "/kynasta/" | localeUrl(lang) }}">{{ "Kynästä-hub" | pageText(lang) }}</a> {{ "— kaikki kirjoitukset, puheet ja kannanotot yhdessä paikassa" | pageText(lang) }}
+      <ul>
+        <li><a href="{{ "/kirjoitukset/" | localeUrl(lang) }}">{{ "Kirjoitukset" | pageText(lang) }}</a> {{ "— blogi, mielipiteet ja kolumnit (sisarsivu)" | pageText(lang) }}</li>
+        <li><a href="{{ "/valtuustotyo/" | localeUrl(lang) }}">{{ "Valtuustotyö" | pageText(lang) }}</a> {{ "— valtuustopuheenvuorot ja aloitteet (sisarsivu)" | pageText(lang) }}</li>
+      </ul>
+    </li>
+    <li><a href="{{ "/mediassa/" | localeUrl(lang) }}">{{ "Mediassa" | pageText(lang) }}</a> {{ "— kun lausunto tai puhe saa mediahuomiota" | pageText(lang) }}</li>
+  </ul>
+</aside>
+
+</section>
+
+<style>
+.expert-writings-page {
+  display: block;
+  max-width: 62rem;
+  margin: 0 auto;
+}
+
+.ewp-hero {
+  padding: 1.5rem clamp(1rem, 3vw, 2rem);
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(13, 110, 253, 0.08), transparent 42%),
+    var(--bs-body-bg);
+}
+
+.ewp-kicker {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  margin: 0 0 0.5rem;
+}
+
+.ewp-title {
+  font-family: var(--bs-font-family-heading);
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0 0 0.85rem;
+}
+
+.ewp-lead {
+  color: var(--bs-secondary-color);
+  max-width: 62rem;
+  margin: 0 0 1rem;
+  font-size: 1.03rem;
+  line-height: 1.55;
+}
+
+.ewp-cross {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.ewp-cross a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ewp-cross a:hover {
+  text-decoration: underline;
+}
+
+.ewp-section {
+  padding: 1.35rem clamp(1rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+  background: var(--bs-body-bg);
+}
+
+.ewp-section-head {
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--bs-border-color);
+  margin-bottom: 1.15rem;
+}
+
+.ewp-section-head h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.4rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.2;
+}
+
+.ewp-section-lead {
+  color: var(--bs-secondary-color);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.ewp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: ewp-item;
+}
+
+.ewp-item {
+  counter-increment: ewp-item;
+  padding: 1rem 0 1.25rem 3rem;
+  position: relative;
+  border-bottom: 1px solid var(--bs-border-color);
+}
+
+.ewp-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+}
+
+.ewp-item::before {
+  content: counter(ewp-item, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  font-family: var(--bs-font-family-heading);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--bs-primary);
+  letter-spacing: 0.03em;
+}
+
+.ewp-item-meta {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--bs-secondary-color);
+  margin: 0 0 0.35rem;
+}
+
+.ewp-item-title {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1.15rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.ewp-item-title a {
+  color: var(--bs-body-color);
+  text-decoration: none;
+}
+
+.ewp-item-title a:hover {
+  color: var(--bs-primary);
+  text-decoration: underline;
+}
+
+.ewp-item-subtitle {
+  color: var(--bs-secondary-color);
+  font-style: italic;
+  font-size: 0.95rem;
+  margin: 0 0 0.35rem;
+}
+
+.ewp-item-desc {
+  color: var(--bs-body-color);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0 0 0.35rem;
+}
+
+.ewp-item-source {
+  color: var(--bs-secondary-color);
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+.ewp-crosslinks {
+  padding: 1.15rem 1.35rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: 0.85rem;
+  background: var(--bs-tertiary-bg);
+}
+
+.ewp-crosslinks h2 {
+  font-family: var(--bs-font-family-heading);
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.ewp-crosslinks ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--bs-body-color);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.ewp-crosslinks ul ul {
+  margin: 0.35rem 0 0.6rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--bs-border-color);
+  font-size: 0.88rem;
+}
+
+.ewp-crosslinks > ul > li {
+  margin-bottom: 0.35rem;
+}
+
+.ewp-crosslinks a {
+  color: var(--bs-primary);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.ewp-crosslinks a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 575.98px) {
+  .ewp-title {
+    font-size: 1.5rem;
+  }
+  .ewp-item {
+    padding-left: 2.5rem;
+  }
+}
+</style>

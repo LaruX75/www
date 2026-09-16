@@ -10,7 +10,7 @@
       "homeHeading": "What participants say",
       "companyHeading": "Feedback on training and talks",
       "ctaLabel": "Read more feedback",
-      "ctaHref": "/en/company/#testimonials"
+      "ctaHref": "/en/training-feedback/"
     }
   },
   "note": "Vain 'orphaanit' – lainaukset joita ei löydy studentFeedback tai trainingFeedback -datasta. Lainaukset joilla on kytkös palautesivuille luetaan featured_home/featured_company -lipuista suoraan JSON-datasta.",
@@ -18,7 +18,9 @@
     {
       "id": "ai-staff-event",
       "category": "training",
-      "placements": ["company"],
+      "placements": [
+        "company"
+      ],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {
@@ -35,7 +37,9 @@
     {
       "id": "fnae-participant",
       "category": "training",
-      "placements": ["company"],
+      "placements": [
+        "company"
+      ],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {
@@ -52,7 +56,9 @@
     {
       "id": "seminar-best-speaker",
       "category": "speaking",
-      "placements": ["company"],
+      "placements": [
+        "company"
+      ],
       "source": "existing-site-copy",
       "publicationStatus": "already-published",
       "content": {
@@ -69,7 +75,10 @@
     {
       "id": "opelle-omppu-2024",
       "category": "university",
-      "placements": ["home", "company"],
+      "placements": [
+        "home",
+        "company"
+      ],
       "source": "padlet-opelle-omppu-2024",
       "publicationStatus": "already-published",
       "content": {
@@ -86,7 +95,10 @@
     {
       "id": "opelle-omppu-2024-tekoaly",
       "category": "university",
-      "placements": ["home", "company"],
+      "placements": [
+        "home",
+        "company"
+      ],
       "source": "padlet-opelle-omppu-2024",
       "publicationStatus": "already-published",
       "content": {

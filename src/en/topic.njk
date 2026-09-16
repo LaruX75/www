@@ -1,0 +1,20 @@
+---js
+{
+  layout: "base.njk",
+  lang: "en",
+  eleventyComputed: {
+    title: data => data.topicTitleEn,
+    description: data => data.topicDescriptionEn,
+    translationKey: data => `topic_${data.topic.slug}`,
+    robots: () => "index, follow"
+  },
+  pagination: {
+    data: "seoTopics",
+    size: 1,
+    alias: "topic",
+    addAllPagesToCollections: true
+  },
+  permalink: data => `/en/topics/${data.topic.slug}/`
+}
+---
+{% include "pages/topic.njk" %}

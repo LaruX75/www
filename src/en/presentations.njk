@@ -1,257 +1,42 @@
 ---
 layout: base.njk
 title: Presentations
-description: Jari Laru presentations and open learning materials — Canva, AOE, Google Slides and SlideShare
+description: >-
+  Jari Laru presentations and open learning materials — Canva, AOE, Google
+  Slides and SlideShare
 permalink: /en/presentations/
 translationKey: presentations_index
-lang: en
+schemaType: CollectionPage
 pageStyles:
   - /css/presentations-page.css
+  - /css/starter-chips.css
 pageScripts:
   - /js/content-presets.js
   - /js/presentations-page.js
-schemaType: CollectionPage
+  - /js/starter-chips.js
+schemaAbout:
+  - '@type': Thing
+    name: Tekoäly opetuksessa
+    description: 'Tekoälylukutaito, generatiivinen tekoäly ja sen pedagoginen hyödyntäminen.'
+  - '@type': Thing
+    name: Digipedagogiikka
+    description: >-
+      Digitaaliset oppimisympäristöt, mobiilioppiminen ja teknologiatuettu
+      pedagogiikka.
+  - '@type': Thing
+    name: Oppimisteknologia
+    description: Oppimisen teknologiset ratkaisut ja niiden tutkimukseen perustuva käyttö.
+  - '@type': Thing
+    name: Opettajankoulutus
+    description: Opettajien täydennyskoulutus ja teknologiaosaaminen.
+  - '@type': Thing
+    name: Avoimet oppimateriaalit
+    description: Avoimesti saatavilla olevat esitykset ja luentomateriaalit.
+schemaMentions:
+  - '@type': CollegeOrUniversity
+    name: Oulun yliopisto
+    url: 'https://www.oulu.fi/'
+lang: en
+templateEngineOverride: njk
 ---
-
-{% set tocSource %}
-<h2 id="aoe-heading">AOE Learning Materials</h2>
-<h2 id="canva-heading">Canva Presentations</h2>
-<h2 id="slideshare-heading">SlideShare Presentations</h2>
-<h2 id="youtube-heading">YouTube Videos</h2>
-{% endset %}
-{% set tocMarkup = tocSource | toc %}
-
-{% set pageModel = presentationsPage %}
-{% set canonicalItems = (pageModel and pageModel.items) or [] %}
-{% set sourceSections = pageModel.sourceSections.en %}
-{% set aoeSection = sourceSections[0] %}
-{% set canvaSection = sourceSections[1] %}
-{% set slideshareSection = sourceSections[2] %}
-{% set youtubeVideoSection = sourceSections[3] %}
-{% set youtubePlaylistSection = sourceSections[4] %}
-{% set localPresentationPageItems = [] %}
-{% for item in canonicalItems %}
-  {% if item.pageUrl %}
-    {% set _ = (localPresentationPageItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-
-<div class="site-shell py-5">
-  <header class="mb-5 text-center">
-    <h1 class="display-4 fw-bold mb-3">Presentations and Learning Materials</h1>
-    <p class="lead text-muted">Presentations, open learning materials and more from various platforms.</p>
-  </header>
-
-  {% if tocMarkup %}
-  <div class="row justify-content-center mb-5">
-    <div class="col-lg-8">
-      <aside class="card border-0 bg-light">
-        <div class="card-body p-3">
-          <p class="text-uppercase small text-muted mb-2">On this page</p>
-          {{ tocMarkup | safe }}
-        </div>
-      </aside>
-    </div>
-  </div>
-  {% endif %}
-
-  {% set presentationArchiveItems = canonicalItems %}
-  {% set presentationArchiveLocale = "en" %}
-  {% include "presentations/archive.njk" %}
-
-  {# ===================== AOE ===================== #}
-  <section class="mb-5" aria-labelledby="aoe-heading">
-    <h2 id="aoe-heading" class="section-title mb-4">
-      <i class="bi bi-book-fill text-success me-2" style="font-size: 1rem;"></i>AOE Learning Materials
-    </h2>
-    {% if aoeSection.count %}
-      {% set presentationSourceSection = aoeSection %}
-      {% set presentationSourceLocale = "en" %}
-      {% include "presentations/source-group-content.njk" %}
-      <div class="mt-3 text-muted small">
-        Source: <a href="https://www.finna.fi/" target="_blank" rel="noopener noreferrer">Finna</a> / <a href="https://aoe.fi/" target="_blank" rel="noopener noreferrer">Open Educational Resources Library (AOE)</a>.
-      </div>
-    {% else %}
-      <p class="text-muted">No AOE learning materials available.</p>
-    {% endif %}
-  </section>
-
-  {# ===================== CANVA ===================== #}
-  <section class="mb-5" aria-labelledby="canva-heading">
-    <h2 id="canva-heading" class="section-title mb-4">
-      <i class="bi bi-star-fill text-warning me-2" style="font-size: 1rem;"></i>Canva Presentations
-    </h2>
-
-    {# CTA card: Canva analysis #}
-    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-warning">
-      <div class="card-body p-4">
-        <div class="row align-items-center g-3">
-          <div class="col-auto d-none d-sm-block">
-            <i class="bi bi-bar-chart-line text-warning" style="font-size:2rem;"></i>
-          </div>
-          <div class="col">
-            <p class="text-uppercase text-muted fw-semibold small mb-1">Analysis</p>
-            <h3 class="h5 fw-bold mb-1">Canva presentations 2021–2026 – 83 presentations analysed</h3>
-            <p class="text-muted small mb-0">Topics, trajectories, most extensive presentations and common threads — the decade of AI literacy.</p>
-          </div>
-          <div class="col-12 col-sm-auto">
-            <a href="/esitykset/canva-analyysi/" class="btn btn-warning btn-sm px-3 text-dark">
-              Read analysis in Finnish <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {% if canvaSection.count %}
-      {% set presentationSourceSection = canvaSection %}
-      {% set presentationSourceLocale = "en" %}
-      {% include "presentations/source-group-content.njk" %}
-      <div class="mt-3 text-muted small">
-        Source: Canva (JSON).
-      </div>
-    {% else %}
-      <p class="text-muted">No Canva presentations available.</p>
-    {% endif %}
-  </section>
-
-
-  {# ================= SLIDESHARE ================== #}
-  <section class="mb-5" aria-labelledby="slideshare-heading">
-    <h2 id="slideshare-heading" class="section-title mb-4">
-      <i class="bi bi-collection-play me-2" style="font-size: 1rem;"></i>SlideShare Presentations
-    </h2>
-
-    {# CTA card: SlideShare analysis #}
-    <div class="card border-0 shadow-sm mb-4 border-start border-4 border-primary">
-      <div class="card-body p-4">
-        <div class="row align-items-center g-3">
-          <div class="col-auto d-none d-sm-block">
-            <i class="bi bi-bar-chart-line text-primary" style="font-size:2rem;"></i>
-          </div>
-          <div class="col">
-            <p class="text-uppercase text-muted fw-semibold small mb-1">Analysis</p>
-            <h3 class="h5 fw-bold mb-1">SlideShare presentations 2009–2020 – 117 presentations analysed</h3>
-            <p class="text-muted small mb-0">Topics, trajectories, most-viewed presentations and common threads by decade — from mobile learning to AI.</p>
-          </div>
-          <div class="col-12 col-sm-auto">
-            <a href="/esitykset/slideshare-analyysi/" class="btn btn-primary btn-sm px-3">
-              Read analysis in Finnish <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {% if slideshareSection.count %}
-      {% set presentationSourceSection = slideshareSection %}
-      {% set presentationSourceLocale = "en" %}
-      {% include "presentations/source-group-content.njk" %}
-    {% else %}
-      <p class="text-muted">No SlideShare presentations available.</p>
-    {% endif %}
-
-    <div class="mt-4 text-center">
-      <a href="https://www.slideshare.net/larux" target="_blank" rel="noopener noreferrer" class="btn btn-primary px-4 py-2">
-        View all on SlideShare ({{ slideshareSection.count }}) <i class="bi bi-arrow-up-right"></i>
-      </a>
-    </div>
-  </section>
-
-  {# ===================== YOUTUBE ===================== #}
-  <section class="mb-5" aria-labelledby="youtube-heading">
-    <h2 id="youtube-heading" class="section-title mb-4">
-      <i class="bi bi-youtube text-danger me-2" style="font-size: 1rem;"></i>YouTube Videos
-    </h2>
-
-    {% if youtubeVideoSection.count %}
-      {% set presentationSourceSection = youtubeVideoSection %}
-      {% set presentationSourceLocale = "en" %}
-      {% include "presentations/source-group-content.njk" %}
-      <div class="mt-3 text-muted small">
-        Source: YouTube Data API v3.
-      </div>
-    {% endif %}
-
-    {% if youtubePlaylistSection.count %}
-      <h3 class="h6 text-uppercase text-muted fw-semibold mt-5 mb-2" style="letter-spacing:.04em;">Playlists</h3>
-      {% set presentationSourceSection = youtubePlaylistSection %}
-      {% set presentationSourceLocale = "en" %}
-      {% include "presentations/source-group-content.njk" %}
-    {% endif %}
-
-    {% if not (youtubeVideoSection.count or youtubePlaylistSection.count) %}
-      <div class="card border-0 bg-light-subtle">
-        <div class="card-body">
-          <p class="mb-2 fw-semibold">Could not fetch YouTube content.</p>
-          <p class="text-muted mb-0 small">
-            Set <code>YOUTUBE_API_KEY</code> and, if needed, <code>YOUTUBE_CHANNEL_ID</code> or <code>YOUTUBE_HANDLE</code>.
-          </p>
-        </div>
-      </div>
-    {% endif %}
-  </section>
-
-  {# Archive list: static link list for all presentation pages (SEO navigation) #}
-  <section class="mb-5">
-    <div class="site-shell">
-      {% set archiveTotal = localPresentationPageItems.length + aoeSection.count + youtubePlaylistSection.count %}
-      <details>
-        <summary class="text-muted small py-2" style="cursor:pointer;">All presentations and materials as archive ({{ archiveTotal }})</summary>
-
-        <div class="mt-3">
-          <h3 class="h6 fw-bold">Presentation pages on this site</h3>
-          <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-            {% for item in localPresentationPageItems %}
-              <li class="col">
-                <a class="small fw-semibold text-decoration-none" href="{{ item.pageUrl }}">{{ item.title }}</a>
-                <div class="small text-muted mt-1">
-                  {{ item.sourceLabel or item.sourceKey or "presentation" }}{% if item.date %} · {{ item.date | dateFormat }}{% endif %}
-                </div>
-                {% if item.description %}
-                  <div class="small text-muted">{{ item.description }}</div>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-
-        {% if aoeSection.count %}
-          <div class="mt-4">
-            <h3 class="h6 fw-bold">AOE learning materials</h3>
-            <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-              {% for row in aoeSection.items %}
-                <li class="col">
-                  <a class="small fw-semibold text-decoration-none" href="{{ row.url }}" target="_blank" rel="noopener noreferrer">{{ row.title }}</a>
-                  <div class="small text-muted mt-1">AOE / Finna{% if row.year or row.date %} · {{ row.year or row.date }}{% endif %}</div>
-                  {% if row.description %}
-                    <div class="small text-muted">{{ row.description }}</div>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-
-
-        {% if youtubePlaylistSection.count %}
-          <div class="mt-4">
-            <h3 class="h6 fw-bold">YouTube playlists</h3>
-            <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-3 mt-1">
-              {% for row in youtubePlaylistSection.items %}
-                <li class="col">
-                  <a class="small fw-semibold text-decoration-none" href="{{ row.url }}" target="_blank" rel="noopener noreferrer">{{ row.title }}</a>
-                  <div class="small text-muted mt-1">YouTube{% if row.date or row.year %} · {{ row.date or row.year }}{% endif %}</div>
-                  {% if row.description %}
-                    <div class="small text-muted">{{ row.description }}</div>
-                  {% endif %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
-      </details>
-    </div>
-  </section>
-
-</div>
+{% include "pages/presentations.njk" %}

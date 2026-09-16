@@ -1,0 +1,324 @@
+
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set featuredStatement = statementItems[0] %}
+{% set curatedWorkPresentations = [
+  {
+    title: "ITK-avauksen tallenne: Työkalu? Taikakalu?",
+    url: "https://www.youtube.com/watch?v=0cJ0Ed3Scs4&t=5s",
+    thumbnail: "https://i.ytimg.com/vi/0cJ0Ed3Scs4/hqdefault.jpg",
+    date: "2026-04-26",
+    typeLabel: "Keynote / videotallenne",
+    description: "Avauspuheenvuoro ITK 2026 -tapahtumassa tekoälyn roolista työssä, koulussa ja kotona.",
+    external: true
+  }
+] | localizeCopy(lang) %}
+{% set workPresentationItems = [] %}
+{% for item in curatedWorkPresentations %}
+  {% set _ = (workPresentationItems.push(item), null) %}
+{% endfor %}
+{% for item in (collections.presentations or []).slice(0, 4) %}
+  {% set _ = (workPresentationItems.push({
+    title: item.data.title,
+    url: item.data.url or item.url,
+    date: item.data.date,
+    typeLabel: item.data.source or "Esitys",
+    description: item.data.description or (item.templateContent | excerpt),
+    external: item.data.url and "http" in item.data.url
+  }), null) %}
+{% endfor %}
+{% set latestWorkPresentations = (workPresentationItems | sort(attribute="date", reverse=true)).slice(0, 2) %}
+{% set latestWorkPublications = (researchfi or []).slice(0, 1) %}
+
+{% set workCopy = {
+  heroLead: "Jari Larun yliopistotyö yhdistää opetuksen, tutkimuksen, ohjauksen ja yhteiskunnallisen vuorovaikutuksen. Tämä sivu kokoaa työn ydinalueet, ajankohtaisen fokuksen ja tunnustukset yhteen näkymään. Pedagogiset perustelut ja opetusansioiden arviointinäyttö löytyvät <a href=\"/portfolio/\" class=\"ylwork-hero-lead-link\">opetusportfoliosta</a>.",
+  heroBody: "Jari Laru opettaa luokanopettajakoulutuksessa digipedagogiikkaa, ohjelmoinnillista ajattelua ja tekoälylukutaitoa. Samaan työhön kuuluvat tutkimus, opinnäytteiden ohjaus ja opetuksen käytännön kehittäminen.",
+  teachingBody: "Jari Laru opettaa teknologiatuettua oppimista, digipedagogiikkaa ja tekoälykasvatusta erityisesti luokanopettajakoulutuksessa. Tavoitteena on, että teoria muuttuu opetuksessa käytännöksi eikä jää pelkäksi käsitteeksi.",
+  teachingPoints: [
+    "luokanopettajakoulutus ja opettajankoulutuksen arki",
+    "digipedagogiikka, ohjelmoinnillinen ajattelu ja tekoälykasvatus",
+    "selkeä rakenne, käytännönläheinen ohjaus ja hyvä rytmi opetuksessa"
+  ],
+  researchBody: "Tutkimus käsittelee sitä, miten teknologiaa kannattaa käyttää opetuksessa eri koulutusasteilla. Pitkä tutkimuslinja opetusteknologiassa jatkuu nyt tekoälylukutaidon ja yhteisöllisen oppimisen kysymyksiin.",
+  researchPoints: [
+    "teknologiatuettu oppiminen ja opetus",
+    "opettajien ja oppijoiden tekoälylukutaito",
+    "pitkä tutkimus- ja julkaisuhistoria opetuksen kehittämisen tukena"
+  ],
+  outreachBody: "Yliopistotyö ei jää kampukselle. Tutkittu tieto siirtyy opettajille, kouluille, verkostoille ja valmisteluun koulutuksissa, lausunnoissa, verkossa ja yhteistyöhankkeissa.",
+  outreachPoints: [
+    "koulutukset, puheenvuorot ja avoimet materiaalit",
+    "verkostotyö opettajien, koulujen ja hankkeiden kanssa",
+    "lausunnot ja valmistelun kommentointi opetuksen, tekoälyn ja koulutuksen näkökulmasta"
+  ],
+  projectBody: "Generation AI -hankkeessa Jari Laru toimii vuorovaikutusasiantuntijana. Työssä yhdistyvät tutkimus, opettajankoulutus ja käytännön sovellukset. Hän tutkii opettajien tekoälylukutaitoa, jäsentää hankkeen sisältöjä sekä rakentaa ja ylläpitää sen verkkosivuja.",
+  projectPoints: [
+    "tutkimus, opettajankoulutus ja käytännön sovellukset rinnakkain",
+    "tekoälylukutaito opettajien ja koulutuksen näkökulmasta",
+    "sisältöjen, sovellusten ja verkkosivujen kehittäminen"
+  ],
+  trustLead: "Opetustyöstä kertovat kurssien ja ohjauksen lisäksi palkinnot ja opiskelijoiden palaute.",
+  awardsBody: "Tunnustukset ovat kertyneet vuosien varrella, eivät yhdestä tempusta.",
+  feedbackBody: "Opiskelijapalautteessa toistuvat selkeys, kannustava ote ja se, että vaikeatkin asiat on jäsennetty käytännönläheisesti."
+} | localizeCopy(lang) %}
+
+<section class="ylwork-hero mb-0">
+  <div class="ylwork-shell py-5">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-7">
+        <p class="ylwork-eyebrow mb-2"><i class="bi bi-mortarboard-fill me-1"></i>{{ "Yliopistotyö" | pageText(lang) }}</p>
+        <h1 class="ylwork-hero-title mb-3">{{ "Yliopistotyö: opetus, tutkimus ja yhteiskunnallinen vuorovaikutus" | pageText(lang) }}</h1>
+        <p class="ylwork-hero-manifesto mb-3">{{ "Teknologia on opetuksessa väline, ei päämäärä. Tärkeintä on, mitä se saa aikaan oppimisessa ja opetuksessa." | pageText(lang) }}</p>
+        <p class="ylwork-hero-text mb-4">{{ workCopy.heroLead | safe | pageText(lang) }}</p>
+        <div class="ylwork-hero-points mb-4">
+          <div class="ylwork-hero-point">
+            <span class="ylwork-hero-point-title">{{ "Opetus" | pageText(lang) }}</span>
+            <span class="ylwork-hero-point-text">{{ "Luokanopettajakoulutuksesta käytännön digipedagogiikkaan ja tekoälykasvatukseen." | pageText(lang) }}</span>
+          </div>
+          <div class="ylwork-hero-point">
+            <span class="ylwork-hero-point-title">{{ "Tutkimus" | pageText(lang) }}</span>
+            <span class="ylwork-hero-point-text">{{ "Pitkä tutkimuslinja opetusteknologiassa, nyt keskiössä tekoälylukutaito." | pageText(lang) }}</span>
+          </div>
+          <div class="ylwork-hero-point">
+            <span class="ylwork-hero-point-title">{{ "Yhteiskunnallinen vuorovaikutus" | pageText(lang) }}</span>
+            <span class="ylwork-hero-point-text">{{ "Tutkimustieto ja opetusosaaminen jatkuvat hankkeissa, verkostoissa, valmistelussa ja avoimissa materiaaleissa." | pageText(lang) }}</span>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ "/portfolio/" | localeUrl(lang) }}" class="btn ylwork-hero-btn-primary">{{ "Avaa opetusportfolio" | pageText(lang) }}</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <aside class="ylwork-hero-card">
+          <figure class="ylwork-hero-image">
+            <img src="/img/uploads/2026/07/jari-laru-yliopistonlehtorina-hero.jpg" alt="{{ "Jari Laru auditorion edessä koulutusyleisön kanssa" | pageText(lang) }}" loading="eager" decoding="async">
+          </figure>
+          <div class="ylwork-hero-side">
+            <p class="ylwork-hero-side-kicker">{{ "Nykyinen tehtävä" | pageText(lang) }}</p>
+            <p class="ylwork-hero-caption">{{ "Teknologiatuetun oppimisen ja opetuksen yliopistonlehtori, Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto." | pageText(lang) }}</p>
+            <dl class="ylwork-hero-facts mb-0">
+              <div>
+                <dt>{{ "Työn ydin" | pageText(lang) }}</dt>
+                <dd>{{ "Opetus, tutkimus, ohjaus ja käytännön kehittäminen." | pageText(lang) }}</dd>
+              </div>
+              <div>
+                <dt>{{ "Kohderyhmä" | pageText(lang) }}</dt>
+                <dd>{{ "Tulevat opettajat, opettajat, tutkijat, koulut ja kehittämisverkostot." | pageText(lang) }}</dd>
+              </div>
+              <div>
+                <dt>{{ "Juuri nyt" | pageText(lang) }}</dt>
+                <dd>{{ "Tekoälylukutaito, opettajankoulutus ja tutkimustiedon vieminen käytäntöön." | pageText(lang) }}</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="ylwork-hero-divider"></div>
+
+<section class="ylwork-section bg-body-tertiary" id="painopisteet">
+  <div class="ylwork-shell">
+    <div class="ylwork-section-head">
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-bullseye me-1"></i>{{ "Työn ydinalueet" | pageText(lang) }}</p>
+      <h2 class="ylwork-section-title">{{ "Kolme aluetta, joiden varaan yliopistotyö rakentuu" | pageText(lang) }}</h2>
+      <p class="ylwork-section-lead mb-0">{{ workCopy.heroBody | pageText(lang) }}</p>
+    </div>
+    <div class="ylwork-focus-grid">
+      <article class="ylwork-focus-card">
+        <div class="ylwork-focus-head">
+          <span class="ylwork-focus-icon" style="color:#0d6efd"><i class="bi bi-easel2-fill"></i></span>
+          <h3 class="ylwork-focus-title">{{ "Opetus" | pageText(lang) }}</h3>
+        </div>
+        <p class="ylwork-focus-text">{{ workCopy.teachingBody | pageText(lang) }}</p>
+        <ul class="ylwork-focus-list">
+          {% for point in workCopy.teachingPoints %}
+          <li>{{ point | pageText(lang) }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{{ "/portfolio/" | localeUrl(lang) }}" class="ylwork-card-link">{{ "Opetusportfolio" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ylwork-focus-card">
+        <div class="ylwork-focus-head">
+          <span class="ylwork-focus-icon" style="color:#198754"><i class="bi bi-search"></i></span>
+          <h3 class="ylwork-focus-title">{{ "Tutkimus" | pageText(lang) }}</h3>
+        </div>
+        <p class="ylwork-focus-text">{{ workCopy.researchBody | pageText(lang) }}</p>
+        <ul class="ylwork-focus-list">
+          {% for point in workCopy.researchPoints %}
+          <li>{{ point | pageText(lang) }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{{ "/tutkimus/" | localeUrl(lang) }}" class="ylwork-card-link">{{ "Tutkimussivulle" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+      <article class="ylwork-focus-card" id="yhteiskunnallinen-vuorovaikutus">
+        <div class="ylwork-focus-head">
+          <span class="ylwork-focus-icon" style="color:#fd7e14"><i class="bi bi-megaphone-fill"></i></span>
+          <h3 class="ylwork-focus-title">{{ "Yhteiskunnallinen vuorovaikutus" | pageText(lang) }}</h3>
+        </div>
+        <p class="ylwork-focus-text">{{ workCopy.outreachBody | pageText(lang) }}</p>
+        <ul class="ylwork-focus-list">
+          {% for point in workCopy.outreachPoints %}
+          <li>{{ point | pageText(lang) }}</li>
+          {% endfor %}
+        </ul>
+        <a href="{{ "/yhteiskunnallinen-vuorovaikutus/" | localeUrl(lang) }}" class="ylwork-card-link">{{ "Yhteiskunnalliseen vuorovaikutukseen" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ylwork-section" id="ajankohtainen-tyo" data-mobile-priority="2">
+  <div class="ylwork-shell">
+    <div class="ylwork-section-head">
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-lightning-charge-fill me-1"></i>{{ "Ajankohtainen työ" | pageText(lang) }}</p>
+      <h2 class="ylwork-section-title">{{ "Generation AI -hanke ja tuoreimmat nostot" | pageText(lang) }}</h2>
+      <p class="ylwork-section-lead mb-0">{{ "Työn ajankohtainen keskiö on tekoälykasvatuksessa. Generation AI -hankkeen rinnalla näkyvät tuoreimmat lausunnot, esitykset ja julkaisut." | pageText(lang) }}</p>
+    </div>
+
+    <div class="ylwork-project-layout mb-5">
+      <article class="ylwork-project-card ylwork-project-card--primary">
+        <span class="ylwork-project-badge">{{ "Generation AI (2022–)" | pageText(lang) }}</span>
+        <p class="ylwork-project-text">{{ workCopy.projectBody | pageText(lang) }}</p>
+        <ul class="ylwork-focus-list ylwork-focus-list--project">
+          {% for point in workCopy.projectPoints %}
+          <li>{{ point | pageText(lang) }}</li>
+          {% endfor %}
+        </ul>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <a href="{{ "https://generation-ai-stn.fi/" | localeUrl(lang) }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">{{ "Hankkeen sivu" | pageText(lang) }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="{{ "https://generation-ai-stn.fi/tutkijalle/" | localeUrl(lang) }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">{{ "Tutkijalle" | pageText(lang) }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="{{ "https://generation-ai-stn.fi/opettajalle/" | localeUrl(lang) }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">{{ "Opettajalle" | pageText(lang) }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+          <a href="{{ "https://www.gen-ai.fi/fi" | localeUrl(lang) }}" target="_blank" rel="noopener" class="btn btn-outline-primary btn-sm">{{ "Sovellukset" | pageText(lang) }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+        </div>
+      </article>
+    </div>
+
+    <div class="ylwork-section-head">
+      <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-journal-richtext me-1"></i>{{ "Tuoreimmat nostot" | pageText(lang) }}</p>
+      <h3 class="ylwork-section-title h4">{{ "Uusin tutkimusjulkaisu, esitys ja lausunto" | pageText(lang) }}</h3>
+      <p class="ylwork-section-lead mb-0">{{ "Kolme nostoa antavat kuvan siitä, mihin yliopistotyö juuri nyt vaikuttaa: tutkimusnäytön päivittänyt julkaisu, opetuksen käytäntöihin viety esitys ja valmistelun tueksi annettu lausunto." | pageText(lang) }}</p>
+    </div>
+
+    <div class="ylwork-live-grid">
+      {% set latestPub = latestWorkPublications[0] %}
+      {% if latestPub %}
+      <article class="ylwork-live-card">
+        <p class="ylwork-live-kicker">{{ "Tutkimusjulkaisut" | pageText(lang) }}</p>
+        <div class="ylwork-live-meta">
+          <span class="ylwork-live-type">{{ "Tuorein julkaisu" | pageText(lang) }}</span>
+          <span class="ylwork-live-date">{{ (latestPub.year or "") | pageText(lang) }}</span>
+        </div>
+        <h4 class="ylwork-live-item-title">
+          {% if latestPub.url %}
+          <a href="{{ latestPub.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ latestPub.title | pageText(lang) }}</a>
+          {% else %}
+          {{ latestPub.title | pageText(lang) }}
+          {% endif %}
+        </h4>
+        <p class="ylwork-live-summary">{% if latestPub.journal %}{{ latestPub.journal | pageText(lang) }}{% elseif latestPub.publisher %}{{ latestPub.publisher | pageText(lang) }}{% else %}{{ "Julkaisu tutkimusprofiilista." | pageText(lang) }}{% endif %}</p>
+        <a href="{{ "/julkaisut/" | localeUrl(lang) }}" class="ylwork-card-link mt-auto">{{ "Kaikki julkaisut" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+      {% endif %}
+
+      {% set latestPresentation = latestWorkPresentations[0] %}
+      {% if latestPresentation %}
+      <article class="ylwork-live-card">
+        <p class="ylwork-live-kicker">{{ "Esitykset ja koulutukset" | pageText(lang) }}</p>
+        <div class="ylwork-live-meta">
+          <span class="ylwork-live-type">{{ (latestPresentation.typeLabel or "Tuorein esitys") | pageText(lang) }}</span>
+          <span class="ylwork-live-date">{{ latestPresentation.date | dateFormat | pageText(lang) }}</span>
+        </div>
+        <h4 class="ylwork-live-item-title"><a href="{{ latestPresentation.url | localeUrl(lang) }}"{% if latestPresentation.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ latestPresentation.title | pageText(lang) }}</a></h4>
+        <p class="ylwork-live-summary">{{ latestPresentation.description | truncate(160) | pageText(lang) }}</p>
+        <a href="{{ "/esitykset/" | localeUrl(lang) }}" class="ylwork-card-link mt-auto">{{ "Kaikki esitykset" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+      {% endif %}
+
+      {% if featuredStatement %}
+      <article class="ylwork-live-card">
+        <p class="ylwork-live-kicker">{{ "Lausunnot" | pageText(lang) }}</p>
+        <div class="ylwork-live-meta">
+          <span class="ylwork-live-type">{{ "Tuorein lausunto" | pageText(lang) }}</span>
+          <span class="ylwork-live-date">{{ featuredStatement.date | dateFormat | pageText(lang) }}</span>
+        </div>
+        <h4 class="ylwork-live-item-title"><a href="{{ featuredStatement.data.url or featuredStatement.url | localeUrl(lang) }}">{{ featuredStatement.data.title | pageText(lang) }}</a></h4>
+        <p class="ylwork-live-summary">{{ (featuredStatement.data.description or (featuredStatement.templateContent | excerpt) | truncate(160)) | pageText(lang) }}</p>
+        <a href="{{ "/lausunnot/#lausunnot" | localeUrl(lang) }}" class="ylwork-card-link mt-auto">{{ "Kaikki lausunnot" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="ylwork-section bg-body-tertiary" id="tunnustukset" data-mobile-priority="3">
+  <div class="ylwork-shell">
+    <details class="ylwork-mobile-disclosure" data-mobile-collapse open>
+      <summary class="ylwork-mobile-disclosure-summary">
+        <span>{{ "Tunnustukset ja palaute" | pageText(lang) }}</span>
+        <small>{{ "Palkinnot ja opiskelijapalaute avattavana taustana" | pageText(lang) }}</small>
+      </summary>
+      <div class="ylwork-mobile-disclosure-body">
+        <div class="ylwork-section-head">
+          <p class="ylwork-eyebrow ylwork-eyebrow--dark mb-1"><i class="bi bi-patch-check-fill me-1"></i>{{ "Tunnustukset ja palaute" | pageText(lang) }}</p>
+          <h2 class="ylwork-section-title">{{ "Tehdystä työstä kertovat hyvä palaute ja palkinnot" | pageText(lang) }}</h2>
+          <p class="ylwork-section-lead mb-0">{{ workCopy.trustLead | pageText(lang) }}</p>
+        </div>
+        <div class="ylwork-trust-grid">
+          <article class="ylwork-trust-card">
+            <p class="ylwork-trust-kicker">{{ "Palkinnot ja tunnustukset" | pageText(lang) }}</p>
+            <h3 class="ylwork-trust-title">{{ "Työ avoimuuden ja opetuksen parissa on palkittu useasti" | pageText(lang) }}</h3>
+            <p class="ylwork-trust-text">{{ workCopy.awardsBody | pageText(lang) }}</p>
+            <p class="ylwork-trust-text small mb-3">{{ "Esimerkiksi kansallinen avoimen tieteen palkinto 2020, Avoimen oppimisen palkinto 2025 ja Vuoden TVT-opettaja 2014." | pageText(lang) }}</p>
+            <a href="{{ "/palkinnot/" | localeUrl(lang) }}" class="ylwork-card-link">{{ "Katso kaikki tunnustukset" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="ylwork-trust-card ylwork-trust-card--quote">
+            <p class="ylwork-trust-kicker">{{ "Opiskelijapalaute" | pageText(lang) }}</p>
+            <blockquote class="ylwork-trust-quote mb-3">
+              <p class="mb-0">{{ "“Jarin opetustyyli harjoituksissa sekä mahtavat sähköpostiohjeet tukivat oppimista todella hyvin.”" | pageText(lang) }}</p>
+            </blockquote>
+            <p class="ylwork-trust-text">{{ workCopy.feedbackBody | pageText(lang) }}</p>
+            <a href="{{ "/opiskelijoiden-antamaa-palautetta/" | localeUrl(lang) }}" class="ylwork-card-link">{{ "Lue opiskelijapalautteita" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </details>
+  </div>
+</section>
+
+<section class="site-shell pb-5">
+  <aside class="ylwork-crosslinks">
+    <h2>{{ "Muualla sivustolla" | pageText(lang) }}</h2>
+    <ul>
+      <li>
+        <a href="{{ "/portfolio/" | localeUrl(lang) }}">{{ "Opetusportfolio" | pageText(lang) }}</a> {{ "— pedagogiset perustelut ja opetusansioiden näyttö" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/opiskelijoiden-antamaa-palautetta/" | localeUrl(lang) }}">{{ "Opiskelijapalaute" | pageText(lang) }}</a> {{ "— kurssikohtainen palaute" | pageText(lang) }}</li>
+          <li><a href="{{ "/cv/" | localeUrl(lang) }}">{{ "Ansioluettelo" | pageText(lang) }}</a> {{ "— koulutus ja työkokemus" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/tutkimus/" | localeUrl(lang) }}">{{ "Tutkimus" | pageText(lang) }}</a> {{ "— hankkeet, teemat ja tutkimuslinja" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/julkaisut/" | localeUrl(lang) }}">{{ "Julkaisuluettelo" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/vaitoskirja/" | localeUrl(lang) }}">{{ "Väitöskirja" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/opinnaytteet/" | localeUrl(lang) }}">{{ "Ohjatut opinnäytteet" | pageText(lang) }}</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/yhteiskunnallinen-vuorovaikutus/" | localeUrl(lang) }}">{{ "Yhteiskunnallinen vuorovaikutus" | pageText(lang) }}</a> {{ "— tutkimuksen ja opetuksen jatke" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/esitykset/" | localeUrl(lang) }}">{{ "Esitykset ja avoimet materiaalit" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/lausunnot/" | localeUrl(lang) }}">{{ "Lausunnot ja julkiset puheet" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/mediassa/" | localeUrl(lang) }}">{{ "Mediassa" | pageText(lang) }}</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ "/kouluttaja/" | localeUrl(lang) }}">{{ "Täydennyskoulutukset (Larux t:mi)" | pageText(lang) }}</a> {{ "— sivutoiminen kouluttajatyö" | pageText(lang) }}</li>
+    </ul>
+  </aside>
+</section>

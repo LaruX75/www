@@ -1,0 +1,508 @@
+<section class="pol-hero mb-0">
+  <div class="site-shell py-5">
+    <div class="row g-5 align-items-stretch">
+      <div class="col-lg-7">
+        <p class="pol-eyebrow mb-2"><i class="bi bi-building2 me-1"></i>{{ "Politiikka" | pageText(lang) }}</p>
+        <h1 class="pol-hero-title mb-3">{{ "Jari Laru, poliitikko" | pageText(lang) }}</h1>
+        <p class="pol-hero-manifesto mb-3">{{ "Sivistys, palveluverkko ja avoin päätöksenteko eivät ole kunnallispolitiikan sivujuonteita vaan sen kovaa ydintä." | pageText(lang) }}</p>
+        <p class="mb-4 pol-hero-text">{{ "Jari Laru tekee politiikkaa käytännöllisesti ja tietoon nojaten. Tavoitteena on, että päätöksenteko näkyy kuntalaiselle parempina oppimisympäristöinä, toimivampina palveluina ja valmisteluna, jota voi seurata ilman sisäpiiritietoa." | pageText(lang) }}</p>
+        <div class="pol-hero-points mb-4">
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">{{ "Sivistys" | pageText(lang) }}</span>
+            <span class="pol-hero-point-text">{{ "Laadukkaat oppimisympäristöt, koulutuspolitiikka ja pitkät vaikutukset." | pageText(lang) }}</span>
+          </div>
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">{{ "Palveluverkko" | pageText(lang) }}</span>
+            <span class="pol-hero-point-text">{{ "Koko Oulu mukaan kasvuun, ei vain keskusta tai yksittäiset hankkeet." | pageText(lang) }}</span>
+          </div>
+          <div class="pol-hero-point">
+            <span class="pol-hero-point-title">{{ "Avoimuus" | pageText(lang) }}</span>
+            <span class="pol-hero-point-text">{{ "Päätösten perustelut, data ja valmistelu näkyviksi myös kuntalaiselle." | pageText(lang) }}</span>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ "#nykyinen-rooli" | localeUrl(lang) }}" class="btn pol-hero-btn-primary">{{ "Nykyinen rooli" | pageText(lang) }}</a>
+          <a href="{{ "#paalinjat" | localeUrl(lang) }}" class="btn pol-hero-btn-outline">{{ "Päälinjat" | pageText(lang) }}</a>
+          <a href="{{ "#naytto" | localeUrl(lang) }}" class="btn pol-hero-btn-outline">{{ "Näyttö käytännössä" | pageText(lang) }}</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <aside class="pol-hero-card pol-hero-card--profile h-100">
+          <img src="/img/uploads/2020/01/WhatsApp-Image-2019-12-02-at-18.58.31-1.jpeg" alt="{{ "Jari Laru politiikassa" | pageText(lang) }}" class="pol-hero-img">
+          <div class="pol-hero-side">
+            <p class="pol-hero-side-kicker">{{ "Poliittinen työ" | pageText(lang) }}</p>
+            <p class="pol-hero-caption">{{ "Käytännöllistä kunnallispolitiikkaa sivistyksen, lähipalvelujen ja avoimuuden puolesta." | pageText(lang) }}</p>
+            <dl class="pol-hero-facts mb-0">
+              <div>
+                <dt>{{ "Puolue" | pageText(lang) }}</dt>
+                <dd>{{ "Kansallinen Kokoomus (2000-luvun alusta lähtien)" | pageText(lang) }}</dd>
+              </div>
+              <div>
+                <dt>{{ "Tapa toimia" | pageText(lang) }}</dt>
+                <dd>{{ "Tietoon nojaten, pitkäjänteisesti, yhteistyökykyisesti" | pageText(lang) }}</dd>
+              </div>
+              <div>
+                <dt>{{ "Kysymys jonka esitän" | pageText(lang) }}</dt>
+                <dd>{{ "Miten päätös näkyy tavallisen oululaisen arjessa?" | pageText(lang) }}</dd>
+              </div>
+              <div>
+                <dt>{{ "Näyttö" | pageText(lang) }}</dt>
+                <dd>{{ "Puheenvuorot, valtuustoaloitteet ja kirjoitukset samasta linjasta" | pageText(lang) }}</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="pol-hero-divider"></div>
+
+<nav class="pol-mobile-path" aria-label="{{ "Politiikkasivun tärkeimmät osiot" | pageText(lang) }}">
+  <a href="{{ "#nykyinen-rooli" | localeUrl(lang) }}">{{ "Rooli" | pageText(lang) }}</a>
+  <a href="{{ "#paalinjat" | localeUrl(lang) }}">{{ "Päälinjat" | pageText(lang) }}</a>
+  <a href="{{ "#naytto" | localeUrl(lang) }}">{{ "Näyttö" | pageText(lang) }}</a>
+  <a href="{{ "#kirjoitukset" | localeUrl(lang) }}">{{ "Kirjoitukset" | pageText(lang) }}</a>
+  <a href="{{ "#syvenna" | localeUrl(lang) }}">{{ "Syvennä" | pageText(lang) }}</a>
+</nav>
+
+{% set politicalSpeechEvents = [
+  "Oulun kaupunginvaltuusto",
+  "Oulun kaupunginvaltuuston vierailu Oulun yliopistolla",
+  "Oulun raati -yleisötilaisuus",
+  "Uuden Oulun kuulemistilaisuus",
+  "Kempeleen kunnan tilaisuus",
+  "Porisuta porvaria koulutuksesta",
+  "OSYK-lukion valtaus"
+] %}
+{% set politicalSpeeches = [] %}
+{% for speech in collections.pub_puhe %}
+  {% if politicalSpeechEvents.indexOf(speech.data.event or "") != -1 %}
+    {% set _ = politicalSpeeches.push(speech) %}
+  {% endif %}
+{% endfor %}
+{% set sortedInitiatives = collections.politics | sort(true, false, "date") %}
+{% set currentTrustRoles = [
+  {
+    "area": "Oulu",
+    "title": "2. varavaltuutettu",
+    "org": "Oulun kaupunginvaltuusto"
+  },
+  {
+    "area": "Oulu",
+    "title": "Sivistyslautakunnan jäsen",
+    "org": "Oulun kaupunki"
+  },
+  {
+    "area": "Pohjois-Pohjanmaa",
+    "title": "Aluevaltuuston varajäsen",
+    "org": "Pohjois-Pohjanmaan hyvinvointialue"
+  }
+] | localizeCopy(lang) %}
+{% set electionPeriods = [
+  {
+    "period": "2025–2029",
+    "title": "2. varavaltuutettu ja sivistyslautakunnan jäsen",
+    "summary": "Ehdolla sekä kunta- että aluevaaleissa. Nykyiset luottamustehtävät jatkuvat sivistyksen, palvelujen ja avoimen päätöksenteon teemoissa.",
+    "detail": "Luottamustoimet: 2. varavaltuutettu, sivistyslautakunnan jäsen, aluevaltuuston varajäsen.",
+    "link": "/politiikka/vaalikaudet/#2025-2029",
+    "linkLabel": "Avaa vaalikausi"
+  },
+  {
+    "period": "2021–2025",
+    "title": "Kaupunginvaltuutettu ja maakuntavaltuuston jäsen",
+    "summary": "Valittu uudelleen Oulun kaupunginvaltuustoon. Työ painottui erityisesti sivistys- ja kulttuuripalveluihin sekä laajoihin palveluverkkokysymyksiin.",
+    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston jäsen.",
+    "link": "/politiikka/vaalikaudet/#2021-2025",
+    "linkLabel": "Avaa vaalikausi"
+  },
+  {
+    "period": "2017–2021",
+    "title": "Kaupunginvaltuutettu ja maakuntavaltuuston varavaltuutettu",
+    "summary": "Ensimmäinen valinta Oulun kaupunginvaltuustoon. Samalla rakentui linja, jossa yhdistyvät sivistys, alueellinen yhdenvertaisuus ja lähidemokratia.",
+    "detail": "Luottamustoimet: kaupunginvaltuutettu, sivistys- ja kulttuurilautakunnan jäsen, maakuntavaltuuston varavaltuutettu.",
+    "link": "/politiikka/vaalikaudet/#2017-2021",
+    "linkLabel": "Avaa vaalikausi"
+  },
+  {
+    "period": "2013–2017",
+    "title": "Varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja",
+    "summary": "Vuoden 2012 vaalien jälkeen alkanut vaalikausi toi mukaan varavaltuutetun vastuun ja lähidemokratiatoimikunnan puheenjohtajuuden. Profiili rakentui vahvasti alueellisen osallisuuden, lähipalvelujen ja asukasvaikuttamisen ympärille.",
+    "detail": "Luottamustoimet: varavaltuutettu ja lähidemokratiatoimikunnan puheenjohtaja.",
+    "link": "/politiikka/vaalikaudet/#2013-2017",
+    "linkLabel": "Avaa vaalikausi"
+  }
+] | localizeCopy(lang) %}
+{% set politicsWritingItems = [] %}
+{% for post in collections.blog %}
+  {% if post.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": post.data.politicsWritingRole,
+      "order": post.data.politicsWritingOrder or 999,
+      "type": "Blogi",
+      "date": (post.date | dateFormat),
+      "title": post.data.title,
+      "href": post.url,
+      "summary": post.data.politicsWritingSummary or post.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% for item in collections.pub_mielipide %}
+  {% if item.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": item.data.politicsWritingRole,
+      "order": item.data.politicsWritingOrder or 999,
+      "type": "Mielipide",
+      "date": (item.date | dateFormat),
+      "title": item.data.title,
+      "href": item.url,
+      "summary": item.data.politicsWritingSummary or item.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% for item in collections.pub_kolumni %}
+  {% if item.data.politicsWritingRole %}
+    {% set _ = politicsWritingItems.push({
+      "role": item.data.politicsWritingRole,
+      "order": item.data.politicsWritingOrder or 999,
+      "type": "Kolumni",
+      "date": (item.date | dateFormat),
+      "title": item.data.title,
+      "href": item.url,
+      "summary": item.data.politicsWritingSummary or item.data.description or ""
+    }) %}
+  {% endif %}
+{% endfor %}
+{% set sortedPoliticsWritingItems = politicsWritingItems | sort(false, false, "order") %}
+{% set featuredPoliticalWritings = [] %}
+{% set featuredHybridWritings = [] %}
+{% for item in sortedPoliticsWritingItems %}
+  {% if item.role == "political" %}
+    {% set _ = featuredPoliticalWritings.push(item) %}
+  {% elif item.role == "hybrid" %}
+    {% set _ = featuredHybridWritings.push(item) %}
+  {% endif %}
+{% endfor %}
+{% set politicalVideoHighlights = [
+  {
+    "title": "Oululaisia lapsia ja nuoria koskevien tilastotietojen tarkastelua",
+    "url": "https://www.youtube.com/watch?v=7EXB54VvlsU&t=2s",
+    "thumbnail": "https://i.ytimg.com/vi/7EXB54VvlsU/hqdefault.jpg",
+    "date": "2026-01-19",
+    "label": "Asiantuntijavideo",
+    "context": "Palveluverkkokeskustelu 2026",
+    "summary": "Video näyttää, miten lasten ja nuorten tilastotietoa voi käyttää palveluverkkokeskustelussa koko kaupunkiin kohdistuvien vaikutusten arviointiin."
+  }
+] | localizeCopy(lang) %}
+{% set sortedPoliticalSpeeches = politicalSpeeches | sort(true, false, "date") %}
+{% set latestPoliticalSpeech = sortedPoliticalSpeeches[0] %}
+{% set latestInitiative = sortedInitiatives[0] %}
+{% set latestPoliticalWriting = featuredPoliticalWritings[0] %}
+{% set latestHybridWriting = featuredHybridWritings[0] %}
+{% set councilMeetingItems = councilMeetings or [] %}
+{% set councilMeetingSpeeches = [] %}
+{% set councilMeetingInitiatives = [] %}
+{% set councilMeetingQuestions = [] %}
+{% for meeting in councilMeetingItems %}
+  {% for item in meeting.speeches %}
+    {% set _ = councilMeetingSpeeches.push(item) %}
+  {% endfor %}
+  {% for item in meeting.initiatives %}
+    {% set _ = councilMeetingInitiatives.push(item) %}
+  {% endfor %}
+  {% for item in meeting.questions %}
+    {% set _ = councilMeetingQuestions.push(item) %}
+  {% endfor %}
+{% endfor %}
+
+<section class="py-5 mb-0 bg-body-tertiary" id="nykyinen-rooli">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-person-badge me-1"></i>{{ "Nykyinen rooli" | pageText(lang) }}</p>
+      <h2 class="pol-section-title">{{ "Nykyiset luottamustehtävät" | pageText(lang) }}</h2>
+      <p class="pol-section-lead mb-0">{{ "Tämä sivu kertoo poliittisen profiilin. Vaalikausien historia, vaalitulokset ja viralliset sidonnaisuustiedot löytyvät omista näkymistään." | pageText(lang) }}</p>
+    </div>
+
+    <div class="pol-role-overview-grid">
+      <article class="pol-current-card pol-role-current-card">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">{{ "Vaalikausi 2025–2029 · Kansallisen Kokoomuksen valtuustoryhmässä" | pageText(lang) }}</p>
+            <h3 class="pol-current-title">{{ "Työ jatkuu sivistyksen, palvelujen ja avoimuuden teemoissa" | pageText(lang) }}</h3>
+            <p class="text-muted small mb-0">{{ "Nykyiset luottamustehtävät asettavat politiikan käytännön toimintaympäristön." | pageText(lang) }}</p>
+          </div>
+        </div>
+        <div class="pol-role-list">
+          {% for role in currentTrustRoles %}
+          <article class="pol-role-item">
+            <p class="pol-role-area">{{ role.area | pageText(lang) }}</p>
+            <h4 class="pol-role-title">{{ role.title | pageText(lang) }}</h4>
+            <p class="pol-role-org">{{ role.org | pageText(lang) }}</p>
+          </article>
+          {% endfor %}
+        </div>
+      </article>
+
+      <div class="pol-role-link-stack">
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">{{ "Kaupunginvaltuusto" | pageText(lang) }}</span>
+          <h3>{{ "Valtuustotyö kokouksittain" | pageText(lang) }}</h3>
+          <p>{{ councilMeetingItems.length | pageText(lang) }} {{ "kokousta, joihin on kytketty" | pageText(lang) }} {{ councilMeetingSpeeches.length | pageText(lang) }} {{ "pidettyä puheenvuoroa," | pageText(lang) }} {{ councilMeetingInitiatives.length | pageText(lang) }} {{ "valtuustoaloitetta ja" | pageText(lang) }} {{ councilMeetingQuestions.length | pageText(lang) }} {{ "valtuuston kyselytunnin kysymystä." | pageText(lang) }}</p>
+          <a href="{{ "/politiikka/kaupunginvaltuusto/" | localeUrl(lang) }}">{{ "Avaa kaupunginvaltuusto" | pageText(lang) }}</a>
+        </article>
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">{{ "Sivistyslautakunta" | pageText(lang) }}</span>
+          <h3>{{ "Lautakuntatyö kokouksittain" | pageText(lang) }}</h3>
+          <p>{{ "Sivistyslautakunnan ja sitä edeltäneen sivistys- ja kulttuurilautakunnan kokoukset näyttävät, missä vaiheessa koulutuksen, varhaiskasvatuksen, kulttuurin ja palveluverkon valmisteluun on vaikutettu." | pageText(lang) }}</p>
+          <a href="{{ "/politiikka/sivistyslautakunta/" | localeUrl(lang) }}">{{ "Avaa sivistyslautakunta" | pageText(lang) }}</a>
+        </article>
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">{{ "Vaalikaudet" | pageText(lang) }}</span>
+          <h3>{{ "Kokemus rakentuu vaalikausittain" | pageText(lang) }}</h3>
+          <p>{{ "Vaalitulokset, luottamustehtävät ja sisällöt asettuvat kausittain samaan aikajanaan." | pageText(lang) }}</p>
+          <a href="{{ "/politiikka/vaalikaudet/" | localeUrl(lang) }}">{{ "Avaa vaalikaudet" | pageText(lang) }}</a>
+        </article>
+        <article class="pol-route-card">
+          <span class="pol-route-kicker">{{ "Avoimuus" | pageText(lang) }}</span>
+          <h3>{{ "Sidonnaisuudet ja vaalirahoitus samalla sivulla" | pageText(lang) }}</h3>
+          <p>{{ "Viralliset rekisterilinkit, ilmoitukset ja keskeiset sidonnaisuustiedot on koottu tarkistettavaksi yhdelle sivulle." | pageText(lang) }}</p>
+          <a href="{{ "/poliittinen-avoimuus/" | localeUrl(lang) }}">{{ "Avaa avoimuustiedot" | pageText(lang) }}</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mb-0" id="paalinjat">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-signpost-split me-1"></i>{{ "Poliittiset päälinjat" | pageText(lang) }}</p>
+      <h2 class="pol-section-title">{{ "Neljä kuratoitua kokonaisuutta, joissa työ jatkuu vuodesta toiseen" | pageText(lang) }}</h2>
+      <p class="pol-section-lead mb-0">{{ "Päälinjat kokoavat puheenvuorot, valtuustoaloitteet, mielipidekirjoitukset ja blogitekstit yhtenäiseksi aikajanaksi. Jokainen sivu näyttää argumentaation etenemisen ja perustelut, ei pelkkää artikkelilistaa." | pageText(lang) }}</p>
+    </div>
+
+    <div class="pol-topic-grid">
+      {% for theme in politicsThemePages %}
+      <a class="pol-topic-card pol-topic-card--featured" href="{{ theme.permalink | localeUrl(lang) }}" style="--pol-topic-accent: {{ theme.accent }}">
+        <span class="pol-topic-type">{{ theme.eyebrow | pageText(lang) }}</span>
+        <h3>{{ theme.title | pageText(lang) }}</h3>
+        <p>{{ theme.description | pageText(lang) }}</p>
+        <span class="pol-topic-source">{{ "Aikajana, perustelut ja valikoidut lähteet" | pageText(lang) }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mb-0 bg-body-tertiary" id="naytto">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-lightning-charge me-1"></i>{{ "Näyttö" | pageText(lang) }}</p>
+      <h2 class="pol-section-title">{{ "Miltä linja näyttää käytännössä" | pageText(lang) }}</h2>
+      <p class="pol-section-lead mb-0">{{ "Tässä on tiivis näyte aineistosta. Video nostetaan tarkoituksella suuremmaksi, koska se kertoo nopeasti, millä tavalla dataa ja perusteluja käytän poliittisessa keskustelussa." | pageText(lang) }}</p>
+    </div>
+
+    <div class="pol-evidence-grid">
+      {% set video = politicalVideoHighlights[0] %}
+      {% if video %}
+      <article class="pol-evidence-card pol-evidence-card--feature">
+        <a href="{{ video.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="pol-evidence-thumb-link video-preview" aria-label="Katso video: {{ video.title }}">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title | pageText(lang) }}" class="pol-evidence-thumb" loading="lazy" decoding="async">
+        </a>
+        <div class="pol-evidence-copy">
+          <div class="pol-evidence-meta">
+            <span>{{ video.label | pageText(lang) }}</span>
+            <span>{{ video.date | dateFormat | pageText(lang) }}</span>
+          </div>
+          <p class="pol-evidence-kicker">{{ video.context | pageText(lang) }}</p>
+          <h3 class="pol-evidence-title"><a href="{{ video.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ video.title | pageText(lang) }}</a></h3>
+          <p class="pol-evidence-summary">{{ video.summary | pageText(lang) }}</p>
+          <a href="{{ video.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm rounded-pill px-3">{{ "Katso video" | pageText(lang) }} <i class="bi bi-box-arrow-up-right ms-1" aria-hidden="true"></i></a>
+        </div>
+      </article>
+      {% endif %}
+
+      <div class="pol-evidence-side">
+        {% if latestPoliticalSpeech %}
+        <article class="pol-evidence-card">
+          {% set latestSpeechIsCouncil = latestPoliticalSpeech.data.speechContext == "valtuusto" or latestPoliticalSpeech.data.speechContext == "kyselytunti" %}
+          <div class="pol-evidence-meta">
+            <span>{{ latestPoliticalSpeech | topicTypeLabel | pageText(lang) }}</span>
+            <span>{{ latestPoliticalSpeech.date | dateFormat | pageText(lang) }}</span>
+          </div>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalSpeech.url | localeUrl(lang) }}">{{ latestPoliticalSpeech.data.title | pageText(lang) }}</a></h3>
+          <p class="pol-evidence-summary">{{ "Uusin politiikkaan liittyvä puheenvuoro valtuustosta tai yhteiskunnallisesta tilaisuudesta." | pageText(lang) }}</p>
+          <a href="{{ "/valtuustotyo/#puheet" if latestSpeechIsCouncil else "/lausunnot/#julkiset-puheet" }}" class="pol-inline-link">{{ "Kaikki valtuustopuheenvuorot" if latestSpeechIsCouncil else "Kaikki julkiset puheet" | pageText(lang) }}</a>
+        </article>
+        {% endif %}
+        {% if latestInitiative %}
+        <article class="pol-evidence-card">
+          <div class="pol-evidence-meta">
+            <span>{{ "Valtuustoaloite" | pageText(lang) }}</span>
+            <span>{{ latestInitiative.date | dateFormat | pageText(lang) }}</span>
+          </div>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestInitiative.url | localeUrl(lang) }}">{{ latestInitiative.data.title | pageText(lang) }}</a></h3>
+          <p class="pol-evidence-summary">{{ "Valtuustoaloitteissa näkyy, miten periaatteet muuttuvat kirjallisiksi avauksiksi ja seurattaviksi päätöksiksi." | pageText(lang) }}</p>
+          <a href="{{ "/valtuustotyo/#aloitteet" | localeUrl(lang) }}" class="pol-inline-link">{{ "Kaikki valtuustoaloitteet" | pageText(lang) }}</a>
+        </article>
+        {% endif %}
+        {% if latestPoliticalWriting %}
+        <article class="pol-evidence-card">
+          <div class="pol-evidence-meta">
+            <span>{{ latestPoliticalWriting.type | pageText(lang) }}</span>
+            <span>{{ latestPoliticalWriting.date | pageText(lang) }}</span>
+          </div>
+          <h3 class="pol-evidence-title pol-evidence-title--small"><a href="{{ latestPoliticalWriting.href | localeUrl(lang) }}">{{ latestPoliticalWriting.title | pageText(lang) }}</a></h3>
+          <p class="pol-evidence-summary">{{ latestPoliticalWriting.summary | pageText(lang) }}</p>
+          <a href="{{ "/kirjoitukset/?opinions=political#mielipiteet" | localeUrl(lang) }}" class="pol-inline-link">{{ "Poliittiset mielipiteet" | pageText(lang) }}</a>
+        </article>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mb-0" id="kirjoitukset">
+  <div class="site-shell">
+    <div class="pol-section-head">
+      <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-journal-text me-1"></i>{{ "Kirjoitukset" | pageText(lang) }}</p>
+      <h2 class="pol-section-title">{{ "Kirjoitukset avaavat päätösten taustoja" | pageText(lang) }}</h2>
+      <p class="pol-section-lead mb-0">{{ "Mielipidekirjoituksissa ja blogiteksteissä Jari Laru käsittelee sivistystä, palveluverkkoa, kaupunkikehitystä ja avoimuutta laajemmin kuin yksittäisessä kokouspuheenvuorossa on yleensä mahdollista." | pageText(lang) }}</p>
+    </div>
+
+    <div class="pol-writing-focus-grid">
+      <article class="pol-current-card pol-writing-focus-card pol-writing-focus-card--primary">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">{{ "Kannanotot" | pageText(lang) }}</p>
+            <h3 class="pol-current-title">{{ "Kirjoitukset päätöksenteosta ja Oulun palveluista" | pageText(lang) }}</h3>
+            <p class="text-muted small mb-0">{{ featuredPoliticalWritings.length | pageText(lang) }} {{ "tekstiä, joissa sivistys, palveluverkko, kaupunkikehitys tai päätöksenteon avoimuus on pääaiheena." | pageText(lang) }}</p>
+          </div>
+        </div>
+        <div class="pol-writing-list">
+          {% for item in featuredPoliticalWritings %}
+          {% if loop.index <= 3 %}
+          <article class="pol-writing-item">
+            <div class="pol-writing-meta">
+              <span class="pol-writing-type">{{ item.type | pageText(lang) }}</span>
+              <span class="small text-muted">{{ item.date | pageText(lang) }}</span>
+            </div>
+            <h4 class="pol-writing-title"><a href="{{ item.href | localeUrl(lang) }}">{{ item.title | pageText(lang) }}</a></h4>
+            <p class="pol-writing-summary mb-0">{{ item.summary | pageText(lang) }}</p>
+          </article>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <a href="{{ "/kirjoitukset/?opinions=political#mielipiteet" | localeUrl(lang) }}" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">{{ "Avaa kannanotot" | pageText(lang) }}</a>
+      </article>
+
+      <article class="pol-current-card pol-writing-focus-card">
+        <div class="pol-current-head">
+          <div>
+            <p class="pol-current-kicker mb-1">{{ "Asiantuntijuus" | pageText(lang) }}</p>
+            <h3 class="pol-current-title">{{ "Yliopistotyö tuo asiantuntijuutta myös politiikkaan" | pageText(lang) }}</h3>
+            <p class="text-muted small mb-0">{{ featuredHybridWritings.length | pageText(lang) }} {{ "tekstiä, joissa opetus, tutkimus tai teknologia auttaa avaamaan julkisen päätöksenteon kysymyksiä." | pageText(lang) }}</p>
+          </div>
+        </div>
+        {% if latestHybridWriting %}
+        <div class="pol-writing-list">
+          {% for item in featuredHybridWritings %}
+          {% if loop.index <= 2 %}
+            <article class="pol-writing-item">
+              <div class="pol-writing-meta">
+                <span class="pol-writing-type">{{ item.type | pageText(lang) }}</span>
+                <span class="small text-muted">{{ item.date | pageText(lang) }}</span>
+              </div>
+              <h4 class="pol-writing-title"><a href="{{ item.href | localeUrl(lang) }}">{{ item.title | pageText(lang) }}</a></h4>
+              <p class="pol-writing-summary mb-0">{{ item.summary | pageText(lang) }}</p>
+            </article>
+          {% endif %}
+          {% endfor %}
+        </div>
+        {% endif %}
+        <a href="{{ "/kirjoitukset/?opinions=hybrid#mielipiteet" | localeUrl(lang) }}" class="btn btn-outline-primary btn-sm rounded-pill px-3 mt-3">{{ "Avaa asiantuntijataustaiset kirjoitukset" | pageText(lang) }}</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 mb-0 bg-body-tertiary" id="syvenna">
+  <div class="site-shell">
+    <div class="pol-archive-band pol-deep-routes">
+      <div class="pol-archive-copy">
+        <p class="pol-eyebrow pol-eyebrow--dark mb-1"><i class="bi bi-compass me-1"></i>{{ "Syvennä" | pageText(lang) }}</p>
+        <h2 class="pol-section-title mb-2">{{ "Kun haluat nähdä koko aineiston" | pageText(lang) }}</h2>
+        <p class="mb-0">{{ "Nykyinen rooli, kokoukset, vaalikaudet ja avoimuustiedot täydentävät toisiaan. Niiden kautta näkee sekä poliittisen linjan että konkreettisen työn." | pageText(lang) }}</p>
+      </div>
+      <div class="pol-archive-links">
+        <a href="{{ "/politiikka/vaalikaudet/" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Vaalikaudet" | pageText(lang) }}</strong>
+          <span>{{ "Luottamustoimet, vaalitulokset ja sisällöt vaalikausittain." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/valtuustotyo/#puheet" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Valtuustopuheenvuorot" | pageText(lang) }}</strong>
+          <span>{{ "Kaupunginvaltuustossa pidetyt puheenvuorot." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/lausunnot/#julkiset-puheet" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Julkiset puheet" | pageText(lang) }}</strong>
+          <span>{{ "Yleisötilaisuuksissa, juhlapuheissa ja yliopistoyhteisössä pidetyt puheet." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/valtuustotyo/#aloitteet" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Valtuustoaloitteet" | pageText(lang) }}</strong>
+          <span>{{ "Valtuustoaloitteet ja niiden eteneminen." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/kirjoitukset/?opinions=political#mielipiteet" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Poliittiset mielipiteet" | pageText(lang) }}</strong>
+          <span>{{ "Lehdissä julkaistut kannanotot ja poliittiset kirjoitukset." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/poliittinen-avoimuus/" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Sidonnaisuudet ja vaalirahoitus" | pageText(lang) }}</strong>
+          <span>{{ "Läpinäkyvyyden kannalta keskeiset ilmoitukset ja rekisterilinkit." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/politiikka/kaupunginvaltuusto/" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Kaupunginvaltuusto" | pageText(lang) }}</strong>
+          <span>{{ "Kokoukset, pöytäkirjat, videot ja omat sisällöt samassa kontekstissa." | pageText(lang) }}</span>
+        </a>
+        <a href="{{ "/politiikka/sivistyslautakunta/" | localeUrl(lang) }}" class="pol-archive-link">
+          <strong>{{ "Sivistyslautakunta" | pageText(lang) }}</strong>
+          <span>{{ "Lautakuntakokoukset, pöytäkirjat ja sivistyspalvelujen valmisteluun liittyvät sisällöt." | pageText(lang) }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // POLITIIKKA-SSR-01: previous IIFE fetched /data/publications.json,
+  // filtered by politicalSpeechEvents, and attempted to render a
+  // political-speeches table into #political-speeches-table-body /
+  // -info / -pagination. Those DOM targets never existed in the
+  // rendered HTML (audit confirmed 0 consumers repo-wide), so the
+  // fetch + row builder + pagination were orphaned dead code writing
+  // to nowhere. The whole pipeline is deleted. Only the unrelated
+  // mobile-disclosure interaction is retained below.
+  //
+  // Build-time politicalSpeechEvents + politicalSpeeches remain in
+  // use for the SSR evidence-showcase card (latestPoliticalSpeech
+  // via sortedPoliticalSpeeches). Do not remove them.
+  (() => {
+    const mobileQuery = window.matchMedia('(max-width: 767.98px)');
+    const mobileDisclosures = Array.from(document.querySelectorAll('[data-pol-mobile-collapse]'));
+
+    function applyPoliticsMobileDisclosureState() {
+      mobileDisclosures.forEach((disclosure) => {
+        if (!mobileQuery.matches) {
+          disclosure.open = true;
+          disclosure.dataset.mobilePrepared = 'false';
+          return;
+        }
+        if (disclosure.dataset.mobilePrepared === 'true') return;
+        disclosure.open = false;
+        disclosure.dataset.mobilePrepared = 'true';
+      });
+    }
+
+    applyPoliticsMobileDisclosureState();
+    mobileQuery.addEventListener('change', applyPoliticsMobileDisclosureState);
+  })();
+</script>

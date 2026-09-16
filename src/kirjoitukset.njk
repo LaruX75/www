@@ -1,7 +1,10 @@
 ---
 layout: base.njk
-title: Blogi, mielipidekirjoitukset ja kolumnit
-description: "Jari Larun blogikirjoitukset, mielipidekirjoitukset ja kolumnit koottuna yhteen hakuun ja suodatukseen sopivaksi näkymäksi. Painopisteet: opetus, tekoäly, koulutus, kuntapolitiikka ja avoin tiede."
+title: 'Blogi, mielipidekirjoitukset ja kolumnit'
+description: >-
+  Jari Larun blogikirjoitukset, mielipidekirjoitukset ja kolumnit koottuna
+  yhteen hakuun ja suodatukseen sopivaksi näkymäksi. Painopisteet: opetus,
+  tekoäly, koulutus, kuntapolitiikka ja avoin tiede.
 permalink: /kirjoitukset/
 translationKey: writings_texts
 pageStyles:
@@ -12,147 +15,17 @@ pageScripts:
 suppressTableFilters: true
 schemaType: CollectionPage
 schemaAbout:
-  - "@type": "Thing"
-    name: "Blogikirjoitukset"
-    description: "Blogissa julkaistut kirjoitukset opetuksesta, teknologiasta ja yhteiskunnasta."
-  - "@type": "Thing"
-    name: "Mielipidekirjoitukset"
-    description: "Lehdissä julkaistut kannanotot ja mielipidetekstit."
-  - "@type": "Thing"
-    name: "Kolumnit ja blogivierailut"
-    description: "Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa."
+  - '@type': Thing
+    name: Blogikirjoitukset
+    description: >-
+      Blogissa julkaistut kirjoitukset opetuksesta, teknologiasta ja
+      yhteiskunnasta.
+  - '@type': Thing
+    name: Mielipidekirjoitukset
+    description: Lehdissä julkaistut kannanotot ja mielipidetekstit.
+  - '@type': Thing
+    name: Kolumnit ja blogivierailut
+    description: Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa.
+templateEngineOverride: njk
 ---
-{% set pageModel = finnishWritingsPage %}
-{% set blogCount = pageModel.blogCount %}
-{% set opinionCount = pageModel.opinionCount %}
-{% set columnCount = pageModel.columnCount %}
-{% set findExploreScope = "fi" %}
-{% set findExploreLang = "fi" %}
-{% set findExploreSearchLanguage = "fi" %}
-{% set findExploreLanguageFilter = "Suomi" %}
-{% set findExploreEyebrow = "Find & Explore" %}
-{% set findExploreTitle = "Tutki kirjoituksia" %}
-{% set findExploreDescription = "Hae blogikirjoituksia, mielipiteitä ja kolumneja yhdestä Pagefind-pohjaisesta näkymästä. Alla olevat nostot toimivat myös ilman JavaScriptiä." %}
-{% set findExploreSearchLabel = "Hae aiheella, otsikolla tai julkaisulla" %}
-{% set findExplorePlaceholder = "Esim. tekoäly, kampus, lähijuna, kouluverkko..." %}
-{% set findExploreTypeLabel = "Sisältölaji" %}
-{% set findExploreAllTypesLabel = "Kaikki kirjoitukset" %}
-{% set findExploreYearLabel = "Vuosi" %}
-{% set findExploreAllYearsLabel = "Kaikki vuodet" %}
-{% set findExploreResetLabel = "Tyhjennä" %}
-{% set findExploreMoreLabel = "Näytä lisää" %}
-{% set findExploreInitialStatus = "Kirjoita hakusana tai rajaa tuloksia. Avausosiot toimivat myös ilman hakua." %}
-{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Tällä sivulla näkyvät silti uusimmat nostot ja normaalit linkit kirjoituksiin." %}
-{% set findExploreTypeOptions = [
-  { value: "opinion", label: "Mielipiteet", count: opinionCount },
-  { value: "column", label: "Kolumnit", count: columnCount },
-  { value: "blogPost", label: "Blogi", count: blogCount }
-] %}
-{% set findExploreYears = [] %}
-{% for item in pageModel.items %}
-  {% if item.year and (item.year not in findExploreYears) %}
-    {% set findExploreYears = findExploreYears.concat([item.year]) %}
-  {% endif %}
-{% endfor %}
-
-<section class="kynasta-hero py-3 py-lg-4">
-  <div class="site-shell">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-8">
-        <p class="text-uppercase small text-muted mb-2">Kirjoitukset</p>
-        <h1 class="display-6 fw-bold mb-2">Blogi, mielipidekirjoitukset ja kolumnit</h1>
-        <p class="text-muted mb-3">Vapaamuotoiset omat tekstit yhdellä sivulla: {{ blogCount }} blogikirjoitusta, {{ opinionCount }} mielipidekirjoitusta ja {{ columnCount }} kolumnia.</p>
-        <div class="d-flex flex-wrap gap-2">
-          <a class="nav-link" href="#mielipiteet">Mielipiteet <span class="nav-count">{{ opinionCount }}</span></a>
-          <a class="nav-link" href="#kolumnit">Kolumnit <span class="nav-count">{{ columnCount }}</span></a>
-          <a class="nav-link" href="#blogi">Blogi <span class="nav-count">{{ blogCount }}</span></a>
-        </div>
-        <p class="small text-muted mt-3 mb-0">
-          Etsitkö puheenvuoroja, valtuustoaloitteita tai lausuntoja? <a href="/kynasta/">Palaa Kynästä-hubiin</a> — löydät sieltä kaikki sisältölajit.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-{% include "find-explore-writings.njk" %}
-
-<section id="mielipiteet" class="bg-body-tertiary py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-chat-square-quote-fill me-2"></i>Mielipidekirjoitukset</h2>
-            <p class="text-muted mb-0">Uusimmat kannanotot politiikasta, palveluista, opetuksesta ja teknologiasta.</p>
-          </div>
-          <span class="badge kynasta-section-count">{{ opinionCount }}</span>
-        </div>
-        <div class="row g-3 mb-4">
-          <div class="col-md-4">
-            <div class="opinion-role-card h-100">
-              <p class="opinion-role-kicker mb-1">Päätöksenteko</p>
-              <h3 class="h6 mb-1">Politiikka ja palvelut</h3>
-              <p class="small text-muted mb-0">{{ pageModel.politicalOpinionCount }} kirjoitusta.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="opinion-role-card h-100">
-              <p class="opinion-role-kicker mb-1">Asiantuntijatausta</p>
-              <h3 class="h6 mb-1">Opetus, tutkimus ja teknologia</h3>
-              <p class="small text-muted mb-0">{{ pageModel.expertOpinionCount }} kirjoitusta.</p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="opinion-role-card h-100">
-              <p class="opinion-role-kicker mb-1">Näkökulmat yhdessä</p>
-              <h3 class="h6 mb-1">Kun työtausta liittyy päätöksiin</h3>
-              <p class="small text-muted mb-0">{{ pageModel.hybridOpinionCount }} kirjoitusta.</p>
-            </div>
-          </div>
-        </div>
-        {% set items = pageModel.openingOpinionItems %}
-        {% set emptyLabel = "Mielipidekirjoituksia ei löytynyt." %}
-        {% include "writings-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="kolumnit" class="py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-pen-fill me-2"></i>Kolumnit ja blogivierailut</h2>
-            <p class="text-muted mb-0">Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa.</p>
-          </div>
-          <span class="badge kynasta-section-count">{{ columnCount }}</span>
-        </div>
-        {% set items = pageModel.openingColumnItems %}
-        {% set emptyLabel = "Kolumneja ei löytynyt." %}
-        {% include "writings-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="blogi" class="bg-body-tertiary py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-journal-text me-2"></i>Blogi</h2>
-            <p class="text-muted mb-0">Uusimmat blogikirjoitukset opetuksesta, teknologiasta, yliopistoarjesta ja yhteiskunnasta.</p>
-          </div>
-          <span class="badge kynasta-section-count">{{ blogCount }}</span>
-        </div>
-        {% set items = pageModel.openingBlogItems %}
-        {% set emptyLabel = "Blogikirjoituksia ei löytynyt." %}
-        {% include "writings-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
+{% include "pages/writings.njk" %}

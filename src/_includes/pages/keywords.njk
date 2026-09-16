@@ -1,0 +1,104 @@
+{% set topKeywords = collections.keywordListByCount | take(48) %}
+
+<section class="taxonomy-index taxonomy-index--keywords">
+  <div class="site-shell">
+    <header class="taxonomy-index-hero">
+      <div>
+        <p class="taxonomy-kicker">{{ "Tarkempi hakureitti" | pageText(lang) }}</p>
+        <h1>{{ "Avainsanat" | pageText(lang) }}</h1>
+        <p class="taxonomy-index-lead">{{ "Avainsanat auttavat löytämään samaan paikkaan, käsitteeseen, hankkeeseen tai ilmiöön liittyvät sisällöt eri puolilta sivustoa." | pageText(lang) }}</p>
+      </div>
+      <aside class="taxonomy-index-summary" aria-label="{{ "Avainsanojen yhteenveto" | pageText(lang) }}">
+        <span class="taxonomy-stat-number">{{ collections.keywordList.length | pageText(lang) }}</span>
+        <span class="taxonomy-stat-label">{{ "avainsanaa" | pageText(lang) }}</span>
+        <span class="taxonomy-stat-range">{{ collections.categoryList.length | pageText(lang) }} {{ "kategoriaa" | pageText(lang) }}</span>
+      </aside>
+    </header>
+
+    <section class="taxonomy-index-section" aria-labelledby="top-keywords-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">{{ "Useimmin toistuvat" | pageText(lang) }}</p>
+        <h2 id="top-keywords-title">{{ "Avainsanapilvi" | pageText(lang) }}</h2>
+        <p>{{ "Pilvi nostaa esiin yleisimmät avainsanat. Se toimii nopeana reittinä silloin, kun etsit esimerkiksi paikkaa, teknologiaa, hanketta tai toistuvaa poliittista teemaa." | pageText(lang) }}</p>
+      </div>
+
+      <div class="taxonomy-term-cloud taxonomy-keyword-cloud">
+        {% for key in topKeywords %}
+          <a class="taxonomy-keyword-cloud-item{% if key.count >= 10 %} taxonomy-keyword-cloud-item--strong{% elif key.count >= 5 %} taxonomy-keyword-cloud-item--medium{% endif %}" href="{{ "/en/keywords/" if lang == "en" else "/avainsanat/" }}{{ key.slug }}/">
+            <span>{{ key.name | pageText(lang) }}</span>
+            <small>{{ key.count | pageText(lang) }}</small>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="taxonomy-index-layout">
+      <main class="taxonomy-index-main">
+        <section class="taxonomy-index-section" aria-labelledby="all-keywords-title">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">{{ "Kaikki avainsanat" | pageText(lang) }}</p>
+            <h2 id="all-keywords-title">{{ "Aakkosellinen hakemisto" | pageText(lang) }}</h2>
+            <p>{{ "Jos etsit yksittäistä aihetta, tämä lista on pilveä varmempi reitti. Avainsanasivulla näet myös, mihin kategorioihin sama sisältö liittyy." | pageText(lang) }}</p>
+          </div>
+
+          <div class="taxonomy-index-list taxonomy-index-list--keywords">
+            {% for key in collections.keywordList %}
+              <a class="taxonomy-index-list-item" href="{{ "/en/keywords/" if lang == "en" else "/avainsanat/" }}{{ key.slug }}/">
+                <span>{{ key.name | pageText(lang) }}</span>
+                <small>{{ key.count | pageText(lang) }}</small>
+              </a>
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+
+      <aside class="taxonomy-index-aside" aria-labelledby="keyword-guide-title">
+        <section class="taxonomy-index-section taxonomy-index-section--quiet">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">{{ "Miten tätä kannattaa käyttää?" | pageText(lang) }}</p>
+            <h2 id="keyword-guide-title">{{ "Kategoria vai avainsana?" | pageText(lang) }}</h2>
+            <p>{{ "Kategoria näyttää laajemman kokonaisuuden. Avainsana sopii tarkempaan hakuun, kun etsit esimerkiksi Jääliin, Raksilaan, tekoälylukutaitoon tai palveluverkkoon liittyviä sisältöjä." | pageText(lang) }}</p>
+          </div>
+
+          <a class="taxonomy-index-more-link" href="{{ "/kategoriat/" | localeUrl(lang) }}">{{ "Siirry kategorioihin" | pageText(lang) }}</a>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% set taxonomyBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set structuredKeywords = collections.keywordListByCount | take(80) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Avainsanat",
+  "description": "Jarilaru.fi:n avainsanat toimivat tarkempina reitteinä paikkoihin, käsitteisiin, hankkeisiin ja toistuviin teemoihin.",
+  "url": {{ (page.url | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "{{ 'en-GB' if lang == 'en' else 'fi-FI' }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ taxonomyBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Yleisimmät avainsanat",
+    "numberOfItems": {{ structuredKeywords.length }},
+    "itemListElement": [
+      {% for key in structuredKeywords %}
+      {% set keywordUrl = "/avainsanat/" ~ key.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ key.name | jsonSafe | safe }},
+          "url": {{ (keywordUrl | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

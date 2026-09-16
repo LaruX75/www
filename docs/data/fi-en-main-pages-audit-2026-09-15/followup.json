@@ -1,0 +1,224 @@
+[
+  {
+    "url": "/julkaisut/",
+    "state": {
+      "url": "http://127.0.0.1:4187/julkaisut/?yearOrder=year-desc&authorSort=use-year&q=learning",
+      "controls": [
+        {
+          "name": "q",
+          "value": "learning"
+        },
+        {
+          "name": "type",
+          "value": "",
+          "options": [
+            {
+              "text": "Kaikki ryhmät",
+              "value": ""
+            },
+            {
+              "text": "A - Vertaisarvioidut tieteelliset artikkelit (29)",
+              "value": "A"
+            },
+            {
+              "text": "B - Vertaisarvioimattomat tieteelliset kirjoitukset (9)",
+              "value": "B"
+            },
+            {
+              "text": "D - Ammattiyhteisölle suunnatut julkaisut (6)",
+              "value": "D"
+            },
+            {
+              "text": "E - Suurelle yleisölle suunnatut julkaisut (5)",
+              "value": "E"
+            },
+            {
+              "text": "C - Tieteelliset kirjat (1)",
+              "value": "C"
+            },
+            {
+              "text": "G - Opinnäytteet (1)",
+              "value": "G"
+            }
+          ]
+        },
+        {
+          "name": "yearOrder",
+          "value": "year-desc",
+          "options": [
+            {
+              "text": "Uusin ensin",
+              "value": "year-desc"
+            },
+            {
+              "text": "Vanhin ensin",
+              "value": "year-asc"
+            }
+          ]
+        },
+        {
+          "name": "authorSort",
+          "value": "use-year",
+          "options": [
+            {
+              "text": "Vuoden mukaan",
+              "value": "use-year"
+            },
+            {
+              "text": "Tekijät A–Ö",
+              "value": "author-asc"
+            },
+            {
+              "text": "Tekijät Ö–A",
+              "value": "author-desc"
+            }
+          ]
+        },
+        {
+          "name": "quality",
+          "value": "",
+          "options": [
+            {
+              "text": "Kaikki",
+              "value": ""
+            },
+            {
+              "text": "Vertaisarvioitu (37)",
+              "value": "peer-reviewed"
+            },
+            {
+              "text": "Open access (33)",
+              "value": "open-access"
+            }
+          ]
+        }
+      ],
+      "status": "42 tulosta"
+    },
+    "raw": {
+      "scopes": {
+        "en": 57,
+        "fi": 57
+      },
+      "fi": 42,
+      "en": 42
+    }
+  },
+  {
+    "url": "/en/publications/",
+    "state": {
+      "url": "http://127.0.0.1:4187/en/publications/?yearOrder=year-desc&authorSort=use-year&q=learning",
+      "controls": [
+        {
+          "name": "q",
+          "value": "learning"
+        },
+        {
+          "name": "type",
+          "value": "",
+          "options": [
+            {
+              "text": "All groups",
+              "value": ""
+            },
+            {
+              "text": "A - Peer-reviewed scientific articles (29)",
+              "value": "A"
+            },
+            {
+              "text": "B - Non-peer-reviewed scientific writings (9)",
+              "value": "B"
+            },
+            {
+              "text": "D - Professional publications (6)",
+              "value": "D"
+            },
+            {
+              "text": "E - General audience publications (5)",
+              "value": "E"
+            },
+            {
+              "text": "C - Scientific books (1)",
+              "value": "C"
+            },
+            {
+              "text": "G - Theses (1)",
+              "value": "G"
+            }
+          ]
+        },
+        {
+          "name": "yearOrder",
+          "value": "year-desc",
+          "options": [
+            {
+              "text": "Newest first",
+              "value": "year-desc"
+            },
+            {
+              "text": "Oldest first",
+              "value": "year-asc"
+            }
+          ]
+        },
+        {
+          "name": "authorSort",
+          "value": "use-year",
+          "options": [
+            {
+              "text": "By year",
+              "value": "use-year"
+            },
+            {
+              "text": "Authors A-Z",
+              "value": "author-asc"
+            },
+            {
+              "text": "Authors Z-A",
+              "value": "author-desc"
+            }
+          ]
+        },
+        {
+          "name": "quality",
+          "value": "",
+          "options": [
+            {
+              "text": "All",
+              "value": ""
+            },
+            {
+              "text": "Peer-reviewed (37)",
+              "value": "peer-reviewed"
+            },
+            {
+              "text": "Open access (33)",
+              "value": "open-access"
+            }
+          ]
+        }
+      ],
+      "status": "No results found."
+    },
+    "raw": {
+      "scopes": {
+        "en": 57,
+        "fi": 57
+      },
+      "fi": 42,
+      "en": 42
+    }
+  },
+  {
+    "check": "desktop-work-keyboard",
+    "lang": "Fi",
+    "expanded": "true",
+    "visible": true
+  },
+  {
+    "check": "desktop-work-keyboard",
+    "lang": "En",
+    "expanded": "true",
+    "visible": true
+  }
+]

@@ -4,185 +4,28 @@ layout: base.njk
 permalink: /yhteiskunnallinen-vuorovaikutus/
 lang: fi
 translationKey: societal_interaction
-description: "Jari Larun yhteiskunnallinen vuorovaikutus: koulutukset, lausunnot, media, avoimet materiaalit ja päätöksenteko, joissa tutkimus ja opetus kohtaavat käytännön."
+description: >-
+  Jari Larun yhteiskunnallinen vuorovaikutus: koulutukset, lausunnot, media,
+  avoimet materiaalit ja päätöksenteko, joissa tutkimus ja opetus kohtaavat
+  käytännön.
 pageStyles:
   - /css/societal-engagement-page.css
 templateEngineOverride: njk
 schemaType: CollectionPage
 schemaAbout:
-  - "@type": Thing
+  - '@type': Thing
     name: Yhteiskunnallinen vuorovaikutus
-    description: Tutkimustiedon ja opetuksen vieminen koulutuksiin, materiaaleihin, julkiseen keskusteluun, valmisteluun ja päätöksentekoon.
-  - "@type": Thing
+    description: >-
+      Tutkimustiedon ja opetuksen vieminen koulutuksiin, materiaaleihin,
+      julkiseen keskusteluun, valmisteluun ja päätöksentekoon.
+  - '@type': Thing
     name: Koulutuksen kehittäminen
-    description: Tutkimukseen perustuva kehittämistyö opettajien, koulujen ja verkostojen kanssa.
+    description: >-
+      Tutkimukseen perustuva kehittämistyö opettajien, koulujen ja verkostojen
+      kanssa.
 schemaMentions:
-  - "@type": CollegeOrUniversity
+  - '@type': CollegeOrUniversity
     name: Oulun yliopisto
-    url: https://www.oulu.fi/
+    url: 'https://www.oulu.fi/'
 ---
-
-{% set statementItems = [] %}
-{% for item in (collections.publications or []) %}
-  {% if item.data.type == "lausunto" %}
-    {% set _ = (statementItems.push(item), null) %}
-  {% endif %}
-{% endfor %}
-{% set featuredStatement = statementItems[0] %}
-{% set featuredPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
-{% set featuredPresentationTitle = featuredPresentation.title or "" %}
-{% set featuredCouncilSpeech = false %}
-{% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
-    {% if not featuredCouncilSpeech %}
-        {% set speechCtx = item.data.speechContext or "" %}
-        {% set forums = item.data.forum or [] %}
-        {% set isCouncil = speechCtx == "valtuusto" or speechCtx == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
-        {% if isCouncil %}
-            {% set featuredCouncilSpeech = item %}
-        {% endif %}
-    {% endif %}
-{% endfor %}
-{% set featuredInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
-{% set engagementTopicSlugs = ["julkinen-asiantuntijuus-mediassa", "avoin-tiede-ja-avoimet-oppimateriaalit", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "tekoalylukutaito"] %}
-
-<section class="engagement-hero">
-  <div class="site-shell py-5">
-    <div class="engagement-hero-layout">
-      <div>
-        <p class="engagement-eyebrow mb-2"><i class="bi bi-diagram-3-fill me-1"></i>Yliopiston kolmas tehtävä</p>
-        <h1 class="engagement-hero-title mb-3">Tutkimuksesta koulutuksiin, mediaan ja päätöksentekoon</h1>
-        <p class="engagement-hero-lead mb-4">Jari Larun tutkimus- ja opetustyö kohtaa opettajat, koulutuksen kehittäjät, median, valmistelun ja päätöksenteon. Yhteiskunnallinen vuorovaikutus rakentuu kolmesta kanavasta, joissa sama asiantuntemus toistuu eri muodoissaan.</p>
-        <div class="d-flex flex-wrap gap-2">
-          <a class="btn btn-primary rounded-pill px-4" href="/tyoni-yliopistonlehtorina/">Avaa yliopistotyö</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="engagement-section" id="alueet">
-  <div class="site-shell">
-    <div class="engagement-section-head">
-      <p class="engagement-eyebrow mb-1"><i class="bi bi-bullseye me-1"></i>Kolme aluetta</p>
-      <h2>Koulutus, julkinen keskustelu ja päätöksenteko</h2>
-      <p class="mb-0">Tutkimustieto ja opetusosaaminen leviävät kolmea reittiä: opettajankoulutuksen ja täydennyskoulutusten kautta, median ja lausuntojen välityksellä, sekä paikallisen päätöksenteon prosesseissa.</p>
-    </div>
-
-    <div class="engagement-area-grid">
-      <article class="engagement-area-card engagement-area-card--materials">
-        <span class="engagement-area-icon"><i class="bi bi-easel2-fill"></i></span>
-        <p class="engagement-area-kicker">Koulutus ja materiaalit</p>
-        <h3>Tekoäly, digipedagogiikka ja oppimisteknologia opetuksen arkeen</h3>
-        <p>Täydennyskoulutukset, avoimet materiaalit ja opettajankoulutuksen käytännöt vievät tutkimustietoa opettajille, kouluille ja organisaatioille. Sama sisältö palvelee yliopistoluentoja ja Larux t:mi:n tilauskoulutuksia.</p>
-        {% if featuredPresentation and featuredPresentationTitle %}
-        <div class="engagement-area-latest">
-          <p class="engagement-area-latest-kicker">Tuorein esitys</p>
-          <a href="{{ featuredPresentation.url }}" target="_blank" rel="noopener noreferrer" class="engagement-area-latest-link">{{ featuredPresentationTitle | truncate(100) }}</a>
-          {% if featuredPresentation.date %}<p class="engagement-area-latest-meta">{{ featuredPresentation.date | dateFormat }}{% if featuredPresentation.location %} · {{ featuredPresentation.location }}{% endif %}</p>{% endif %}
-        </div>
-        {% endif %}
-        <a href="/esitykset/" class="engagement-area-link">Kaikki esitykset ja materiaalit <span aria-hidden="true">→</span></a>
-      </article>
-
-      <article class="engagement-area-card engagement-area-card--media">
-        <span class="engagement-area-icon"><i class="bi bi-chat-square-text-fill"></i></span>
-        <p class="engagement-area-kicker">Julkinen keskustelu</p>
-        <h3>Asiantuntijalausunnot, kirjoitukset ja mediaesiintymiset</h3>
-        <p>Kun aihe ei mahdu kurssille tai julkaisuun, tieto siirtyy laajempaan keskusteluun lausuntojen, mielipidekirjoitusten ja haastattelujen kautta. Julkinen asiantuntijatyö palvelee sekä koulutussektoria että päätöksenteon valmistelua.</p>
-        {% if featuredStatement %}
-        <div class="engagement-area-latest">
-          <p class="engagement-area-latest-kicker">Tuorein lausunto</p>
-          <a href="{{ featuredStatement.data.url or featuredStatement.url }}" class="engagement-area-latest-link">{{ featuredStatement.data.title | truncate(100) }}</a>
-          <p class="engagement-area-latest-meta">{{ featuredStatement.date | dateFormat }}</p>
-        </div>
-        {% endif %}
-        <div class="engagement-area-actions">
-          <a href="/lausunnot/" class="engagement-area-link">Lausunnot ja julkiset puheet <span aria-hidden="true">→</span></a>
-          <a href="/mediassa/" class="engagement-area-link">Mediaosumat <span aria-hidden="true">→</span></a>
-        </div>
-      </article>
-
-      <article class="engagement-area-card engagement-area-card--politics">
-        <span class="engagement-area-icon"><i class="bi bi-bank2"></i></span>
-        <p class="engagement-area-kicker">Päätöksenteko</p>
-        <h3>Asiantuntijuus kohtaa paikallisen politiikan arjen</h3>
-        <p>Sivistyslautakunnan jäsenyys, valtuustotyö ja kaupunginvaltuuston puheenvuorot tuovat koulutusta, palveluja ja teknologiaa koskevat kysymykset valmisteluun ja päätöksentekoon. Tutkimuspohjainen näkökulma vaikuttaa käytännön politiikkaan.</p>
-        {% if featuredCouncilSpeech %}
-        <div class="engagement-area-latest">
-          <p class="engagement-area-latest-kicker">Tuorein valtuustopuheenvuoro</p>
-          <a href="{{ featuredCouncilSpeech.url }}" class="engagement-area-latest-link">{{ featuredCouncilSpeech.data.title | truncate(100) }}</a>
-          <p class="engagement-area-latest-meta">{{ featuredCouncilSpeech.date | dateFormat }}</p>
-        </div>
-        {% elif featuredInitiative %}
-        <div class="engagement-area-latest">
-          <p class="engagement-area-latest-kicker">Tuorein aloite</p>
-          <a href="{{ featuredInitiative.url }}" class="engagement-area-latest-link">{{ featuredInitiative.data.title | truncate(100) }}</a>
-          <p class="engagement-area-latest-meta">{{ featuredInitiative.date | dateFormat }}</p>
-        </div>
-        {% endif %}
-        <a href="/politiikka/" class="engagement-area-link">Avaa politiikka <span aria-hidden="true">→</span></a>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="engagement-section engagement-section--topics" id="teemat">
-  <div class="site-shell">
-    <div class="engagement-section-head">
-      <p class="engagement-eyebrow mb-1"><i class="bi bi-diagram-3 me-1"></i>Teemat</p>
-      <h2>Teemat läpi vuorovaikutuskanavien</h2>
-      <p class="mb-0">Nämä neljä teemaa kokoavat yhteiskunnallisen vuorovaikutuksen tärkeimmät aiheet: mihin lausunnot, koulutukset, media-osumat ja päätökset yhdessä liittyvät.</p>
-    </div>
-
-    <div class="engagement-topic-grid">
-      {% for slug in engagementTopicSlugs %}
-        {% set topic = false %}
-        {% for t in seoTopics %}{% if t.slug == slug %}{% set topic = t %}{% endif %}{% endfor %}
-        {% if topic %}
-          {% set topicItemList = collections | topicItems(topic, 200) %}
-          {% set researchList = researchfi | curatedResearchForTopic(topic.researchThemes or [], 200) %}
-          {% set topicTotal = topicItemList.totalCount + researchList.length %}
-          {% if topicTotal > 0 %}
-          <a href="/teemat/{{ topic.slug }}/" class="engagement-topic-pill">
-            <p class="engagement-topic-pill-kicker">{{ topic.eyebrow }}</p>
-            <p class="engagement-topic-pill-title">{{ topic.title }}</p>
-            <p class="engagement-topic-pill-count">{{ topicTotal }} aiheeseen liittyvää sisältöä</p>
-            <span class="engagement-topic-pill-cta">Avaa teemaprofiili <i class="bi bi-arrow-right ms-1"></i></span>
-          </a>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="site-shell pb-5">
-  <aside class="engagement-crosslinks">
-    <h2>Muualla sivustolla</h2>
-    <ul>
-      <li>
-        <a href="/tyoni-yliopistonlehtorina/">Yliopistotyö</a> — kolmen roolin (opetus, tutkimus, vuorovaikutus) kokonaiskuva
-        <ul>
-          <li><a href="/portfolio/">Opetusportfolio</a> — pedagogiset perustelut</li>
-          <li><a href="/tutkimus/">Tutkimus</a> — hankkeet ja tutkimuslinja</li>
-        </ul>
-      </li>
-      <li>
-        <a href="/lausunnot/">Lausunnot ja julkiset puheet</a> — asiantuntijalausunnot valmisteluun
-        <ul>
-          <li><a href="/kirjoitukset/">Kirjoitukset</a> — mielipiteet, kolumnit, blogi</li>
-          <li><a href="/mediassa/">Mediassa</a> — haastattelut, podcastit, videot</li>
-        </ul>
-      </li>
-      <li>
-        <a href="/politiikka/">Politiikka</a> — kunnallinen päätöksenteko ja luottamustyö
-        <ul>
-          <li><a href="/valtuustotyo/">Valtuustotyö</a> — puheenvuorot ja aloitteet</li>
-          <li><a href="/politiikka/sivistyslautakunta/">Sivistyslautakunta</a> — lautakuntatyö</li>
-        </ul>
-      </li>
-      <li><a href="/esitykset/">Esitykset ja avoimet materiaalit</a> — koulutusten sisältö</li>
-      <li><a href="/kouluttaja/">Täydennyskoulutukset (Larux t:mi)</a> — sivutoiminen kouluttajatyö</li>
-    </ul>
-  </aside>
-</section>
+{% include "pages/engagement.njk" %}

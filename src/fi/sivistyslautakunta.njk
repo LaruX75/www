@@ -1,7 +1,10 @@
 ---
-title: "Sivistyslautakunta"
-metaTitle: "Sivistyslautakunta ja lautakuntatyö"
-description: "Oulun sivistyslautakunnan sekä aiemman sivistys- ja kulttuurilautakunnan kokoukset virallisista pöytäkirjoista koottuna. Sivulla näkyvät myös Jari Larun lautakuntatyöhön liittyvät kirjoitukset ja muutosesitykset."
+title: Sivistyslautakunta
+metaTitle: Sivistyslautakunta ja lautakuntatyö
+description: >-
+  Oulun sivistyslautakunnan sekä aiemman sivistys- ja kulttuurilautakunnan
+  kokoukset virallisista pöytäkirjoista koottuna. Sivulla näkyvät myös Jari
+  Larun lautakuntatyöhön liittyvät kirjoitukset ja muutosesitykset.
 permalink: /politiikka/sivistyslautakunta/
 layout: base.njk
 lang: fi
@@ -14,189 +17,16 @@ pageStyles:
   - /css/education-committee-page.css
 schemaType: CollectionPage
 schemaAbout:
-  - "@type": "Thing"
-    name: "Oulun sivistyslautakunta"
-    description: "Kokouskohtainen näkymä Jari Larun sivistyslautakuntaan ja sivistys- ja kulttuurilautakuntaan liittyviin sisältöihin."
+  - '@type': Thing
+    name: Oulun sivistyslautakunta
+    description: >-
+      Kokouskohtainen näkymä Jari Larun sivistyslautakuntaan ja sivistys- ja
+      kulttuurilautakuntaan liittyviin sisältöihin.
 schemaMentions:
-  - "@type": "GovernmentOrganization"
-    name: "Oulun kaupunki"
-    url: "https://www.ouka.fi/"
-  - "@type": "Organization"
-    name: "Oulun sivistyslautakunta"
+  - '@type': GovernmentOrganization
+    name: Oulun kaupunki
+    url: 'https://www.ouka.fi/'
+  - '@type': Organization
+    name: Oulun sivistyslautakunta
 ---
-
-{% set meetings = educationCommitteeMeetings %}
-{% set seasons = educationCommitteeMeetingSeasons %}
-{% set stats = educationCommitteeMeetingStats %}
-
-<section class="committee-meetings">
-  <header class="committee-meetings-hero">
-    <div>
-      <p class="term-eyebrow mb-2">Lautakuntatyö</p>
-      <h1 class="term-hero-title mb-3">Sivistyslautakunta</h1>
-      <p class="term-hero-lead mb-0">Olen ollut mukana Oulun sivistyksen lautakuntatyössä vuodesta 2017 alkaen. Tälle sivulle olen koonnut kokoukset, joissa on päätetty ja valmisteltu lasten, nuorten, koulujen, varhaiskasvatuksen ja laajemmin sivistyspalvelujen arkea koskevia ratkaisuja.</p>
-    </div>
-    <aside class="committee-hero-card">
-      <p class="term-hero-card__kicker">Toimielin muuttui työn aikana</p>
-      <p>Aluksi päätöksiä tehtiin sivistys- ja kulttuurilautakunnassa, jonka vastuulla olivat myös kulttuuri-, liikunta- ja vapaa-ajanpalvelut. Vuodesta 2023 alkaen oma lautakuntatyöni on jatkunut sivistyslautakunnassa.</p>
-      <div class="committee-stats" aria-label="Lautakuntakokousten määrä">
-        <div>
-          <strong>{{ stats.total }}</strong>
-          <span>kokousta</span>
-        </div>
-        <div>
-          <strong>{{ stats.sivistyslautakunta }}</strong>
-          <span>sivistyslautakunta</span>
-        </div>
-        <div>
-          <strong>{{ stats.sivistysJaKulttuurilautakunta }}</strong>
-          <span>sivistys- ja kulttuurilautakunta</span>
-        </div>
-      </div>
-    </aside>
-  </header>
-
-  <section class="committee-focus-grid" aria-label="Lautakuntatyön painopisteet">
-    <article class="committee-focus-card">
-      <p class="term-hero-card__kicker">Miksi kokoukset ovat mukana</p>
-      <h2>Ratkaisut näkyvät ensin lautakunnan listalla</h2>
-      <p>Kouluverkko, tilaratkaisut, oppimisen tuki ja palvelujen järjestäminen tulevat usein lautakuntaan ennen kuin ne näkyvät valtuustossa tai julkisessa keskustelussa isompina kokonaisuuksina.</p>
-    </article>
-    <article class="committee-focus-card committee-focus-card--secondary">
-      <p class="term-hero-card__kicker">Oma julkinen jälki</p>
-      <h2>Kaikki lautakuntatyö ei näy puheenvuoroina</h2>
-      <p>Lautakunnan keskustelut eivät ole valtuustopuheiden tapaan julkisia tallenteita. Siksi olen liittänyt mukaan ne kirjoitukset, muutosesitykset ja taustoitukset, joissa olen avannut omaa ajatteluani julkisesti.</p>
-    </article>
-  </section>
-
-  <div class="committee-season-layout">
-    <aside class="committee-season-sidebar" aria-label="Lautakuntatyöhön liittyvät omat sisällöt">
-      <p class="term-hero-card__kicker">Omat sisällöt</p>
-      {% if seasons.allItems.length %}
-      <ul class="committee-season-items">
-        {% for item in seasons.allItems %}
-        <li>
-          <a href="{{ item.url }}">{{ item.title }}</a>
-          <span>{{ item.typeLabel }}{% if item.activityLabel %} · {{ item.activityLabel }}{% endif %}</span>
-          <small>{{ item.seasonPeriod }} · {% if item.meetingUrl %}<a href="{{ item.meetingUrl }}">{{ item.meetingLabel }}, {{ item.meetingDate | dateFormat }}</a>{% else %}{{ item.meetingLabel }}{% if item.date %}, {{ item.date | dateFormat }}{% endif %}{% endif %}</small>
-        </li>
-        {% endfor %}
-      </ul>
-      {% else %}
-      <p class="committee-season-sidebar__empty">Lautakuntatyöhön ei ole vielä kytketty omaa julkista kirjoitusta tai muutosesitystä.</p>
-      {% endif %}
-    </aside>
-
-    <div class="committee-season-list" aria-label="Lautakuntakaudet">
-      {% for season in seasons %}
-      <details class="committee-season-card" id="{{ season.key }}" data-season-card{% if loop.first %} open{% endif %}>
-        <summary class="committee-season-card__summary">
-          <div class="committee-season-card__summary-main">
-            <p class="term-hero-card__kicker">{{ season.bodyName }}</p>
-            <h2>{{ season.period }}</h2>
-            <p>{{ season.description }}</p>
-          </div>
-          <dl class="committee-season-stats" aria-label="{{ season.title }} lukumäärät">
-            <div>
-              <dt>Kokouksia</dt>
-              <dd>{{ season.counts.meetings }}</dd>
-            </div>
-            <div>
-              <dt>Omaa sisältöä</dt>
-              <dd>{{ season.counts.ownContent }}</dd>
-            </div>
-            <div>
-              <dt>Asiakohtia</dt>
-              <dd>{{ season.counts.agendaItems }}</dd>
-            </div>
-          </dl>
-          <span class="committee-season-card__toggle" aria-hidden="true"></span>
-        </summary>
-
-        <div class="committee-season-card__content">
-        {% if season.hasMeetingData %}
-        <div class="committee-meetings-table-wrap">
-          <table class="committee-meetings-table" aria-label="{{ season.title }} kokoukset">
-            <thead>
-              <tr>
-                <th scope="col">Pvm</th>
-                <th scope="col">Kokous</th>
-                <th scope="col">Kokouksen tiivistelmä</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for meeting in season.meetings %}
-              <tr id="kokous-{{ meeting.date }}">
-                <td class="committee-meetings-table__date">{{ meeting.date | dateFormat }}</td>
-                <td class="committee-meetings-table__number">
-                  {{ meeting.meetingLabel }}
-                </td>
-                <td class="committee-meetings-table__summary">
-                  {% if meeting.summaryTitle %}
-                  <strong>{{ meeting.summaryTitle }}</strong>
-                  {% endif %}
-                  {% if meeting.agendaSummary %}
-                  <p>{{ meeting.agendaSummary }}</p>
-                  {% endif %}
-                  {% if not meeting.agendaSummary and meeting.agendaItems.length %}
-                  <ul>
-                    {% for agendaItem in meeting.agendaItems %}
-                    {% if loop.index <= 3 %}
-                    <li>{{ agendaItem }}</li>
-                    {% endif %}
-                    {% endfor %}
-                  </ul>
-                  {% endif %}
-                  <span class="committee-meetings-table__links">
-                    {% if meeting.protocolUrl %}
-                    <a href="{{ meeting.protocolUrl }}" target="_blank" rel="noopener noreferrer">Pöytäkirja</a>
-                    {% endif %}
-                  </span>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-        {% else %}
-        <div class="committee-season-empty">
-          <strong>Kauden kokousaineistoa ei ole vielä mukana tässä koonnissa.</strong>
-          <p>Tämä kortti on silti erotettu omaksi kaudekseen, koska lautakunnan nimi muuttui valtuustokauden 2021-2025 aikana sivistyslautakunnaksi.</p>
-        </div>
-        {% endif %}
-        </div>
-      </details>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<script>
-(() => {
-  const seasonCards = Array.from(document.querySelectorAll("[data-season-card]"));
-
-  function openHashTarget() {
-    if (!window.location.hash) return;
-    const target = document.getElementById(window.location.hash.slice(1));
-    const card = target?.closest?.("[data-season-card]");
-    if (!card) return;
-    card.open = true;
-    seasonCards.forEach((otherCard) => {
-      if (otherCard !== card) otherCard.open = false;
-    });
-  }
-
-  seasonCards.forEach((card) => {
-    card.addEventListener("toggle", () => {
-      if (!card.open) return;
-      seasonCards.forEach((otherCard) => {
-        if (otherCard !== card) otherCard.open = false;
-      });
-    });
-  });
-
-  openHashTarget();
-  window.addEventListener("hashchange", openHashTarget);
-})();
-</script>
-
+{% include "pages/committee.njk" %}

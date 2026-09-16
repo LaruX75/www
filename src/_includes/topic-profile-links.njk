@@ -4,19 +4,19 @@
   <div class="site-shell">
     <div class="topic-links-card">
       <div class="topic-links-head">
-        <p class="taxonomy-kicker">{{ topicProfileEyebrow or "Teemaprofiilit" }}</p>
-        <h2 id="{{ topicProfileTitleId or 'topic-links-title' }}">{{ topicProfileTitle or "Syvemmälle aiheisiin" }}</h2>
-        <p>{{ topicProfileLead or "Nämä sivut kokoavat saman aiheen kirjoitukset, esitykset, lausunnot, mediaosumat ja tutkimusnäytön yhteen." }}</p>
+        <p class="taxonomy-kicker">{{ topicProfileEyebrow or "Teemaprofiilit" | pageText(lang) }}</p>
+        <h2 id="{{ topicProfileTitleId or 'topic-links-title' }}">{{ topicProfileTitle or "Syvemmälle aiheisiin" | pageText(lang) }}</h2>
+        <p>{{ topicProfileLead or "Nämä sivut kokoavat saman aiheen kirjoitukset, esitykset, lausunnot, mediaosumat ja tutkimusnäytön yhteen." | pageText(lang) }}</p>
       </div>
       <div class="topic-links-grid">
         {% for topicCard in selectedTopicCards %}
-          <a class="topic-link-card" href="/teemat/{{ topicCard.slug }}/">
-            <span class="topic-link-card-title">{{ topicCard.title }}</span>
-            <span class="topic-link-card-text">{{ topicCard.lead }}</span>
+          <a class="topic-link-card" href="{{ "/teemat/" | localeUrl(lang) }}{{ topicCard.slug }}/">
+            <span class="topic-link-card-title">{{ topicCard.title | pageText(lang) }}</span>
+            <span class="topic-link-card-text">{{ topicCard.lead | pageText(lang) }}</span>
           </a>
         {% endfor %}
       </div>
-      <a class="topic-links-more" href="/teemat/">Kaikki teemaprofiilit</a>
+      <a class="topic-links-more" href="{{ "/teemat/" | localeUrl(lang) }}">{{ "Kaikki teemaprofiilit" | pageText(lang) }}</a>
     </div>
   </div>
 </section>

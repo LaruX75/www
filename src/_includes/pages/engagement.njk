@@ -1,0 +1,165 @@
+
+{% set statementItems = [] %}
+{% for item in (collections.publications or []) %}
+  {% if item.data.type == "lausunto" %}
+    {% set _ = (statementItems.push(item), null) %}
+  {% endif %}
+{% endfor %}
+{% set featuredStatement = statementItems[0] %}
+{% set featuredPresentation = ((canva.fiRows or canva.tableRows or [])[0]) %}
+{% set featuredPresentationTitle = featuredPresentation.title or "" %}
+{% set featuredCouncilSpeech = false %}
+{% for item in (collections.pub_puhe or []) | sort(true, false, "date") %}
+    {% if not featuredCouncilSpeech %}
+        {% set speechCtx = item.data.speechContext or "" %}
+        {% set forums = item.data.forum or [] %}
+        {% set isCouncil = speechCtx == "valtuusto" or speechCtx == "kyselytunti" or item.data.event == "Oulun kaupunginvaltuusto" or forums.indexOf("Kaupunginvaltuusto") != -1 %}
+        {% if isCouncil %}
+            {% set featuredCouncilSpeech = item %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% set featuredInitiative = ((collections.politics or []) | sort(true, false, "date"))[0] %}
+{% set engagementTopicSlugs = ["julkinen-asiantuntijuus-mediassa", "avoin-tiede-ja-avoimet-oppimateriaalit", "lapinakyva-paatoksenteko-ja-tiedolla-johtaminen", "tekoalylukutaito"] %}
+
+<section class="engagement-hero">
+  <div class="site-shell py-5">
+    <div class="engagement-hero-layout">
+      <div>
+        <p class="engagement-eyebrow mb-2"><i class="bi bi-diagram-3-fill me-1"></i>{{ "Yliopiston kolmas tehtävä" | pageText(lang) }}</p>
+        <h1 class="engagement-hero-title mb-3">{{ "Tutkimuksesta koulutuksiin, mediaan ja päätöksentekoon" | pageText(lang) }}</h1>
+        <p class="engagement-hero-lead mb-4">{{ "Jari Larun tutkimus- ja opetustyö kohtaa opettajat, koulutuksen kehittäjät, median, valmistelun ja päätöksenteon. Yhteiskunnallinen vuorovaikutus rakentuu kolmesta kanavasta, joissa sama asiantuntemus toistuu eri muodoissaan." | pageText(lang) }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="btn btn-primary rounded-pill px-4" href="{{ "/tyoni-yliopistonlehtorina/" | localeUrl(lang) }}">{{ "Avaa yliopistotyö" | pageText(lang) }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section" id="alueet">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1"><i class="bi bi-bullseye me-1"></i>{{ "Kolme aluetta" | pageText(lang) }}</p>
+      <h2>{{ "Koulutus, julkinen keskustelu ja päätöksenteko" | pageText(lang) }}</h2>
+      <p class="mb-0">{{ "Tutkimustieto ja opetusosaaminen leviävät kolmea reittiä: opettajankoulutuksen ja täydennyskoulutusten kautta, median ja lausuntojen välityksellä, sekä paikallisen päätöksenteon prosesseissa." | pageText(lang) }}</p>
+    </div>
+
+    <div class="engagement-area-grid">
+      <article class="engagement-area-card engagement-area-card--materials">
+        <span class="engagement-area-icon"><i class="bi bi-easel2-fill"></i></span>
+        <p class="engagement-area-kicker">{{ "Koulutus ja materiaalit" | pageText(lang) }}</p>
+        <h3>{{ "Tekoäly, digipedagogiikka ja oppimisteknologia opetuksen arkeen" | pageText(lang) }}</h3>
+        <p>{{ "Täydennyskoulutukset, avoimet materiaalit ja opettajankoulutuksen käytännöt vievät tutkimustietoa opettajille, kouluille ja organisaatioille. Sama sisältö palvelee yliopistoluentoja ja Larux t:mi:n tilauskoulutuksia." | pageText(lang) }}</p>
+        {% if featuredPresentation and featuredPresentationTitle %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">{{ "Tuorein esitys" | pageText(lang) }}</p>
+          <a href="{{ featuredPresentation.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="engagement-area-latest-link">{{ featuredPresentationTitle | truncate(100) | pageText(lang) }}</a>
+          {% if featuredPresentation.date %}<p class="engagement-area-latest-meta">{{ featuredPresentation.date | dateFormat | pageText(lang) }}{% if featuredPresentation.location %} · {{ featuredPresentation.location | pageText(lang) }}{% endif %}</p>{% endif %}
+        </div>
+        {% endif %}
+        <a href="{{ "/esitykset/" | localeUrl(lang) }}" class="engagement-area-link">{{ "Kaikki esitykset ja materiaalit" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="engagement-area-card engagement-area-card--media">
+        <span class="engagement-area-icon"><i class="bi bi-chat-square-text-fill"></i></span>
+        <p class="engagement-area-kicker">{{ "Julkinen keskustelu" | pageText(lang) }}</p>
+        <h3>{{ "Asiantuntijalausunnot, kirjoitukset ja mediaesiintymiset" | pageText(lang) }}</h3>
+        <p>{{ "Kun aihe ei mahdu kurssille tai julkaisuun, tieto siirtyy laajempaan keskusteluun lausuntojen, mielipidekirjoitusten ja haastattelujen kautta. Julkinen asiantuntijatyö palvelee sekä koulutussektoria että päätöksenteon valmistelua." | pageText(lang) }}</p>
+        {% if featuredStatement %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">{{ "Tuorein lausunto" | pageText(lang) }}</p>
+          <a href="{{ featuredStatement.data.url or featuredStatement.url | localeUrl(lang) }}" class="engagement-area-latest-link">{{ featuredStatement.data.title | truncate(100) | pageText(lang) }}</a>
+          <p class="engagement-area-latest-meta">{{ featuredStatement.date | dateFormat | pageText(lang) }}</p>
+        </div>
+        {% endif %}
+        <div class="engagement-area-actions">
+          <a href="{{ "/lausunnot/" | localeUrl(lang) }}" class="engagement-area-link">{{ "Lausunnot ja julkiset puheet" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+          <a href="{{ "/mediassa/" | localeUrl(lang) }}" class="engagement-area-link">{{ "Mediaosumat" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <article class="engagement-area-card engagement-area-card--politics">
+        <span class="engagement-area-icon"><i class="bi bi-bank2"></i></span>
+        <p class="engagement-area-kicker">{{ "Päätöksenteko" | pageText(lang) }}</p>
+        <h3>{{ "Asiantuntijuus kohtaa paikallisen politiikan arjen" | pageText(lang) }}</h3>
+        <p>{{ "Sivistyslautakunnan jäsenyys, valtuustotyö ja kaupunginvaltuuston puheenvuorot tuovat koulutusta, palveluja ja teknologiaa koskevat kysymykset valmisteluun ja päätöksentekoon. Tutkimuspohjainen näkökulma vaikuttaa käytännön politiikkaan." | pageText(lang) }}</p>
+        {% if featuredCouncilSpeech %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">{{ "Tuorein valtuustopuheenvuoro" | pageText(lang) }}</p>
+          <a href="{{ featuredCouncilSpeech.url | localeUrl(lang) }}" class="engagement-area-latest-link">{{ featuredCouncilSpeech.data.title | truncate(100) | pageText(lang) }}</a>
+          <p class="engagement-area-latest-meta">{{ featuredCouncilSpeech.date | dateFormat | pageText(lang) }}</p>
+        </div>
+        {% elif featuredInitiative %}
+        <div class="engagement-area-latest">
+          <p class="engagement-area-latest-kicker">{{ "Tuorein aloite" | pageText(lang) }}</p>
+          <a href="{{ featuredInitiative.url | localeUrl(lang) }}" class="engagement-area-latest-link">{{ featuredInitiative.data.title | truncate(100) | pageText(lang) }}</a>
+          <p class="engagement-area-latest-meta">{{ featuredInitiative.date | dateFormat | pageText(lang) }}</p>
+        </div>
+        {% endif %}
+        <a href="{{ "/politiikka/" | localeUrl(lang) }}" class="engagement-area-link">{{ "Avaa politiikka" | pageText(lang) }} <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="engagement-section engagement-section--topics" id="teemat">
+  <div class="site-shell">
+    <div class="engagement-section-head">
+      <p class="engagement-eyebrow mb-1"><i class="bi bi-diagram-3 me-1"></i>{{ "Teemat" | pageText(lang) }}</p>
+      <h2>{{ "Teemat läpi vuorovaikutuskanavien" | pageText(lang) }}</h2>
+      <p class="mb-0">{{ "Nämä neljä teemaa kokoavat yhteiskunnallisen vuorovaikutuksen tärkeimmät aiheet: mihin lausunnot, koulutukset, media-osumat ja päätökset yhdessä liittyvät." | pageText(lang) }}</p>
+    </div>
+
+    <div class="engagement-topic-grid">
+      {% for slug in engagementTopicSlugs %}
+        {% set topic = false %}
+        {% for t in seoTopics %}{% if t.slug == slug %}{% set topic = t %}{% endif %}{% endfor %}
+        {% if topic %}
+          {% set topicItemList = collections | topicItems(topic, 200) %}
+          {% set researchList = researchfi | curatedResearchForTopic(topic.researchThemes or [], 200) %}
+          {% set topicTotal = topicItemList.totalCount + researchList.length %}
+          {% if topicTotal > 0 %}
+          <a href="{{ "/teemat/" | localeUrl(lang) }}{{ topic.slug }}/" class="engagement-topic-pill">
+            <p class="engagement-topic-pill-kicker">{{ topic.eyebrow | pageText(lang) }}</p>
+            <p class="engagement-topic-pill-title">{{ topic.title | pageText(lang) }}</p>
+            <p class="engagement-topic-pill-count">{{ topicTotal | pageText(lang) }} {{ "aiheeseen liittyvää sisältöä" | pageText(lang) }}</p>
+            <span class="engagement-topic-pill-cta">{{ "Avaa teemaprofiili" | pageText(lang) }} <i class="bi bi-arrow-right ms-1"></i></span>
+          </a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="site-shell pb-5">
+  <aside class="engagement-crosslinks">
+    <h2>{{ "Muualla sivustolla" | pageText(lang) }}</h2>
+    <ul>
+      <li>
+        <a href="{{ "/tyoni-yliopistonlehtorina/" | localeUrl(lang) }}">{{ "Yliopistotyö" | pageText(lang) }}</a> {{ "— kolmen roolin (opetus, tutkimus, vuorovaikutus) kokonaiskuva" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/portfolio/" | localeUrl(lang) }}">{{ "Opetusportfolio" | pageText(lang) }}</a> {{ "— pedagogiset perustelut" | pageText(lang) }}</li>
+          <li><a href="{{ "/tutkimus/" | localeUrl(lang) }}">{{ "Tutkimus" | pageText(lang) }}</a> {{ "— hankkeet ja tutkimuslinja" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/lausunnot/" | localeUrl(lang) }}">{{ "Lausunnot ja julkiset puheet" | pageText(lang) }}</a> {{ "— asiantuntijalausunnot valmisteluun" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/kirjoitukset/" | localeUrl(lang) }}">{{ "Kirjoitukset" | pageText(lang) }}</a> {{ "— mielipiteet, kolumnit, blogi" | pageText(lang) }}</li>
+          <li><a href="{{ "/mediassa/" | localeUrl(lang) }}">{{ "Mediassa" | pageText(lang) }}</a> {{ "— haastattelut, podcastit, videot" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/politiikka/" | localeUrl(lang) }}">{{ "Politiikka" | pageText(lang) }}</a> {{ "— kunnallinen päätöksenteko ja luottamustyö" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/valtuustotyo/" | localeUrl(lang) }}">{{ "Valtuustotyö" | pageText(lang) }}</a> {{ "— puheenvuorot ja aloitteet" | pageText(lang) }}</li>
+          <li><a href="{{ "/politiikka/sivistyslautakunta/" | localeUrl(lang) }}">{{ "Sivistyslautakunta" | pageText(lang) }}</a> {{ "— lautakuntatyö" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li><a href="{{ "/esitykset/" | localeUrl(lang) }}">{{ "Esitykset ja avoimet materiaalit" | pageText(lang) }}</a> {{ "— koulutusten sisältö" | pageText(lang) }}</li>
+      <li><a href="{{ "/kouluttaja/" | localeUrl(lang) }}">{{ "Täydennyskoulutukset (Larux t:mi)" | pageText(lang) }}</a> {{ "— sivutoiminen kouluttajatyö" | pageText(lang) }}</li>
+    </ul>
+  </aside>
+</section>

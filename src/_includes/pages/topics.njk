@@ -1,0 +1,69 @@
+
+<section class="topic-index">
+  <div class="site-shell">
+    <header class="topic-index-hero">
+      <div>
+        <p class="taxonomy-kicker">{{ "Aihepolut" | pageText(lang) }}</p>
+        <h1>{{ "Teemaprofiilit" | pageText(lang) }}</h1>
+        <p class="topic-index-lead">{{ "Nämä sivut kokoavat sivuston vahvimmat asiantuntija- ja vaikuttamisteemat yhteen. Ne eivät ole tavallisia arkistoja, vaan kuratoituja reittejä siihen, missä tutkimus, opetus, lausunnot, esitykset, media ja politiikka kohtaavat." | pageText(lang) }}</p>
+      </div>
+      <aside class="topic-index-summary" aria-label="{{ "Teemaprofiilien yhteenveto" | pageText(lang) }}">
+        <span class="taxonomy-stat-number">{{ seoTopics.length | pageText(lang) }}</span>
+        <span class="taxonomy-stat-label">{{ "teemaprofiilia" | pageText(lang) }}</span>
+        <span class="taxonomy-stat-range">{{ "sisältöjen yli" | pageText(lang) }}</span>
+      </aside>
+    </header>
+
+    <div class="topic-index-grid">
+      {% for topic in seoTopics %}
+        {% set items = collections | topicItems(topic, 9999) %}
+        {% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 9999) %}
+        {% set topicContentCount = items.totalCount + researchPublications.length %}
+        <article class="topic-index-card">
+          <div class="topic-index-card-body">
+            <p class="taxonomy-kicker">{{ topic.eyebrow | pageText(lang) }}</p>
+            <h2><a href="{{ "/teemat/" | localeUrl(lang) }}{{ topic.slug }}/">{{ topic.title | pageText(lang) }}</a></h2>
+            <p>{{ topic.lead | pageText(lang) }}</p>
+          </div>
+          <div class="topic-index-card-meta">
+            <span>{{ topicContentCount | pageText(lang) }} {{ "osumaa" | pageText(lang) }}</span>
+            <a href="{{ "/teemat/" | localeUrl(lang) }}{{ topic.slug }}/">{{ "Avaa profiili" | pageText(lang) }}</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% set topicBaseUrl = site.url or "https://www.jarilaru.fi" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Teemaprofiilit",
+  "description": "Jari Larun sivuston keskeiset teemaprofiilit ja aihepolut.",
+  "url": {{ (page.url | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "{{ 'en-GB' if lang == 'en' else 'fi-FI' }}",
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Teemaprofiilit",
+    "numberOfItems": {{ seoTopics.length }},
+    "itemListElement": [
+      {% for topic in seoTopics %}
+      {% set topicUrl = "/teemat/" ~ topic.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ topic.title | pageText(lang) | jsonSafe | safe }},
+          "description": {{ topic.lead | pageText(lang) | jsonSafe | safe }},
+          "url": {{ (topicUrl | localeUrl(lang) | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+          "keywords": {{ (topic.keywords or []) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

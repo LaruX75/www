@@ -1,0 +1,368 @@
+
+{% set researchProgramModel = researchProgram or {} %}
+{% set researchLines = researchProgramModel.visibleLines or researchProgramModel.lines or [] %}
+{% set currentResearchLine = researchProgramModel.currentLine or null %}
+
+<!-- HERO -->
+<section class="research-hero py-5 bg-body-tertiary border-bottom">
+  <div class="site-shell">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-9">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Tutkimus" | pageText(lang) }}</p>
+        <h1 class="display-6 fw-bold mb-3">{{ "Tutkimuksen tarkasteluteemat: miten teknologia muuttaa oppimista ja opettamista" | pageText(lang) }}</h1>
+        <p class="lead mb-4">{{ "Jari Larun tutkimus kulkee yhteisöllisestä oppimisesta ja mobiiliteknologiasta opettajien tekoälylukutaitoon. Tämä sivu kokoaa nykyisen tutkimusohjelman, kolme keskeistä tutkimuslinjaa ja tunnistetiedot ulkoisiin tutkijaprofiileihin." | pageText(lang) }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ "/julkaisut/" | localeUrl(lang) }}" class="btn btn-primary rounded-pill px-4">{{ "Avaa julkaisuluettelo" | pageText(lang) }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NYKYINEN OHJELMA: GENERATION AI -->
+<section class="py-5" id="generation-ai">
+  <div class="site-shell">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-7">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Nykyinen tutkimusohjelma" | pageText(lang) }}</p>
+        <h2 class="h3 fw-bold mb-3">{{ "Generation AI kokoaa tutkimuksen tämänhetkisen painopisteen" | pageText(lang) }}</h2>
+        <p class="lead mb-3">{{ "Suomen Akatemian Strategisen tutkimuksen neuvoston (STN) rahoittama monitieteinen hanke (2022–) rakentaa pohjaa tekoäly- ja turvallisuuskasvatukselle esi- ja perusopetuksessa." | pageText(lang) }}</p>
+        <p class="mb-3">{{ "Työssä yhdistyvät tutkimustiedon välittäminen, opettajankoulutus ja opettajien tekoälylukutaidon tutkimus. Tavoitteena on tehdä vaikeasta ilmiöstä ymmärrettävä ja käyttökelpoinen koulun arjessa." | pageText(lang) }}</p>
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body p-4">
+            <h3 class="h6 text-uppercase text-muted fw-bold mb-3">{{ "Mikä on keskiössä juuri nyt?" | pageText(lang) }}</h3>
+            <ul class="mb-0 ps-3">
+              <li>{{ "opettajien ja opettajaopiskelijoiden tekoälylukutaito" | pageText(lang) }}</li>
+              <li>{{ "tekoälykasvatus esi- ja perusopetuksessa" | pageText(lang) }}</li>
+              <li>{{ "tutkimustiedon vieminen koulun arkeen, materiaaleihin ja koulutuksiin" | pageText(lang) }}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="{{ "https://www.generation-ai-stn.fi" | localeUrl(lang) }}" class="btn btn-success" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right me-1"></i>{{ "Hankkeen sivusto" | pageText(lang) }}</a>
+        </div>
+      </div>
+      <div class="col-lg-5 research-current-evidence">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4 d-flex flex-column">
+            <h3 class="h6 text-uppercase text-muted fw-bold mb-3">{{ "Tuore tutkimusnäyttö tästä linjasta" | pageText(lang) }}</h3>
+            {% if currentResearchLine and currentResearchLine.publications.length %}
+              <div class="d-grid gap-3">
+                {% for pub in currentResearchLine.publications %}
+                <article>
+                  <p class="small fw-semibold mb-1">{{ pub.title | pageText(lang) }}</p>
+                  <p class="small mb-2">{{ pub.citation | pageText(lang) }}</p>
+                  <a href="{{ pub.url | localeUrl(lang) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">{{ "Julkaisun lähdeviite" | pageText(lang) }}</a>
+                </article>
+                {% endfor %}
+              </div>
+            {% else %}
+              <p class="text-muted small mb-0">{{ "Julkaisunostoja ei löytynyt tähän painopisteeseen buildin aikana." | pageText(lang) }}</p>
+            {% endif %}
+            <hr class="my-4">
+            <dl class="row mb-0 small">
+              <dt class="col-5 text-muted">{{ "Rahoittaja" | pageText(lang) }}</dt>
+              <dd class="col-7">{{ "Suomen Akatemian Strategisen tutkimuksen neuvosto" | pageText(lang) }}</dd>
+              <dt class="col-5 text-muted">{{ "Rooli" | pageText(lang) }}</dt>
+              <dd class="col-7">{{ "Vuorovaikutusasiantuntija, tutkija" | pageText(lang) }}</dd>
+              <dt class="col-5 text-muted">{{ "Kohderyhmä" | pageText(lang) }}</dt>
+              <dd class="col-7">{{ "Esi- ja perusopetus, opettajat" | pageText(lang) }}</dd>
+              <dt class="col-5 text-muted">{{ "Organisaatio" | pageText(lang) }}</dt>
+              <dd class="col-7">{{ "Oulun yliopisto" | pageText(lang) }}</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TUTKIMUSLINJAT -->
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="tutkimuslinjat">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Tutkimuslinjat" | pageText(lang) }}</p>
+        <h2 class="h3 fw-bold mb-3">{{ "Kolme keskeistä tutkimuslinjaa" | pageText(lang) }}</h2>
+        <p class="text-muted mb-0">{{ "Työn ydinkysymys ei ole vain mitä on julkaistu, vaan millä linjoilla työ etenee ja miten eri julkaisut, opinnäytteet ja käytännön sovellukset liittyvät toisiinsa." | pageText(lang) }}</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      {% for line in researchLines %}
+      <div class="col-lg-4">
+        <article class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4 d-flex flex-column">
+            <p class="small text-uppercase text-muted fw-semibold mb-2">{{ line.eyebrow | pageText(lang) }}</p>
+            <h3 class="h5 fw-bold mb-2">{{ line.title | pageText(lang) }}</h3>
+            <p class="text-muted small mb-3">{{ line.description | pageText(lang) }}</p>
+            {% if line.publications.length %}
+              <p class="small text-uppercase text-muted fw-semibold mb-2">{{ "Keskeinen julkaisu" | pageText(lang) }}</p>
+              <div class="mb-3">
+                {% set pub = line.publications[0] %}
+                <p class="small fw-semibold mb-1">{{ pub.title | pageText(lang) }}</p>
+                <p class="small text-muted mb-1">{{ pub.citation | pageText(lang) }}</p>
+                <a href="{{ pub.url | localeUrl(lang) }}" class="small text-decoration-none">{{ "Avaa lähdeviite →" | pageText(lang) }}</a>
+              </div>
+            {% endif %}
+            <div class="mt-auto d-flex flex-wrap gap-2">
+              <a href="{{ line.themeUrl | localeUrl(lang) }}" class="btn btn-sm btn-outline-primary rounded-pill px-3">{{ (line.themeLabel or "Aiheprofiili") | pageText(lang) }}</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% set findExploreId = "researchEvidenceExplore" %}
+{% set findExploreKind = "researchContext" %}
+{% set findExploreKinds = "publications,theses,writings,presentations" %}
+{% set findExploreScope = "" %}
+{% set findExploreLang = (lang or "fi") %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreEyebrow = "Find & Explore" | pageText(lang) %}
+{% set findExploreTitle = "Tutki näyttöä aiheen mukaan" | pageText(lang) %}
+{% set findExploreDescription = "Kontekstihaku kokoaa samaan näkymään tutkimukseen liittyviä julkaisuja, opinnäytteitä, kirjoituksia ja tutkimuskontekstin esityksiä. Media jää edelleen pois tästä näkymästä." | pageText(lang) %}
+{% set findExploreSearchLabel = "Hae tutkimusaihetta tai käsitettä" | pageText(lang) %}
+{% set findExplorePlaceholder = "Kokeile esimerkiksi tekoälylukutaito, TPACK, collaborative learning, ohjelmoinnillinen ajattelu..." | pageText(lang) %}
+{% set findExploreTypeLabel = "Aineistotyyppi" | pageText(lang) %}
+{% set findExploreAllTypesLabel = "Julkaisut, opinnäytteet, kirjoitukset ja esitykset" | pageText(lang) %}
+{% set findExploreYearLabel = "Vuosi" | pageText(lang) %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" | pageText(lang) %}
+{% set findExploreTopicLabel = "Tutkimusteema" | pageText(lang) %}
+{% set findExploreAllTopicsLabel = "Kaikki teemat" | pageText(lang) %}
+{% set findExploreResetLabel = "Tyhjennä" | pageText(lang) %}
+{% set findExploreMoreLabel = "Näytä lisää" | pageText(lang) %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai valitse tutkimusteema. Sivun kuratoidut tutkimuslinjat toimivat myös ilman JavaScriptiä." | pageText(lang) %}
+{% set findExploreNoScript = "Interaktiivinen Find & Explore edellyttää JavaScriptiä. Tutkimuslinjat, julkaisunostot ja linkit arkistoihin toimivat silti." | pageText(lang) %}
+{% set findExploreTypeOptions = [
+  { value: "publications", label: "Julkaisut" },
+  { value: "theses", label: "Opinnäytteet" },
+  { value: "writings", label: "Kirjoitukset" },
+  { value: "presentations", label: "Esitykset" }
+] | localizeCopy(lang) %}
+{% set findExploreYears = ["2026", "2025", "2024", "2023", "2022", "2021", "2020"] %}
+{% set findExploreTopicOptions = [
+  { value: "tekoäly", label: "Tekoäly ja tekoälylukutaito" },
+  { value: "opettajankoulutus", label: "Opettajankoulutus" },
+  { value: "koulutusteknologia", label: "Koulutusteknologia" },
+  { value: "yhteisöllinen oppiminen", label: "Yhteisöllinen oppiminen" },
+  { value: "ohjelmoinnillinen ajattelu", label: "Ohjelmoinnillinen ajattelu" },
+  { value: "TPACK", label: "TPACK" }
+] | localizeCopy(lang) %}
+{% set findExploreQualityOptions = [] %}
+<section id="tutkimusnaytto">
+  <div class="site-shell">
+    <div class="starter-chips" data-starter-chips aria-label="{{ "Aloita tästä: valmiit tutkimusteemat" | pageText(lang) }}">
+      <p class="starter-chips-eyebrow">{{ "Aloita tästä" | pageText(lang) }}</p>
+      <ul class="starter-chips-list">
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="tekoäly">{{ "Tekoäly" | pageText(lang) }}</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="opettajankoulutus">{{ "Opettajankoulutus" | pageText(lang) }}</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="koulutusteknologia">{{ "Koulutusteknologia" | pageText(lang) }}</button></li>
+        <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#researchEvidenceExploreTopic" data-starter-chip-value="yhteisöllinen oppiminen">{{ "Yhteisöllinen oppiminen" | pageText(lang) }}</button></li>
+      </ul>
+    </div>
+  </div>
+  {% include "find-explore-writings.njk" %}
+</section>
+
+<!-- OMA VÄITÖSKIRJA JA PRO GRADU -->
+<span id="varhaisvaihe"></span>
+<section class="py-5" id="omat-opinnaytteet">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Tutkimustyön alkupiste" | pageText(lang) }}</p>
+        <h2 class="h3 fw-bold mb-3">{{ "Väitöskirja ja pro gradu" | pageText(lang) }}</h2>
+        <p class="text-muted mb-0">{{ "Tutkimusuran alkupiste löytyy mobiiliteknologian ja yhteisöllisen oppimisen kysymyksistä. Samat teemat näkyvät työssä edelleen uudessa muodossa." | pageText(lang) }}</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="badge bg-primary mb-3">{{ "Väitöskirja 2012" | pageText(lang) }}</span>
+            <h3 class="h5 fw-bold mb-2">{{ "Scaffolding learning activities with collaborative scripts and mobile devices" | pageText(lang) }}</h3>
+            <p class="text-muted mb-2">{{ "Oulun yliopisto, kasvatustiede. Väitös 21.11.2012." | pageText(lang) }}</p>
+            <p class="mb-3">{{ "Väitöskirja tutki, miten yhteisöllisiä skriptejä voidaan hyödyntää mobiililaitteiden tukemissa oppimisympäristöissä. Työ yhdistää CSCL-tutkimuksen (Computer-Supported Collaborative Learning) ja mobiiliteknologian." | pageText(lang) }}</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a href="{{ "/vaitoskirja/" | localeUrl(lang) }}" class="btn btn-sm btn-outline-primary">{{ "Väitöskokonaisuus" | pageText(lang) }}</a>
+              <a href="{{ "http://jultika.oulu.fi/Record/isbn978-951-42-9940-7" | localeUrl(lang) }}" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">{{ "Jultika-arkisto" | pageText(lang) }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body p-4">
+            <span class="badge bg-secondary mb-3">{{ "Pro gradu 2003" | pageText(lang) }}</span>
+            <h3 class="h5 fw-bold mb-2">{{ "Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena" | pageText(lang) }}</h3>
+            <p class="text-muted mb-2">{{ "Goman, H. & Laru, J. (2003). Oulun yliopisto." | pageText(lang) }}</p>
+            <p class="mb-3">{{ "Varhaisvaiheen tutkimus langattomien laitteiden mahdollisuuksista hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun välineinä – ennen älypuhelinaikaa." | pageText(lang) }}</p>
+            <a href="{{ "https://www.researchgate.net/publication/259217800_Langattomat_paatelaitteet_hajautetun_asiantuntijuuden_ja_yhteisollisen_tiedonrakentelun_tukena" | localeUrl(lang) }}" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">{{ "ResearchGate" | pageText(lang) }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HANKEHISTORIA -->
+<section class="py-5 bg-body-tertiary border-top border-bottom" id="hankkeet">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Hankehistoria" | pageText(lang) }}</p>
+        <h2 class="h3 fw-bold mb-3">{{ "Tutkimushankkeet 2003–" | pageText(lang) }}</h2>
+        <p class="text-muted mb-0">{{ "Rahoitetut tutkimushankkeet, joissa Jari Laru on ollut mukana. Aktiiviset hankkeet on merkitty." | pageText(lang) }}</p>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover align-middle research-projects-table">
+        <thead>
+          <tr>
+            <th scope="col" style="min-width: 7rem;">{{ "Vuodet" | pageText(lang) }}</th>
+            <th scope="col">{{ "Hanke" | pageText(lang) }}</th>
+            <th scope="col">{{ "Rahoittaja" | pageText(lang) }}</th>
+            <th scope="col">{{ "Rooli" | pageText(lang) }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for project in researchProjects %}
+          <tr>
+            <td>
+              <span class="fw-semibold">{{ project.period | pageText(lang) }}</span>
+              {% if project.active %}<span class="badge bg-success ms-1" title="{{ "Aktiivinen hanke" | pageText(lang) }}">{{ "aktiivinen" | pageText(lang) }}</span>{% endif %}
+            </td>
+            <td>
+              {% if project.url %}
+                <a href="{{ project.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="fw-semibold text-decoration-none">{{ project.name | pageText(lang) }} <i class="bi bi-box-arrow-up-right small ms-1"></i></a>
+              {% else %}
+                <span class="fw-semibold">{{ project.name | pageText(lang) }}</span>
+              {% endif %}
+              {% if project.fullName and project.fullName != project.name %}
+                <div class="small text-muted">{{ project.fullName | pageText(lang) }}</div>
+              {% endif %}
+            </td>
+            <td class="small">{{ project.funder | pageText(lang) }}</td>
+            <td class="small">{{ project.role | pageText(lang) }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TUTKIJAPROFIILIT -->
+<section class="py-5" id="profiilit">
+  <div class="site-shell">
+    <div class="row g-4 align-items-end mb-3">
+      <div class="col-lg-8">
+        <p class="text-uppercase text-muted fw-semibold small mb-2">{{ "Tutkijaprofiilit" | pageText(lang) }}</p>
+        <h2 class="h3 fw-bold mb-3">{{ "Julkaisut ja viittausdata ulkoisissa palveluissa" | pageText(lang) }}</h2>
+        <p class="text-muted mb-0">{{ "Tutkimusprofiilit, julkaisut ja viittausdata löytyvät myös näistä palveluista." | pageText(lang) }}</p>
+      </div>
+    </div>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://orcid.org/0000-0003-0347-0182" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-success"><i class="bi bi-person-badge-fill"></i></div>
+            <h3 class="h6 fw-bold">{{ "ORCID" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">0000-0003-0347-0182</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://research.fi/en/results/person/0000-0003-0347-0182" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-primary"><i class="bi bi-building"></i></div>
+            <h3 class="h6 fw-bold">{{ "Research.fi" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "Kansallinen tutkijatietokanta" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://scholar.google.com/scholar?q=Jari+Laru" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-warning"><i class="bi bi-search"></i></div>
+            <h3 class="h6 fw-bold">{{ "Google Scholar" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "Viittausdata ja h-indeksi" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://www.semanticscholar.org/author/Jari-Laru/2016750" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-info"><i class="bi bi-graph-up"></i></div>
+            <h3 class="h6 fw-bold">{{ "Semantic Scholar" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "AI-pohjainen viittausanalyysi" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://oulurepo.oulu.fi/search?query=Laru" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-secondary"><i class="bi bi-archive-fill"></i></div>
+            <h3 class="h6 fw-bold">{{ "OuluREPO" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "Oulun yliopiston julkaisuarkisto" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://www.researchgate.net/profile/Jari-Laru" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2 text-success"><i class="bi bi-share-fill"></i></div>
+            <h3 class="h6 fw-bold">{{ "ResearchGate" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "Julkaisut ja yhteistyöverkosto" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <a href="{{ "https://fi.wikipedia.org/wiki/Jari_Laru" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer" class="card border-0 shadow-sm text-decoration-none h-100">
+          <div class="card-body p-4 text-center">
+            <div class="fs-1 mb-2" style="color:#000"><i class="bi bi-wikipedia"></i></div>
+            <h3 class="h6 fw-bold">{{ "Wikipedia" | pageText(lang) }}</h3>
+            <p class="small text-muted mb-0">{{ "Artikkeli suomenkielisessä Wikipediassa" | pageText(lang) }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUUALLA SIVUSTOLLA -->
+<section class="site-shell pb-5">
+  <aside class="research-crosslinks">
+    <h2>{{ "Muualla sivustolla" | pageText(lang) }}</h2>
+    <ul>
+      <li>
+        <a href="{{ "/julkaisut/" | localeUrl(lang) }}">{{ "Julkaisuluettelo" | pageText(lang) }}</a> {{ "— kaikki tieteelliset julkaisut OKM-luokituksen mukaisesti" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/vaitoskirja/" | localeUrl(lang) }}">{{ "Väitöskirja" | pageText(lang) }}</a> {{ "— lectio, osajulkaisut ja väitöstyön konteksti" | pageText(lang) }}</li>
+          <li><a href="{{ "/opinnaytteet/" | localeUrl(lang) }}">{{ "Ohjatut opinnäytetyöt" | pageText(lang) }}</a> {{ "— pro gradut ja kandidaatintyöt" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/tyoni-yliopistonlehtorina/" | localeUrl(lang) }}">{{ "Yliopistotyö" | pageText(lang) }}</a> {{ "— kolmen roolin kokonaisuus: opetus, tutkimus, vuorovaikutus" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/palkinnot/" | localeUrl(lang) }}">{{ "Palkinnot, apurahat ja tunnustukset" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/cv/" | localeUrl(lang) }}">{{ "Ansioluettelo" | pageText(lang) }}</a> {{ "— koulutus, työkokemus, hankkeet" | pageText(lang) }}</li>
+        </ul>
+      </li>
+      <li>
+        <a href="{{ "/yhteiskunnallinen-vuorovaikutus/" | localeUrl(lang) }}">{{ "Yhteiskunnallinen vuorovaikutus" | pageText(lang) }}</a> {{ "— miten tutkimus jatkuu käytännön työhön" | pageText(lang) }}
+        <ul>
+          <li><a href="{{ "/lausunnot/" | localeUrl(lang) }}">{{ "Lausunnot ja julkiset puheet" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/esitykset/" | localeUrl(lang) }}">{{ "Esitykset ja avoimet materiaalit" | pageText(lang) }}</a></li>
+          <li><a href="{{ "/mediassa/" | localeUrl(lang) }}">{{ "Mediassa" | pageText(lang) }}</a></li>
+        </ul>
+      </li>
+      <li><a href="{{ "/teemat/" | localeUrl(lang) }}">{{ "Teemaprofiilit" | pageText(lang) }}</a> {{ "— aiheen mukaan koottu tutkimus, lausunnot, materiaalit ja media" | pageText(lang) }}</li>
+    </ul>
+  </aside>
+</section>

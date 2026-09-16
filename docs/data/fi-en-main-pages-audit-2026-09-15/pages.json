@@ -1,0 +1,5885 @@
+[
+  {
+    "file": "src/index.njk",
+    "key": "home",
+    "lang": "fi",
+    "url": "/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/modules/_home.css",
+      "/css/home-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "{{ homeCopy.pathsTitle }}",
+      "Yliopistonlehtori · Kuntapäättäjä · Kouluttaja",
+      "Tunnustettua työtä",
+      "Merkkitapahtumia tutkimuksen, opetuksen ja politiikan varrelta",
+      "Samat aiheet jatkuvat tutkimuksesta opetukseen, kirjoituksiin ja päätöksentekoon",
+      "Koulutuksia, puheenvuoroja ja sparrausta",
+      "{{ pageContent.etusivu.closing.heading }}"
+    ],
+    "includes": [
+      "testimonials.njk"
+    ],
+    "rendered": {
+      "title": "Kouluttaja, puhuja ja vaikuttaja — Jari Laru",
+      "h1": [
+        "Kouluttaja, puhuja ja vaikuttaja koulutuksen tulevaisuuden puolesta."
+      ],
+      "h2": [
+        "Mitä etsit?",
+        "Yliopistonlehtori · Kuntapäättäjä · Kouluttaja",
+        "Tunnustettua työtä",
+        "Merkkitapahtumia tutkimuksen, opetuksen ja politiikan varrelta",
+        "Samat aiheet jatkuvat tutkimuksesta opetukseen, kirjoituksiin ja päätöksentekoon",
+        "Koulutuksia, puheenvuoroja ja sparrausta",
+        "Mitä osallistujat sanovat",
+        "Tarvitsetko kouluttajan, puhujan tai tutkimukseen nojaavan asiantuntijan?"
+      ],
+      "words": 1188,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/modules/_home.css",
+        "/css/home-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/404.njk",
+    "key": "not_found",
+    "lang": "fi",
+    "url": "404.html",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Hups! Etsimääsi sivua ei valitettavasti löytynyt."
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Sivua ei löytynyt — Jari Laru",
+      "h1": [
+        "404"
+      ],
+      "h2": [
+        "Hups! Etsimääsi sivua ei valitettavasti löytynyt."
+      ],
+      "words": 38,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/404.html"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/404.html"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/404.html"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/404.html",
+      "switches": [
+        "/en/404.html"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/avainsanat-index.njk",
+    "key": "keywords_index",
+    "lang": "fi",
+    "url": "/avainsanat/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Avainsanapilvi",
+      "Aakkosellinen hakemisto",
+      "Kategoria vai avainsana?"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Avainsanat ja tarkemmat hakureitit — Jari Laru",
+      "h1": [
+        "Avainsanat"
+      ],
+      "h2": [
+        "Avainsanapilvi",
+        "Aakkosellinen hakemisto",
+        "Kategoria vai avainsana?"
+      ],
+      "words": 2439,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/avainsanat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/keywords/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/avainsanat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/avainsanat/",
+      "switches": [
+        "/en/keywords/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/blog-index.njk",
+    "key": "blog_index",
+    "lang": "fi",
+    "url": "/blogi/",
+    "layout": "blog-list.njk",
+    "styles": [],
+    "scripts": [
+      "/js/blog-list.js"
+    ],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Blogi ja vanhat kirjoitukset — Jari Laru",
+      "h1": [
+        "Blogi ja vanhat kirjoitukset"
+      ],
+      "h2": [
+        "Uusimmat kirjoitukset",
+        "Aihepolut",
+        "Blogikirjoitukset",
+        "Vanhempi arkistoaineisto"
+      ],
+      "words": 3215,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/blogi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/blog/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/blogi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/blogi/",
+      "switches": [
+        "/en/blog/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/esitykset.njk",
+    "key": "presentations_index",
+    "lang": "fi",
+    "url": "/esitykset/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/presentations-page.css",
+      "/css/starter-chips.css"
+    ],
+    "scripts": [
+      "/js/pe-list-render.js",
+      "/js/content-presets.js",
+      "/js/content-engine.js",
+      "/js/presentations-page.js",
+      "/js/starter-chips.js"
+    ],
+    "headings": [],
+    "includes": [
+      "presentations/hero.njk",
+      "presentations/routes.njk",
+      "presentations/feature-highlights.njk",
+      "topic-profile-links.njk",
+      "presentations/archive.njk",
+      "presentations/background-and-sources.njk"
+    ],
+    "rendered": {
+      "title": "Esitykset ja opetusmateriaalit — Jari Laru",
+      "h1": [
+        "Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit"
+      ],
+      "h2": [
+        "Millaista materiaalia etsit?",
+        "Aloita näistä esityksistä ja koulutuksista",
+        "Samat aiheet jatkuvat myös muualla sivustolla",
+        "Selaa esityksiä ja opetusmateriaaleja",
+        "Jos haluat tarkistaa taustan, jatka tänne",
+        "Canva-esitykset",
+        "YouTube-videot",
+        "AOE-oppimateriaalit",
+        "SlideShare-esitykset"
+      ],
+      "words": 23977,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/esitykset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/presentations/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/esitykset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/esitykset/",
+      "switches": [
+        "/en/presentations/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "type": "search",
+              "placeholder": "Hae otsikoita, aiheita tai tapahtumia"
+            },
+            {},
+            {
+              "type": "search",
+              "placeholder": "Valitse tai kirjoita aihe"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/presentations-page.css",
+        "/css/starter-chips.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/julkaisut.njk",
+    "key": "publications_index",
+    "lang": "fi",
+    "url": "/julkaisut/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/publications-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js",
+      "/js/publication-citation.js"
+    ],
+    "headings": [
+      "Vaikuttavuus, yhteistyö ja aihepiirit",
+      "Julkaisut & viittaukset vuosittain",
+      "Julkaisutyypit",
+      "Laatuindikaattorit",
+      "Top 10 kanssakirjoittajaa",
+      "Avainsanat (otsikoista)",
+      "A–G kuvaa julkaisun tyypin",
+      "Vie lähdeviite"
+    ],
+    "includes": [
+      "find-explore-writings.njk",
+      "publication-archive-groups.njk"
+    ],
+    "rendered": {
+      "title": "Julkaisuluettelo — Jari Laru",
+      "h1": [
+        "Julkaisuluettelo"
+      ],
+      "h2": [
+        "Vaikuttavuus, yhteistyö ja aihepiirit",
+        "Julkaisut & viittaukset vuosittain",
+        "Julkaisutyypit",
+        "Laatuindikaattorit",
+        "Top 10 kanssakirjoittajaa",
+        "Avainsanat (otsikoista)",
+        "Etsi ja rajaa julkaisuja",
+        "Luokiteltu julkaisuarkisto",
+        "A–G kuvaa julkaisun tyypin",
+        "Vie lähdeviite"
+      ],
+      "words": 5690,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/julkaisut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/publications/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/julkaisut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/julkaisut/",
+      "switches": [
+        "/en/publications/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Kokeile esimerkiksi TPACK, Kosovo, ohjelmoinnillinen ajattelu, Iwata..."
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "yearOrder"
+            },
+            {
+              "name": "authorSort"
+            },
+            {
+              "name": "quality"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/publications-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/kategoriat-index.njk",
+    "key": "categories_index",
+    "lang": "fi",
+    "url": "/kategoriat/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Toimitetut aihepolut",
+      "Keskeiset aihekokonaisuudet",
+      "Tarkemmat aihealueet",
+      "Tarkempi hakureitti"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Kategoriat ja sivuston aihealueet — Jari Laru",
+      "h1": [
+        "Kategoriat"
+      ],
+      "h2": [
+        "Toimitetut aihepolut",
+        "Keskeiset aihekokonaisuudet",
+        "Tarkemmat aihealueet",
+        "Tarkempi hakureitti"
+      ],
+      "words": 1976,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kategoriat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/categories/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kategoriat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kategoriat/",
+      "switches": [
+        "/en/categories/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/kirjoitukset.njk",
+    "key": "writings_texts",
+    "lang": "fi",
+    "url": "/kirjoitukset/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/kynasta-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [
+      "Mielipidekirjoitukset",
+      "Kolumnit ja blogivierailut",
+      "Blogi"
+    ],
+    "includes": [
+      "find-explore-writings.njk",
+      "writings-curated-list.njk",
+      "writings-curated-list.njk",
+      "writings-curated-list.njk"
+    ],
+    "rendered": {
+      "title": "Blogi, mielipidekirjoitukset ja kolumnit — Jari Laru",
+      "h1": [
+        "Blogi, mielipidekirjoitukset ja kolumnit"
+      ],
+      "h2": [
+        "Tutki kirjoituksia",
+        "Mielipidekirjoitukset",
+        "Kolumnit ja blogivierailut",
+        "Blogi"
+      ],
+      "words": 595,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kirjoitukset/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kirjoitukset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kirjoitukset/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Esim. tekoäly, kampus, lähijuna, kouluverkko..."
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "year"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/kynasta-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/kynasta.njk",
+    "key": "writings_index",
+    "lang": "fi",
+    "url": "/kynasta/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/kynasta-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Vapaamuotoiset kirjoitukset ja julkaistut kannanotot",
+      "Kaupunginvaltuustoon liittyvät puheenvuorot ja aloitteet",
+      "Asiantuntijana annetut lausunnot ja muut julkiset puheet",
+      "Samat aiheet kulkevat läpi sisältölajien"
+    ],
+    "includes": [
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk"
+    ],
+    "rendered": {
+      "title": "Kynästä — kirjoitukset, puheet ja kannanotot — Jari Laru",
+      "h1": [
+        "Kirjoitukset, puheet ja kannanotot"
+      ],
+      "h2": [
+        "Vapaamuotoiset kirjoitukset ja julkaistut kannanotot",
+        "Kaupunginvaltuustoon liittyvät puheenvuorot ja aloitteet",
+        "Asiantuntijana annetut lausunnot ja muut julkiset puheet",
+        "Samat aiheet kulkevat läpi sisältölajien"
+      ],
+      "words": 607,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/writings/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kynasta/",
+      "switches": [
+        "/en/writings/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/kynasta-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/lausunnot.njk",
+    "key": "fi_lausunnot",
+    "lang": "fi",
+    "url": "/lausunnot/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Asiantuntijalausunnot valmisteluprosesseihin",
+      "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot",
+      "Muualla sivustolla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Lausunnot ja julkiset puheet — Jari Laru",
+      "h1": [
+        "Lausunnot ja julkiset puheet"
+      ],
+      "h2": [
+        "Asiantuntijalausunnot valmisteluprosesseihin",
+        "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot",
+        "Muualla sivustolla"
+      ],
+      "words": 1186,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/lausunnot/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/lausunnot/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/lausunnot/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/opinnaytteet.njk",
+    "key": "theses_index",
+    "lang": "fi",
+    "url": "/opinnaytteet/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [
+      "Aiheprofiilit",
+      "{{ heading }}"
+    ],
+    "includes": [
+      "find-explore-writings.njk"
+    ],
+    "rendered": {
+      "title": "Ohjatut opinnäytetyöt — Jari Laru",
+      "h1": [
+        "Ohjatut opinnäytetyöt"
+      ],
+      "h2": [
+        "Aiheprofiilit",
+        "Hae opinnäytteistä",
+        "Uusimmat ohjatut pro gradu -tutkielmat",
+        "Uusimmat ohjatut kandidaatintyöt",
+        "Uusimmat tarkastetut opinnäytteet"
+      ],
+      "words": 424,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opinnaytteet/",
+      "switches": [
+        "/en/theses/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Esim. tekoäly, opettajankoulutus, matematiikka, Riikonen..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/portfolio-index.njk",
+    "key": "portfolio_index",
+    "lang": "fi",
+    "url": "/portfolio/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/portfolio-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Yhteenveto opetusurasta ja portfolion sisällöstä",
+      "Kolme periaatetta, joihin opetustyöni nojaa",
+      "Opetuskokemus, ohjaus, oppimisympäristöt ja johtamistyö",
+      "Opetustyön laatua arvioidaan opiskelijoiden, kollegoiden ja asiantuntijaraatien näkökulmista",
+      "Tutkintotausta ja pedagoginen koulutus",
+      "Tällä hetkellä opetus ja kehittämistyö kulkevat vahvasti tekoälykasvatuksen kautta",
+      "Ajankohtaiset puheenvuorot näyttävät, miten opetustyö elää tässä ajassa",
+      "Konkreettisia näytteitä: oppimisympäristöistä, avoimista aineistoista ja saaduista tunnustuksista",
+      "Portfolioon liittyvät sivut"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Opetusportfolio — Jari Laru",
+      "h1": [
+        "Opetan tulevia opettajia niin, että teknologia muuttuu ymmärrettäväksi osaksi opetuksen arkea."
+      ],
+      "h2": [
+        "Yhteenveto opetusurasta ja portfolion sisällöstä",
+        "Kolme periaatetta, joihin opetustyöni nojaa",
+        "Opetuskokemus, ohjaus, oppimisympäristöt ja johtamistyö",
+        "Opetustyön laatua arvioidaan opiskelijoiden, kollegoiden ja asiantuntijaraatien näkökulmista",
+        "Tutkintotausta ja pedagoginen koulutus",
+        "Tällä hetkellä opetus ja kehittämistyö kulkevat vahvasti tekoälykasvatuksen kautta",
+        "Ajankohtaiset puheenvuorot näyttävät, miten opetustyö elää tässä ajassa",
+        "Konkreettisia näytteitä: oppimisympäristöistä, avoimista aineistoista ja saaduista tunnustuksista",
+        "Portfolioon liittyvät sivut"
+      ],
+      "words": 1552,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/portfolio/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/portfolio/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/portfolio/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/portfolio/",
+      "switches": [
+        "/en/portfolio/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/portfolio-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/teemat-index.njk",
+    "key": "topic_profiles_index",
+    "lang": "fi",
+    "url": "/teemat/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "{{ topic.title }}"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Teemaprofiilit — Jari Laru",
+      "h1": [
+        "Teemaprofiilit"
+      ],
+      "h2": [
+        "Tekoälylukutaito",
+        "Opettajankoulutus ja opetuksen kehittäminen",
+        "Koulutusteknologia ja oppimisympäristöt",
+        "Avoin tiede ja avoimet oppimateriaalit",
+        "Oulun palveluverkko ja kaupunkikehitys",
+        "Läpinäkyvä päätöksenteko ja tiedolla johtaminen",
+        "Julkinen asiantuntijuus mediassa"
+      ],
+      "words": 473,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/teemat/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/teemat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/teemat/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/valtuustotyo.njk",
+    "key": "writings_council",
+    "lang": "fi",
+    "url": "/valtuustotyo/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/kynasta-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Valtuustoaloitteet ja adressit",
+      "Valtuustopuheenvuorot",
+      "Muualla sivustolla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Valtuustotyö — puheenvuorot ja aloitteet — Jari Laru",
+      "h1": [
+        "Puheenvuorot ja aloitteet valtuustossa"
+      ],
+      "h2": [
+        "Valtuustoaloitteet ja adressit",
+        "Valtuustopuheenvuorot",
+        "Muualla sivustolla"
+      ],
+      "words": 5127,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/valtuustotyo/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/valtuustotyo/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/valtuustotyo/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/kynasta-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta.md",
+    "key": "fi_only_aluehallinto",
+    "lang": "fi",
+    "url": "/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Asiaa erilaisista himmeleistä ja aluehallinnosta — Jari Laru",
+      "h1": [
+        "Asiaa erilaisista himmeleistä ja aluehallinnosta"
+      ],
+      "h2": [],
+      "words": 971,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/autolomat.md",
+    "key": "roadtrips",
+    "lang": "fi",
+    "url": "/autolomat/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Tehdyt matkat",
+      "Haavelistalla",
+      "Matkailu-blogista"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Matkat ja matkakertomukset — Jari Laru",
+      "h1": [
+        "Matkat & matkakertomukset"
+      ],
+      "h2": [
+        "Tehdyt matkat",
+        "Haavelistalla",
+        "Matkailu-blogista"
+      ],
+      "words": 540,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/autolomat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/road-trips/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/autolomat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/autolomat/",
+      "switches": [
+        "/en/road-trips/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/cv.md",
+    "key": "cv",
+    "lang": "fi",
+    "url": "/cv/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Perustiedot",
+      "Keskeiset tutkijaprofiilit",
+      "Kielitaito",
+      "Tutkinnot ja oppiarvot",
+      "Työkokemus",
+      "Hankkeet ja apurahat",
+      "Tutkimuksen tuotokset"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Ansioluettelo — Jari Laru",
+      "h1": [
+        "Laru Jari Jukka, KT"
+      ],
+      "h2": [
+        "Perustiedot",
+        "Keskeiset tutkijaprofiilit",
+        "Kielitaito",
+        "Tutkinnot ja oppiarvot",
+        "Työkokemus",
+        "Hankkeet ja apurahat",
+        "Tutkimuksen tuotokset"
+      ],
+      "words": 451,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/cv/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/cv/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/cv/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/cv/",
+      "switches": [
+        "/en/cv/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/haku.njk",
+    "key": "search",
+    "lang": "fi",
+    "url": "/haku/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [
+      "_search-page-config.njk"
+    ],
+    "rendered": {
+      "title": "Hae sivustolta — Jari Laru",
+      "h1": [
+        "Hae sivustolta"
+      ],
+      "h2": [],
+      "words": 124,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/haku/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/search/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/haku/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/haku/",
+      "switches": [
+        "/en/search/"
+      ],
+      "forms": [
+        {
+          "action": "/haku/",
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "label": "Hae sivustolta",
+              "placeholder": "Kirjoita hakusana..."
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/jari-laru-aluevaltuustoon.md",
+    "key": "fi_only_aluevaltuustoon",
+    "lang": "fi",
+    "url": "/jari-laru-aluevaltuustoon/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Mitkä ihmeen aluevaalit? Mikä ihmeen hyvinvointialue?",
+      "Tavoitteeni",
+      "Tue kampanjaani",
+      "Aluevaalikirjoituksia",
+      "Aiheesta kirjoittamaani",
+      "Äänestä aluevaaleissa vuonna 2022"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Jari Laru aluevaalivaltuustoon — Jari Laru",
+      "h1": [
+        "Jari Laru aluevaalivaltuustoon"
+      ],
+      "h2": [
+        "Mitkä ihmeen aluevaalit? Mikä ihmeen hyvinvointialue?",
+        "Tavoitteeni",
+        "Tue kampanjaani",
+        "Aluevaalikirjoituksia",
+        "Aiheesta kirjoittamaani",
+        "Äänestä aluevaaleissa vuonna 2022"
+      ],
+      "words": 519,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/jari-laru-aluevaltuustoon/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/jari-laru-aluevaltuustoon/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/jari-laru-aluevaltuustoon/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/jari-laru-kaupunginvaltuutettu.md",
+    "key": "fi_only_kaupunginvaltuutettu",
+    "lang": "fi",
+    "url": "/jari-laru-kaupunginvaltuutettu/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Jari Laru, kaupunginvaltuutettu — Jari Laru",
+      "h1": [
+        "Jari Laru, kaupunginvaltuutettu"
+      ],
+      "h2": [],
+      "words": 67,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/jari-laru-kaupunginvaltuutettu/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/jari-laru-kaupunginvaltuutettu/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/jari-laru-kaupunginvaltuutettu/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/koulutuspalaute.md",
+    "key": "fi_only_koulutuspalaute",
+    "lang": "fi",
+    "url": "/koulutuspalaute/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Toistuvat vahvuudet",
+      "Toistuvat kehityskohteet",
+      "Palautteen havaittuja vaikutuksia",
+      "Palautelähteet tilaisuuksittain"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Täydennyskoulutuspalaute ja koulutustyön kehittäminen — Jari Laru",
+      "h1": [
+        "Täydennyskoulutuspalaute"
+      ],
+      "h2": [
+        "Toistuvat vahvuudet",
+        "Toistuvat kehityskohteet",
+        "Palautteen havaittuja vaikutuksia",
+        "Palautelähteet tilaisuuksittain"
+      ],
+      "words": 1564,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/koulutuspalaute/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/koulutuspalaute/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/koulutuspalaute/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/kunnallisvaalit-2012.md",
+    "key": "fi_only_kunnallisvaalit2012",
+    "lang": "fi",
+    "url": "/kunnallisvaalit-2012/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Kunnallisvaalit 2012 — Jari Laru",
+      "h1": [
+        "Kunnallisvaalit 2012"
+      ],
+      "h2": [],
+      "words": 210,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kunnallisvaalit-2012/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kunnallisvaalit-2012/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kunnallisvaalit-2012/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/kuntavaalit-2021.md",
+    "key": "fi_only_kuntavaalit2021",
+    "lang": "fi",
+    "url": "/kuntavaalit-2021/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Olen ehdolla kuntavaaleissa 2021",
+      "Knoppitiedon maraton - päivittäinen annos 372 triviaa!"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Kuntavaalit 2021 — Jari Laru",
+      "h1": [
+        "Kuntavaalit 2021"
+      ],
+      "h2": [
+        "Olen ehdolla kuntavaaleissa 2021",
+        "Knoppitiedon maraton - päivittäinen annos 372 triviaa!"
+      ],
+      "words": 157,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kuntavaalit-2021/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kuntavaalit-2021/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kuntavaalit-2021/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/kuntavaalit-2025.md",
+    "key": "election_2025",
+    "lang": "fi",
+    "url": "/kunta-ja-aluevaalit-2025/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Kampanjan ydin",
+      "Vaaliperustiedot",
+      "Kolme kampanjatavoitetta",
+      "Vaalitulos ja luottamustoimet 2025&ndash;2029"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Kunta- ja aluevaalit 2025 — Jari Laru",
+      "h1": [
+        "Kunta- ja aluevaalit 2025"
+      ],
+      "h2": [
+        "Kampanjan ydin",
+        "Vaaliperustiedot",
+        "Kolme kampanjatavoitetta",
+        "Vaalitulos ja luottamustoimet 2025–2029"
+      ],
+      "words": 321,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kunta-ja-aluevaalit-2025/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/municipal-and-wellbeing-elections-2025/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kunta-ja-aluevaalit-2025/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kunta-ja-aluevaalit-2025/",
+      "switches": [
+        "/en/municipal-and-wellbeing-elections-2025/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/lahjoita.md",
+    "key": "fi_only_lahjoita",
+    "lang": "fi",
+    "url": "/lahjoita/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Lämmin kiitos tuestasi! Jokainen euro tulee tarpeeseen!"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Tue kampanjaani — Jari Laru",
+      "h1": [
+        "Tue kampanjaani"
+      ],
+      "h2": [
+        "Lämmin kiitos tuestasi! Jokainen euro tulee tarpeeseen!"
+      ],
+      "words": 130,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/lahjoita/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/lahjoita/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/lahjoita/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/lisenssi.md",
+    "key": "license_page",
+    "lang": "fi",
+    "url": "/lisenssi/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Sisältö — CC BY 4.0",
+      "Poliittiset kirjoitukset — CC BY-NC-ND 4.0",
+      "Lähdekoodi — MIT",
+      "Kolmannen osapuolen sisältö"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Lisenssi ja uudelleenkäytön ehdot — Jari Laru",
+      "h1": [
+        "Lisenssi"
+      ],
+      "h2": [
+        "Sisältö — CC BY 4.0",
+        "Poliittiset kirjoitukset — CC BY-NC-ND 4.0",
+        "Lähdekoodi — MIT",
+        "Kolmannen osapuolen sisältö"
+      ],
+      "words": 182,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/lisenssi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/license/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/lisenssi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/lisenssi/",
+      "switches": [
+        "/en/license/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/mediassa.njk",
+    "key": "media_index",
+    "lang": "fi",
+    "url": "/mediassa/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/media-page.css",
+      "/css/starter-chips.css"
+    ],
+    "scripts": [
+      "/js/pe-list-render.js",
+      "/js/content-presets.js",
+      "/js/content-engine.js",
+      "/js/starter-chips.js"
+    ],
+    "headings": [
+      "Valittuja ja tunnistettavia mediaosumia",
+      "Selaa kaikkia mediaosumia",
+      "Muualla sivustolla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Mediassa: podcastit, videot ja haastattelut — Jari Laru",
+      "h1": [
+        "Mediassa"
+      ],
+      "h2": [
+        "Valittuja ja tunnistettavia mediaosumia",
+        "Selaa kaikkia mediaosumia",
+        "Muualla sivustolla"
+      ],
+      "words": 1923,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/mediassa/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/media/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/mediassa/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/mediassa/",
+      "switches": [
+        "/en/media/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/media-page.css",
+        "/css/starter-chips.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/miten-sivusto-on-rakennettu.njk",
+    "key": "how_site_built",
+    "lang": "fi",
+    "url": "/miten-sivusto-on-rakennettu/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "1. AI-avusteinen kehitystyö: ihminen päättää, työkalut auttavat",
+      "2. Sivuston rakennuspalikat",
+      "3. Sisältömalli: tekstit eivät ole vain irrallisia artikkeleita",
+      "4. Datalähteet ja ulkoiset palvelut",
+      "5. Laadunvarmistus ja ylläpitonäkymät",
+      "6. Miten aloitat oman vastaavan sivuston"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Miten tämä sivusto on rakennettu — Jari Laru",
+      "h1": [
+        "Miten tämä sivusto on tehty"
+      ],
+      "h2": [
+        "1. AI-avusteinen kehitystyö: ihminen päättää, työkalut auttavat",
+        "2. Sivuston rakennuspalikat",
+        "3. Sisältömalli: tekstit eivät ole vain irrallisia artikkeleita",
+        "4. Datalähteet ja ulkoiset palvelut",
+        "5. Laadunvarmistus ja ylläpitonäkymät",
+        "6. Miten aloitat oman vastaavan sivuston"
+      ],
+      "words": 1140,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/miten-sivusto-on-rakennettu/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/how-this-site-is-built/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/miten-sivusto-on-rakennettu/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/miten-sivusto-on-rakennettu/",
+      "switches": [
+        "/en/how-this-site-is-built/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/mukaan-kampanjaan.md",
+    "key": "fi_only_mukaan_kampanjaan",
+    "lang": "fi",
+    "url": "/mukaan-kampanjaan/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Mukaan kampanjaan — Jari Laru",
+      "h1": [
+        "Mukaan kampanjaan"
+      ],
+      "h2": [],
+      "words": 157,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/mukaan-kampanjaan/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/mukaan-kampanjaan/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/mukaan-kampanjaan/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/opetus.md",
+    "key": "teaching_fi_only",
+    "lang": "fi",
+    "url": "/opetus/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Nykyinen opetus",
+      "Aiemmat kurssitoteutukset",
+      "Opetukseen liittyvät kokonaisuudet"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Opetus — Jari Laru",
+      "h1": [
+        "Opetus"
+      ],
+      "h2": [
+        "Nykyinen opetus",
+        "Aiemmat kurssitoteutukset",
+        "Opetukseen liittyvät kokonaisuudet"
+      ],
+      "words": 170,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opetus/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opetus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opetus/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/opiskelijoiden-antamaa-palautetta.md",
+    "key": "fi_only_opiskelijapalaute",
+    "lang": "fi",
+    "url": "/opiskelijoiden-antamaa-palautetta/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "{{ family.fullName }}",
+      "{{ kurssi.nimi }}",
+      "Palautteen keruun jäljet muilla kursseilla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Opiskelijapalaute ja opetuksen kehittäminen — Jari Laru",
+      "h1": [
+        "Opiskelijapalaute ja opetuksen kehittäminen"
+      ],
+      "h2": [
+        "405028Y Teknologiatuettu oppiminen — TVT-osuus",
+        "418028P Learning Environments and Technologies",
+        "407062A Ohjelmointi perusopetuksessa",
+        "TEL1 – Technology Enhanced Learning",
+        "Tieto- ja viestintätekniikka pedagogisena työvälineenä (3 op)",
+        "Digitaalinen media opetuksessa ja oppimisessa (2 op)",
+        "407062A Ohjelmointi perusopetuksessa",
+        "413314S Designing Technology-Enhanced Learning (LET 2nd year)",
+        "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
+        "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
+        "418025P Oppimisen ympäristöt ja teknologiat",
+        "407062A Ohjelmointi perusopetuksessa",
+        "405028Y Teknologiatuettu oppiminen ja opintoihin orientoituminen — TVT-osuus",
+        "413325S Emergent Technologies",
+        "Teknologiatuettu oppiminen — LUKO–ERKKA tekoälyharjoitus",
+        "418028P Learning Environments and Technologies (23LET)",
+        "418028P Learning Environments and Technologies (24LET)",
+        "Palautteen keruun jäljet muilla kursseilla"
+      ],
+      "words": 4749,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opiskelijoiden-antamaa-palautetta/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opiskelijoiden-antamaa-palautetta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opiskelijoiden-antamaa-palautetta/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/palkinnot.md",
+    "key": "awards",
+    "lang": "fi",
+    "url": "/palkinnot/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Huomionosoitukset",
+      "Palkinnot",
+      "Apurahat",
+      "Opiskelijoiden tunnustukset"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Palkinnot ja tunnustukset — Jari Laru",
+      "h1": [
+        "Palkinnot ja tunnustukset"
+      ],
+      "h2": [
+        "Huomionosoitukset",
+        "Palkinnot",
+        "Apurahat",
+        "Opiskelijoiden tunnustukset"
+      ],
+      "words": 577,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/palkinnot/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/awards/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/palkinnot/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/palkinnot/",
+      "switches": [
+        "/en/awards/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/politiikka.md",
+    "key": "politics_index",
+    "lang": "fi",
+    "url": "/politiikka/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/politics-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Nykyiset luottamustehtävät",
+      "Neljä kuratoitua kokonaisuutta, joissa työ jatkuu vuodesta toiseen",
+      "Miltä linja näyttää käytännössä",
+      "Kirjoitukset avaavat päätösten taustoja",
+      "Kun haluat nähdä koko aineiston"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Jari Laru, poliitikko — Jari Laru",
+      "h1": [
+        "Jari Laru, poliitikko"
+      ],
+      "h2": [
+        "Nykyiset luottamustehtävät",
+        "Neljä kuratoitua kokonaisuutta, joissa työ jatkuu vuodesta toiseen",
+        "Miltä linja näyttää käytännössä",
+        "Kirjoitukset avaavat päätösten taustoja",
+        "Kun haluat nähdä koko aineiston"
+      ],
+      "words": 884,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/politics/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/politiikka/",
+      "switches": [
+        "/en/politics/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/politics-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/privacy-policy-for-oembed-fb-app.md",
+    "key": "fi_only_privacy_oembed",
+    "lang": "fi",
+    "url": "/privacy-policy-for-oembed-fb-app/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Owner and Data Controller",
+      "Types of Data collected",
+      "Mode and place of processing the Data",
+      "The purposes of processing",
+      "Facebook permissions asked by this Applicatio",
+      "The rights of Users",
+      "Applicability of broader protection standards",
+      "Additional information about Data collection and processing"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Privacy policy for oEmbed FB app — Jari Laru",
+      "h1": [
+        "Privacy policy for oEmbed FB app"
+      ],
+      "h2": [
+        "Owner and Data Controller",
+        "Types of Data collected",
+        "Mode and place of processing the Data",
+        "The purposes of processing",
+        "Facebook permissions asked by this Applicatio",
+        "The rights of Users",
+        "Applicability of broader protection standards",
+        "Additional information about Data collection and processing"
+      ],
+      "words": 2059,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/privacy-policy-for-oembed-fb-app/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/privacy-policy-for-oembed-fb-app/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/privacy-policy-for-oembed-fb-app/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/puheenvuorot-ja-koulutukset.md",
+    "key": "training_index",
+    "lang": "fi",
+    "url": "/puheenvuorot-ja-koulutukset/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Puheenvuorot ja koulutukset — Jari Laru",
+      "h1": [
+        "Puheenvuorot ja koulutukset"
+      ],
+      "h2": [],
+      "words": 94,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/training/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/",
+      "switches": [
+        "/en/training/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/saavutettavuus.md",
+    "key": "accessibility_statement",
+    "lang": "fi",
+    "url": "/saavutettavuus/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Yhteenveto",
+      "Arviointimenetelmä",
+      "Tarkastuksen kattavuus",
+      "Tämän auditoinnin tulos",
+      "Havaitut ja korjatut ongelmat",
+      "Tunnetut rajoitukset ja keskeneräiset kohdat",
+      "Palautetta saavutettavuudesta",
+      "Viittaukset"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Saavutettavuusseloste — Jari Laru",
+      "h1": [
+        "Saavutettavuusseloste"
+      ],
+      "h2": [
+        "Yhteenveto",
+        "Arviointimenetelmä",
+        "Tarkastuksen kattavuus",
+        "Tämän auditoinnin tulos",
+        "Havaitut ja korjatut ongelmat",
+        "Tunnetut rajoitukset ja keskeneräiset kohdat",
+        "Palautetta saavutettavuudesta",
+        "Viittaukset"
+      ],
+      "words": 652,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/saavutettavuus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/accessibility/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/saavutettavuus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/saavutettavuus/",
+      "switches": [
+        "/en/accessibility/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/sidonnaisuudet.md",
+    "key": "disclosures",
+    "lang": "fi",
+    "url": "/poliittinen-avoimuus/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/disclosures-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Nykyiset tehtävät ja muut sidokset",
+      "Vaalirahoitusilmoitukset",
+      "Läpinäkyvyys kuuluu politiikan perustietoihin"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Sidonnaisuudet ja vaalirahoitus — Jari Laru",
+      "h1": [
+        "Sidonnaisuudet ja vaalirahoitus"
+      ],
+      "h2": [
+        "Nykyiset tehtävät ja muut sidokset",
+        "Vaalirahoitusilmoitukset",
+        "Läpinäkyvyys kuuluu politiikan perustietoihin"
+      ],
+      "words": 388,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/poliittinen-avoimuus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/affiliations/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/poliittinen-avoimuus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/poliittinen-avoimuus/",
+      "switches": [
+        "/en/affiliations/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/disclosures-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/sivistyslautakunta.njk",
+    "key": "education_committee_meetings",
+    "lang": "fi",
+    "url": "/politiikka/sivistyslautakunta/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/education-committee-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Ratkaisut näkyvät ensin lautakunnan listalla",
+      "Kaikki lautakuntatyö ei näy puheenvuoroina",
+      "{{ season.period }}"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Sivistyslautakunta ja lautakuntatyö — Jari Laru",
+      "h1": [
+        "Sivistyslautakunta"
+      ],
+      "h2": [
+        "Ratkaisut näkyvät ensin lautakunnan listalla",
+        "Kaikki lautakuntatyö ei näy puheenvuoroina",
+        "2025-2029",
+        "2023-2025",
+        "2021-2022",
+        "2017-2021"
+      ],
+      "words": 6953,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/sivistyslautakunta/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/sivistyslautakunta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/politiikka/sivistyslautakunta/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/education-committee-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/sivuston-muutokset.njk",
+    "key": "site_changes",
+    "lang": "fi",
+    "url": "/sivuston-muutokset/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Sivuston muutokset — Jari Laru",
+      "h1": [
+        "Sivuston muutokset"
+      ],
+      "h2": [],
+      "words": 25353,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/sivuston-muutokset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/site-changes/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/sivuston-muutokset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/sivuston-muutokset/",
+      "switches": [
+        "/en/site-changes/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/tietoa.md",
+    "key": "about",
+    "lang": "fi",
+    "url": "/tietoa/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/about-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Neljä näkökulmaa samaan työhön",
+      "Teknologia ei ole itseisarvo, vaan väline parempaan ajatteluun",
+      "Raahe, Oulu ja Jääli muodostavat paikallisen mittakaavan",
+      "Perhe, ruoka, remontointi ja pitkät automatkat pitävät kiinni arjessa",
+      "Löydä oikea näkökulma"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Tietoa Jari Larusta — Jari Laru",
+      "h1": [
+        "Jari Laru"
+      ],
+      "h2": [
+        "Neljä näkökulmaa samaan työhön",
+        "Teknologia ei ole itseisarvo, vaan väline parempaan ajatteluun",
+        "Raahe, Oulu ja Jääli muodostavat paikallisen mittakaavan",
+        "Perhe, ruoka, remontointi ja pitkät automatkat pitävät kiinni arjessa",
+        "Löydä oikea näkökulma"
+      ],
+      "words": 501,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tietoa/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/about/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tietoa/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/tietoa/",
+      "switches": [
+        "/en/about/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/about-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/tietosuojaseloste.md",
+    "key": "privacy_notice",
+    "lang": "fi",
+    "url": "/tietosuojaseloste/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "1. Rekisterinpitäjä",
+      "2. Ulkoiset upotukset ja suostumus",
+      "3. Paikallinen tallennus (localStorage)",
+      "4. Yhteydenottolomake",
+      "5. Tietojen säilytys",
+      "6. Oikeudet",
+      "7. Tietosuojavastaava (DPO) ja pyyntökanava"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Tietosuojaseloste — Jari Laru",
+      "h1": [
+        "Tietosuojaseloste"
+      ],
+      "h2": [
+        "1. Rekisterinpitäjä",
+        "2. Ulkoiset upotukset ja suostumus",
+        "3. Paikallinen tallennus (localStorage)",
+        "4. Yhteydenottolomake",
+        "5. Tietojen säilytys",
+        "6. Oikeudet",
+        "7. Tietosuojavastaava (DPO) ja pyyntökanava"
+      ],
+      "words": 253,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tietosuojaseloste/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/privacy/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tietosuojaseloste/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/tietosuojaseloste/",
+      "switches": [
+        "/en/privacy/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/tutkimus.md",
+    "key": "research",
+    "lang": "fi",
+    "url": "/tutkimus/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/research-page.css",
+      "/css/find-explore.css",
+      "/css/starter-chips.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js",
+      "/js/starter-chips.js"
+    ],
+    "headings": [
+      "Generation AI kokoaa tutkimuksen tämänhetkisen painopisteen",
+      "Kolme keskeistä tutkimuslinjaa",
+      "Väitöskirja ja pro gradu",
+      "Tutkimushankkeet 2003–",
+      "Julkaisut ja viittausdata ulkoisissa palveluissa",
+      "Muualla sivustolla"
+    ],
+    "includes": [
+      "find-explore-writings.njk"
+    ],
+    "rendered": {
+      "title": "Tutkimus — Jari Laru",
+      "h1": [
+        "Tutkimuksen tarkasteluteemat: miten teknologia muuttaa oppimista ja opettamista"
+      ],
+      "h2": [
+        "Generation AI kokoaa tutkimuksen tämänhetkisen painopisteen",
+        "Kolme keskeistä tutkimuslinjaa",
+        "Tutki näyttöä aiheen mukaan",
+        "Väitöskirja ja pro gradu",
+        "Tutkimushankkeet 2003–",
+        "Julkaisut ja viittausdata ulkoisissa palveluissa",
+        "Muualla sivustolla"
+      ],
+      "words": 719,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tutkimus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/research/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tutkimus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/tutkimus/",
+      "switches": [
+        "/en/research/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Kokeile esimerkiksi tekoälylukutaito, TPACK, collaborative learning, ohjelmoinnillinen ajattelu..."
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/research-page.css",
+        "/css/find-explore.css",
+        "/css/starter-chips.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/tyoni-yliopistonlehtorina.njk",
+    "key": "university_lecturer_work",
+    "lang": "fi",
+    "url": "/tyoni-yliopistonlehtorina/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/university-work-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Kolme aluetta, joiden varaan yliopistotyö rakentuu",
+      "Generation AI -hanke ja tuoreimmat nostot",
+      "Tehdystä työstä kertovat hyvä palaute ja palkinnot",
+      "Muualla sivustolla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Yliopistotyö: opetus, tutkimus ja... — Jari Laru",
+      "h1": [
+        "Yliopistotyö: opetus, tutkimus ja yhteiskunnallinen vuorovaikutus"
+      ],
+      "h2": [
+        "Kolme aluetta, joiden varaan yliopistotyö rakentuu",
+        "Generation AI -hanke ja tuoreimmat nostot",
+        "Tehdystä työstä kertovat hyvä palaute ja palkinnot",
+        "Muualla sivustolla"
+      ],
+      "words": 588,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tyoni-yliopistonlehtorina/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/work/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tyoni-yliopistonlehtorina/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/tyoni-yliopistonlehtorina/",
+      "switches": [
+        "/en/work/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/university-work-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/vaalihistoria.md",
+    "key": "election_history",
+    "lang": "fi",
+    "url": "/politiikka/vaalikaudet/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/election-history-page.css"
+    ],
+    "scripts": [],
+    "headings": [],
+    "includes": [
+      "election-history-page.njk"
+    ],
+    "rendered": {
+      "title": "Vaalikaudet ja poliittinen työ — Jari Laru",
+      "h1": [
+        "Vaalikaudet"
+      ],
+      "h2": [
+        "2025–2029",
+        "2021–2025",
+        "2017–2021",
+        "2013–2017"
+      ],
+      "words": 2992,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/vaalikaudet/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/election-history/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/vaalikaudet/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/politiikka/vaalikaudet/",
+      "switches": [
+        "/en/election-history/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/election-history-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/vaitoskirja.njk",
+    "key": "dissertation",
+    "lang": "fi",
+    "url": "/vaitoskirja/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/dissertation-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Väitöstilaisuuden avauspuhe videona",
+      "Pelkkä teknologia ei riitä",
+      "Väitöskirja ja osajulkaisut",
+      "Väitöskirja näkyy yhä työssäni"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Väitöskirja ja osajulkaisut — Jari Laru",
+      "h1": [
+        "Scaffolding learning activities with collaborative scripts and mobile devices"
+      ],
+      "h2": [
+        "Väitöstilaisuuden avauspuhe videona",
+        "Pelkkä teknologia ei riitä",
+        "Väitöskirja ja osajulkaisut",
+        "Väitöskirja näkyy yhä työssäni"
+      ],
+      "words": 569,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/vaitoskirja/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/dissertation/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/vaitoskirja/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/vaitoskirja/",
+      "switches": [
+        "/en/dissertation/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/dissertation-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/valtuusto-kokous.njk",
+    "key": "council_meeting",
+    "lang": "fi",
+    "url": "/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/council-meeting-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "{{ title }}",
+      "{{ meeting.meetingLabel }}"
+    ],
+    "includes": []
+  },
+  {
+    "file": "src/fi/valtuusto.njk",
+    "key": "council_meetings",
+    "lang": "fi",
+    "url": "/politiikka/kaupunginvaltuusto/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/council-meetings-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Kaupunginvaltuuston kokoukset"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Kaupunginvaltuusto ja poliittinen työ — Jari Laru",
+      "h1": [
+        "Kaupunginvaltuusto"
+      ],
+      "h2": [
+        "Kaupunginvaltuuston kokoukset"
+      ],
+      "words": 3073,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/kaupunginvaltuusto/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/kaupunginvaltuusto/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/politiikka/kaupunginvaltuusto/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/council-meetings-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/vanha-opetusportfolio-wiki-oulu-fi.md",
+    "key": "fi_only_opetusportfolio",
+    "lang": "fi",
+    "url": "/vanha-opetusportfolio-wiki-oulu-fi/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Huomio sivusta",
+      "Jari Laru",
+      "Opetusfilosofia",
+      "Opetus- ja ohjaushistoria",
+      "Itsearvio omasta opetuksesta ja itsestä opetusyhteisön jäsenenä",
+      "Opetuksen arviointi",
+      "Oppimateriaalin tuottaminen ja hyödyntämine",
+      "pedagoginen koulutus",
+      "yliopistopedagoginen aktiivisuus ja opetuksen kehittämine",
+      "Kansainvälistyminen, kansainväliset yhteydet",
+      "Yhteiskunnallinen vaikuttamine",
+      "Palkinnot, apurahat ja muut huomionosoitukset",
+      "Luottamustoimet, työryhmien ja toimikuntien jäsenyys",
+      "Muu opetustyöhön liittyvä toiminta",
+      "Visiot ja omat kehityssuunnitelmat",
+      "c.trim().length > 0);\n    const frag = document.createDocumentFragment();\n\n    function appendCard(title, bodyHtml, id) {\n      const card = document.createElement(\"article\");\n      card.className = \"card shadow-sm mb-4\";\n      if (id) card.id = id + \"-card\";\n\n      const header = document.createElement(\"div\");\n      header.className = \"card-header bg-body-tertiary\";\n      header.innerHTML = `${title}"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Opetusportfolio 2015 — Jari Laru",
+      "h1": [
+        "Opetusportfolio 2015"
+      ],
+      "h2": [
+        "Huomio sivusta",
+        "Jari Laru",
+        "Opetusfilosofia",
+        "Opetus- ja ohjaushistoria",
+        "Itsearvio omasta opetuksesta ja itsestä opetusyhteisön jäsenenä",
+        "Opetuksen arviointi",
+        "Oppimateriaalin tuottaminen ja hyödyntämine",
+        "pedagoginen koulutus",
+        "yliopistopedagoginen aktiivisuus ja opetuksen kehittämine",
+        "Kansainvälistyminen, kansainväliset yhteydet",
+        "Yhteiskunnallinen vaikuttamine",
+        "Palkinnot, apurahat ja muut huomionosoitukset",
+        "Luottamustoimet, työryhmien ja toimikuntien jäsenyys",
+        "Muu opetustyöhön liittyvä toiminta",
+        "Visiot ja omat kehityssuunnitelmat"
+      ],
+      "words": 4867,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/vanha-opetusportfolio-wiki-oulu-fi/",
+      "switches": [
+        "/en/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/yhteiskunnallinen-vuorovaikutus.njk",
+    "key": "societal_interaction",
+    "lang": "fi",
+    "url": "/yhteiskunnallinen-vuorovaikutus/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/societal-engagement-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Koulutus, julkinen keskustelu ja päätöksenteko",
+      "Teemat läpi vuorovaikutuskanavien",
+      "Muualla sivustolla"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Yhteiskunnallinen vuorovaikutus — Jari Laru",
+      "h1": [
+        "Tutkimuksesta koulutuksiin, mediaan ja päätöksentekoon"
+      ],
+      "h2": [
+        "Koulutus, julkinen keskustelu ja päätöksenteko",
+        "Teemat läpi vuorovaikutuskanavien",
+        "Muualla sivustolla"
+      ],
+      "words": 327,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/yhteiskunnallinen-vuorovaikutus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/societal-engagement/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/yhteiskunnallinen-vuorovaikutus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/yhteiskunnallinen-vuorovaikutus/",
+      "switches": [
+        "/en/societal-engagement/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/societal-engagement-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/yhteystiedot.md",
+    "key": "contact",
+    "lang": "fi",
+    "url": "/yhteystiedot/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Ota yhteyttä",
+      "Työpaikan yhteystiedot",
+      "Larux t:mi",
+      "Politiikka"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Yhteystiedot ja yhteydenotto — Jari Laru",
+      "h1": [
+        "Yhteystiedot"
+      ],
+      "h2": [
+        "Ota yhteyttä",
+        "Työpaikan yhteystiedot",
+        "Larux t:mi",
+        "Politiikka"
+      ],
+      "words": 238,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/yhteystiedot/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/contact/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/yhteystiedot/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/yhteystiedot/",
+      "switches": [
+        "/en/contact/"
+      ],
+      "forms": [
+        {
+          "action": "https://formspree.io/f/xlgwqwzk",
+          "fields": [
+            {
+              "name": "_gotcha",
+              "type": "text"
+            },
+            {
+              "name": "_subject",
+              "type": "hidden"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "placeholder": "Etunimi Sukunimi"
+            },
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "nimi@esimerkki.fi"
+            },
+            {
+              "name": "subject",
+              "type": "text",
+              "placeholder": "Mitä asiasi koskee?"
+            },
+            {
+              "name": "message",
+              "placeholder": "Kirjoita viestisi tähän..."
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/fi/yritys.md",
+    "key": "company",
+    "lang": "fi",
+    "url": "/kouluttaja/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/larux-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Kouluille, kunnille, oppilaitoksille, verkostoille ja organisaatioille.",
+      "Kolme tapaa hyödyntää Jari Larun osaamista",
+      "Taustalla on pitkä työ oppimisen, opetuksen ja teknologian rajapinnassa.",
+      "Luottamus ei perustu vain puheeseen vaan myös tunnustuksiin ja palautteeseen.",
+      "Miltä toteutus voi käytännössä näyttää",
+      "Uusimmat koulutusesitykset",
+      "Usein kysyttyä",
+      "Jos mietit, mikä toteutus sopisi teille, autan rajaamaan sen nopeasti."
+    ],
+    "includes": [
+      "testimonials.njk"
+    ],
+    "rendered": {
+      "title": "Kouluttaja ja keynote-puhuja — Jari Laru",
+      "h1": [
+        "Koulutusta tekoälystä, digipedagogiikasta ja oppimisteknologiasta."
+      ],
+      "h2": [
+        "Kouluille, kunnille, oppilaitoksille, verkostoille ja organisaatioille.",
+        "Kolme tapaa hyödyntää Jari Larun osaamista",
+        "Taustalla on pitkä työ oppimisen, opetuksen ja teknologian rajapinnassa.",
+        "Luottamus ei perustu vain puheeseen vaan myös tunnustuksiin ja palautteeseen.",
+        "Miltä toteutus voi käytännössä näyttää",
+        "Palautetta koulutuksista ja puheenvuoroista",
+        "Uusimmat koulutusesitykset",
+        "Usein kysyttyä",
+        "Jos mietit, mikä toteutus sopisi teille, autan rajaamaan sen nopeasti."
+      ],
+      "words": 1181,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kouluttaja/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/company/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kouluttaja/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/kouluttaja/",
+      "switches": [
+        "/en/company/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/larux-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/404.njk",
+    "key": "not_found",
+    "lang": "en",
+    "url": "/en/404.html",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Oops! The page you are looking for could not be found."
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Page Not Found — Jari Laru",
+      "h1": [
+        "404"
+      ],
+      "h2": [
+        "Oops! The page you are looking for could not be found."
+      ],
+      "words": 32,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/404.html"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/404.html"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/404.html"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/404.html",
+      "switches": [
+        "/404.html"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/about.md",
+    "key": "about",
+    "lang": "en",
+    "url": "/en/about/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Four roles",
+      "From Oulu, living in Jääli",
+      "Free time &amp; travels",
+      "Find me online",
+      "Explore further"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "About Jari Laru — Jari Laru",
+      "h1": [
+        "Jari Laru"
+      ],
+      "h2": [
+        "Four roles",
+        "From Oulu, living in Jääli",
+        "Free time & travels",
+        "Find me online",
+        "Explore further"
+      ],
+      "words": 771,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tietoa/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/about/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tietoa/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/about/",
+      "switches": [
+        "/tietoa/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/accessibility.md",
+    "key": "accessibility_statement",
+    "lang": "en",
+    "url": "/en/accessibility/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Summary",
+      "Assessment Methodology",
+      "Scope of Review",
+      "Result of This Audit",
+      "Issues Found and Fixed",
+      "Known Limitations and Remaining Work",
+      "Feedback",
+      "References"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Accessibility Statement — Jari Laru",
+      "h1": [
+        "Accessibility Statement"
+      ],
+      "h2": [
+        "Summary",
+        "Assessment Methodology",
+        "Scope of Review",
+        "Result of This Audit",
+        "Issues Found and Fixed",
+        "Known Limitations and Remaining Work",
+        "Feedback",
+        "References"
+      ],
+      "words": 880,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/saavutettavuus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/accessibility/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/saavutettavuus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/accessibility/",
+      "switches": [
+        "/saavutettavuus/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/affiliations.md",
+    "key": "disclosures",
+    "lang": "en",
+    "url": "/en/affiliations/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "This page does not replace official registers",
+      "Current roles and other affiliations",
+      "Campaign finance records",
+      "Transparency is part of political accountability"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Disclosures and Election Funding — Jari Laru",
+      "h1": [
+        "Disclosures and election funding"
+      ],
+      "h2": [
+        "This page does not replace official registers",
+        "Current roles and other affiliations",
+        "Campaign finance records",
+        "Transparency is part of political accountability"
+      ],
+      "words": 482,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/poliittinen-avoimuus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/affiliations/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/poliittinen-avoimuus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/affiliations/",
+      "switches": [
+        "/poliittinen-avoimuus/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/awards.md",
+    "key": "awards",
+    "lang": "en",
+    "url": "/en/awards/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Awards",
+      "Grants",
+      "Student Recognition"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Awards and Recognition — Jari Laru",
+      "h1": [
+        "Honors"
+      ],
+      "h2": [
+        "Awards",
+        "Grants",
+        "Student Recognition"
+      ],
+      "words": 519,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/palkinnot/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/awards/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/palkinnot/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/awards/",
+      "switches": [
+        "/palkinnot/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/blog.njk",
+    "key": "blog_index",
+    "lang": "en",
+    "url": "/en/blog/",
+    "layout": "blog-list.njk",
+    "styles": [],
+    "scripts": [
+      "/js/blog-list.js"
+    ],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Blog archive and older writings — Jari Laru",
+      "h1": [
+        "Blog archive and older writings"
+      ],
+      "h2": [
+        "Latest posts",
+        "Topic paths",
+        "Blog posts",
+        "Earlier legacy material"
+      ],
+      "words": 3298,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/blogi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/blog/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/blogi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/blog/",
+      "switches": [
+        "/blogi/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/categories.njk",
+    "key": "categories_index",
+    "lang": "en",
+    "url": "/en/categories/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Categories and topic archives — Jari Laru",
+      "h1": [
+        "Categories"
+      ],
+      "h2": [],
+      "words": 158,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kategoriat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/categories/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kategoriat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/categories/",
+      "switches": [
+        "/kategoriat/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/company.md",
+    "key": "company",
+    "lang": "en",
+    "url": "/en/company/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Quick facts",
+      "Engaging speaker and experienced trainer",
+      "Academic background",
+      "Examples of talks",
+      "Frequently asked questions",
+      "Interested?"
+    ],
+    "includes": [
+      "testimonials.njk"
+    ],
+    "rendered": {
+      "title": "Larux t:mi – Training and keynote talks — Jari Laru",
+      "h1": [
+        "Larux t:mi"
+      ],
+      "h2": [
+        "Quick facts",
+        "Engaging speaker and experienced trainer",
+        "Academic background",
+        "Examples of talks",
+        "Feedback on training and talks",
+        "Frequently asked questions",
+        "Interested?"
+      ],
+      "words": 1015,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kouluttaja/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/company/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kouluttaja/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/company/",
+      "switches": [
+        "/kouluttaja/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/contact.md",
+    "key": "contact",
+    "lang": "en",
+    "url": "/en/contact/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Send a message",
+      "University contact",
+      "Larux t:mi",
+      "Politics"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Contact Jari Laru — Jari Laru",
+      "h1": [
+        "Contact Jari Laru"
+      ],
+      "h2": [
+        "Send a message",
+        "University contact",
+        "Larux t:mi",
+        "Politics"
+      ],
+      "words": 118,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/yhteystiedot/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/contact/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/yhteystiedot/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/contact/",
+      "switches": [
+        "/yhteystiedot/"
+      ],
+      "forms": [
+        {
+          "action": "https://formspree.io/f/xlgwqwzk",
+          "fields": [
+            {
+              "name": "_gotcha",
+              "type": "text"
+            },
+            {
+              "name": "_subject",
+              "type": "hidden"
+            },
+            {
+              "name": "name",
+              "type": "text",
+              "placeholder": "First name Last name"
+            },
+            {
+              "name": "email",
+              "type": "email",
+              "placeholder": "name@example.com"
+            },
+            {
+              "name": "subject",
+              "type": "text",
+              "placeholder": "What is your message about?"
+            },
+            {
+              "name": "message",
+              "placeholder": "Write your message here..."
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/cv.md",
+    "key": "cv",
+    "lang": "en",
+    "url": "/en/cv/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Curriculum Vitae — Jari Laru",
+      "h1": [
+        "Curriculum Vitae"
+      ],
+      "h2": [
+        "Jari Jukka Laru"
+      ],
+      "words": 39,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/cv/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/cv/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/cv/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/cv/",
+      "switches": [
+        "/cv/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/dissertation.njk",
+    "key": "dissertation",
+    "lang": "en",
+    "url": "/en/dissertation/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Opening lecture from the defence",
+      "Technology alone is not enough",
+      "Dissertation and original publications",
+      "The dissertation still shows in my work"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Doctoral dissertation and original publications — Jari Laru",
+      "h1": [
+        "Scaffolding learning activities with collaborative scripts and mobile devices"
+      ],
+      "h2": [
+        "Opening lecture from the defence",
+        "Technology alone is not enough",
+        "Dissertation and original publications",
+        "The dissertation still shows in my work"
+      ],
+      "words": 603,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/vaitoskirja/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/dissertation/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/vaitoskirja/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/dissertation/",
+      "switches": [
+        "/vaitoskirja/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/election-history.md",
+    "key": "election_history",
+    "lang": "en",
+    "url": "/en/election-history/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/election-history-page.css"
+    ],
+    "scripts": [],
+    "headings": [],
+    "includes": [
+      "election-history-page.njk"
+    ],
+    "rendered": {
+      "title": "Election History — Jari Laru",
+      "h1": [
+        "Election History"
+      ],
+      "h2": [
+        "2025–2029",
+        "2021–2025",
+        "2017–2021",
+        "2013–2017",
+        "Other Civic Roles"
+      ],
+      "words": 3435,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/vaalikaudet/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/election-history/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/vaalikaudet/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/election-history/",
+      "switches": [
+        "/politiikka/vaalikaudet/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/election-history-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/how-this-site-is-built.njk",
+    "key": "how_site_built",
+    "lang": "en",
+    "url": "/en/how-this-site-is-built/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "1. AI-assisted development: human direction, tools in support",
+      "2. Core building blocks",
+      "3. Content model: texts are not just standalone articles",
+      "4. External data sources and services",
+      "5. Quality checks and maintenance views",
+      "6. Popular-level roadmap to build your own site"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "How This Site Is Built — Jari Laru",
+      "h1": [
+        "How This Site Is Built"
+      ],
+      "h2": [
+        "1. AI-assisted development: human direction, tools in support",
+        "2. Core building blocks",
+        "3. Content model: texts are not just standalone articles",
+        "4. External data sources and services",
+        "5. Quality checks and maintenance views",
+        "6. Popular-level roadmap to build your own site"
+      ],
+      "words": 1474,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/miten-sivusto-on-rakennettu/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/how-this-site-is-built/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/miten-sivusto-on-rakennettu/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/how-this-site-is-built/",
+      "switches": [
+        "/miten-sivusto-on-rakennettu/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/index.njk",
+    "key": "home",
+    "lang": "en",
+    "url": "/en/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/modules/_home.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Four ways into the site",
+      "Research, teaching and societal engagement",
+      "University Lecturer",
+      "Trainer &amp; Speaker",
+      "Publications",
+      "Politics",
+      "Recognised work",
+      "Looking for a trainer, speaker, or researcher?"
+    ],
+    "includes": [
+      "testimonials.njk"
+    ],
+    "rendered": {
+      "title": "Trainer, speaker and researcher — Jari Laru",
+      "h1": [
+        "From research to teaching, tools and decision-making."
+      ],
+      "h2": [
+        "Four ways into the site",
+        "Research, teaching and societal engagement",
+        "University Lecturer",
+        "Trainer & Speaker",
+        "Publications",
+        "Politics",
+        "Recognised work",
+        "What participants say",
+        "Looking for a trainer, speaker, or researcher?"
+      ],
+      "words": 1792,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/",
+      "switches": [
+        "/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/modules/_home.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/keywords.njk",
+    "key": "keywords_index",
+    "lang": "en",
+    "url": "/en/keywords/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Keywords and detailed topic routes — Jari Laru",
+      "h1": [
+        "Keywords"
+      ],
+      "h2": [],
+      "words": 458,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/avainsanat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/keywords/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/avainsanat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/keywords/",
+      "switches": [
+        "/avainsanat/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/kynasta.njk",
+    "key": "writings_index",
+    "lang": "en",
+    "url": "/en/kynasta/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/kynasta-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Free-form writing and published pieces",
+      "Available only in Finnish",
+      "Available only in Finnish",
+      "The same topics run across content types"
+    ],
+    "includes": [
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk",
+      "kynasta-hub-subsection.njk"
+    ],
+    "rendered": {
+      "title": "Writings, speeches and statements — Jari Laru",
+      "h1": [
+        "Writings, speeches and statements"
+      ],
+      "h2": [
+        "Free-form writing and published pieces",
+        "Available only in Finnish",
+        "Available only in Finnish",
+        "The same topics run across content types"
+      ],
+      "words": 376,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/writings/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/kynasta/",
+      "switches": [
+        "/kynasta/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/kynasta-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/license.md",
+    "key": "license_page",
+    "lang": "en",
+    "url": "/en/license/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Content — CC BY 4.0",
+      "Political writings — CC BY-NC-ND 4.0",
+      "Source code — MIT",
+      "Third-party content"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "License and reuse terms for jarilaru.fi — Jari Laru",
+      "h1": [
+        "License"
+      ],
+      "h2": [
+        "Content — CC BY 4.0",
+        "Political writings — CC BY-NC-ND 4.0",
+        "Source code — MIT",
+        "Third-party content"
+      ],
+      "words": 224,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/lisenssi/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/license/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/lisenssi/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/license/",
+      "switches": [
+        "/lisenssi/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/media.njk",
+    "key": "media_index",
+    "lang": "en",
+    "url": "/en/media/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Four ways of appearing in public material",
+      "All media appearances",
+      "Media is one public-facing layer of the same expertise"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "In the Media: podcasts, videos and interviews — Jari Laru",
+      "h1": [
+        "In the Media"
+      ],
+      "h2": [
+        "Four ways of appearing in public material",
+        "All media appearances",
+        "Media is one public-facing layer of the same expertise"
+      ],
+      "words": 3156,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/mediassa/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/media/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/mediassa/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/media/",
+      "switches": [
+        "/mediassa/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/municipal-and-wellbeing-elections-2025.md",
+    "key": "election_2025",
+    "lang": "en",
+    "url": "/en/municipal-and-wellbeing-elections-2025/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Campaign core",
+      "Election facts",
+      "Three campaign priorities",
+      "Election result and positions of trust 2025-2029"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Municipal and Wellbeing Area Elections 2025 — Jari Laru",
+      "h1": [
+        "Municipal and Wellbeing Area Elections 2025"
+      ],
+      "h2": [
+        "Campaign core",
+        "Election facts",
+        "Three campaign priorities",
+        "Election result and positions of trust 2025-2029"
+      ],
+      "words": 330,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kunta-ja-aluevaalit-2025/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/municipal-and-wellbeing-elections-2025/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kunta-ja-aluevaalit-2025/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/municipal-and-wellbeing-elections-2025/",
+      "switches": [
+        "/kunta-ja-aluevaalit-2025/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/politics.md",
+    "key": "politics_index",
+    "lang": "en",
+    "url": "/en/politics/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/politics-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Writings by theme",
+      "Council motions",
+      "Council meetings",
+      "Politics blog posts",
+      "Motions, columns, opinions and speeches"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Jari Laru, politician — Jari Laru",
+      "h1": [
+        "Jari Laru, politician"
+      ],
+      "h2": [
+        "Writings by theme",
+        "Council motions",
+        "Council meetings",
+        "Politics blog posts",
+        "Motions, columns, opinions and speeches"
+      ],
+      "words": 2018,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/politiikka/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/politics/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/politiikka/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/politics/",
+      "switches": [
+        "/politiikka/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/politics-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/portfolio.njk",
+    "key": "portfolio_index",
+    "lang": "en",
+    "url": "/en/portfolio/",
+    "layout": "portfolio-list.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Portfolio of teaching, research and public expertise — Jari Laru",
+      "h1": [
+        "Portfolio"
+      ],
+      "h2": [],
+      "words": 18,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/portfolio/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/portfolio/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/portfolio/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/portfolio/",
+      "switches": [
+        "/portfolio/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/presentations.njk",
+    "key": "presentations_index",
+    "lang": "en",
+    "url": "/en/presentations/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/presentations-page.css"
+    ],
+    "scripts": [
+      "/js/pe-list-render.js",
+      "/js/content-presets.js",
+      "/js/content-engine.js",
+      "/js/presentations-page.js"
+    ],
+    "headings": [
+      "AOE Learning Materials",
+      "Canva Presentations",
+      "SlideShare Presentations",
+      "YouTube Videos",
+      "AOE Learning Materials",
+      "Canva Presentations",
+      "SlideShare Presentations",
+      "YouTube Videos"
+    ],
+    "includes": [
+      "presentations/archive.njk",
+      "presentations/source-group-content.njk",
+      "presentations/source-group-content.njk",
+      "presentations/source-group-content.njk",
+      "presentations/source-group-content.njk",
+      "presentations/source-group-content.njk"
+    ],
+    "rendered": {
+      "title": "Presentations — Jari Laru",
+      "h1": [
+        "Presentations and Learning Materials"
+      ],
+      "h2": [
+        "Find presentations and learning materials",
+        "AOE Learning Materials",
+        "Canva Presentations",
+        "SlideShare Presentations",
+        "YouTube Videos"
+      ],
+      "words": 20717,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/esitykset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/presentations/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/esitykset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/presentations/",
+      "switches": [
+        "/esitykset/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "type": "search",
+              "placeholder": "Search titles, topics or events"
+            },
+            {},
+            {
+              "type": "search",
+              "placeholder": "Choose or type a topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/presentations-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/privacy.md",
+    "key": "privacy_notice",
+    "lang": "en",
+    "url": "/en/privacy/",
+    "layout": "page.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "1. Controller",
+      "2. External embeds and consent",
+      "3. Local storage (`localStorage`)",
+      "4. Contact form",
+      "5. Data retention",
+      "6. Your rights",
+      "7. Data Protection Officer (DPO) and request channel"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Privacy Notice — Jari Laru",
+      "h1": [
+        "Privacy Notice"
+      ],
+      "h2": [
+        "1. Controller",
+        "2. External embeds and consent",
+        "3. Local storage (`localStorage`)",
+        "4. Contact form",
+        "5. Data retention",
+        "6. Your rights",
+        "7. Data Protection Officer (DPO) and request channel"
+      ],
+      "words": 318,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tietosuojaseloste/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/privacy/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tietosuojaseloste/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/privacy/",
+      "switches": [
+        "/tietosuojaseloste/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/publications.njk",
+    "key": "publications_index",
+    "lang": "en",
+    "url": "/en/publications/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/publications-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js",
+      "/js/publication-citation.js"
+    ],
+    "headings": [
+      "Publications & citations by year",
+      "Publication types",
+      "Quality indicators",
+      "Top 10 co-authors",
+      "Keywords (from titles)",
+      "A–G describes the publication type"
+    ],
+    "includes": [
+      "find-explore-writings.njk",
+      "publication-archive-groups.njk"
+    ],
+    "rendered": {
+      "title": "Scientific publications and research outputs — Jari Laru",
+      "h1": [
+        "Publications & Analytics"
+      ],
+      "h2": [
+        "Publications & citations by year",
+        "Publication types",
+        "Quality indicators",
+        "Top 10 co-authors",
+        "Keywords (from titles)",
+        "Find and filter publications",
+        "Classified publications archive",
+        "A–G describes the publication type"
+      ],
+      "words": 4579,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/julkaisut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/publications/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/julkaisut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/publications/",
+      "switches": [
+        "/julkaisut/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try TPACK, Kosovo, computational thinking, Iwata..."
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "yearOrder"
+            },
+            {
+              "name": "authorSort"
+            },
+            {
+              "name": "quality"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/publications-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/research.md",
+    "key": "research",
+    "lang": "en",
+    "url": "/en/research/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Research themes"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Research profile in learning technology and AI... — Jari Laru",
+      "h1": [
+        "My research work"
+      ],
+      "h2": [
+        "Research themes"
+      ],
+      "words": 99,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tutkimus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/research/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tutkimus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/research/",
+      "switches": [
+        "/tutkimus/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/roadtrips.md",
+    "key": "roadtrips",
+    "lang": "en",
+    "url": "/en/road-trips/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "Road and city trips across Europe"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Road trips and travel writing by Jari Laru — Jari Laru",
+      "h1": [
+        "Road trips and travel stories"
+      ],
+      "h2": [
+        "Road and city trips across Europe"
+      ],
+      "words": 193,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/autolomat/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/road-trips/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/autolomat/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/road-trips/",
+      "switches": [
+        "/autolomat/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/search.njk",
+    "key": "search",
+    "lang": "en",
+    "url": "/en/search/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [
+      "_search-page-config.njk"
+    ],
+    "rendered": {
+      "title": "Search the site — Jari Laru",
+      "h1": [
+        "Search the site"
+      ],
+      "h2": [],
+      "words": 153,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/haku/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/search/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/haku/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/search/",
+      "switches": [
+        "/haku/"
+      ],
+      "forms": [
+        {
+          "action": "/en/search/",
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "label": "Search the site",
+              "placeholder": "Type a search term..."
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/site-changes.njk",
+    "key": "site_changes",
+    "lang": "en",
+    "url": "/en/site-changes/",
+    "layout": "base.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Site changes and development notes — Jari Laru",
+      "h1": [
+        "Site Changes"
+      ],
+      "h2": [],
+      "words": 25225,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/sivuston-muutokset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/site-changes/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/sivuston-muutokset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/site-changes/",
+      "switches": [
+        "/sivuston-muutokset/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/societal-engagement.njk",
+    "key": "societal_interaction",
+    "lang": "en",
+    "url": "/en/societal-engagement/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/societal-engagement-page.css"
+    ],
+    "scripts": [],
+    "headings": [
+      "Expertise appears differently for different audiences",
+      "Three examples of societal engagement in practice",
+      "Societal engagement is not decorative cream on top of research or teaching.",
+      "When you need details, continue to the original collection."
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "Societal Engagement — Jari Laru",
+      "h1": [
+        "Societal engagement turns research and teaching into shared work."
+      ],
+      "h2": [
+        "Expertise appears differently for different audiences",
+        "Three examples of societal engagement in practice",
+        "Societal engagement is not decorative cream on top of research or teaching.",
+        "When you need details, continue to the original collection."
+      ],
+      "words": 507,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/yhteiskunnallinen-vuorovaikutus/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/societal-engagement/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/yhteiskunnallinen-vuorovaikutus/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/societal-engagement/",
+      "switches": [
+        "/yhteiskunnallinen-vuorovaikutus/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/societal-engagement-page.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/theses.njk",
+    "key": "theses_index",
+    "lang": "en",
+    "url": "/en/theses/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [
+      "Topic entry points",
+      "{{ heading }}"
+    ],
+    "includes": [
+      "find-explore-writings.njk"
+    ],
+    "rendered": {
+      "title": "Supervised Theses — Jari Laru",
+      "h1": [
+        "Supervised theses"
+      ],
+      "h2": [
+        "Topic entry points",
+        "Search theses",
+        "Latest supervised master's theses",
+        "Latest supervised bachelor's theses",
+        "Latest reviewed theses"
+      ],
+      "words": 471,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/theses/",
+      "switches": [
+        "/opinnaytteet/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try AI, teacher education, mathematics..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/training.njk",
+    "key": "training_index",
+    "lang": "en",
+    "url": "/en/training/",
+    "layout": "training-list.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [],
+    "includes": [],
+    "rendered": {
+      "title": "Training and Materials — Jari Laru",
+      "h1": [
+        "Training and Materials"
+      ],
+      "h2": [],
+      "words": 21,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/training/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/puheenvuorot-ja-koulutukset/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/training/",
+      "switches": [
+        "/puheenvuorot-ja-koulutukset/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/work.md",
+    "key": "university_lecturer_work",
+    "lang": "en",
+    "url": "/en/work/",
+    "layout": "hub.njk",
+    "styles": [],
+    "scripts": [],
+    "headings": [
+      "What I do in practice",
+      "Generation AI — strategic research project"
+    ],
+    "includes": [],
+    "rendered": {
+      "title": "University Lecturer Work — Jari Laru",
+      "h1": [
+        "University Lecturer Work"
+      ],
+      "h2": [
+        "What I do in practice",
+        "Generation AI — strategic research project",
+        "University Work",
+        "Research",
+        "Societal Engagement",
+        "Researcher Profiles"
+      ],
+      "words": 750,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/tyoni-yliopistonlehtorina/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/work/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/tyoni-yliopistonlehtorina/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/work/",
+      "switches": [
+        "/tyoni-yliopistonlehtorina/"
+      ],
+      "forms": [],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/writings.njk",
+    "key": "writings_index",
+    "lang": "en",
+    "url": "/en/writings/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/kynasta-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [
+      "Presentations and learning materials",
+      "{{ section.title }}"
+    ],
+    "includes": [
+      "find-explore-writings.njk",
+      "writings-curated-list.njk"
+    ],
+    "rendered": {
+      "title": "Writings and Speeches — Jari Laru",
+      "h1": [
+        "Writings, speeches and publications"
+      ],
+      "h2": [
+        "Presentations and learning materials",
+        "Explore writings",
+        "Statements",
+        "Opinion pieces",
+        "Columns and guest blog posts",
+        "Council initiatives",
+        "Speeches",
+        "Public speeches",
+        "Blog",
+        "Publications"
+      ],
+      "words": 1424,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/writings/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/kynasta/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/writings/",
+      "switches": [
+        "/kynasta/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try AI, campus, school network, council..."
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "year"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/kynasta-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/theses/bachelors.njk",
+    "key": "theses_kandit",
+    "lang": "en",
+    "url": "/en/theses/bachelors/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Supervised Bachelor's Theses — Jari Laru",
+      "h1": [
+        "Supervised bachelor's theses"
+      ],
+      "h2": [
+        "Search bachelor's theses",
+        "Bachelor's theses"
+      ],
+      "words": 447,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/kandit/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/bachelors/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/kandit/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/theses/bachelors/",
+      "switches": [
+        "/opinnaytteet/kandit/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try AI, teacher education, mathematics..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/theses/masters.njk",
+    "key": "theses_gradut",
+    "lang": "en",
+    "url": "/en/theses/masters/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Supervised Master's Theses — Jari Laru",
+      "h1": [
+        "Supervised master's theses"
+      ],
+      "h2": [
+        "Search master's theses",
+        "Master's theses"
+      ],
+      "words": 490,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/gradut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/masters/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/gradut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/theses/masters/",
+      "switches": [
+        "/opinnaytteet/gradut/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try AI, teacher education, mathematics..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/en/theses/reviewed.njk",
+    "key": "theses_tarkastetut",
+    "lang": "en",
+    "url": "/en/theses/reviewed/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Reviewed Theses — Jari Laru",
+      "h1": [
+        "Reviewed theses"
+      ],
+      "h2": [
+        "Search reviewed theses",
+        "Reviewed theses"
+      ],
+      "words": 512,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/tarkastetut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/reviewed/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/tarkastetut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/en/theses/reviewed/",
+      "switches": [
+        "/opinnaytteet/tarkastetut/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Try research method, mathematics..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/opinnaytteet/gradut.njk",
+    "key": "theses_gradut",
+    "lang": "fi",
+    "url": "/opinnaytteet/gradut/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Ohjatut pro gradu -tutkielmat — Jari Laru",
+      "h1": [
+        "Ohjatut pro gradu -tutkielmat"
+      ],
+      "h2": [
+        "Etsi graduista",
+        "Pro gradu -tutkielmat"
+      ],
+      "words": 507,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/gradut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/masters/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/gradut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opinnaytteet/gradut/",
+      "switches": [
+        "/en/theses/masters/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Esim. tekoäly, opettajankoulutus, matematiikka..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/opinnaytteet/kandit.njk",
+    "key": "theses_kandit",
+    "lang": "fi",
+    "url": "/opinnaytteet/kandit/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Ohjatut kandidaatintyöt — Jari Laru",
+      "h1": [
+        "Ohjatut kandidaatintyöt"
+      ],
+      "h2": [
+        "Etsi kandidaatintöistä",
+        "Kandidaatintyöt"
+      ],
+      "words": 426,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/kandit/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/bachelors/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/kandit/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opinnaytteet/kandit/",
+      "switches": [
+        "/en/theses/bachelors/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Esim. tekoäly, opettajankoulutus..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  },
+  {
+    "file": "src/opinnaytteet/tarkastetut.njk",
+    "key": "theses_tarkastetut",
+    "lang": "fi",
+    "url": "/opinnaytteet/tarkastetut/",
+    "layout": "base.njk",
+    "styles": [
+      "/css/theses-page.css",
+      "/css/find-explore.css"
+    ],
+    "scripts": [
+      "/js/find-explore.js"
+    ],
+    "headings": [],
+    "includes": [
+      "thesis-subarchive-page.njk"
+    ],
+    "rendered": {
+      "title": "Tarkastetut opinnäytteet — Jari Laru",
+      "h1": [
+        "Tarkastetut opinnäytteet"
+      ],
+      "h2": [
+        "Etsi tarkastetuista",
+        "Tarkastetut opinnäytteet"
+      ],
+      "words": 491,
+      "alternates": [
+        {
+          "lang": "fi",
+          "href": "https://www.jarilaru.fi/opinnaytteet/tarkastetut/"
+        },
+        {
+          "lang": "en",
+          "href": "https://www.jarilaru.fi/en/theses/reviewed/"
+        },
+        {
+          "lang": "x-default",
+          "href": "https://www.jarilaru.fi/opinnaytteet/tarkastetut/"
+        }
+      ],
+      "canonical": "https://www.jarilaru.fi/opinnaytteet/tarkastetut/",
+      "switches": [
+        "/en/theses/reviewed/"
+      ],
+      "forms": [
+        {
+          "fields": [
+            {
+              "name": "q",
+              "type": "search",
+              "placeholder": "Esim. tekoäly, tutkimusmenetelmä..."
+            },
+            {
+              "name": "year"
+            },
+            {
+              "name": "topic"
+            }
+          ]
+        }
+      ],
+      "css": [
+        "/css/bootstrap.min.css",
+        "/css/mega-menu.css",
+        "/css/modules/_typography.css",
+        "/css/modules/_global.css",
+        "/css/modules/_components.css",
+        "/css/modules/_tables.css",
+        "/css/modules/_articles.css",
+        "/css/a11y.css",
+        "/css/bootstrap-icons.min.css",
+        "/pagefind/pagefind-modular-ui.css",
+        "/css/theses-page.css",
+        "/css/find-explore.css",
+        "/css/a11y-hc-overrides.css"
+      ]
+    }
+  }
+]
