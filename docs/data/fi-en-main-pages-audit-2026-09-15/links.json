@@ -1,0 +1,2311 @@
+[
+  {
+    "url": "/",
+    "file": "src/index.njk",
+    "key": "home",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/tutkimus/#varhaisvaihe",
+        "text": "Opetus KM ja pro gradu valmis Kasvatustieteiden maisteri (14.5.2003), teknologiapainotteinen luokanopettajakoulutus, Oulun yliopisto. Pro gradu \"Langattomat päätelaitteet hajautetun asiantuntijuuden ja yhteisöllisen tiedonrakentelun tukena\" (Goman & Laru)."
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "404.html",
+    "file": "src/404.njk",
+    "key": "not_found",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/avainsanat/",
+    "file": "src/avainsanat-index.njk",
+    "key": "keywords_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/blogi/",
+    "file": "src/blog-index.njk",
+    "key": "blog_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/esitykset/",
+    "file": "src/esitykset.njk",
+    "key": "presentations_index",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-route",
+        "href": "/esitykset/tekoaly-opetuskaytto-avi-webinaari-2024/",
+        "text": "Tekoäly on ympärillämme, mutta emme tunnista sitä"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/julkaisut/",
+    "file": "src/julkaisut.njk",
+    "key": "publications_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kategoriat/",
+    "file": "src/kategoriat-index.njk",
+    "key": "categories_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kirjoitukset/",
+    "file": "src/kirjoitukset.njk",
+    "key": "writings_texts",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kynasta/",
+    "file": "src/kynasta.njk",
+    "key": "writings_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/lausunnot/",
+    "file": "src/lausunnot.njk",
+    "key": "fi_lausunnot",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opinnaytteet/",
+    "file": "src/opinnaytteet.njk",
+    "key": "theses_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/portfolio/",
+    "file": "src/portfolio-index.njk",
+    "key": "portfolio_index",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/opiskelijoiden-antamaa-palautetta/#418028P",
+        "text": "Ohjelmajohtopalaute"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/teemat/",
+    "file": "src/teemat-index.njk",
+    "key": "topic_profiles_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/valtuustotyo/",
+    "file": "src/valtuustotyo.njk",
+    "key": "writings_council",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/asiaa-erilaisista-himmeleista-ja-aluehallinnosta/",
+    "file": "src/fi/asiaa-erilaisista-himmeleista-ja-aluehallinnosta.md",
+    "key": "fi_only_aluehallinto",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/autolomat/",
+    "file": "src/fi/autolomat.md",
+    "key": "roadtrips",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/cv/",
+    "file": "src/fi/cv.md",
+    "key": "cv",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/haku/",
+    "file": "src/fi/haku.njk",
+    "key": "search",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/jari-laru-aluevaltuustoon/",
+    "file": "src/fi/jari-laru-aluevaltuustoon.md",
+    "key": "fi_only_aluevaltuustoon",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/jari-laru-kaupunginvaltuutettu/",
+    "file": "src/fi/jari-laru-kaupunginvaltuutettu.md",
+    "key": "fi_only_kaupunginvaltuutettu",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-route",
+        "href": "https://www.jarilaru.fi/2021/02/06/kuntavaalit-2017-best-of/",
+        "text": "YLEn vaalikonetta"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/koulutuspalaute/",
+    "file": "src/fi/koulutuspalaute.md",
+    "key": "fi_only_koulutuspalaute",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kunnallisvaalit-2012/",
+    "file": "src/fi/kunnallisvaalit-2012.md",
+    "key": "fi_only_kunnallisvaalit2012",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kuntavaalit-2021/",
+    "file": "src/fi/kuntavaalit-2021.md",
+    "key": "fi_only_kuntavaalit2021",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-route",
+        "href": "https://www.jarilaru.fi/2017/08/31/jari-laru-kaupunginvaltuutettu/",
+        "text": "Jari Laru, kaupunginvaltuutettu ja kuntavaaliehdokas"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kunta-ja-aluevaalit-2025/",
+    "file": "src/fi/kuntavaalit-2025.md",
+    "key": "election_2025",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/lahjoita/",
+    "file": "src/fi/lahjoita.md",
+    "key": "fi_only_lahjoita",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/lisenssi/",
+    "file": "src/fi/lisenssi.md",
+    "key": "license_page",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/mediassa/",
+    "file": "src/fi/mediassa.njk",
+    "key": "media_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/miten-sivusto-on-rakennettu/",
+    "file": "src/fi/miten-sivusto-on-rakennettu.njk",
+    "key": "how_site_built",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/mukaan-kampanjaan/",
+    "file": "src/fi/mukaan-kampanjaan.md",
+    "key": "fi_only_mukaan_kampanjaan",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opetus/",
+    "file": "src/fi/opetus.md",
+    "key": "teaching_fi_only",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opiskelijoiden-antamaa-palautetta/",
+    "file": "src/fi/opiskelijoiden-antamaa-palautetta.md",
+    "key": "fi_only_opiskelijapalaute",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/palkinnot/",
+    "file": "src/fi/palkinnot.md",
+    "key": "awards",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/politiikka/",
+    "file": "src/fi/politiikka.md",
+    "key": "politics_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/privacy-policy-for-oembed-fb-app/",
+    "file": "src/fi/privacy-policy-for-oembed-fb-app.md",
+    "key": "fi_only_privacy_oembed",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/puheenvuorot-ja-koulutukset/",
+    "file": "src/fi/puheenvuorot-ja-koulutukset.md",
+    "key": "training_index",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/saavutettavuus/",
+    "file": "src/fi/saavutettavuus.md",
+    "key": "accessibility_statement",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/poliittinen-avoimuus/",
+    "file": "src/fi/sidonnaisuudet.md",
+    "key": "disclosures",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/politiikka/sivistyslautakunta/",
+    "file": "src/fi/sivistyslautakunta.njk",
+    "key": "education_committee_meetings",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/sivuston-muutokset/",
+    "file": "src/fi/sivuston-muutokset.njk",
+    "key": "site_changes",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/tietoa/",
+    "file": "src/fi/tietoa.md",
+    "key": "about",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/tietosuojaseloste/",
+    "file": "src/fi/tietosuojaseloste.md",
+    "key": "privacy_notice",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/tutkimus/",
+    "file": "src/fi/tutkimus.md",
+    "key": "research",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/tyoni-yliopistonlehtorina/",
+    "file": "src/fi/tyoni-yliopistonlehtorina.njk",
+    "key": "university_lecturer_work",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/politiikka/vaalikaudet/",
+    "file": "src/fi/vaalihistoria.md",
+    "key": "election_history",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-route",
+        "href": "/2022/04/04/2022-04-04-palveluverkkolinjaukset-eivat-ole-vain-kylakoulukysymys/",
+        "text": "Puheenvuoro valtuustossa § 8: Palveluverkkolinjaukset eivät ole vain kyläkoulukysymys"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/vaitoskirja/",
+    "file": "src/fi/vaitoskirja.njk",
+    "key": "dissertation",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-route",
+        "href": "/lectio-precursoria-opiskelun-tukeminen-mobiililaitteiden-ja-pedagogisen-vaiheistuksen-avulla/",
+        "text": "Lue lectio tekstinä"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/",
+        "text": "Sivuston julkaisutiedot"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/",
+        "text": "Sivuston julkaisutiedot"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-2-social-patterns-in-mobile-technology-mediated-collaboration-among-members-of-the-professional-distance-education-community/",
+        "text": "Sivuston julkaisutiedot"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/",
+        "text": "Sivuston julkaisutiedot"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/",
+        "text": "Sivuston julkaisutiedot"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/politiikka/kaupunginvaltuusto/",
+    "file": "src/fi/valtuusto.njk",
+    "key": "council_meetings",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/vanha-opetusportfolio-wiki-oulu-fi/",
+    "file": "src/fi/vanha-opetusportfolio-wiki-oulu-fi.md",
+    "key": "fi_only_opetusportfolio",
+    "lang": "fi",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "#jari-laru",
+        "text": "Jari Laru"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#opetusfilosofia",
+        "text": "Opetusfilosofia"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#opetus-ja-ohjaushistoria",
+        "text": "Opetus- ja ohjaushistoria"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#kurssit-joita-olen-opettanut",
+        "text": "Kurssit joita olen opettanut"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#orientoivat-opinnot",
+        "text": "Orientoivat opinnot"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#perusopinnot",
+        "text": "perusopinnot"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#aineopinnot",
+        "text": "Aineopinnot"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#itsearvio-omasta-opetuksesta-ja-itsestä-opetusyhteisön-jäsenenä",
+        "text": "Itsearvio omasta opetuksesta ja itsestä opetusyhteisön jäsenenä"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#opetuksen-arviointi",
+        "text": "Opetuksen arviointi"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#palaute-opiskelijoilta",
+        "text": "Palaute opiskelijoilta"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#spontaani-palaute",
+        "text": "Spontaani palaute"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#kirjallinen-palaute",
+        "text": "Kirjallinen palaute"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#orientoivat-kurssit",
+        "text": "Orientoivat kurssit"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#palaute-kollegoilta",
+        "text": "Palaute kollegoilta"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#oppimateriaalin-tuottaminen-ja-hyödyntäminen",
+        "text": "Oppimateriaalin tuottaminen ja hyödyntämine"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#taito-tuottaa-opetuksen-kannalta-merkittävää-oppimateriaalia",
+        "text": "Taito tuottaa opetuksen kannalta merkittävää oppimateriaalia"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#taito-ja-tavat-hyödyntää-erilaisia-oppimateriaaleja-sekä-tutkimustietoa-omassa-opetuksessani",
+        "text": "Taito ja tavat hyödyntää erilaisia oppimateriaaleja sekä tutkimustietoa omassa opetuksessani"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#pedagoginen-koulutus",
+        "text": "pedagoginen koulutus"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#tutkinnot",
+        "text": "Tutkinnot"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#tutkijakoulut",
+        "text": "Tutkijakoulut"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#tutkijakoulutuksen-yhteydessä-saatu-pedagoginen-koulutus",
+        "text": "tutkijakoulutuksen yhteydessä saatu pedagoginen koulutus"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#yliopistopedagoginen-aktiivisuus-ja-opetuksen-kehittäminen",
+        "text": "yliopistopedagoginen aktiivisuus ja opetuksen kehittämine"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#kansainvälistyminen-kansainväliset-yhteydet",
+        "text": "Kansainvälistyminen, kansainväliset yhteydet"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#tutkimusvierailut",
+        "text": "Tutkimusvierailut"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#kansainväliset-verkostot",
+        "text": "Kansainväliset verkostot"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#yhteiskunnallinen-vaikuttaminen",
+        "text": "Yhteiskunnallinen vaikuttamine"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#palkinnot-apurahat-ja-muut-huomionosoitukset",
+        "text": "Palkinnot, apurahat ja muut huomionosoitukset"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#luottamustoimet-työryhmien-ja-toimikuntien-jäsenyys",
+        "text": "Luottamustoimet, työryhmien ja toimikuntien jäsenyys"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#2013",
+        "text": "2013"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#2012-ja-aiemmat-olennaiset-tiedeyhteisöön-liittyvät-luottamustoimet",
+        "text": "2012 ja aiemmat (olennaiset tiedeyhteisöön liittyvät luottamustoimet)"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#muu-opetustyöhön-liittyvä-toiminta",
+        "text": "Muu opetustyöhön liittyvä toiminta"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "#visiot-ja-omat-kehityssuunnitelmat",
+        "text": "Visiot ja omat kehityssuunnitelmat"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/yhteiskunnallinen-vuorovaikutus/",
+    "file": "src/fi/yhteiskunnallinen-vuorovaikutus.njk",
+    "key": "societal_interaction",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/yhteystiedot/",
+    "file": "src/fi/yhteystiedot.md",
+    "key": "contact",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/kouluttaja/",
+    "file": "src/fi/yritys.md",
+    "key": "company",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/404.html",
+    "file": "src/en/404.njk",
+    "key": "not_found",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/about/",
+    "file": "src/en/about.md",
+    "key": "about",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/accessibility/",
+    "file": "src/en/accessibility.md",
+    "key": "accessibility_statement",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/affiliations/",
+    "file": "src/en/affiliations.md",
+    "key": "disclosures",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Council motions Written initiatives submitted to decision-making"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Council speeches Speeches connected to decision-making agenda items"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinion pieces Published opinion pieces and political commentary"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/awards/",
+    "file": "src/en/awards.md",
+    "key": "awards",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/blog/",
+    "file": "src/en/blog.njk",
+    "key": "blog_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/categories/",
+    "file": "src/en/categories.njk",
+    "key": "categories_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/company/",
+    "file": "src/en/company.md",
+    "key": "company",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/contact/",
+    "file": "src/en/contact.md",
+    "key": "contact",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/cv/",
+    "file": "src/en/cv.md",
+    "key": "cv",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/dissertation/",
+    "file": "src/en/dissertation.njk",
+    "key": "dissertation",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/introduction-scaffolding-learning-activities-with-collaborative-scripts-and-mobile-devices/",
+        "text": "Local metadata (FI)"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-1-scaffolding-different-learning-activities-with-mobile-tools-in-three-everyday-contexts/",
+        "text": "Local metadata (FI)"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-2-social-patterns-in-mobile-technology-mediated-collaboration-among-members-of-the-professional-distance-education-community/",
+        "text": "Local metadata (FI)"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-3-supporting-collaborative-inquiry-during-a-biology-field-trip-with-mobile-peer-to-peer-tools-for-learning-a-case-study-with-k-12-learners/",
+        "text": "Local metadata (FI)"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/paper-3-supporting-small-group-learning-using-multiple-web-2-0-tools-a-case-study-inthe-higher-education-context/",
+        "text": "Local metadata (FI)"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/election-history/",
+    "file": "src/en/election-history.md",
+    "key": "election_history",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/2022/04/04/2022-04-04-palveluverkkolinjaukset-eivat-ole-vain-kylakoulukysymys/",
+        "text": "Puheenvuoro valtuustossa § 8: Palveluverkkolinjaukset eivät ole vain kyläkoulukysymys"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/how-this-site-is-built/",
+    "file": "src/en/how-this-site-is-built.njk",
+    "key": "how_site_built",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/",
+    "file": "src/en/index.njk",
+    "key": "home",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "92"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/keywords/",
+    "file": "src/en/keywords.njk",
+    "key": "keywords_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/kynasta/",
+    "file": "src/en/kynasta.njk",
+    "key": "writings_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#opinion",
+        "text": "Show all opinion pieces (47)"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#column",
+        "text": "Show all columns (9)"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/en/topics/",
+        "text": "Browse by topic"
+      }
+    ],
+    "alternateIssues": [
+      {
+        "kind": "non-reciprocal",
+        "lang": "fi",
+        "href": "https://www.jarilaru.fi/kynasta/",
+        "back": "https://www.jarilaru.fi/en/writings/"
+      },
+      {
+        "kind": "non-reciprocal",
+        "lang": "en",
+        "href": "https://www.jarilaru.fi/en/writings/",
+        "back": "https://www.jarilaru.fi/en/writings/"
+      }
+    ]
+  },
+  {
+    "url": "/en/license/",
+    "file": "src/en/license.md",
+    "key": "license_page",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/media/",
+    "file": "src/en/media.njk",
+    "key": "media_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/municipal-and-wellbeing-elections-2025/",
+    "file": "src/en/municipal-and-wellbeing-elections-2025.md",
+    "key": "election_2025",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/politics/",
+    "file": "src/en/politics.md",
+    "key": "politics_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "All motions"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/en/keywords/koulutus/",
+        "text": "Education"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/en/keywords/kaupunki/",
+        "text": "Urban development"
+      },
+      {
+        "kind": "missing-route",
+        "href": "/en/keywords/nuoret/",
+        "text": "Youth"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/portfolio/",
+    "file": "src/en/portfolio.njk",
+    "key": "portfolio_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/presentations/",
+    "file": "src/en/presentations.njk",
+    "key": "presentations_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/privacy/",
+    "file": "src/en/privacy.md",
+    "key": "privacy_notice",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/publications/",
+    "file": "src/en/publications.njk",
+    "key": "publications_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/research/",
+    "file": "src/en/research.md",
+    "key": "research",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/road-trips/",
+    "file": "src/en/roadtrips.md",
+    "key": "roadtrips",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/search/",
+    "file": "src/en/search.njk",
+    "key": "search",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/site-changes/",
+    "file": "src/en/site-changes.njk",
+    "key": "site_changes",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/societal-engagement/",
+    "file": "src/en/societal-engagement.njk",
+    "key": "societal_interaction",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "All statements ->"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/theses/",
+    "file": "src/en/theses.njk",
+    "key": "theses_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/training/",
+    "file": "src/en/training.njk",
+    "key": "training_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/work/",
+    "file": "src/en/work.md",
+    "key": "university_lecturer_work",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements and Commentary Expert statements and commentary connected to policy preparation and public debate."
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/writings/",
+    "file": "src/en/writings.njk",
+    "key": "writings_index",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/theses/bachelors/",
+    "file": "src/en/theses/bachelors.njk",
+    "key": "theses_kandit",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/theses/masters/",
+    "file": "src/en/theses/masters.njk",
+    "key": "theses_gradut",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/en/theses/reviewed/",
+    "file": "src/en/theses/reviewed.njk",
+    "key": "theses_tarkastetut",
+    "lang": "en",
+    "issues": [
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#lausunnot",
+        "text": "Statements 6"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#aloitteet",
+        "text": "Initiatives 10"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#puheet",
+        "text": "Speeches 79"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/?opinions=political#mielipiteet",
+        "text": "Political opinions 39"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#kolumnit",
+        "text": "Columns 9"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#mielipiteet",
+        "text": "Opinion pieces 47"
+      },
+      {
+        "kind": "missing-static-anchor",
+        "href": "/en/writings/#julkiset-puheet",
+        "text": "Public speeches 13"
+      }
+    ],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opinnaytteet/gradut/",
+    "file": "src/opinnaytteet/gradut.njk",
+    "key": "theses_gradut",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opinnaytteet/kandit/",
+    "file": "src/opinnaytteet/kandit.njk",
+    "key": "theses_kandit",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  },
+  {
+    "url": "/opinnaytteet/tarkastetut/",
+    "file": "src/opinnaytteet/tarkastetut.njk",
+    "key": "theses_tarkastetut",
+    "lang": "fi",
+    "issues": [],
+    "alternateIssues": []
+  }
+]

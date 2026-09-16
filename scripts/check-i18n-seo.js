@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const siteRoot = path.resolve('_site');
+const siteRoot = path.resolve(process.env.SITE_DIR || '_site');
 const siteOrigin = 'https://www.jarilaru.fi';
 
 function walkHtmlFiles(dir, list = []) {
@@ -110,6 +110,8 @@ function run() {
       }
     }
   }
+
+  errors.push(...require('./check-main-page-parity').checkMainPageParity(siteRoot).errors);
 
   if (errors.length > 0) {
     console.error(`ERROR: i18n/SEO check failed with ${errors.length} issue(s).`);

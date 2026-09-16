@@ -262,7 +262,7 @@ module.exports = {
         eleventyNavigation: {
           key: "writings",
           title: "Writings",
-          url: "/en/writings/",
+          url: "/en/kynasta/",
           icon: "bi bi-pencil-fill",
           parent: "home",
           order: 50
@@ -369,7 +369,10 @@ module.exports = {
           order: 50
         }
       }
-    }
+    },
+    {"data":{"eleventyNavigation":{"key":"topic_profiles","title":"Topic profiles","url":"/en/topics/","parent":"writings","order":57}}},
+    {"data":{"eleventyNavigation":{"key":"council_meetings","title":"City Council","url":"/en/politics/city-council/","parent":"politics","order":45}}},
+    {"data":{"eleventyNavigation":{"key":"education_committee","title":"Education Committee","url":"/en/politics/education-committee/","parent":"politics","order":47}}}
   ],
   megaMenuMe: {
     fi: {
@@ -635,91 +638,106 @@ module.exports = {
       ]
     },
     en: {
-      description: "Positions of trust, political work, and election periods in one view.",
-      spotlight: {
-        title: "Current positions of trust",
-        description: "The politics page shows the profile. This panel also makes the current responsibilities visible at a glance.",
-        roles: [
+      "description": "Positions of trust, political work, and election periods in one view.",
+      "spotlight": {
+        "title": "Current positions of trust",
+        "description": "The politics page shows the profile. This panel also makes the current responsibilities visible at a glance.",
+        "roles": [
           "2nd deputy councillor, City of Oulu",
           "Member of the Education Committee, City of Oulu",
           "Deputy member of the regional council, North Ostrobothnia Wellbeing Services County"
         ],
-        cta: {
-          href: "/en/politics/",
-          label: "Open politics page"
+        "cta": {
+          "href": "/en/politics/",
+          "label": "Open politics page"
         }
       },
-      sections: [
+      "sections": [
         {
-          heading: "Role & Transparency",
-          links: [
+          "heading": "Explore political work",
+          "headingHref": "/en/politics/",
+          "links": [
             {
-              title: "Politics page",
-              href: "/en/politics/",
-              icon: "bi bi-person-badge me-2",
-              menuLink: true,
-              description: "Positions of trust, priorities, and political profile."
+              "title": "City Council",
+              "href": "/en/politics/city-council/",
+              "icon": "bi bi-building-check me-2",
+              "menuLink": true,
+              "description": "Meetings, minutes, recordings and my council contributions."
             },
             {
-              title: "Affiliations & Disclosures",
-              href: "/en/affiliations/",
-              icon: "bi bi-link-45deg me-2",
-              menuLink: true,
-              description: "Open declarations of affiliations."
+              "title": "Education Committee",
+              "href": "/en/politics/education-committee/",
+              "icon": "bi bi-clipboard-check me-2",
+              "menuLink": true,
+              "description": "Meetings of the Education Committee and its predecessor."
             },
             {
-              title: "Facebook",
-              href: "https://www.facebook.com/jari.laru.poliitikko/",
-              icon: "bi bi-facebook me-2",
-              external: true,
-              description: "Current updates and public discussion on Facebook."
+              "title": "Electoral terms",
+              "href": "/en/election-history/",
+              "icon": "bi bi-calendar-event me-2",
+              "menuLink": true,
+              "description": "Terms of office, election results, political work, and archived campaign pages in one view."
             }
           ]
         },
         {
-          heading: "Activities",
-          links: [
+          "heading": "Policy priorities",
+          "links": [
             {
-              title: "Initiatives",
-              href: "/en/writings/#aloitteet",
-              icon: "bi bi-megaphone me-2",
-              menuLink: true,
-              description: "Motions in the city council.",
-              countKey: "politics"
+              "title": "Education and learning",
+              "href": "/politiikka/sivistys-ja-koulutus/",
+              "icon": "bi bi-mortarboard-fill me-2",
+              "menuLink": true,
+              "description": "Education, teacher education and AI in teaching. Timeline and analysis in Finnish."
             },
             {
-              title: "Speeches",
-              href: "/en/writings/#puheet",
-              icon: "bi bi-mic me-2",
-              menuLink: true,
-              description: "Council speeches and statements.",
-              countKey: "pub_puhe_valtuusto"
+              "title": "University campus, Raksila and Linnanmaa",
+              "href": "/politiikka/kampus-raksila-linnanmaa/",
+              "icon": "bi bi-building-fill me-2",
+              "menuLink": true,
+              "description": "Campus decisions, the teacher training school and Linnanmaa. Analysis in Finnish."
             },
             {
-              title: "Political opinions",
-              href: "/en/writings/?opinions=political#mielipiteet",
-              icon: "bi bi-chat-left-quote me-2",
-              menuLink: true,
-              description: "Published political opinion pieces tied to public decision-making and local government.",
-              countKey: "pub_mielipide_political"
+              "title": "Local services and neighbourhoods",
+              "href": "/politiikka/palveluverkko/",
+              "icon": "bi bi-diagram-3-fill me-2",
+              "menuLink": true,
+              "description": "School networks, population projections and regional equality. Analysis in Finnish."
             },
             {
-              title: "All writings",
-              href: "/en/writings/",
-              icon: "bi bi-pencil-square me-2",
-              description: "A full archive of speeches, initiatives, and opinion texts."
+              "title": "Open preparation and evidence-informed management",
+              "href": "/politiikka/avoin-valmistelu/",
+              "icon": "bi bi-bar-chart-steps me-2",
+              "menuLink": true,
+              "description": "Transparent preparation, open records and evidence-informed management. Analysis in Finnish."
             }
           ]
         },
         {
-          heading: "Election periods",
-          links: [
+          "heading": "Records and transparency",
+          "links": [
             {
-              title: "Election history",
-              href: "/en/election-history/",
-              icon: "bi bi-calendar-event me-2",
-              menuLink: true,
-              description: "Terms of office, election results, political work, and archived campaign pages in one view."
+              "title": "Council speeches",
+              "href": "/en/council-work/#puheet",
+              "icon": "bi bi-mic me-2",
+              "menuLink": true,
+              "description": "Council speeches and statements.",
+              "countKey": "pub_puhe_valtuusto"
+            },
+            {
+              "title": "Council initiatives",
+              "href": "/en/council-work/#aloitteet",
+              "icon": "bi bi-megaphone me-2",
+              "menuLink": true,
+              "description": "Motions in the city council.",
+              "countKey": "politics"
+            },
+            {
+              "title": "Interests and election funding",
+              "href": "/en/affiliations/",
+              "icon": "bi bi-link-45deg me-2",
+              "menuLink": true,
+              "description": "Open declarations of affiliations."
             }
           ]
         }
@@ -779,15 +797,15 @@ module.exports = {
         {
           heading: "Elected-office work",
           links: [
-            { title: "Speeches", href: "/en/writings/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Council speeches and statements." },
-            { title: "Initiatives", href: "/en/writings/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
+            { title: "Speeches", href: "/en/council-work/#puheet", icon: "bi bi-mic me-2", countKey: "pub_puhe_valtuusto", description: "Council speeches and statements." },
+            { title: "Initiatives", href: "/en/council-work/#aloitteet", icon: "bi bi-megaphone me-2", countKey: "politics", description: "Council initiatives and concrete proposals in local politics." }
           ]
         },
         {
           heading: "Expert contributions",
           links: [
-            { title: "Statements", href: "/en/writings/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Expert statements submitted through public consultation and preparation processes." },
-            { title: "Public speeches", href: "/en/writings/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Ceremonial speeches, university talks, and public addresses." }
+            { title: "Statements", href: "/en/statements/#lausunnot", icon: "bi bi-file-earmark-text me-2", countData: "publications_statements", description: "Expert statements submitted through public consultation and preparation processes." },
+            { title: "Public speeches", href: "/en/statements/#julkiset-puheet", icon: "bi bi-megaphone-fill me-2", countKey: "pub_puhe_julkinen", description: "Ceremonial speeches, university talks, and public addresses." }
           ]
         }
       ]
@@ -928,121 +946,137 @@ module.exports = {
       ]
     },
     en: {
-      overviewLinks: [
+      "layout": "four-columns",
+      "overviewLinks": [
         {
-          title: "My Work as a University Lecturer",
-          href: "/en/work/",
-          icon: "bi bi-briefcase me-2",
-          description: "Role overview and the whole academic work profile."
+          "title": "University work",
+          "href": "/en/work/",
+          "icon": "bi bi-briefcase me-2",
+          "description": "Courses, teaching responsibilities, and pedagogical development."
         },
         {
-          title: "Curriculum Vitae",
-          href: "/en/cv/",
-          icon: "bi bi-file-person me-2",
-          description: "Education, experience, and key academic merits."
+          "title": "Curriculum Vitae",
+          "href": "/en/cv/",
+          "icon": "bi bi-file-person me-2",
+          "description": "Education, work experience, and professional background."
         },
         {
-          title: "Awards",
-          href: "/en/awards/",
-          icon: "bi bi-award me-2",
-          description: "Recognition received for teaching and open science work."
+          "title": "Awards",
+          "href": "/en/awards/",
+          "icon": "bi bi-award me-2",
+          "description": "Recognition received for teaching and open science work."
         }
       ],
-      sections: [
+      "sections": [
         {
-          heading: "University Work",
-          links: [
+          "heading": "Teaching",
+          "headingHref": "/en/teaching/",
+          "links": [
             {
-              title: "My Work as a University Lecturer",
-              href: "/en/work/",
-              icon: "bi bi-briefcase me-2",
-              description: "Courses, teaching responsibilities, and pedagogical development."
+              "title": "Teaching",
+              "href": "/en/teaching/",
+              "icon": "bi bi-mortarboard me-2",
+              "description": "Current and past university courses and teaching materials."
             },
             {
-              title: "Presentations",
-              href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2",
-              description: "Lectures, teaching content, and open educational materials from the university work perspective."
+              "title": "Teaching portfolio",
+              "href": "/en/portfolio/",
+              "icon": "bi bi-folder me-2",
+              "description": "Pedagogical approach, teaching expertise, and development work."
             },
             {
-              title: "Teaching Portfolio",
-              href: "/en/portfolio/",
-              icon: "bi bi-folder me-2",
-              description: "Pedagogical approach, teaching expertise, and development work."
+              "title": "Student feedback",
+              "href": "/en/student-feedback/",
+              "icon": "bi bi-chat-square-text me-2",
+              "description": "Course feedback and how it informs university teaching."
             },
             {
-              title: "Curriculum Vitae",
-              href: "/en/cv/",
-              icon: "bi bi-file-person me-2",
-              description: "Education, work experience, and professional background."
+              "title": "Presentations",
+              "href": "/en/presentations/",
+              "icon": "bi bi-easel2 me-2",
+              "description": "Teaching expertise and research-based materials for teachers, schools, and networks."
             }
           ]
         },
         {
-          heading: "Research",
-          links: [
+          "heading": "Research",
+          "headingHref": "/en/research/",
+          "links": [
             {
-              title: "Research",
-              href: "/en/research/",
-              icon: "bi bi-search me-2",
-              description: "Research themes, projects, and the broader frame of my academic work."
+              "title": "Research",
+              "href": "/en/research/",
+              "icon": "bi bi-search me-2",
+              "description": "Research themes, projects, and the broader frame of my academic work."
             },
             {
-              title: "Doctoral dissertation",
-              href: "/en/dissertation/",
-              icon: "bi bi-mortarboard-fill me-2",
-              description: "Lectio video, dissertation, and four original publications in one place."
+              "title": "Publication list",
+              "href": "/en/publications/",
+              "icon": "bi bi-journal-text me-2",
+              "description": "Scientific publications, essays, and related outputs."
             },
             {
-              title: "Publication List",
-              href: "/en/publications/",
-              icon: "bi bi-journal-text me-2",
-              description: "Scientific publications, essays, and related outputs."
+              "title": "Doctoral dissertation",
+              "href": "/en/dissertation/",
+              "icon": "bi bi-mortarboard-fill me-2",
+              "description": "Lectio video, dissertation, and four original publications in one place."
             },
             {
-              title: "Theses",
-              href: "/en/theses/",
-              icon: "bi bi-mortarboard me-2",
-              description: "Bachelor's and master's theses supervised by me."
+              "title": "Theses",
+              "href": "/en/theses/",
+              "icon": "bi bi-mortarboard me-2",
+              "description": "Bachelor's and master's theses supervised by me."
             }
           ]
         },
         {
-          heading: "Societal Engagement",
-          links: [
+          "heading": "Societal engagement",
+          "headingHref": "/en/societal-engagement/",
+          "links": [
             {
-              title: "Societal engagement",
-              href: "/en/societal-engagement/",
-              icon: "bi bi-diagram-3 me-2",
-              description: "How research and teaching continue in materials, statements, media, and decision-making."
+              "title": "Societal engagement",
+              "href": "/en/societal-engagement/",
+              "icon": "bi bi-diagram-3 me-2",
+              "description": "How research and teaching continue in materials, statements, media, and decision-making."
             },
             {
-              title: "Statements and commentary",
-              href: "/en/writings/#lausunnot",
-              icon: "bi bi-file-earmark-text me-2",
-              description: "Expert statements and commentary connected to education policy and public debate."
+              "title": "Statements",
+              "href": "/en/statements/#lausunnot",
+              "icon": "bi bi-file-earmark-text me-2",
+              "description": "Expert statements and commentary connected to education policy and public debate."
             },
             {
-              title: "Presentations and open materials",
-              href: "/en/presentations/",
-              icon: "bi bi-easel2 me-2",
-              description: "Teaching expertise and research-based materials for teachers, schools, and networks."
+              "title": "In the media",
+              "href": "/en/media/",
+              "icon": "bi bi-camera-reels me-2",
+              "description": "Interviews, podcasts, and media appearances as part of public expert work."
+            }
+          ]
+        },
+        {
+          "heading": "Continuing education",
+          "headingHref": "/en/company/",
+          "links": [
+            {
+              "title": "Trainer",
+              "href": "/en/company/",
+              "icon": "bi bi-briefcase me-2",
+              "description": "Training and expert services through Larux."
             },
             {
-              title: "Media",
-              href: "/en/media/",
-              icon: "bi bi-camera-reels me-2",
-              description: "Interviews, podcasts, and media appearances as part of public expert work."
+              "title": "Training feedback",
+              "href": "/en/training-feedback/",
+              "icon": "bi bi-chat-square-quote me-2",
+              "description": "Participant feedback from training and expert events, 2017–2026."
+            },
+            {
+              "title": "Presentations / training materials",
+              "href": "/en/presentations/",
+              "icon": "bi bi-easel2 me-2",
+              "description": "Teaching expertise and research-based materials for teachers, schools, and networks."
             }
           ]
         }
-      ],
-      cta: {
-        title: "Book me for a keynote",
-        description: "Expert talks on AI, EdTech, and modern pedagogy.",
-        href: "/en/contact/",
-        label: "Request a quote"
-      }
+      ]
     }
   },
   megaMenuMedia: {
@@ -1136,13 +1170,13 @@ module.exports = {
             },
             {
               title: "Roles in media",
-              href: "/en/media/#media-roles",
+              href: "/en/media/#media-nostot",
               icon: "bi bi-stars me-2",
               description: "How interviews, podcasts, videos, and expert appearances relate to public work."
             },
             {
               title: "All media appearances",
-              href: "/en/media/#media-archive",
+              href: "/en/media/#media-arkisto",
               icon: "bi bi-collection me-2",
               description: "Browse the full media archive in one place."
             }

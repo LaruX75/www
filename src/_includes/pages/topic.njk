@@ -1,0 +1,176 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0">Original records, quotations and linked texts are mainly in Finnish.</p>{% endif %}
+{# v4.3 PR-2: haetaan suurempi topicItems-joukko (60), ryhmitellaan
+   sisaltotyypeittain (per ryhma 5 kpl, ohitetaan tyhjat). Vanhat
+   featuredItems (4) + archiveItems (10) korvattu ryhmilla. #}
+{% set topicItems = collections | topicItems(topic, 60) %}
+{% set groupedTopicSections = topicItems | groupByContentType({ perGroupLimit: 5, lang: lang or "fi" }) %}
+{% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 3) %}
+{% set topicContentCount = topicItems.totalCount + researchPublications.length %}
+
+<section class="topic-profile">
+  <div class="site-shell">
+    <header class="topic-profile-hero">
+      <div class="topic-profile-hero-main">
+        <p class="taxonomy-kicker">{{ topic.eyebrow | pageText(lang) }}</p>
+        <h1>{{ topic.title | pageText(lang) }}</h1>
+        <p class="topic-profile-lead">{{ topic.lead | pageText(lang) }}</p>
+        <p class="topic-profile-context">{{ topic.context | pageText(lang) }}</p>
+        <div class="topic-profile-actions">
+          <a class="btn btn-primary" href="{{ "#naytto" | localeUrl(lang) }}">{{ "Katso sisältönostot" | pageText(lang) }}</a>
+          <a class="btn btn-outline-primary" href="{{ "/teemat/" | localeUrl(lang) }}">{{ "Kaikki teemaprofiilit" | pageText(lang) }}</a>
+        </div>
+      </div>
+      <aside class="topic-profile-summary">
+        <span class="taxonomy-stat-number">{{ topicContentCount | pageText(lang) }}</span>
+        <span class="taxonomy-stat-label">{{ "aiheeseen liittyvää sisältöä" | pageText(lang) }}</span>
+        <span class="taxonomy-stat-range">{{ "eri aineistoista" | pageText(lang) }}</span>
+      </aside>
+    </header>
+
+    {% if topic.linkedPolitics and topic.linkedPolitics.length %}
+    <aside class="topic-profile-callout" aria-labelledby="topic-linked-politics-title">
+      <div>
+        <p class="taxonomy-kicker">{{ "Syvempää taustoitusta" | pageText(lang) }}</p>
+        <h2 id="topic-linked-politics-title">{{ "Poliittinen päälinja aiheesta" | pageText(lang) }}</h2>
+        <p>{{ "Kuratoitu aikajana ja argumentaation kaari — vain keskeiset teot ja niiden perustelut." | pageText(lang) }}</p>
+      </div>
+      <div class="topic-profile-link-row">
+        {% for link in topic.linkedPolitics %}
+          <a class="btn btn-outline-primary" href="{{ link.href | localeUrl(lang) }}">{{ link.label | pageText(lang) }} →</a>
+        {% endfor %}
+      </div>
+    </aside>
+    {% endif %}
+
+    <section class="topic-profile-section topic-profile-promise" aria-labelledby="topic-promise-title">
+      <div>
+        <p class="taxonomy-kicker">{{ "Mitä tästä saa irti?" | pageText(lang) }}</p>
+        <h2 id="topic-promise-title">{{ topic.promise | pageText(lang) }}</h2>
+      </div>
+      <div class="topic-profile-link-row">
+        {% for link in topic.primaryLinks %}
+          <a href="{{ link.href | localeUrl(lang) }}">{{ link.label | pageText(lang) }}</a>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% if researchPublications.length %}
+    <section class="topic-profile-section topic-research-section" aria-labelledby="topic-research-title">
+      <div class="topic-profile-section-head">
+        <p class="taxonomy-kicker">{{ "Tutkimusjulkaisut" | pageText(lang) }}</p>
+        <h2 id="topic-research-title">{{ "Valittuja tutkimusjulkaisuja" | pageText(lang) }}</h2>
+        <p>{{ "Toimitettu tutkimusnäyttö tästä aiheesta. Viitteet avautuvat julkaisuarkiston oikeaan kohtaan." | pageText(lang) }}</p>
+      </div>
+      <div class="topic-research-list">
+        {% for publication in researchPublications %}
+        <article class="topic-research-item">
+          <p class="topic-research-meta">{{ "Research.fi ·" | pageText(lang) }} {{ (publication.year or "—") | pageText(lang) }}</p>
+          <h3><a href="{{ publication.url | localeUrl(lang) }}">{{ publication.title | pageText(lang) }}</a></h3>
+          {% if publication.researchSummary %}
+          <p class="topic-research-summary">{{ publication.researchSummary | pageText(lang) }}</p>
+          {% endif %}
+          <p class="topic-research-citation">{{ publication.csl | publicationCitation("apa") | pageText(lang) }}</p>
+          <a class="topic-research-link" href="{{ publication.url | localeUrl(lang) }}">{{ "Avaa lähdeviite julkaisuarkistossa" | pageText(lang) }}</a>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    {# v4.3 PR-2: sisaltotyyppikohtaiset ryhmat korvaavat aiempaan featured
+       + archive -jaon. Ryhmat renderoidaan CONTENT_TYPE_GROUP_ORDER:in
+       jarjestyksessa; tyhjia ryhmia ei nayteta (nykyinen scoring
+       + TOPIC_MIN_SCORE=5 suodattaa jo). #}
+    {% if groupedTopicSections.length %}
+    <section class="topic-profile-section topic-profile-section--groups" id="naytto" aria-labelledby="topic-groups-title">
+      <div class="topic-profile-section-head">
+        <p class="taxonomy-kicker">{{ "Näyttöä aiheesta" | pageText(lang) }}</p>
+        <h2 id="topic-groups-title">{{ "Aiheeseen liittyvät sisällöt" | pageText(lang) }}</h2>
+        <p>{{ "Ryhmiteltynä sisältötyypeittäin — kussakin ryhmässä relevanssin mukaan." | pageText(lang) }}</p>
+      </div>
+
+      {% for group in groupedTopicSections %}
+      <section class="topic-profile-group topic-profile-group--{{ group.key }}" aria-labelledby="topic-group-{{ group.key }}-title">
+        <header class="topic-profile-group-head">
+          <h3 id="topic-group-{{ group.key }}-title" class="topic-profile-group-title">{{ group.label | pageText(lang) }}</h3>
+          {% if group.totalCount > group.items.length %}
+          <span class="topic-profile-group-count">{{ group.items.length | pageText(lang) }} / {{ group.totalCount | pageText(lang) }}</span>
+          {% else %}
+          <span class="topic-profile-group-count">{{ group.items.length | pageText(lang) }}</span>
+          {% endif %}
+        </header>
+        <div class="topic-profile-group-list">
+          {% for item in group.items %}
+          <article class="topic-profile-list-item">
+            <div>
+              <span>{{ item.typeLabel | pageText(lang) }}{% if item.date %} · {{ item.date | dateFormat | pageText(lang) }}{% endif %}</span>
+              <h4><a href="{{ item.url | localeUrl(lang) }}">{{ item.data.title | pageText(lang) }}</a></h4>
+              {% if item.data.description %}
+                <p class="topic-profile-item-desc">{{ item.data.description | truncate(180) | pageText(lang) }}</p>
+              {% endif %}
+            </div>
+            {% if item.data.categories and item.data.categories.length %}
+              <div class="topic-profile-terms">
+                {% for category in item.data.categories | take(2) %}
+                  {% if category | taxonomyIndexed(collections.categoryList, 2) %}
+                  <a href="/kategoriat/{{ category | slugify }}/">{{ category | pageText(lang) }}</a>
+                  {% else %}
+                  <span>{{ category | pageText(lang) }}</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% endfor %}
+    </section>
+    {% endif %}
+  </div>
+</section>
+
+{% set topicBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set topicPageUrl = page.url | absoluteUrl(topicBaseUrl) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ topic.title | pageText(lang) | jsonSafe | safe }},
+  "description": {{ (topic.description or topic.lead) | pageText(lang) | jsonSafe | safe }},
+  "url": {{ topicPageUrl | jsonSafe | safe }},
+  "inLanguage": "{{ 'en-GB' if lang == 'en' else 'fi-FI' }}",
+  "about": {
+    "@type": "DefinedTerm",
+    "name": {{ topic.title | pageText(lang) | jsonSafe | safe }},
+    "description": {{ topic.lead | pageText(lang) | jsonSafe | safe }},
+    "url": {{ topicPageUrl | jsonSafe | safe }},
+    "keywords": {{ (topic.keywords or []) | jsonSafe | safe }}
+  },
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ topicBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": {{ ("Sisällöt aiheesta " ~ topic.title) | jsonSafe | safe }},
+    "numberOfItems": {{ topicItems.length }},
+    "itemListElement": [
+      {% for item in topicItems %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "CreativeWork",
+          "name": {{ item.data.title | jsonSafe | safe }},
+          "url": {{ (item.url | absoluteUrl(topicBaseUrl)) | jsonSafe | safe }},
+          "encodingFormat": {{ item.typeLabel | jsonSafe | safe }}{% if item.date %},
+          "datePublished": {{ (item.date | dateToRfc3339) | jsonSafe | safe }}{% endif %}{% if item.data.description %},
+          "description": {{ item.data.description | jsonSafe | safe }}{% endif %}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

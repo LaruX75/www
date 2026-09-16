@@ -1,0 +1,176 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0" lang="en">Original texts, quotations and source documents retain their original language, mainly Finnish.</p>{% endif %}
+
+{% set meetings = educationCommitteeMeetings %}
+{% set seasons = educationCommitteeMeetingSeasons %}
+{% set stats = educationCommitteeMeetingStats %}
+
+<section class="committee-meetings">
+  <header class="committee-meetings-hero">
+    <div>
+      <p class="term-eyebrow mb-2">{{ "Lautakuntatyö" | pageText(lang) }}</p>
+      <h1 class="term-hero-title mb-3">{{ "Sivistyslautakunta" | pageText(lang) }}</h1>
+      <p class="term-hero-lead mb-0">{{ "Olen ollut mukana Oulun sivistyksen lautakuntatyössä vuodesta 2017 alkaen. Tälle sivulle olen koonnut kokoukset, joissa on päätetty ja valmisteltu lasten, nuorten, koulujen, varhaiskasvatuksen ja laajemmin sivistyspalvelujen arkea koskevia ratkaisuja." | pageText(lang) }}</p>
+    </div>
+    <aside class="committee-hero-card">
+      <p class="term-hero-card__kicker">{{ "Toimielin muuttui työn aikana" | pageText(lang) }}</p>
+      <p>{{ "Aluksi päätöksiä tehtiin sivistys- ja kulttuurilautakunnassa, jonka vastuulla olivat myös kulttuuri-, liikunta- ja vapaa-ajanpalvelut. Vuodesta 2023 alkaen oma lautakuntatyöni on jatkunut sivistyslautakunnassa." | pageText(lang) }}</p>
+      <div class="committee-stats" aria-label="{{ "Lautakuntakokousten määrä" | pageText(lang) }}">
+        <div>
+          <strong>{{ stats.total | pageText(lang) }}</strong>
+          <span>{{ "kokousta" | pageText(lang) }}</span>
+        </div>
+        <div>
+          <strong>{{ stats.sivistyslautakunta | pageText(lang) }}</strong>
+          <span>{{ "sivistyslautakunta" | pageText(lang) }}</span>
+        </div>
+        <div>
+          <strong>{{ stats.sivistysJaKulttuurilautakunta | pageText(lang) }}</strong>
+          <span>{{ "sivistys- ja kulttuurilautakunta" | pageText(lang) }}</span>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <section class="committee-focus-grid" aria-label="{{ "Lautakuntatyön painopisteet" | pageText(lang) }}">
+    <article class="committee-focus-card">
+      <p class="term-hero-card__kicker">{{ "Miksi kokoukset ovat mukana" | pageText(lang) }}</p>
+      <h2>{{ "Ratkaisut näkyvät ensin lautakunnan listalla" | pageText(lang) }}</h2>
+      <p>{{ "Kouluverkko, tilaratkaisut, oppimisen tuki ja palvelujen järjestäminen tulevat usein lautakuntaan ennen kuin ne näkyvät valtuustossa tai julkisessa keskustelussa isompina kokonaisuuksina." | pageText(lang) }}</p>
+    </article>
+    <article class="committee-focus-card committee-focus-card--secondary">
+      <p class="term-hero-card__kicker">{{ "Oma julkinen jälki" | pageText(lang) }}</p>
+      <h2>{{ "Kaikki lautakuntatyö ei näy puheenvuoroina" | pageText(lang) }}</h2>
+      <p>{{ "Lautakunnan keskustelut eivät ole valtuustopuheiden tapaan julkisia tallenteita. Siksi olen liittänyt mukaan ne kirjoitukset, muutosesitykset ja taustoitukset, joissa olen avannut omaa ajatteluani julkisesti." | pageText(lang) }}</p>
+    </article>
+  </section>
+
+  <div class="committee-season-layout">
+    <aside class="committee-season-sidebar" aria-label="{{ "Lautakuntatyöhön liittyvät omat sisällöt" | pageText(lang) }}">
+      <p class="term-hero-card__kicker">{{ "Omat sisällöt" | pageText(lang) }}</p>
+      {% if seasons.allItems.length %}
+      <ul class="committee-season-items">
+        {% for item in seasons.allItems %}
+        <li>
+          <a href="{{ item.url | localeUrl(lang) }}">{{ item.title | pageText(lang) }}</a>
+          <span>{{ item.typeLabel | pageText(lang) }}{% if item.activityLabel %} · {{ item.activityLabel | pageText(lang) }}{% endif %}</span>
+          <small>{{ item.seasonPeriod | pageText(lang) }} · {% if item.meetingUrl %}<a href="{{ item.meetingUrl | localeUrl(lang) }}">{{ item.meetingLabel | pageText(lang) }}, {{ item.meetingDate | dateFormat | pageText(lang) }}</a>{% else %}{{ item.meetingLabel | pageText(lang) }}{% if item.date %}, {{ item.date | dateFormat | pageText(lang) }}{% endif %}{% endif %}</small>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="committee-season-sidebar__empty">{{ "Lautakuntatyöhön ei ole vielä kytketty omaa julkista kirjoitusta tai muutosesitystä." | pageText(lang) }}</p>
+      {% endif %}
+    </aside>
+
+    <div class="committee-season-list" aria-label="{{ "Lautakuntakaudet" | pageText(lang) }}">
+      {% for season in seasons %}
+      <details class="committee-season-card" id="{{ season.key }}" data-season-card{% if loop.first %} open{% endif %}>
+        <summary class="committee-season-card__summary">
+          <div class="committee-season-card__summary-main">
+            <p class="term-hero-card__kicker">{{ season.bodyName | pageText(lang) }}</p>
+            <h2>{{ season.period | pageText(lang) }}</h2>
+            <p>{{ season.description | pageText(lang) }}</p>
+          </div>
+          <dl class="committee-season-stats" aria-label="{{ season.title | pageText(lang) }} {{ "counts" if lang == "en" else "lukumäärät" }}">
+            <div>
+              <dt>{{ "Kokouksia" | pageText(lang) }}</dt>
+              <dd>{{ season.counts.meetings | pageText(lang) }}</dd>
+            </div>
+            <div>
+              <dt>{{ "Omaa sisältöä" | pageText(lang) }}</dt>
+              <dd>{{ season.counts.ownContent | pageText(lang) }}</dd>
+            </div>
+            <div>
+              <dt>{{ "Asiakohtia" | pageText(lang) }}</dt>
+              <dd>{{ season.counts.agendaItems | pageText(lang) }}</dd>
+            </div>
+          </dl>
+          <span class="committee-season-card__toggle" aria-hidden="true"></span>
+        </summary>
+
+        <div class="committee-season-card__content">
+        {% if season.hasMeetingData %}
+        <div class="committee-meetings-table-wrap">
+          <table class="committee-meetings-table" aria-label="{{ season.title | pageText(lang) }} {{ "meetings" if lang == "en" else "kokoukset" }}">
+            <thead>
+              <tr>
+                <th scope="col">{{ "Pvm" | pageText(lang) }}</th>
+                <th scope="col">{{ "Kokous" | pageText(lang) }}</th>
+                <th scope="col">{{ "Kokouksen tiivistelmä" | pageText(lang) }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for meeting in season.meetings %}
+              <tr id="kokous-{{ meeting.date }}">
+                <td class="committee-meetings-table__date">{{ meeting.date | dateFormat | pageText(lang) }}</td>
+                <td class="committee-meetings-table__number">
+                  {{ meeting.meetingLabel | pageText(lang) }}
+                </td>
+                <td class="committee-meetings-table__summary">
+                  {% if meeting.summaryTitle %}
+                  <strong>{{ meeting.summaryTitle | pageText(lang) }}</strong>
+                  {% endif %}
+                  {% if meeting.agendaSummary %}
+                  <p>{{ meeting.agendaSummary | pageText(lang) }}</p>
+                  {% endif %}
+                  {% if not meeting.agendaSummary and meeting.agendaItems.length %}
+                  <ul>
+                    {% for agendaItem in meeting.agendaItems %}
+                    {% if loop.index <= 3 %}
+                    <li>{{ agendaItem | pageText(lang) }}</li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                  <span class="committee-meetings-table__links">
+                    {% if meeting.protocolUrl %}
+                    <a href="{{ meeting.protocolUrl | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ "Pöytäkirja" | pageText(lang) }}</a>
+                    {% endif %}
+                  </span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% else %}
+        <div class="committee-season-empty">
+          <strong>{{ "Kauden kokousaineistoa ei ole vielä mukana tässä koonnissa." | pageText(lang) }}</strong>
+          <p>{{ "Tämä kortti on silti erotettu omaksi kaudekseen, koska lautakunnan nimi muuttui valtuustokauden 2021-2025 aikana sivistyslautakunnaksi." | pageText(lang) }}</p>
+        </div>
+        {% endif %}
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const seasonCards = Array.from(document.querySelectorAll("[data-season-card]"));
+
+  function openHashTarget() {
+    if (!window.location.hash) return;
+    const target = document.getElementById(window.location.hash.slice(1));
+    const card = target?.closest?.("[data-season-card]");
+    if (!card) return;
+    card.open = true;
+    seasonCards.forEach((otherCard) => {
+      if (otherCard !== card) otherCard.open = false;
+    });
+  }
+
+  seasonCards.forEach((card) => {
+    card.addEventListener("toggle", () => {
+      if (!card.open) return;
+      seasonCards.forEach((otherCard) => {
+        if (otherCard !== card) otherCard.open = false;
+      });
+    });
+  });
+
+  openHashTarget();
+  window.addEventListener("hashchange", openHashTarget);
+})();
+</script>

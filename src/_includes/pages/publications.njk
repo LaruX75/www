@@ -1,0 +1,793 @@
+{% import "ui.njk" as ui %}
+
+{%- set canonicalPublications = publicationsPage.items or [] -%}
+{%- set articleCount = 0 -%}
+{%- set confCount = 0 -%}
+{%- set bookCount = 0 -%}
+{%- set peerReviewedCount = 0 -%}
+{%- set openAccessCount = 0 -%}
+{%- set pubsA = [] -%}
+{%- set pubsB = [] -%}
+{%- set pubsC = [] -%}
+{%- set pubsD = [] -%}
+{%- set pubsE = [] -%}
+{%- set pubsG = [] -%}
+{%- for pub in canonicalPublications -%}
+  {%- set typeChar = pub.publicationGroup or ((pub.typeCode or '') | first) -%}
+  {%- if typeChar == "A" -%}{%- set pubsA = (pubsA.push(pub), pubsA) -%}
+  {%- elif typeChar == "B" -%}{%- set pubsB = (pubsB.push(pub), pubsB) -%}
+  {%- elif typeChar == "C" -%}{%- set pubsC = (pubsC.push(pub), pubsC) -%}
+  {%- elif typeChar == "D" -%}{%- set pubsD = (pubsD.push(pub), pubsD) -%}
+  {%- elif typeChar == "E" -%}{%- set pubsE = (pubsE.push(pub), pubsE) -%}
+  {%- elif typeChar == "G" -%}{%- set pubsG = (pubsG.push(pub), pubsG) -%}
+  {%- endif -%}
+  {%- if pub.typeCode == "A1" or pub.typeCode == "A2" -%}{%- set articleCount = articleCount + 1 -%}{%- endif -%}
+  {%- if pub.typeCode == "A3" or pub.typeCode == "A4" or pub.typeCode == "B3" -%}{%- set confCount = confCount + 1 -%}{%- endif -%}
+  {%- if pub.typeCode == "C1" or pub.typeCode == "C2" or pub.typeCode == "G4" or pub.typeCode == "G5" -%}{%- set bookCount = bookCount + 1 -%}{%- endif -%}
+  {%- if pub.peerReviewed -%}{%- set peerReviewedCount = peerReviewedCount + 1 -%}{%- endif -%}
+  {%- if pub.openAccess -%}{%- set openAccessCount = openAccessCount + 1 -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="publications-hero py-4 py-lg-5">
+  <div class="site-shell">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <p class="text-uppercase small text-muted mb-2">{{ "Julkaisut" | pageText(lang) }}</p>
+        <h1 class="display-6 fw-bold mb-2">{{ "Julkaisuluettelo" | pageText(lang) }}</h1>
+        <p class="text-muted mb-3">{{ "Tällä sivulla on Jari Larun tieteellisten ja ammatillisten julkaisujen kokonaisluettelo. Aineisto päivittyy automaattisesti" | pageText(lang) }} <a href="{{ "https://research.fi/en/results/person/0000-0003-0347-0182" | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ "Research.fi-profiilista" | pageText(lang) }}</a>{{ ", ja se on ryhmitelty OKM:n julkaisutyyppiluokituksen (A–G) mukaisesti." | pageText(lang) }}</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="publications-hero-aside">
+          <p class="publications-hero-kicker mb-2">{{ "Näin luettelo on ryhmitelty" | pageText(lang) }}</p>
+          <ul class="publications-hero-list mb-0">
+            <li><strong>{{ "Vertaisarvioidut" | pageText(lang) }}</strong> {{ "julkaisut (A ja C1): asiantuntijoiden arvioimat lehtiartikkelit, konferenssijulkaisut ja tieteelliset kirjat." | pageText(lang) }}</li>
+            <li><strong>{{ "Ammatilliset" | pageText(lang) }}</strong> {{ "julkaisut (B ja D): opetusalan lehdet ja artikkelit, jotka eivät kulje vertaisarvioinnin läpi." | pageText(lang) }}</li>
+            <li><strong>{{ "Yleistajuiset" | pageText(lang) }}</strong> {{ "julkaisut (E) ja muut (G): laajemmalle yleisölle suunnatut tekstit." | pageText(lang) }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="publication-kpi-section">
+  <div class="site-shell">
+    <div class="row g-3">
+      <div class="col-6 col-xl-3">
+        {{ ui.kpiCard(("julkaisua" | pageText(lang)), canonicalPublications.length, { tone: "julkaisut", extraClass: "publication-kpi-card" }) | pageText(lang) }}
+      </div>
+      <div class="col-6 col-xl-3">
+        {{ ui.kpiCard(("vertaisarvioitua julkaisua" | pageText(lang)), peerReviewedCount, { tone: "julkaisut", extraClass: "publication-kpi-card" }) | pageText(lang) }}
+      </div>
+      <div class="col-6 col-xl-3">
+        {{ ui.kpiCard(("viittausta" | pageText(lang)), "…", { id: "dynamicTotalCitations", title: "Lähde: " ~ semanticscholar.metrics.sources, tone: "julkaisut", extraClass: "publication-kpi-card" }) | pageText(lang) }}
+      </div>
+      <div class="col-6 col-xl-3">
+        {{ ui.kpiCard(("h-indeksi" | pageText(lang)), "…", { id: "dynamicHIndex", title: "Lähde: " ~ semanticscholar.metrics.sources, tone: "julkaisut", extraClass: "publication-kpi-card" }) | pageText(lang) }}
+      </div>
+    </div>
+    <p class="publication-kpi-note text-muted mb-0 mt-3">{{ openAccessCount | pageText(lang) }} {{ "julkaisua on merkitty avoimesti saataviksi," | pageText(lang) }} {{ articleCount | pageText(lang) }} {{ "kuuluu lehtiartikkeleihin ja" | pageText(lang) }} {{ confCount | pageText(lang) }} {{ "konferenssiaineistoon." | pageText(lang) }}</p>
+  </div>
+</section>
+
+
+
+<!-- KAAVION SUURENNOS -MODAL -->
+<div class="modal fade" id="chartZoomModal" tabindex="-1" aria-labelledby="chartZoomModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header py-2">
+        <h5 class="modal-title h6" id="chartZoomModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ "Sulje" | pageText(lang) }}"></button>
+      </div>
+      <div class="modal-body">
+        <div style="position:relative; height:500px;">
+          <canvas id="zoomCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYTIIKKA-DASHBOARD -->
+<section id="analyticsPanel" class="py-4 bg-body-tertiary">
+  <div class="site-shell">
+    <div class="card border-0 shadow-sm publication-analytics-card">
+      <div class="card-body">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-3">
+          <div>
+            <p class="text-uppercase small text-muted mb-1">{{ "Tilastografiikka" | pageText(lang) }}</p>
+            <h2 class="h4 mb-1">{{ "Vaikuttavuus, yhteistyö ja aihepiirit" | pageText(lang) }}</h2>
+            <p class="text-muted mb-0">{{ "Kaaviot kokoavat julkaisut vuosittain, julkaisutyypeittäin sekä viittausten, kanssatutkijoiden ja otsikkoavainsanojen näkökulmista." | pageText(lang) }}</p>
+          </div>
+          <button class="btn btn-outline-secondary d-flex align-items-center gap-2"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#analyticsDashboard"
+                  aria-expanded="false"
+                  aria-controls="analyticsDashboard">
+            <span>{{ "Näytä analytiikka" | pageText(lang) }}</span>
+            <i class="bi bi-chevron-down analytics-chevron"></i>
+          </button>
+        </div>
+
+        <div class="collapse mt-4" id="analyticsDashboard">
+        <div class="row g-4">
+
+      <!-- Julkaisut vuosittain -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0" id="yearChartHeading"><i class="bi bi-bar-chart-fill me-2"></i>{{ "Julkaisut & viittaukset vuosittain" | pageText(lang) }}</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="yearChart" data-zoom-title="{{ "Julkaisut & viittaukset vuosittain" | pageText(lang) }}" title="{{ "Suurenna" | pageText(lang) }}"><i class="bi bi-fullscreen"></i></button>
+            </div>
+            <div style="position:relative; flex:1; min-height:160px;">
+              <canvas id="yearChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Julkaisutyypit -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-pie-chart-fill me-2"></i>{{ "Julkaisutyypit" | pageText(lang) }}</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="typeChart" data-zoom-title="{{ "Julkaisutyypit" | pageText(lang) }}" title="{{ "Suurenna" | pageText(lang) }}"><i class="bi bi-fullscreen"></i></button>
+            </div>
+            <div style="position:relative; flex:1; min-height:160px;">
+              <canvas id="typeChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open Access & Vertaisarvioitu -->
+      <div class="col-lg-3 col-md-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <h2 class="h6 text-uppercase text-muted fw-bold mb-0"><i class="bi bi-unlock-fill me-2"></i>{{ "Laatuindikaattorit" | pageText(lang) }}</h2>
+              <button class="btn btn-sm btn-link p-0 chart-zoom-btn" data-zoom-target="qualityChart" data-zoom-title="{{ "Laatuindikaattorit" | pageText(lang) }}" title="{{ "Suurenna" | pageText(lang) }}"><i class="bi bi-fullscreen"></i></button>
+            </div>
+            <div style="position:relative; flex:1; min-height:160px;">
+              <canvas id="qualityChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Yhteistyöverkosto -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100" id="coauthorCard">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>{{ "Top 10 kanssakirjoittajaa" | pageText(lang) }}</h2>
+            <div id="coauthorFilterStatus" class="small mb-2 visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+            <div class="coauthor-table-wrap" id="coauthorTableWrap">
+              <div class="table-responsive">
+                <table class="table table-sm table-hover align-middle mb-0 pub-table" id="coauthorTable" data-no-header-filters>
+                  <thead><tr><th>{{ "Tutkija" | pageText(lang) }}</th><th class="text-end">{{ "Yhteisjulkaisut" | pageText(lang) }}</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+              <div class="coauthor-fade-overlay" id="coauthorFadeOverlay">
+                <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3">
+                  <i class="bi bi-chevron-down me-1"></i>{{ "Näytä kaikki" | pageText(lang) }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Aihepiirijakauma -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h2 class="h6 text-uppercase text-muted fw-bold mb-3"><i class="bi bi-tags-fill me-2"></i>{{ "Avainsanat (otsikoista)" | pageText(lang) }}</h2>
+            <div id="wordCloud" class="d-flex flex-wrap gap-2 align-items-center"></div>
+          </div>
+        </div>
+      </div>
+
+        </div>
+        </div>{# /collapse #}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% set publicationExplore = publicationsFindExplorePage %}
+{% set findExploreKind = "publications" %}
+{% set findExploreScope = lang or "fi" %}
+{% set findExploreLang = (lang or "fi") %}
+{% set findExploreSearchLanguage = "fi,en" %}
+{% set findExploreEyebrow = "Find & Explore" | pageText(lang) %}
+{% set findExploreTitle = "Etsi ja rajaa julkaisuja" | pageText(lang) %}
+{% set findExploreDescription = "Alla oleva luokiteltu julkaisuarkisto näkyy suoraan palvelinpuolelta. Hakusana, rajaus tai järjestyksen muutos korvaa saman arkistopinnan Pagefind-tuloksilla ryhmittäin." | pageText(lang) %}
+{% set findExploreSearchLabel = "Hae otsikosta, tekijästä, aiheesta tai julkaisukanavasta" | pageText(lang) %}
+{% set findExplorePlaceholder = "Kokeile esimerkiksi TPACK, Kosovo, ohjelmoinnillinen ajattelu, Iwata..." | pageText(lang) %}
+{% set findExploreTypeLabel = "Julkaisuryhmä" | pageText(lang) %}
+{% set findExploreAllTypesLabel = "Kaikki ryhmät" | pageText(lang) %}
+{% set findExploreYearOrderLabel = "Vuosi" | pageText(lang) %}
+{% set findExploreAuthorSortLabel = "Tekijät" | pageText(lang) %}
+{% set findExploreTopicLabel = "Aihe" | pageText(lang) %}
+{% set findExploreAllTopicsLabel = "Kaikki aiheet" | pageText(lang) %}
+{% set findExploreQualityLabel = "Laatu" | pageText(lang) %}
+{% set findExploreAllQualityLabel = "Kaikki" | pageText(lang) %}
+{% set findExploreResetLabel = "Tyhjennä" | pageText(lang) %}
+{% set findExploreMoreLabel = "Näytä lisää" | pageText(lang) %}
+{% set findExploreInitialStatus = "Alla oleva luokiteltu julkaisuarkisto näkyy ilman JavaScriptiä. Haku, suodatus ja järjestyksen muutos päivittävät saman näkymän Pagefindin kautta." | pageText(lang) %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin, mutta luokiteltu julkaisuarkisto näkyy ja toimii ilman sitä." | pageText(lang) %}
+{% set findExploreTypeOptions = [] %}
+{% for option in publicationExplore.groupOptions %}
+  {% set findExploreTypeOptions = (findExploreTypeOptions.push({ value: option.value, label: (option.labelEn if lang == "en" else option.labelFi), count: option.count }), findExploreTypeOptions) %}
+{% endfor %}
+{% set findExploreHideYearControl = true %}
+{# Publications FULL parity: canonical topics remain valid site-wide
+   metadata but the professional publication list intentionally does
+   not expose a topic facet. Bibliographically relevant filters are
+   OKM group, year, peer-reviewed, and open access. #}
+{% set findExploreTopicOptions = [] %}
+{% set findExploreQualityOptions = [
+  { value: "peer-reviewed", label: "Vertaisarvioitu", count: publicationExplore.qualityCounts.peerReviewed },
+  { value: "open-access", label: "Open access", count: publicationExplore.qualityCounts.openAccess }
+] | localizeCopy(lang) %}
+{% set findExploreYearOrderOptions = [
+  { value: "year-desc", label: "Uusin ensin" },
+  { value: "year-asc", label: "Vanhin ensin" }
+] | localizeCopy(lang) %}
+{% set findExploreAuthorSortOptions = [
+  { value: "use-year", label: "Vuoden mukaan" },
+  { value: "author-asc", label: "Tekijät A–Ö" },
+  { value: "author-desc", label: "Tekijät Ö–A" }
+] | localizeCopy(lang) %}
+{% set findExploreExternalResultsId = "publicationArchiveResultsFi" %}
+{% include "find-explore-writings.njk" %}
+
+{% set publicationArchive = publicationsArchive %}
+{% set publicationArchiveId = "publicationArchiveResultsFi" %}
+{% set publicationArchiveHeading = "Luokiteltu julkaisuarkisto" | pageText(lang) %}
+{% set publicationArchiveDescription = "Julkaisut on jaettu olemassa oleviin OKM-ryhmiin. Otsikko vie paikalliselle julkaisusivulle, ja ulkoinen lähde avautuu erillisestä painikkeesta." | pageText(lang) %}
+{% set publicationArchiveShowCitation = true %}
+{% include "publication-archive-groups.njk" %}
+
+<section id="julkaisuluokat" class="py-4">
+  <div class="site-shell">
+    <div class="card border-0 shadow-sm publication-nav-card">
+      <div class="card-body">
+        <p class="text-uppercase small text-muted mb-1">{{ "Julkaisuluokitus" | pageText(lang) }}</p>
+        <h2 class="h3 mb-1">{{ "A–G kuvaa julkaisun tyypin" | pageText(lang) }}</h2>
+        <p class="text-muted mb-3">{{ "Alla oleva SSR-arkisto näyttää canonical-joukon kaikki" | pageText(lang) }} {{ canonicalPublications.length | pageText(lang) }} {{ "julkaisua ryhmittäin. Find & Explore rajaa ja järjestää saman aineiston menettämättä paikallisia detail-sivuja tai ulkoisia lähdelinkkejä." | pageText(lang) }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          {% for option in publicationExplore.groupOptions %}
+          <span class="badge text-bg-light text-dark border">{{ option.labelFi | pageText(lang) }} <span class="text-muted">{{ option.count | pageText(lang) }}</span></span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade citation-export-modal" id="citationExportModal" tabindex="-1" aria-labelledby="citationExportModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="citationExportModalLabel">{{ "Vie lähdeviite" | pageText(lang) }}</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ "Sulje" | pageText(lang) }}"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row g-3 align-items-end">
+          <div class="col-12 col-lg-5">
+            <label for="citationFormatSelect" class="form-label small text-muted">{{ "Viittausmuoto" | pageText(lang) }}</label>
+            <select id="citationFormatSelect" class="form-select form-select-sm">
+              <option value="apa">{{ "APA" | pageText(lang) }}</option>
+              <option value="bibtex">{{ "BibTeX (.bib)" | pageText(lang) }}</option>
+              <option value="mla">{{ "MLA" | pageText(lang) }}</option>
+              <option value="chicago">{{ "Chicago" | pageText(lang) }}</option>
+            </select>
+          </div>
+          <div class="col-12 col-lg-7">
+            <div class="citation-export-actions">
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationCopyBtn">
+                <i class="bi bi-clipboard me-1"></i>{{ "Kopioi" | pageText(lang) }}
+              </button>
+              <button type="button" class="btn btn-primary btn-sm rounded-pill" id="citationDownloadBtn">
+                <i class="bi bi-download me-1"></i>{{ "Lataa" | pageText(lang) }}
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationZoteroBtn" title="{{ "Lataa RIS Zotero-tuontiin" | pageText(lang) }}">
+                <img src="https://cdn.simpleicons.org/zotero/cc2936" alt="" width="14" height="14" class="me-1 align-text-bottom">{{ "Zotero" | pageText(lang) }}
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill" id="citationMendeleyBtn" title="{{ "Lataa RIS Mendeley-tuontiin" | pageText(lang) }}">
+                <img src="https://cdn.simpleicons.org/mendeley/9d1620" alt="" width="14" height="14" class="me-1 align-text-bottom">{{ "Mendeley" | pageText(lang) }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="mt-3">
+          <label for="citationOutput" class="form-label small text-muted mb-1">{{ "Esikatselu" | pageText(lang) }}</label>
+          <textarea id="citationOutput" class="form-control form-control-sm font-monospace" rows="12" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Inline data from Eleventy
+  const publications = [
+    {% for pub in canonicalPublications %}
+    { year: {{ pub.year or 0 }}, type: "{{ pub.typeCode or '' }}", authors: "{{ (pub.authors or '') | replace('"', '\\"') }}", title: "{{ pub.title | replace('"', '\\"') }}", peerReviewed: {{ "true" if pub.peerReviewed else "false" }}, openAccess: {{ pub.openAccess or 0 }}, doi: "{{ pub.doi or '' }}" },
+    {% endfor %}
+  ];
+
+  // Semantic Scholar / OpenAlex data
+  const s2Citations = {{ semanticscholar.metrics.doiCitations | jsonSafe | safe }};
+
+  // 0. LASKETAAN TODELLISET METRIIKAT (vain tällä sivulla olevat julkaisut)
+  let verifiedTotalCitations = 0;
+  const citationArray = [];
+
+  publications.forEach(p => {
+    if (p.doi && s2Citations[p.doi.toLowerCase()]) {
+      const cites = s2Citations[p.doi.toLowerCase()];
+      verifiedTotalCitations += cites;
+      citationArray.push(cites);
+    }
+  });
+
+  // Lasketaan todellinen h-indeksi näille julkaisuille
+  citationArray.sort((a,b) => b - a);
+  let verifiedHIndex = 0;
+  for (let i = 0; i < citationArray.length; i++) {
+    if (citationArray[i] >= i + 1) {
+      verifiedHIndex = i + 1;
+    } else {
+      break;
+    }
+  }
+
+  // Päivitetään DOM
+  const totalEl = document.getElementById('dynamicTotalCitations');
+  if (totalEl) totalEl.textContent = verifiedTotalCitations;
+
+  const hEl = document.getElementById('dynamicHIndex');
+  if (hEl) hEl.textContent = verifiedHIndex;
+
+  if (verifiedTotalCitations > 0) {
+    const headingEl = document.getElementById('yearChartHeading');
+    if (headingEl) {
+      headingEl.innerHTML = headingEl.innerHTML + ' <span class="fw-normal text-secondary">(' + verifiedTotalCitations + {{ " viittausta)</span>" | pageText(lang) | jsonSafe | safe }};
+    }
+  }
+
+  const isDark = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+  const textColor = isDark ? '#ccc' : '#666';
+  const gridColor = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)';
+
+  Chart.defaults.color = textColor;
+  Chart.defaults.borderColor = gridColor;
+
+  function sanitizeFilenamePart(value) {
+    return String(value || '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60) || 'viite';
+  }
+
+  function downloadTextFile(filename, text) {
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  const citationFormatSelect = document.getElementById('citationFormatSelect');
+  const citationOutput = document.getElementById('citationOutput');
+  const citationDownloadBtn = document.getElementById('citationDownloadBtn');
+  const citationCopyBtn = document.getElementById('citationCopyBtn');
+  const citationZoteroBtn = document.getElementById('citationZoteroBtn');
+  const citationMendeleyBtn = document.getElementById('citationMendeleyBtn');
+  const citationModalEl = document.getElementById('citationExportModal');
+  let currentCitationPayload = null;
+
+  // PUB-CITE1 Phase 4b: the citation modal is shared-renderer-only.
+  // When csl is missing, the shared renderer failed to load, or the
+  // renderer returns an empty result, sharedCitation() returns an
+  // empty payload. Callers show a controlled "not available" state
+  // rather than silently synthesising a hand-rolled citation.
+  const UNAVAILABLE_MESSAGE = {{ "Viite ei ole saatavilla tälle julkaisulle." | pageText(lang) | jsonSafe | safe }};
+  const STYLE_ALIASES = { bibtex: 'bibtex', ris: 'ris', mla: 'mla', chicago: 'chicago', apa: 'apa' };
+
+  function sharedCitation(payload, format) {
+    if (!payload || !payload.csl || !window.publicationCitation) {
+      return { text: '', empty: true };
+    }
+    const style = STYLE_ALIASES[format] || 'apa';
+    let rendered;
+    try {
+      rendered = window.publicationCitation.buildCitation({ csl: payload.csl, style });
+    } catch (_) {
+      return { text: '', empty: true };
+    }
+    if (!rendered || rendered.empty || !rendered.text) {
+      return { text: '', empty: true };
+    }
+    return { text: rendered.text, empty: false };
+  }
+
+  function flashUnavailable(button, defaultLabel) {
+    if (!button) return;
+    const previous = button.innerHTML;
+    button.disabled = true;
+    button.innerHTML = defaultLabel;
+    setTimeout(() => {
+      button.innerHTML = previous;
+      button.disabled = false;
+    }, 1600);
+  }
+
+  function setCitationButtonsEnabled(enabled) {
+    [citationCopyBtn, citationDownloadBtn, citationZoteroBtn, citationMendeleyBtn].forEach((btn) => {
+      if (btn) btn.disabled = !enabled;
+    });
+  }
+
+  function downloadRisFor(payload, filenameSuffix, button) {
+    const rendered = sharedCitation(payload, 'ris');
+    if (rendered.empty) {
+      if (citationOutput) citationOutput.value = UNAVAILABLE_MESSAGE;
+      setCitationButtonsEnabled(false);
+      flashUnavailable(button, {{ "<i class=\"bi bi-exclamation-triangle me-1\"></i>Ei saatavilla" | pageText(lang) | jsonSafe | safe }});
+      return;
+    }
+    const base = sanitizeFilenamePart(payload.title || payload.authors || 'viite');
+    downloadTextFile(`${base}-${filenameSuffix}.ris`, rendered.text + '\n');
+  }
+
+  function renderCitationPreview() {
+    if (!citationOutput) return;
+    const format = citationFormatSelect?.value || 'apa';
+    const rendered = sharedCitation(currentCitationPayload, format);
+    if (rendered.empty) {
+      citationOutput.value = UNAVAILABLE_MESSAGE;
+      setCitationButtonsEnabled(false);
+      return;
+    }
+    citationOutput.value = rendered.text;
+    setCitationButtonsEnabled(true);
+  }
+
+  document.addEventListener('click', (event) => {
+    const btn = event.target.closest('.export-citation-btn');
+    if (!btn) return;
+    let csl = null;
+    if (btn.dataset.csl) {
+      try { csl = JSON.parse(btn.dataset.csl); } catch (_) { csl = null; }
+    }
+    currentCitationPayload = {
+      title: btn.dataset.title || '',
+      authors: btn.dataset.authors || '',
+      year: btn.dataset.year || '',
+      journal: btn.dataset.journal || '',
+      doi: btn.dataset.doi || '',
+      url: btn.dataset.url || '',
+      volume: btn.dataset.volume || '',
+      issue: btn.dataset.issue || '',
+      pages: btn.dataset.pages || '',
+      publisher: btn.dataset.publisher || '',
+      isbn: btn.dataset.isbn || '',
+      csl: csl
+    };
+    if (citationFormatSelect) citationFormatSelect.value = 'apa';
+    renderCitationPreview();
+    if (window.bootstrap && window.bootstrap.Modal && citationModalEl) {
+      window.bootstrap.Modal.getOrCreateInstance(citationModalEl).show();
+    }
+  });
+
+  if (citationFormatSelect) {
+    citationFormatSelect.addEventListener('change', renderCitationPreview);
+  }
+
+  if (citationDownloadBtn) {
+    citationDownloadBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      const format = citationFormatSelect?.value || 'apa';
+      const rendered = sharedCitation(currentCitationPayload, format);
+      if (rendered.empty) {
+        if (citationOutput) citationOutput.value = UNAVAILABLE_MESSAGE;
+        setCitationButtonsEnabled(false);
+        flashUnavailable(citationDownloadBtn, {{ "<i class=\"bi bi-exclamation-triangle me-1\"></i>Ei saatavilla" | pageText(lang) | jsonSafe | safe }});
+        return;
+      }
+      const base = sanitizeFilenamePart(currentCitationPayload.title || currentCitationPayload.authors || 'viite');
+      const ext = format === 'bibtex' ? 'bib' : 'txt';
+      downloadTextFile(`${base}.${ext}`, rendered.text + '\n');
+    });
+  }
+
+  if (citationCopyBtn) {
+    citationCopyBtn.addEventListener('click', async () => {
+      if (!citationOutput?.value || citationOutput.value === UNAVAILABLE_MESSAGE) return;
+      try {
+        await navigator.clipboard.writeText(citationOutput.value);
+        citationCopyBtn.innerHTML = {{ "<i class=\"bi bi-check2 me-1\"></i>Kopioitu" | pageText(lang) | jsonSafe | safe }};
+        setTimeout(() => {
+          citationCopyBtn.innerHTML = {{ "<i class=\"bi bi-clipboard me-1\"></i>Kopioi" | pageText(lang) | jsonSafe | safe }};
+        }, 1400);
+      } catch (_) {
+        citationOutput.select();
+        document.execCommand('copy');
+      }
+    });
+  }
+
+  if (citationZoteroBtn) {
+    citationZoteroBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      downloadRisFor(currentCitationPayload, 'zotero', citationZoteroBtn);
+    });
+  }
+
+  if (citationMendeleyBtn) {
+    citationMendeleyBtn.addEventListener('click', () => {
+      if (!currentCitationPayload) return;
+      downloadRisFor(currentCitationPayload, 'mendeley', citationMendeleyBtn);
+    });
+  }
+
+  // 1. VUOSIKAAVIO
+  const yearCounts = {};
+  publications.forEach(p => { if(p.year) yearCounts[p.year] = (yearCounts[p.year]||0)+1; });
+  const years = Object.keys(yearCounts).sort();
+  // Citation counts per year from S2 data
+  const citesPerYear = {};
+  if (s2Citations) {
+    publications.forEach(p => {
+      if (p.year && p.doi && s2Citations[p.doi.toLowerCase()]) {
+        citesPerYear[p.year] = (citesPerYear[p.year]||0) + s2Citations[p.doi.toLowerCase()];
+      }
+    });
+  }
+
+  const yearChartInst = new Chart(document.getElementById('yearChart'), {
+    type: 'bar',
+    data: {
+      labels: years,
+      datasets: [{
+        label: {{ "Julkaisuja" | pageText(lang) | jsonSafe | safe }},
+        data: years.map(y => yearCounts[y]),
+        backgroundColor: isDark ? 'rgba(56,189,248,0.6)' : 'rgba(13,110,253,0.7)',
+        borderRadius: 4,
+        borderSkipped: false,
+        yAxisID: 'y'
+      },{
+        label: {{ "Viittauksia" | pageText(lang) | jsonSafe | safe }},
+        data: years.map(y => citesPerYear[y] || 0),
+        type: 'line',
+        borderColor: '#ffc107',
+        backgroundColor: 'rgba(255,193,7,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 3,
+        yAxisID: 'y1'
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
+      scales: {
+        y: { beginAtZero: true, ticks: { stepSize: 1 }, title: { display: true, text: {{ "Julkaisut" | pageText(lang) | jsonSafe | safe }}, font: { size: 10 } } },
+        y1: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: {{ "Viittaukset" | pageText(lang) | jsonSafe | safe }}, font: { size: 10 } } },
+        x: { ticks: { maxRotation: 45 } }
+      }
+    }
+  });
+
+  // 2. TYYPPIKAAVIO
+  const typeCounts = {};
+  const typeLabels = {
+    'A1':{{ "Lehtiartikkeli (A1)" | pageText(lang) | jsonSafe | safe }}, 'A2':{{ "Katsausartikkeli (A2)" | pageText(lang) | jsonSafe | safe }},
+    'A3':{{ "Kirjan osa (A3)" | pageText(lang) | jsonSafe | safe }}, 'A4':{{ "Konferenssi (A4)" | pageText(lang) | jsonSafe | safe }},
+    'B1':{{ "Kirjoitus (B1)" | pageText(lang) | jsonSafe | safe }}, 'B3':{{ "Konferenssi ei-vertaisarv. (B3)" | pageText(lang) | jsonSafe | safe }},
+    'C1':{{ "Tieteellinen teos (C1)" | pageText(lang) | jsonSafe | safe }}, 'C2':{{ "Toimitettu teos (C2)" | pageText(lang) | jsonSafe | safe }},
+    'D1':{{ "Ammattiartikkeli (D1)" | pageText(lang) | jsonSafe | safe }}, 'D2':{{ "Ammatillinen kokoomat. (D2)" | pageText(lang) | jsonSafe | safe }},
+    'E1':{{ "Yleistajuinen (E1)" | pageText(lang) | jsonSafe | safe }}, 'G4':{{ "Väitöskirja (G4)" | pageText(lang) | jsonSafe | safe }}, 'G5':{{ "Väitöskirja (G5)" | pageText(lang) | jsonSafe | safe }}
+  };
+  publications.forEach(p => { typeCounts[p.type] = (typeCounts[p.type]||0)+1; });
+  const typeKeys = Object.keys(typeCounts).sort((a,b) => typeCounts[b]-typeCounts[a]);
+  const typeColors = ['#0d6efd','#6610f2','#6f42c1','#d63384','#dc3545','#fd7e14','#ffc107','#198754','#20c997','#0dcaf0','#6c757d','#adb5bd','#495057'];
+  const typeChartInst = new Chart(document.getElementById('typeChart'), {
+    type: 'doughnut',
+    data: {
+      labels: typeKeys.map(k => typeLabels[k]||k),
+      datasets: [{
+        data: typeKeys.map(k => typeCounts[k]),
+        backgroundColor: typeColors.slice(0, typeKeys.length),
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', maxHeight: 72, labels: { boxWidth: 10, font: { size: 10 }, padding: 6 } }
+      }
+    }
+  });
+
+  // 3. LAADULLISET (peer review & OA)
+  // Kategorisoidaan julkaisut toisensa poissulkeviin luokkiin
+  const isPeerReviewed = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const isOpenAccess = (value) => value === true || value === 1 || value === '1' || String(value).toLowerCase() === 'true';
+  const prAndOa = publications.filter(p => isPeerReviewed(p.peerReviewed) && isOpenAccess(p.openAccess)).length;
+  const prOnly = publications.filter(p => isPeerReviewed(p.peerReviewed) && !isOpenAccess(p.openAccess)).length;
+  // {{ "Muu / ei vertaisarvioitu" | pageText(lang) | jsonSafe | safe }} sisältää sekä OA- että ei-OA-julkaisut.
+  const nonPeerReviewed = publications.filter(p => !isPeerReviewed(p.peerReviewed)).length;
+
+  const qualityChartInst = new Chart(document.getElementById('qualityChart'), {
+    type: 'doughnut',
+    data: {
+      labels: [{{ "Vertaisarvioitu & OA" | pageText(lang) | jsonSafe | safe }}, {{ "Vain vertaisarvioitu" | pageText(lang) | jsonSafe | safe }}, {{ "Muu / ei vertaisarvioitu" | pageText(lang) | jsonSafe | safe }}],
+      datasets: [{
+        data: [prAndOa, prOnly, nonPeerReviewed],
+        backgroundColor: ['#198754', '#20c997', '#dee2e6'],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', maxHeight: 72, labels: { boxWidth: 10, font: { size: 10 }, padding: 6 } }
+      }
+    }
+  });
+
+  // Mobiili-accordion: resize kaaviot kun collapse aukeaa (alustus tapahtuu display:none-tilassa)
+  const analyticsDashEl = document.getElementById('analyticsDashboard');
+  if (analyticsDashEl) {
+    analyticsDashEl.addEventListener('shown.bs.collapse', () => {
+      [yearChartInst, typeChartInst, qualityChartInst].forEach(c => c && c.resize());
+    });
+    // Pyöritetään chevron-ikoni auki/kiinni
+    const toggleBtn = document.querySelector('[data-bs-target="#analyticsDashboard"]');
+    if (toggleBtn) {
+      analyticsDashEl.addEventListener('show.bs.collapse', () => toggleBtn.setAttribute('aria-expanded', 'true'));
+      analyticsDashEl.addEventListener('hide.bs.collapse', () => toggleBtn.setAttribute('aria-expanded', 'false'));
+    }
+  }
+
+  // KAAVION SUURENNOS (zoom modal)
+  const chartInstances = { yearChart: yearChartInst, typeChart: typeChartInst, qualityChart: qualityChartInst };
+  let zoomChartInst = null;
+  const zoomModalEl = document.getElementById('chartZoomModal');
+  const zoomModalLabel = document.getElementById('chartZoomModalLabel');
+
+  function openZoomModal(sourceId, title) {
+    const source = chartInstances[sourceId];
+    if (!source) return;
+    zoomModalLabel.textContent = title;
+    const bsModal = bootstrap.Modal.getOrCreateInstance(zoomModalEl);
+    bsModal.show();
+  }
+
+  zoomModalEl.addEventListener('shown.bs.modal', function() {
+    const btn = zoomModalEl.querySelector('[data-zoom-active]') ||
+                document.querySelector('.chart-zoom-btn[data-zoom-active]');
+    // Reconstruct from active source id stored on modal
+    const sourceId = zoomModalEl.dataset.activeChart;
+    const source = chartInstances[sourceId];
+    if (!source) return;
+    if (zoomChartInst) { zoomChartInst.destroy(); zoomChartInst = null; }
+    const canvas = document.getElementById('zoomCanvas');
+    // Deep-clone config and enlarge legend
+    const cfg = JSON.parse(JSON.stringify({ type: source.config.type, data: source.config.data, options: source.config.options }));
+    if (cfg.options && cfg.options.plugins && cfg.options.plugins.legend) {
+      cfg.options.plugins.legend.labels = cfg.options.plugins.legend.labels || {};
+      cfg.options.plugins.legend.labels.font = { size: 13 };
+      cfg.options.plugins.legend.labels.padding = 14;
+      cfg.options.plugins.legend.labels.boxWidth = 14;
+    }
+    zoomChartInst = new Chart(canvas, cfg);
+  });
+
+  zoomModalEl.addEventListener('hidden.bs.modal', function() {
+    if (zoomChartInst) { zoomChartInst.destroy(); zoomChartInst = null; }
+  });
+
+  // Sidotaan zoom-napit ja koko canvas-alue
+  document.querySelectorAll('.chart-zoom-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const sourceId = this.dataset.zoomTarget;
+      const title = this.dataset.zoomTitle;
+      zoomModalEl.dataset.activeChart = sourceId;
+      openZoomModal(sourceId, title);
+    });
+  });
+  // Klikki suoraan canvakselle avaa myös zoomin
+  ['yearChart','typeChart','qualityChart'].forEach(id => {
+    const btn = document.querySelector(`.chart-zoom-btn[data-zoom-target="${id}"]`);
+    const canvas = document.getElementById(id);
+    if (canvas && btn) canvas.addEventListener('click', () => btn.click());
+    if (canvas) canvas.style.cursor = 'zoom-in';
+  });
+
+  // 4. KANSSAKIRJOITTAJAT
+  const coauthors = {};
+  publications.forEach(p => {
+    const authors = p.authors.split(';').map(a => a.trim()).filter(a => a.length > 0);
+    authors.forEach(a => {
+      if (!a.toLowerCase().startsWith('laru')) {
+        coauthors[a] = (coauthors[a]||0) + 1;
+      }
+    });
+  });
+  const allCoauthors = Object.entries(coauthors).sort((a, b) => {
+    const countDiff = b[1] - a[1];
+    return countDiff || new Intl.Collator('fi').compare(a[0], b[0]);
+  });
+  const topCoauthors = allCoauthors.slice(0, 10);
+  const tbody = document.querySelector('#coauthorTable tbody');
+  if (tbody) {
+    topCoauthors.forEach(([name, count]) => {
+      const tr = document.createElement('tr');
+      const isDarkTheme = document.documentElement.getAttribute('data-bs-theme') === 'dark';
+      const badgeStyle = isDarkTheme ? 'background-color: rgba(56,189,248,0.3); color: #e2e6ec;' : 'background-color: rgba(13,110,253,0.15); color: #0d6efd;';
+      tr.innerHTML = `<td>${name}</td><td class="text-end"><span class="badge rounded-pill" style="${badgeStyle}">${count}</span></td>`;
+      tbody.appendChild(tr);
+    });
+  }
+
+  // Kanssatutkijat-kortti: häivytys + expand
+  const coauthorFadeOverlay = document.getElementById('coauthorFadeOverlay');
+  const coauthorTableWrap = document.getElementById('coauthorTableWrap');
+  if (coauthorFadeOverlay && coauthorTableWrap) {
+    coauthorFadeOverlay.addEventListener('click', () => {
+      coauthorTableWrap.style.maxHeight = 'none';
+      coauthorTableWrap.style.overflow = 'visible';
+      coauthorFadeOverlay.style.display = 'none';
+    });
+  }
+
+  // 5. SANAPILVI (Otsikon sanat, alkuperäinen toimivaksi todettu tapa)
+  const stopwords = new Set(['the','of','in','for','a','an','and','to','on','with','from','by','at','as','is','are','was','were','or','using','based','their','its','towards','between','among','during','about','through','case','study','how','can','do','does','than','into','all','not','but','also','been','has','have','had','which','when','what','that','this','these','those','other','more','no','some','varhaiskasvatuksen']);
+  const wordCounts = {};
+  publications.forEach(p => {
+    const words = p.title.toLowerCase().replace(/[^a-zäöüå\s-]/g, '').split(/\s+/);
+    words.forEach(w => {
+      if (w.length > 3 && !stopwords.has(w)) {
+        wordCounts[w] = (wordCounts[w]||0) + 1;
+      }
+    });
+  });
+  const topWords = Object.entries(wordCounts).sort((a,b)=>b[1]-a[1]).slice(0,25);
+  const cloudEl = document.getElementById('wordCloud');
+  if (topWords.length > 0) {
+    const maxCount = topWords[0]?.[1] || 1;
+    topWords.forEach(([word, count]) => {
+      const size = 0.7 + (count / maxCount) * 1.0;
+      const opacity = 0.5 + (count / maxCount) * 0.5;
+      const span = document.createElement('span');
+      span.className = 'badge rounded-pill';
+      span.style.cssText = `font-size:${size}rem; opacity:${opacity}; background-color: ${isDark ? 'rgba(56,189,248,0.3)' : 'rgba(13,110,253,0.15)'}; color: ${isDark ? '#e2e6ec' : '#004192'}; font-weight: 500;`;
+      span.textContent = `${word} (${count})`;
+      cloudEl.appendChild(span);
+    });
+  } else {
+    cloudEl.innerHTML = {{ "<span class=\"text-muted small\">Ei avainsanoja saatavilla</span>" | pageText(lang) | jsonSafe | safe }};
+  }
+});
+</script>

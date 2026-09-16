@@ -1,0 +1,183 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0" lang="en">Original texts, quotations and source documents retain their original language, mainly Finnish.</p>{% endif %}
+{# KYNÄSTÄ-HUB-02: content-rich SSR hub.
+   All grouping, sorting and latest-5 slicing lives in the canonical
+   kynastaHubPage projection (src/_utils/kynastaHubPage.js). Nunjucks
+   only renders — no classification, no counting, no .slice() here. #}
+{% set model = kynastaHubPage %}
+
+<section class="kynasta-hero py-4 py-lg-5">
+  <div class="site-shell">
+    <div class="row align-items-start g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">{{ "Kynästä" | pageText(lang) }}</p>
+        <h1 class="display-6 fw-bold mb-3">{{ "Kirjoitukset, puheet ja kannanotot" | pageText(lang) }}</h1>
+        <p class="text-muted mb-3">{{ "Yhteensä" | pageText(lang) }} <strong>{{ model.totalCount | pageText(lang) }}</strong> {{ "tekstiä ja puheenvuoroa on koottu kolmeen kokonaisuuteen: kirjoituksia, valtuustotyötä ja asiantuntijatyötä. Kussakin osiossa näet viisi tuoreinta tekstiä ja linkin koko arkistoon." | pageText(lang) }}</p>
+      </div>
+      <div class="col-lg-4">
+        <aside class="kynasta-hero-aside">
+          <p class="kynasta-hero-aside-kicker mb-2">{{ "Näin löydät etsimäsi" | pageText(lang) }}</p>
+          <ul class="kynasta-hero-aside-list mb-0">
+            <li><strong>{{ "Kirjoitukset:" | pageText(lang) }}</strong> {{ "blogia, mielipiteitä ja kolumneja — vapaamuotoisia tekstejä." | pageText(lang) }}</li>
+            <li><strong>{{ "Valtuustotyö:" | pageText(lang) }}</strong> {{ "puheenvuoroja ja aloitteita kaupunginvaltuustossa." | pageText(lang) }}</li>
+            <li><strong>{{ "Asiantuntijatyö:" | pageText(lang) }}</strong> {{ "asiantuntijalausuntoja ja julkisia puheita." | pageText(lang) }}</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Kirjoitukset ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="kirjoitukset" aria-labelledby="kynasta-writings-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">{{ "Kirjoitukset" | pageText(lang) }}</p>
+      <h2 id="kynasta-writings-heading" class="h3 mb-2">{{ "Vapaamuotoiset kirjoitukset ja julkaistut kannanotot" | pageText(lang) }}</h2>
+      <p class="text-muted mb-0">{{ "Blogitekstit, mielipidekirjoitukset ja kolumnit yhteensä" | pageText(lang) }} <strong>{{ model.writings.count | pageText(lang) }}</strong> {{ "tekstiä." | pageText(lang) }}</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Blogi" | pageText(lang) %}
+        {% set subsectionDescription = "Blogin syvempiä pohdintoja opetuksesta, teknologiasta ja avoimesta tieteestä." | pageText(lang) %}
+        {% set subsectionItems = model.writings.groups.blog.latestItems %}
+        {% set subsectionCount = model.writings.groups.blog.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#blogi" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki blogitekstit" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei blogitekstejä." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Mielipidekirjoitukset" | pageText(lang) %}
+        {% set subsectionDescription = "Lehdissä julkaistut kannanotot ja mielipidekirjoitukset." | pageText(lang) %}
+        {% set subsectionItems = model.writings.groups.opinion.latestItems %}
+        {% set subsectionCount = model.writings.groups.opinion.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#mielipiteet" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki mielipidekirjoitukset" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei mielipidekirjoituksia." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6 col-lg-4">
+        {% set subsectionHeading = "Kolumnit ja blogivierailut" | pageText(lang) %}
+        {% set subsectionDescription = "Lehtiin ja verkkojulkaisuihin kirjoitetut kolumnit sekä vieraskirjoitukset." | pageText(lang) %}
+        {% set subsectionItems = model.writings.groups.column.latestItems %}
+        {% set subsectionCount = model.writings.groups.column.count %}
+        {% set subsectionArchiveUrl = "/kirjoitukset/#kolumnit" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki kolumnit" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei kolumneja." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Valtuustotyö ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5 bg-body-tertiary border-top border-bottom" id="valtuustotyo" aria-labelledby="kynasta-council-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">{{ "Valtuustotyö" | pageText(lang) }}</p>
+      <h2 id="kynasta-council-heading" class="h3 mb-2">{{ "Kaupunginvaltuustoon liittyvät puheenvuorot ja aloitteet" | pageText(lang) }}</h2>
+      <p class="text-muted mb-0">{{ "Oulun kaupunginvaltuustossa pidetyt puheenvuorot ja kirjalliset aloitteet, yhteensä" | pageText(lang) }} <strong>{{ model.council.count | pageText(lang) }}</strong> {{ "tapausta." | pageText(lang) }}</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6">
+        {% set subsectionHeading = "Valtuustopuheet" | pageText(lang) %}
+        {% set subsectionDescription = "Kaupunginvaltuustossa pidetyt puheenvuorot päätöskohdissa ja kyselytunneilla." | pageText(lang) %}
+        {% set subsectionItems = model.council.groups.speeches.latestItems %}
+        {% set subsectionCount = model.council.groups.speeches.count %}
+        {% set subsectionArchiveUrl = "/valtuustotyo/#puheet" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki valtuustopuheet" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei valtuustopuheita." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6">
+        {% set subsectionHeading = "Valtuustoaloitteet" | pageText(lang) %}
+        {% set subsectionDescription = "Kirjalliset aloitteet päätöksenteon valmisteluun." | pageText(lang) %}
+        {% set subsectionItems = model.council.groups.initiatives.latestItems %}
+        {% set subsectionCount = model.council.groups.initiatives.count %}
+        {% set subsectionArchiveUrl = "/valtuustotyo/#aloitteet" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki aloitteet" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei aloitteita." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Asiantuntijatyö ---- #}
+<section class="kynasta-hub-section py-4 py-lg-5" id="asiantuntijatyo" aria-labelledby="kynasta-expert-heading">
+  <div class="site-shell">
+    <header class="kynasta-hub-section-header mb-4">
+      <p class="text-uppercase small text-muted mb-1">{{ "Asiantuntijatyö" | pageText(lang) }}</p>
+      <h2 id="kynasta-expert-heading" class="h3 mb-2">{{ "Asiantuntijana annetut lausunnot ja muut julkiset puheet" | pageText(lang) }}</h2>
+      <p class="text-muted mb-0">{{ "Valmisteluprosesseihin annetut lausunnot ja juhla-, yliopisto- sekä yleisötilaisuuksien puheenvuorot, yhteensä" | pageText(lang) }} <strong>{{ model.expert.count | pageText(lang) }}</strong> {{ "tapausta." | pageText(lang) }}</p>
+    </header>
+    <div class="row g-4">
+      <div class="col-md-6">
+        {% set subsectionHeading = "Lausunnot" | pageText(lang) %}
+        {% set subsectionDescription = "Asiantuntijalausunnot opetuksesta, koulutuksesta ja teknologiasta." | pageText(lang) %}
+        {% set subsectionItems = model.expert.groups.statements.latestItems %}
+        {% set subsectionCount = model.expert.groups.statements.count %}
+        {% set subsectionArchiveUrl = "/lausunnot/#lausunnot" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki lausunnot" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei lausuntoja." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+      <div class="col-md-6">
+        {% set subsectionHeading = "Julkiset puheet" | pageText(lang) %}
+        {% set subsectionDescription = "Juhlapuheet, yliopistopuheet ja yleisötilaisuuksien puheenvuorot." | pageText(lang) %}
+        {% set subsectionItems = model.expert.groups.publicSpeeches.latestItems %}
+        {% set subsectionCount = model.expert.groups.publicSpeeches.count %}
+        {% set subsectionArchiveUrl = "/lausunnot/#julkiset-puheet" | localeUrl(lang) %}
+        {% set subsectionArchiveLabel = "Näytä kaikki julkiset puheet" | pageText(lang) %}
+        {% set subsectionLang = (lang or "fi") %}
+        {% set subsectionEmptyText = "Ei julkisia puheita." | pageText(lang) %}
+        {% include "kynasta-hub-subsection.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 bg-body-tertiary border-top border-bottom">
+  <div class="site-shell">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-1">{{ "Aiheet" | pageText(lang) }}</p>
+        <h2 class="h3 mb-2">{{ "Samat aiheet kulkevat läpi sisältölajien" | pageText(lang) }}</h2>
+        <p class="text-muted mb-0">{{ "Palveluverkkokysymykset, avoin päätöksenteko, opettajankoulutus ja tekoälylukutaito näkyvät sekä puheissa, aloitteissa, lausunnoissa että kirjoituksissa. Aiheittainen selailu kokoaa samaan teemaan liittyvät tekstit eri lajeista yhteen." | pageText(lang) }}</p>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-lg-end">
+        <a href="{{ "/teemat/" | localeUrl(lang) }}" class="btn btn-outline-primary btn-sm rounded-pill px-3">{{ "Selaa aiheittain" | pageText(lang) }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ---- Sisäisten linkkien säilyttäminen ---- #}
+{# Vanhat ankkurit (esim. /kynasta/#lausunnot) ohjataan asiakassivustolla oikeille sivuille.
+   Nämä ID:t on tarkoituksella ns. hidden-elementteinä — kohtaa /kynasta/#foo etsivät ulkoiset
+   linkit löytävät edelleen kohteensa. Sisäiset ankkurit /kynasta/#kirjoitukset, #valtuustotyo,
+   #asiantuntijatyo on vastaavasti käytössä uudessa hub-rakenteessa (ks. <section id=...>). #}
+<span id="lausunnot" class="visually-hidden" data-legacy-anchor data-target="{{ "/lausunnot/#lausunnot" | localeUrl(lang) }}"></span>
+<span id="julkiset-puheet" class="visually-hidden" data-legacy-anchor data-target="{{ "/lausunnot/#julkiset-puheet" | localeUrl(lang) }}"></span>
+<span id="puheet" class="visually-hidden" data-legacy-anchor data-target="{{ "/valtuustotyo/#puheet" | localeUrl(lang) }}"></span>
+<span id="aloitteet" class="visually-hidden" data-legacy-anchor data-target="{{ "/valtuustotyo/#aloitteet" | localeUrl(lang) }}"></span>
+<span id="blogi" class="visually-hidden" data-legacy-anchor data-target="{{ "/kirjoitukset/#blogi" | localeUrl(lang) }}"></span>
+<span id="mielipiteet" class="visually-hidden" data-legacy-anchor data-target="{{ "/kirjoitukset/#mielipiteet" | localeUrl(lang) }}"></span>
+<span id="kolumnit" class="visually-hidden" data-legacy-anchor data-target="{{ "/kirjoitukset/#kolumnit" | localeUrl(lang) }}"></span>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var hash = (window.location.hash || '').replace('#', '');
+  if (!hash) return;
+  var anchor = document.getElementById(hash);
+  if (anchor && anchor.dataset.target) {
+    window.location.replace(anchor.dataset.target);
+  }
+});
+</script>

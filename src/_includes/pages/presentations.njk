@@ -1,0 +1,31 @@
+
+{% set pageModel = presentationsPage %}
+{% set canonicalItems = (pageModel and pageModel.items) or [] %}
+{% set ssDataItems = pageModel.ssDataItems %}
+{% set canvaPageUrls = pageModel.canvaPageUrls %}
+{% set curatedVideoItems = pageModel.curatedVideoItems %}
+{% set videoSeriesItems = pageModel.videoSeriesItems %}
+{% set videoContentCount = pageModel.videoContentCount %}
+{% set presentationAnalysisCount = pageModel.presentationAnalysisCount %}
+{% set presentationMaterialTotal = pageModel.presentationMaterialTotal %}
+{% set presentationContextItems = pageModel.presentationContextItems %}
+{% set presentationContextFeedbackTotal = pageModel.presentationContextFeedbackTotal %}
+{% set highlightedContextItems = pageModel.highlightedContextItems %}
+
+{% include "presentations/hero.njk" %}
+{% include "presentations/routes.njk" %}
+{% include "presentations/feature-highlights.njk" %}
+
+{% set topicProfileKeys = ["tekoalylukutaito", "opettajankoulutus", "koulutusteknologia-ja-oppimisymparistot"] %}
+{% set topicProfileTitleId = "presentations-topic-profiles-title" %}
+{% set topicProfileEyebrow = "Teemat" | pageText(lang) %}
+{% set topicProfileTitle = "Samat aiheet jatkuvat myös muualla sivustolla" | pageText(lang) %}
+{% set topicProfileLead = "Esitykset liittyvät tutkimukseen, lausuntoihin, mediaan ja kirjoituksiin, joissa samoja aiheita käsitellään toisesta näkökulmasta." | pageText(lang) %}
+{% include "topic-profile-links.njk" %}
+
+{% set presentationArchiveItems = canonicalItems %}
+{% set presentationArchiveLocale = (lang or "fi") %}
+{% include "presentations/archive.njk" %}
+{% include "presentations/background-and-sources.njk" %}
+
+{# Data ladataan async /data/presentations-page.json:sta. #}

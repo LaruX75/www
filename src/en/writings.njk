@@ -1,10 +1,11 @@
 ---
 layout: base.njk
-title: Writings and Speeches
-description: "Jari Laru's writings, council speeches, political motions, blog posts, presentations, and open materials in one archive."
+title: 'Blog, opinion pieces and columns'
+description: >-
+  Jari Laru’s blog posts, opinion pieces and columns. Browse and search original
+  texts, mainly in Finnish.
 permalink: /en/writings/
-translationKey: writings_index
-lang: en
+translationKey: writings_texts
 pageStyles:
   - /css/kynasta-page.css
   - /css/find-explore.css
@@ -12,129 +13,19 @@ pageScripts:
   - /js/find-explore.js
 suppressTableFilters: true
 schemaType: CollectionPage
+schemaAbout:
+  - '@type': Thing
+    name: Blogikirjoitukset
+    description: >-
+      Blogissa julkaistut kirjoitukset opetuksesta, teknologiasta ja
+      yhteiskunnasta.
+  - '@type': Thing
+    name: Mielipidekirjoitukset
+    description: Lehdissä julkaistut kannanotot ja mielipidetekstit.
+  - '@type': Thing
+    name: Kolumnit ja blogivierailut
+    description: Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa.
+lang: en
+templateEngineOverride: njk
 ---
-{% set pageModel = englishWritingsPage %}
-{% set uniqueMaterialKeys = [] %}
-{% for row in (canva.tableRows or []) %}
-  {% set key = (row.sourceUrl or row.url or row.pageUrl or row.title or ('canva-' ~ loop.index)) %}
-  {% if key and (key not in uniqueMaterialKeys) %}{% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}{% endif %}
-{% endfor %}
-{% for item in (collections.presentations or []) %}
-  {% set key = (item.data.sourceUrl or item.data.url or item.url or item.fileSlug or ('slideshare-' ~ loop.index)) %}
-  {% if key and (key not in uniqueMaterialKeys) %}{% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}{% endif %}
-{% endfor %}
-{% for row in (aoeRows or []) %}
-  {% set key = (row.url or row.title or ('aoe-' ~ loop.index)) %}
-  {% if key and (key not in uniqueMaterialKeys) %}{% set uniqueMaterialKeys = uniqueMaterialKeys.concat([key]) %}{% endif %}
-{% endfor %}
-{% set totalMaterialsCount = uniqueMaterialKeys | length %}
-{% set findExploreScope = "en" %}
-{% set findExploreLang = "en" %}
-{% set findExploreSearchLanguage = "fi" %}
-{% set findExploreLanguageFilter = "Suomi" %}
-{% set findExploreEyebrow = "Find & Explore" %}
-{% set findExploreTitle = "Explore writings" %}
-{% set findExploreDescription = "Search across writings, speeches, initiatives, statements and publication records with Pagefind. The curated sections below remain ordinary HTML links." %}
-{% set findExploreSearchLabel = "Search by topic, title or venue" %}
-{% set findExplorePlaceholder = "Try AI, campus, school network, council..." %}
-{% set findExploreTypeLabel = "Content type" %}
-{% set findExploreAllTypesLabel = "All writings" %}
-{% set findExploreYearLabel = "Year" %}
-{% set findExploreAllYearsLabel = "All years" %}
-{% set findExploreResetLabel = "Clear" %}
-{% set findExploreMoreLabel = "Show more" %}
-{% set findExploreInitialStatus = "Type a search term or narrow the result set. The curated opening sections work without search." %}
-{% set findExploreNoScript = "Interactive search requires JavaScript. The curated sections and normal links remain available." %}
-{% set findExploreTypeOptions = [
-  { value: "statement", label: "Statements", count: pageModel.statementCount },
-  { value: "opinion", label: "Opinions", count: pageModel.opinionCount },
-  { value: "column", label: "Columns", count: pageModel.columnCount },
-  { value: "initiative", label: "Initiatives", count: pageModel.initiativeCount },
-  { value: "speech", label: "Speeches", count: pageModel.speechCount },
-  { value: "blogPost", label: "Blog", count: pageModel.blogCount },
-  { value: "scientificPublication", label: "Publications", count: pageModel.publicationCount }
-] %}
-{% set findExploreYears = [] %}
-{% for item in pageModel.items %}
-  {% if item.year and (item.year not in findExploreYears) %}
-    {% set findExploreYears = findExploreYears.concat([item.year]) %}
-  {% endif %}
-{% endfor %}
-
-<section class="kynasta-hero py-4">
-  <div class="site-shell">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-8">
-        <p class="text-uppercase small text-muted mb-2">Writings</p>
-        <h1 class="display-6 fw-bold mb-2">Writings, speeches and publications</h1>
-        <p class="text-muted mb-2">A consolidated view of opinion pieces, columns, initiatives, speeches, statements, blog posts and publication records.</p>
-        <p class="small text-muted mb-0">This English view provides structure, summaries and metadata. Most full texts are original Finnish-language sources and are marked accordingly.</p>
-      </div>
-      <div class="col-lg-4">
-        <nav class="nav nav-pills flex-wrap gap-2 justify-content-lg-end" aria-label="Writings section navigation">
-          <a class="nav-link" href="#statements">Statements <span class="nav-count">{{ pageModel.statementCount }}</span></a>
-          <a class="nav-link" href="#opinions">Opinions <span class="nav-count">{{ pageModel.opinionCount }}</span></a>
-          <a class="nav-link" href="#columns">Columns <span class="nav-count">{{ pageModel.columnCount }}</span></a>
-          <a class="nav-link" href="#initiatives">Initiatives <span class="nav-count">{{ pageModel.initiativeCount }}</span></a>
-          <a class="nav-link" href="#speeches">Speeches <span class="nav-count">{{ pageModel.speechCount }}</span></a>
-          <a class="nav-link" href="#blog">Blog <span class="nav-count">{{ pageModel.blogCount }}</span></a>
-          <a class="nav-link" href="#publications">Publications <span class="nav-count">{{ pageModel.publicationCount }}</span></a>
-        </nav>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="materials" class="mb-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
-          <div>
-            <h2 class="h4 mb-1"><i class="bi bi-book-fill me-2 text-info"></i>Presentations and learning materials</h2>
-            <p class="text-muted mb-0">This companion route links to Canva presentations, SlideShare presentations, and AOE/Finna learning materials.</p>
-          </div>
-          <span class="badge text-bg-info text-dark">{{ totalMaterialsCount }}</span>
-        </div>
-        <div class="d-flex flex-wrap gap-2 mt-3">
-          <a href="/en/presentations/" class="btn btn-outline-primary btn-sm rounded-pill">Open presentations</a>
-          <a href="https://www.finna.fi/Search/Results?lookfor=Jari+Laru&type=Author&filter[]=format%3A%220%2FLearningMaterial%2F%22" target="_blank" rel="noopener noreferrer" class="btn btn-outline-secondary btn-sm rounded-pill">AOE / Finna <i class="bi bi-arrow-up-right"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{% include "find-explore-writings.njk" %}
-
-{% set writingSections = [
-  { id: "statements", title: "Statements", desc: "Expert statements submitted to public consultation and preparation processes.", count: pageModel.statementCount, items: pageModel.statementItems | take(5), empty: "No statements listed yet." },
-  { id: "opinions", title: "Opinion pieces", desc: "Opinion texts with political, expert-facing or hybrid roles.", count: pageModel.opinionCount, items: pageModel.openingOpinionItems, empty: "No opinion pieces listed yet." },
-  { id: "columns", title: "Columns and guest blog posts", desc: "Column-style texts and guest blog posts.", count: pageModel.columnCount, items: pageModel.openingColumnItems, empty: "No columns listed yet." },
-  { id: "initiatives", title: "Council initiatives", desc: "Political motions and initiatives.", count: pageModel.initiativeCount, items: pageModel.openingInitiativeItems, empty: "No initiatives listed yet." },
-  { id: "speeches", title: "Speeches", desc: "Council speeches and public speeches.", count: pageModel.speechCount, items: pageModel.openingSpeechItems, empty: "No speeches listed yet." },
-  { id: "public-speeches", title: "Public speeches", desc: "Academic, ceremonial and public-event speeches.", count: pageModel.publicSpeechCount, items: pageModel.publicSpeechItems | take(5), empty: "No public speeches listed yet." },
-  { id: "blog", title: "Blog", desc: "Recent blog posts and reflections.", count: pageModel.blogCount, items: pageModel.openingBlogItems, empty: "No blog posts listed yet." },
-  { id: "publications", title: "Publications", desc: "Research.fi and manual fallback publication records included in the canonical writings set.", count: pageModel.publicationCount, items: pageModel.publicationItems | take(5), empty: "No publications listed yet." }
-] %}
-
-{% for section in writingSections %}
-<section id="{{ section.id }}" class="{{ 'bg-body-tertiary' if loop.index is odd else '' }} py-4">
-  <div class="site-shell">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
-          <div>
-            <h2 class="h4 mb-1">{{ section.title }}</h2>
-            <p class="text-muted mb-0">{{ section.desc }}</p>
-          </div>
-          <span class="badge text-bg-secondary">{{ section.count }}</span>
-        </div>
-        {% set items = section.items %}
-        {% set emptyLabel = section.empty %}
-        {% include "writings-curated-list.njk" %}
-      </div>
-    </div>
-  </div>
-</section>
-{% endfor %}
+{% include "pages/writings.njk" %}

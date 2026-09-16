@@ -1,0 +1,24 @@
+---
+title: City Council
+metaTitle: City Council
+description: City Council — Jari Laru.
+permalink: /en/politics/city-council/
+layout: base.njk
+lang: en
+translationKey: council_meetings
+templateEngineOverride: njk
+pageShell: true
+pageShellClass: site-shell site-shell--wide
+pageScopeClass: council-meetings-page-scope
+pageStyles:
+  - /css/council-meetings-page.css
+schemaType: CollectionPage
+schemaMentions:
+  - '@type': GovernmentOrganization
+    name: Oulun kaupunki
+    url: 'https://www.ouka.fi/'
+  - '@type': Organization
+    name: Oulun kaupunginvaltuusto
+    url: 'https://www.ouka.fi/valtuusto'
+---
+{% include "pages/city-council.njk" %}

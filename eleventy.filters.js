@@ -1017,6 +1017,10 @@ function buildSocialImageAlt(options = {}) {
 }
 
 module.exports = function registerFilters(eleventyConfig) {
+  const pageLocale = require('./src/_utils/pageLocale');
+  eleventyConfig.addFilter('pageText', pageLocale.pageText);
+  eleventyConfig.addFilter('localeUrl', pageLocale.localeUrl);
+  eleventyConfig.addFilter('localizeCopy', pageLocale.localizeCopy);
   eleventyConfig.addFilter("toManualPub", function (items) {
     const item = Array.isArray(items) ? items[0] : items;
     if (!item) return {};

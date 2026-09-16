@@ -7,9 +7,9 @@
 {% if archiveLocale == "en" %}
   {% set presentationArchiveSectionSummary = "Browse presentations" %}
   {% set presentationArchiveSectionDetail = "Search by free text, year or topic" %}
-  {% set presentationArchiveKicker = "Canonical archive" %}
+  {% set presentationArchiveKicker = "Presentation archive" %}
   {% set presentationArchiveTitle = "Find presentations and learning materials" %}
-  {% set presentationArchiveLead = "The shared archive lists canonical presentations only once per presentation. Search by free text, year or topic, and each result follows the approved preferred landing." %}
+  {% set presentationArchiveLead = "Search presentations by title, year or topic. Materials retain their original language, mainly Finnish." %}
   {% set presentationArchiveSearchLabel = "Search" %}
   {% set presentationArchiveSearchPlaceholder = "Search titles, topics or events" %}
   {% set presentationArchiveYearLabel = "Year" %}
@@ -26,9 +26,9 @@
 {% else %}
   {% set presentationArchiveSectionSummary = "Kaikki esitykset" %}
   {% set presentationArchiveSectionDetail = "Hae vapaasti tai rajaa vuodella ja aiheella" %}
-  {% set presentationArchiveKicker = "Kanoninen arkisto" %}
+  {% set presentationArchiveKicker = "Esitysarkisto" %}
   {% set presentationArchiveTitle = "Selaa esityksiä ja opetusmateriaaleja" %}
-  {% set presentationArchiveLead = "Jaettu Find & Explore -arkisto näyttää yhden kanonisen tuloksen per esitys. Rajaa vapaasanalla, vuodella tai aiheella, ja avaus noudattaa hyväksyttyä ensisijaista laskeutumista." %}
+  {% set presentationArchiveLead = "Hae esityksiä otsikolla tai rajaa vuodella ja aiheella. Jokainen esitys näkyy arkistossa kerran." %}
   {% set presentationArchiveSearchLabel = "Haku" %}
   {% set presentationArchiveSearchPlaceholder = "Hae otsikoita, aiheita tai tapahtumia" %}
   {% set presentationArchiveYearLabel = "Vuosi" %}
@@ -59,18 +59,16 @@
         </div>
 
         <div class="presentation-archive-root" data-presentation-find-explore data-locale="{{ archiveLocale }}">
-          {% if archiveLocale == "fi" %}
-          <div class="starter-chips" data-starter-chips aria-label="Aloita tästä: valmiit esitysteemat">
-            <p class="starter-chips-eyebrow">Aloita tästä</p>
+          <div class="starter-chips" data-starter-chips aria-label="{{ "Aloita tästä: valmiit esitysteemat" | pageText(lang) }}">
+            <p class="starter-chips-eyebrow">{{ "Aloita tästä" | pageText(lang) }}</p>
             <ul class="starter-chips-list">
               <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="AI literacy" data-starter-chip-event="change">AI literacy</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Tekoäly" data-starter-chip-event="change">Tekoäly</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Koulutusteknologia" data-starter-chip-event="change">Koulutusteknologia</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Opettajankoulutus" data-starter-chip-event="change">Opettajankoulutus</button></li>
-              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Mobiilioppiminen" data-starter-chip-event="change">Mobiilioppiminen</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Tekoäly" data-starter-chip-event="change">{{ "Tekoäly" | pageText(lang) }}</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Koulutusteknologia" data-starter-chip-event="change">{{ "Koulutusteknologia" | pageText(lang) }}</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Opettajankoulutus" data-starter-chip-event="change">{{ "Opettajankoulutus" | pageText(lang) }}</button></li>
+              <li><button type="button" class="starter-chip" data-starter-chip data-starter-chip-target="#presentation-archive-topic" data-starter-chip-value="Mobiilioppiminen" data-starter-chip-event="change">{{ "Mobiilioppiminen" | pageText(lang) }}</button></li>
             </ul>
           </div>
-          {% endif %}
           <form class="presentation-archive-controls" data-presentation-controls>
             <div class="presentation-archive-controls-grid">
               <div class="presentation-archive-control">

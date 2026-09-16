@@ -1,7 +1,9 @@
 ---
-title: "Kaupunginvaltuusto"
-metaTitle: "Kaupunginvaltuusto ja poliittinen työ"
-description: "Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot, valtuustoaloitteet ja valtuuston kyselytunnin asiat näkyvät kokouskohtaisesti."
+title: Kaupunginvaltuusto
+metaTitle: Kaupunginvaltuusto ja poliittinen työ
+description: >-
+  Oulun kaupunginvaltuuston kokoukset, joissa Jari Larun puheenvuorot,
+  valtuustoaloitteet ja valtuuston kyselytunnin asiat näkyvät kokouskohtaisesti.
 permalink: /politiikka/kaupunginvaltuusto/
 layout: base.njk
 lang: fi
@@ -14,114 +16,17 @@ pageStyles:
   - /css/council-meetings-page.css
 schemaType: CollectionPage
 schemaAbout:
-  - "@type": "Thing"
-    name: "Oulun kaupunginvaltuusto"
-    description: "Kokouskohtainen näkymä Jari Larun valtuustopuheenvuoroihin, valtuustoaloitteisiin ja valtuuston kyselytunnin asioihin."
+  - '@type': Thing
+    name: Oulun kaupunginvaltuusto
+    description: >-
+      Kokouskohtainen näkymä Jari Larun valtuustopuheenvuoroihin,
+      valtuustoaloitteisiin ja valtuuston kyselytunnin asioihin.
 schemaMentions:
-  - "@type": "GovernmentOrganization"
-    name: "Oulun kaupunki"
-    url: "https://www.ouka.fi/"
-  - "@type": "Organization"
-    name: "Oulun kaupunginvaltuusto"
-    url: "https://www.ouka.fi/valtuusto"
+  - '@type': GovernmentOrganization
+    name: Oulun kaupunki
+    url: 'https://www.ouka.fi/'
+  - '@type': Organization
+    name: Oulun kaupunginvaltuusto
+    url: 'https://www.ouka.fi/valtuusto'
 ---
-
-{% set meetings = councilMeetings %}
-{% set timeline = councilMeetingTimeline %}
-
-<section class="council-meetings">
-  <header class="council-meetings-hero">
-    <div>
-      <p class="term-eyebrow mb-2">Poliittinen työ</p>
-      <h1 class="term-hero-title mb-3">Kaupunginvaltuusto</h1>
-      <p class="term-hero-lead mb-0">Kaupunginvaltuuston kokouksista näkee, missä asioissa olen käyttänyt puheenvuoroja, jättänyt valtuustoaloitteita tai kysynyt vastauksia valtuuston kyselytunnilla. Samasta paikasta löytyvät myös pöytäkirjat ja kokousvideot, kun ne ovat tiedossa.</p>
-    </div>
-    <aside class="council-meetings-hero-card">
-      <p class="term-hero-card__kicker">Kokoukset ja aineisto</p>
-      <p>Aikajana näyttää valtuustotyön suhteessa kokouksiin: laajat kortit silloin, kun kokoukseen on kytketty oma sisältö, ja pienet merkinnät niistä kokouksista, jotka kuuluvat valtuuston vuosikelloon.</p>
-      <div class="council-meetings-hero-stats" aria-label="Kokousmäärät">
-        <div>
-          <strong>{{ meetings.length }}</strong>
-          <span>kokousta, joissa oma sisältö näkyy</span>
-        </div>
-        <div>
-          <strong>{{ timeline.length }}</strong>
-          <span>kokousta aikajanalla</span>
-        </div>
-      </div>
-    </aside>
-  </header>
-
-  <h2 class="visually-hidden">Kaupunginvaltuuston kokoukset</h2>
-  <div class="council-meetings-list" aria-label="Kaupunginvaltuuston kokoukset">
-    {% for meeting in timeline %}
-    {% set currentYear = meeting.year %}
-    {% set previousYear = timeline[loop.index0 - 1].year if not loop.first else "" %}
-    {% if loop.first or currentYear != previousYear %}
-    {% if not loop.first %}
-      </div>
-    </details>
-    {% endif %}
-    <details class="council-year-block" data-council-mobile-collapse {% if loop.first %}data-council-current="true"{% endif %} open>
-      <summary class="council-year-summary">
-        <span>{{ currentYear }}</span>
-        <small>Kaupunginvaltuuston kokoukset</small>
-      </summary>
-      <div class="council-year-items">
-    {% endif %}
-    {% if meeting.isQuiet %}
-    <div class="council-meeting-marker" id="kokous-{{ meeting.date }}">
-      <span class="council-meeting-marker__date">{{ meeting.date | dateFormat }}</span>
-      <span class="council-meeting-marker__title">{% if meeting.meetingNumber %}Kokous {{ meeting.meetingNumber }}{% else %}{{ meeting.meetingLabel }}{% endif %}</span>
-      <span class="council-meeting-marker__note">{% if meeting.timelineKind == "annual-cycle" %}Valtuuston vuosikello{% else %}Ei omaa puheenvuoroa sivustolla{% endif %}</span>
-      {% if meeting.video and meeting.video.url %}
-      <a href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
-      {% endif %}
-    </div>
-    {% else %}
-    <article class="council-meeting-card" id="kokous-{{ meeting.date }}">
-      <div class="council-meeting-card__date">
-        <span>{{ meeting.date | dateFormat }}</span>
-      </div>
-      <div class="council-meeting-card__body">
-        <h3><a href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ meeting.meetingLabel }}</a></h3>
-        <p class="council-meeting-card__meta">{{ meeting.contextLabel }} · {{ meeting.date | dateFormat }}</p>
-        {% if meeting.summaryTitle %}
-        <p class="council-meeting-card__summary">{{ meeting.summaryTitle }}</p>
-        {% endif %}
-        <div class="council-meeting-counts" aria-label="Kokouksen sisällöt">
-          {% if meeting.counts.speeches %}<span>{{ meeting.counts.speeches }} {{ "puheenvuoro" if meeting.counts.speeches == 1 else "puheenvuoroa" }}</span>{% endif %}
-          {% if meeting.counts.questions %}<span>{{ meeting.counts.questions }} {{ "kyselytunnin asia" if meeting.counts.questions == 1 else "kyselytunnin asiaa" }}</span>{% endif %}
-          {% if meeting.counts.initiatives %}<span>{{ meeting.counts.initiatives }} {{ "valtuustoaloite" if meeting.counts.initiatives == 1 else "valtuustoaloitetta" }}</span>{% endif %}
-          {% if meeting.counts.other %}<span>{{ meeting.counts.other }} {{ "muu sisältö" if meeting.counts.other == 1 else "muuta sisältöä" }}</span>{% endif %}
-        </div>
-        <ul class="council-meeting-preview">
-          {% for item in meeting.items %}
-          {% if loop.index <= 3 %}
-          <li>
-            <a href="{{ item.url }}">{{ item.title }}</a>
-            <span>{{ item.typeLabel }}{% if item.detailLabel %} · {{ item.detailLabel }}{% endif %}</span>
-          </li>
-          {% endif %}
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="council-meeting-card__actions">
-        <a class="btn btn-read-more rounded-pill px-4" href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">Avaa kokous</a>
-        {% if meeting.protocolUrl %}
-        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.protocolUrl }}" target="_blank" rel="noopener noreferrer">Pöytäkirja</a>
-        {% endif %}
-        {% if meeting.video and meeting.video.url %}
-        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.video.url }}" target="_blank" rel="noopener noreferrer">Kokousvideo</a>
-        {% endif %}
-      </div>
-    </article>
-    {% endif %}
-    {% if loop.last %}
-      </div>
-    </details>
-    {% endif %}
-    {% endfor %}
-  </div>
-</section>
-
+{% include "pages/city-council.njk" %}

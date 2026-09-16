@@ -1,9 +1,38 @@
 ---
-layout: portfolio-list.njk
-title: Portfolio
-metaTitle: Portfolio of teaching, research and public expertise
-description: Portfolio of Jari Laru's teaching, research, public expertise, open learning materials, media appearances, and long-term university work.
+layout: base.njk
+title: Teaching portfolio
+description: >-
+  Teaching philosophy, experience, feedback, assessment and professional
+  development.
 permalink: /en/portfolio/
 translationKey: portfolio_index
+pageStyles:
+  - /css/portfolio-page.css
+schemaAbout:
+  - '@type': Thing
+    name: Opetusajattelu
+    description: Pedagoginen filosofia ja lähestymistapa oppimiseen ja opettamiseen.
+  - '@type': Thing
+    name: Opetuskokemus
+    description: Yli 20 vuoden kokemus teknologiatuetusta oppimisesta Oulun yliopistossa.
+  - '@type': Thing
+    name: Opinnäytetyöohjaus
+    description: Pro gradu- ja kandidaatintöiden ohjaus kasvatustieteissä.
+  - '@type': Thing
+    name: Oppimisympäristöt
+    description: Digitaalisten oppimisympäristöjen suunnittelu ja kehittäminen.
+  - '@type': Thing
+    name: Opetuksen tunnustukset
+    description: Palkinnot ja tunnustukset opetustyöstä ja kehittämistoiminnasta.
+schemaMentions:
+  - '@type': CollegeOrUniversity
+    name: Oulun yliopisto
+    url: 'https://www.oulu.fi/'
+  - '@type': Organization
+    name: 'Kasvatustieteiden tiedekunta, Oulun yliopisto'
+    url: 'https://www.oulu.fi/fi/tiedekunnat/kasvatustieteiden-tiedekunta'
+metaTitle: Teaching portfolio
 lang: en
+templateEngineOverride: njk
 ---
+{% include "pages/portfolio.njk" %}

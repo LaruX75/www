@@ -90,6 +90,9 @@
   }
 
   const searchCache = new Map();
+  // Pagefind language modules are initialised one at a time while the
+  // document language is temporarily selected for Pagefind.
+  let searchInitialization = Promise.resolve();
 
   // PF-PERF2 — schedule a fire-and-forget callback during the browser's
   // next idle window so the Pagefind wasm import can start before the
@@ -124,24 +127,25 @@
     const searchLanguage = normalizeSearchLanguage(language);
     if (searchCache.has(searchLanguage)) return searchCache.get(searchLanguage);
 
-    const promise = (async () => {
+    const promise = searchInitialization.then(async () => {
       const root = document.documentElement;
       const previousLang = root.getAttribute("lang");
-      root.setAttribute("lang", searchLanguage);
-
       try {
+        // Keep each language in its own Pagefind module and worker. The
+        // serial queue prevents document.language from racing during import
+        // and initialization.
+        root.setAttribute("lang", searchLanguage);
         const pagefind = await import(`/pagefind/pagefind.js?findExploreLang=${searchLanguage}`);
-        if (typeof pagefind.init === "function") {
-          await pagefind.init();
-        }
+        await pagefind.init();
         return pagefind;
       } finally {
         if (previousLang) root.setAttribute("lang", previousLang);
         else root.removeAttribute("lang");
       }
-    })();
+    });
 
     searchCache.set(searchLanguage, promise);
+    searchInitialization = promise.catch(() => {});
     try {
       return await promise;
     } catch (error) {

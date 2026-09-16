@@ -1,0 +1,152 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0" lang="en">Original texts, quotations and source documents retain their original language, mainly Finnish.</p>{% endif %}
+{% set pageModel = finnishWritingsPage %}
+{% set blogCount = pageModel.blogCount %}
+{% set opinionCount = pageModel.opinionCount %}
+{% set columnCount = pageModel.columnCount %}
+{% set findExploreScope = "fi" %}
+{% set findExploreLang = (lang or "fi") %}
+{% set findExploreSearchLanguage = "fi" %}
+{% set findExploreLanguageFilter = "Suomi" %}
+{% set findExploreEyebrow = "Find & Explore" | pageText(lang) %}
+{% set findExploreTitle = "Tutki kirjoituksia" | pageText(lang) %}
+{% set findExploreDescription = "Hae blogikirjoituksia, mielipiteitä ja kolumneja yhdestä Pagefind-pohjaisesta näkymästä. Alla olevat nostot toimivat myös ilman JavaScriptiä." | pageText(lang) %}
+{% set findExploreSearchLabel = "Hae aiheella, otsikolla tai julkaisulla" | pageText(lang) %}
+{% set findExplorePlaceholder = "Esim. tekoäly, kampus, lähijuna, kouluverkko..." | pageText(lang) %}
+{% set findExploreTypeLabel = "Sisältölaji" | pageText(lang) %}
+{% set findExploreAllTypesLabel = "Kaikki kirjoitukset" | pageText(lang) %}
+{% set findExploreYearLabel = "Vuosi" | pageText(lang) %}
+{% set findExploreAllYearsLabel = "Kaikki vuodet" | pageText(lang) %}
+{% set findExploreResetLabel = "Tyhjennä" | pageText(lang) %}
+{% set findExploreMoreLabel = "Näytä lisää" | pageText(lang) %}
+{% set findExploreInitialStatus = "Kirjoita hakusana tai rajaa tuloksia. Avausosiot toimivat myös ilman hakua." | pageText(lang) %}
+{% set findExploreNoScript = "Interaktiivinen haku vaatii JavaScriptin. Tällä sivulla näkyvät silti uusimmat nostot ja normaalit linkit kirjoituksiin." | pageText(lang) %}
+{% set findExploreTypeOptions = [
+  { value: "opinion", label: "Mielipiteet", count: opinionCount },
+  { value: "column", label: "Kolumnit", count: columnCount },
+  { value: "blogPost", label: "Blogi", count: blogCount }
+] | localizeCopy(lang) %}
+{% set findExploreYears = [] %}
+{% for item in pageModel.items %}
+  {% if item.year and (item.year not in findExploreYears) %}
+    {% set findExploreYears = findExploreYears.concat([item.year]) %}
+  {% endif %}
+{% endfor %}
+
+<section class="kynasta-hero py-3 py-lg-4">
+  <div class="site-shell">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8">
+        <p class="text-uppercase small text-muted mb-2">{{ "Kirjoitukset" | pageText(lang) }}</p>
+        <h1 class="display-6 fw-bold mb-2">{{ "Blogi, mielipidekirjoitukset ja kolumnit" | pageText(lang) }}</h1>
+        <p class="text-muted mb-3">{{ "Vapaamuotoiset omat tekstit yhdellä sivulla:" | pageText(lang) }} {{ blogCount | pageText(lang) }} {{ "blogikirjoitusta," | pageText(lang) }} {{ opinionCount | pageText(lang) }} {{ "mielipidekirjoitusta ja" | pageText(lang) }} {{ columnCount | pageText(lang) }} {{ "kolumnia." | pageText(lang) }}</p>
+        <div class="d-flex flex-wrap gap-2">
+          <a class="nav-link" href="{{ "#mielipiteet" | localeUrl(lang) }}">{{ "Mielipiteet" | pageText(lang) }} <span class="nav-count">{{ opinionCount | pageText(lang) }}</span></a>
+          <a class="nav-link" href="{{ "#kolumnit" | localeUrl(lang) }}">{{ "Kolumnit" | pageText(lang) }} <span class="nav-count">{{ columnCount | pageText(lang) }}</span></a>
+          <a class="nav-link" href="{{ "#blogi" | localeUrl(lang) }}">{{ "Blogi" | pageText(lang) }} <span class="nav-count">{{ blogCount | pageText(lang) }}</span></a>
+        </div>
+        <p class="small text-muted mt-3 mb-0">
+          {{ "Etsitkö puheenvuoroja, valtuustoaloitteita tai lausuntoja?" | pageText(lang) }} <a href="{{ "/kynasta/" | localeUrl(lang) }}">{{ "Palaa Kynästä-hubiin" | pageText(lang) }}</a> {{ "— löydät sieltä kaikki sisältölajit." | pageText(lang) }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "find-explore-writings.njk" %}
+
+{% if lang == "en" %}<span id="opinions"></span>{% endif %}
+<section id="mielipiteet" class="bg-body-tertiary py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-chat-square-quote-fill me-2"></i>{{ "Mielipidekirjoitukset" | pageText(lang) }}</h2>
+            <p class="text-muted mb-0">{{ "Uusimmat kannanotot politiikasta, palveluista, opetuksesta ja teknologiasta." | pageText(lang) }}</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ opinionCount | pageText(lang) }}</span>
+        </div>
+        <div class="row g-3 mb-4">
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">{{ "Päätöksenteko" | pageText(lang) }}</p>
+              <h3 class="h6 mb-1">{{ "Politiikka ja palvelut" | pageText(lang) }}</h3>
+              <p class="small text-muted mb-0">{{ pageModel.politicalOpinionCount | pageText(lang) }} {{ "kirjoitusta." | pageText(lang) }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">{{ "Asiantuntijatausta" | pageText(lang) }}</p>
+              <h3 class="h6 mb-1">{{ "Opetus, tutkimus ja teknologia" | pageText(lang) }}</h3>
+              <p class="small text-muted mb-0">{{ pageModel.expertOpinionCount | pageText(lang) }} {{ "kirjoitusta." | pageText(lang) }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="opinion-role-card h-100">
+              <p class="opinion-role-kicker mb-1">{{ "Näkökulmat yhdessä" | pageText(lang) }}</p>
+              <h3 class="h6 mb-1">{{ "Kun työtausta liittyy päätöksiin" | pageText(lang) }}</h3>
+              <p class="small text-muted mb-0">{{ pageModel.hybridOpinionCount | pageText(lang) }} {{ "kirjoitusta." | pageText(lang) }}</p>
+            </div>
+          </div>
+        </div>
+        {% set items = pageModel.openingOpinionItems %}
+        {% set emptyLabel = "Mielipidekirjoituksia ei löytynyt." | pageText(lang) %}
+        {% include "writings-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if lang == "en" %}<span id="columns"></span>{% endif %}
+<section id="kolumnit" class="py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-pen-fill me-2"></i>{{ "Kolumnit ja blogivierailut" | pageText(lang) }}</h2>
+            <p class="text-muted mb-0">{{ "Kolumnimuotoiset tekstit ja vierailut ulkoisissa blogeissa." | pageText(lang) }}</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ columnCount | pageText(lang) }}</span>
+        </div>
+        {% set items = pageModel.openingColumnItems %}
+        {% set emptyLabel = "Kolumneja ei löytynyt." | pageText(lang) %}
+        {% include "writings-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if lang == "en" %}<span id="blog"></span>{% endif %}
+<section id="blogi" class="bg-body-tertiary py-4">
+  <div class="site-shell">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <div class="d-flex flex-wrap align-items-start justify-content-between gap-3 mb-3">
+          <div>
+            <h2 class="h4 mb-1"><i class="bi bi-journal-text me-2"></i>{{ "Blogi" | pageText(lang) }}</h2>
+            <p class="text-muted mb-0">{{ "Uusimmat blogikirjoitukset opetuksesta, teknologiasta, yliopistoarjesta ja yhteiskunnasta." | pageText(lang) }}</p>
+          </div>
+          <span class="badge kynasta-section-count">{{ blogCount | pageText(lang) }}</span>
+        </div>
+        {% set items = pageModel.openingBlogItems %}
+        {% set emptyLabel = "Blogikirjoituksia ei löytynyt." | pageText(lang) %}
+        {% include "writings-curated-list.njk" %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if lang == "en" %}
+<aside class="site-shell py-4"><h2 class="h5">Other writing and speeches</h2>
+<p id="statements" data-legacy-anchor data-target="/en/statements/#lausunnot"><a href="/en/statements/#lausunnot">Statements</a></p>
+<p id="lausunnot" data-legacy-anchor data-target="/en/statements/#lausunnot"><a href="/en/statements/#lausunnot">Statements</a></p>
+<p id="public-speeches" data-legacy-anchor data-target="/en/statements/#julkiset-puheet"><a href="/en/statements/#julkiset-puheet">Public speeches</a></p>
+<p id="julkiset-puheet" data-legacy-anchor data-target="/en/statements/#julkiset-puheet"><a href="/en/statements/#julkiset-puheet">Public speeches</a></p>
+<p id="speeches" data-legacy-anchor data-target="/en/council-work/#puheet"><a href="/en/council-work/#puheet">Council speeches</a></p>
+<p id="puheet" data-legacy-anchor data-target="/en/council-work/#puheet"><a href="/en/council-work/#puheet">Council speeches</a></p>
+<p id="initiatives" data-legacy-anchor data-target="/en/council-work/#aloitteet"><a href="/en/council-work/#aloitteet">Council initiatives</a></p>
+<p id="aloitteet" data-legacy-anchor data-target="/en/council-work/#aloitteet"><a href="/en/council-work/#aloitteet">Council initiatives</a></p>
+</aside>
+<script>document.addEventListener("DOMContentLoaded", () => { const target = document.getElementById(location.hash.slice(1)); if (target?.dataset.legacyAnchor !== undefined && target.dataset.target) location.replace(target.dataset.target); });</script>
+{% endif %}

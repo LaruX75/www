@@ -1,0 +1,1146 @@
+[
+  {
+    "url": "/",
+    "width": 1440,
+    "title": "Kouluttaja, puhuja ja vaikuttaja — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Kouluttaja, puhuja ja vaikuttaja koulutuksen tulevaisuuden puolesta."
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 5745.4375,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/",
+    "width": 1440,
+    "title": "Trainer, speaker and researcher — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "From research to teaching, tools and decision-making."
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 3999.90625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/tietoa/",
+    "width": 1440,
+    "title": "Tietoa Jari Larusta — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 4461.046875,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/about/",
+    "width": 1440,
+    "title": "About Jari Laru — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 4336.375,
+    "buttons": [
+      ""
+    ],
+    "images": 4,
+    "errors": []
+  },
+  {
+    "url": "/tyoni-yliopistonlehtorina/",
+    "width": 1440,
+    "title": "Yliopistotyö: opetus, tutkimus ja... — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Yliopistotyö: opetus, tutkimus ja yhteiskunnallinen vuorovaikutus"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 4178.265625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/work/",
+    "width": 1440,
+    "title": "University Lecturer Work — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "University Lecturer Work"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 3734.078125,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/tutkimus/",
+    "width": 1440,
+    "title": "Tutkimus — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Tutkimuksen tarkasteluteemat: miten teknologia muuttaa oppimista ja opettamista"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 5088.15625,
+    "buttons": [
+      "Tekoäly",
+      "Opettajankoulutus",
+      "Koulutusteknologia",
+      "Yhteisöllinen oppiminen",
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/research/",
+    "width": 1440,
+    "title": "Research profile in learning technology and AI... — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "My research work"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 829.390625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/cv/",
+    "width": 1440,
+    "title": "Ansioluettelo — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Laru Jari Jukka, KT"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 2986.875,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/cv/",
+    "width": 1440,
+    "title": "Curriculum Vitae — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Curriculum Vitae"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 449.078125,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/portfolio/",
+    "width": 1440,
+    "title": "Opetusportfolio — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Opetan tulevia opettajia niin, että teknologia muuttuu ymmärrettäväksi osaksi opetuksen arkea."
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 8950.640625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/portfolio/",
+    "width": 1440,
+    "title": "Portfolio of teaching, research and public expertise — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Portfolio"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 89.59375,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/politiikka/",
+    "width": 1440,
+    "title": "Jari Laru, poliitikko — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Jari Laru, poliitikko"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 5704,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/politics/",
+    "width": 1440,
+    "title": "Jari Laru, politician — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Jari Laru, politician"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 4809.15625,
+    "buttons": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kouluttaja/",
+    "width": 1440,
+    "title": "Kouluttaja ja keynote-puhuja — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Koulutusta tekoälystä, digipedagogiikasta ja oppimisteknologiasta."
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 6381.390625,
+    "buttons": [
+      "Millaisiin aiheisiin koulutukset sopivat?",
+      "Kenelle palvelut sopivat?",
+      "Miten yhteistyö alkaa?",
+      "Minkä pituisia koulutuksia järjestetään?",
+      "Onko koulutuksia etänä vai paikan päällä?",
+      "Onko englanninkielistä koulutusta saatavilla?"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/company/",
+    "width": 1440,
+    "title": "Larux t:mi – Training and keynote talks — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Larux t:mi"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 3806.5625,
+    "buttons": [
+      "What topics do your training sessions cover?",
+      "Who are your services for?",
+      "How does collaboration start?",
+      "How long are the training sessions?",
+      "Are sessions available remotely or on-site?",
+      "Do you deliver training in English?"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kynasta/",
+    "width": 1440,
+    "title": "Kynästä — kirjoitukset, puheet ja kannanotot — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Kirjoitukset, puheet ja kannanotot"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 2910.765625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/kynasta/",
+    "width": 1440,
+    "title": "Writings, speeches and statements — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Writings, speeches and statements"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 2016.09375,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kirjoitukset/",
+    "width": 1440,
+    "title": "Blogi, mielipidekirjoitukset ja kolumnit — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Blogi, mielipidekirjoitukset ja kolumnit"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 3002.65625,
+    "buttons": [
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/writings/",
+    "width": 1440,
+    "title": "Writings and Speeches — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Writings, speeches and publications"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 6876.703125,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/esitykset/",
+    "width": 1440,
+    "title": "Esitykset ja opetusmateriaalit — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 43273.65625,
+    "buttons": [
+      "AI literacy",
+      "Tekoäly",
+      "Koulutusteknologia",
+      "Opettajankoulutus",
+      "Mobiilioppiminen",
+      "Tyhjennä",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "images": 167,
+    "errors": []
+  },
+  {
+    "url": "/en/presentations/",
+    "width": 1440,
+    "title": "Presentations — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Presentations and Learning Materials"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 26293.71875,
+    "buttons": [
+      "Reset",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "images": 89,
+    "errors": []
+  },
+  {
+    "url": "/julkaisut/",
+    "width": 1440,
+    "title": "Julkaisuluettelo — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Julkaisuluettelo"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 8855.203125,
+    "buttons": [
+      "",
+      "Näytä analytiikka",
+      "",
+      "",
+      "",
+      "Näytä kaikki",
+      "Tyhjennä",
+      "Näytä lisää",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/publications/",
+    "width": 1440,
+    "title": "Scientific publications and research outputs — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Publications & Analytics"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 9141.015625,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/mediassa/",
+    "width": 1440,
+    "title": "Mediassa: podcastit, videot ja haastattelut — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Mediassa"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 5376.84375,
+    "buttons": [
+      "Lehtijutut",
+      "Videot",
+      "Podcastit",
+      "Tekoäly ja koulutus",
+      "Avoin tiede",
+      "Kaikki",
+      "Lehtijutut",
+      "Podcastit",
+      "Videot",
+      "Radio",
+      "Asiantuntijatehtävät",
+      "Minusta tehty",
+      "Asiantuntijaroolit",
+      "Vieraana",
+      "Haastattelijana"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/media/",
+    "width": 1440,
+    "title": "In the Media: podcasts, videos and interviews — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "In the Media"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 10005.796875,
+    "buttons": [],
+    "images": 1,
+    "errors": []
+  },
+  {
+    "url": "/opinnaytteet/",
+    "width": 1440,
+    "title": "Ohjatut opinnäytetyöt — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Ohjatut opinnäytetyöt"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 2919.09375,
+    "buttons": [
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/theses/",
+    "width": 1440,
+    "title": "Supervised Theses — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Supervised theses"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 2919.09375,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/yhteystiedot/",
+    "width": 1440,
+    "title": "Yhteystiedot ja yhteydenotto — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Yhteystiedot"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 1315.546875,
+    "buttons": [
+      "Lähetä viesti"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/contact/",
+    "width": 1440,
+    "title": "Contact Jari Laru — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Contact Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 1440,
+    "mainHeight": 1158.984375,
+    "buttons": [
+      "Send message"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/",
+    "width": 390,
+    "title": "Kouluttaja, puhuja ja vaikuttaja — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Kouluttaja, puhuja ja vaikuttaja koulutuksen tulevaisuuden puolesta."
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 14851.5625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/",
+    "width": 390,
+    "title": "Trainer, speaker and researcher — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "From research to teaching, tools and decision-making."
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 7752.890625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/tietoa/",
+    "width": 390,
+    "title": "Tietoa Jari Larusta — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 4317.453125,
+    "buttons": [],
+    "images": 6,
+    "errors": []
+  },
+  {
+    "url": "/en/about/",
+    "width": 390,
+    "title": "About Jari Laru — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 9534.46875,
+    "buttons": [
+      ""
+    ],
+    "images": 15,
+    "errors": []
+  },
+  {
+    "url": "/tyoni-yliopistonlehtorina/",
+    "width": 390,
+    "title": "Yliopistotyö: opetus, tutkimus ja... — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Yliopistotyö: opetus, tutkimus ja yhteiskunnallinen vuorovaikutus"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 4614,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/work/",
+    "width": 390,
+    "title": "University Lecturer Work — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "University Lecturer Work"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 6730.71875,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/tutkimus/",
+    "width": 390,
+    "title": "Tutkimus — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Tutkimuksen tarkasteluteemat: miten teknologia muuttaa oppimista ja opettamista"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 8764.078125,
+    "buttons": [
+      "Tekoäly",
+      "Opettajankoulutus",
+      "Koulutusteknologia",
+      "Yhteisöllinen oppiminen",
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/research/",
+    "width": 390,
+    "title": "Research profile in learning technology and AI... — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "My research work"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 1759.828125,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/cv/",
+    "width": 390,
+    "title": "Ansioluettelo — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Laru Jari Jukka, KT"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 4549.171875,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/cv/",
+    "width": 390,
+    "title": "Curriculum Vitae — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Curriculum Vitae"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 699,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/portfolio/",
+    "width": 390,
+    "title": "Opetusportfolio — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Opetan tulevia opettajia niin, että teknologia muuttuu ymmärrettäväksi osaksi opetuksen arkea."
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 11642.421875,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/portfolio/",
+    "width": 390,
+    "title": "Portfolio of teaching, research and public expertise — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Portfolio"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 171,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/politiikka/",
+    "width": 390,
+    "title": "Jari Laru, poliitikko — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Jari Laru, poliitikko"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 10150.5,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/politics/",
+    "width": 390,
+    "title": "Jari Laru, politician — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Jari Laru, politician"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 8327.59375,
+    "buttons": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kouluttaja/",
+    "width": 390,
+    "title": "Kouluttaja ja keynote-puhuja — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Koulutusta tekoälystä, digipedagogiikasta ja oppimisteknologiasta."
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 6967.1875,
+    "buttons": [
+      "Millaisiin aiheisiin koulutukset sopivat?",
+      "Kenelle palvelut sopivat?",
+      "Miten yhteistyö alkaa?",
+      "Minkä pituisia koulutuksia järjestetään?",
+      "Onko koulutuksia etänä vai paikan päällä?",
+      "Onko englanninkielistä koulutusta saatavilla?"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/company/",
+    "width": 390,
+    "title": "Larux t:mi – Training and keynote talks — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Larux t:mi"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 6913.828125,
+    "buttons": [
+      "What topics do your training sessions cover?",
+      "Who are your services for?",
+      "How does collaboration start?",
+      "How long are the training sessions?",
+      "Are sessions available remotely or on-site?",
+      "Do you deliver training in English?"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kynasta/",
+    "width": 390,
+    "title": "Kynästä — kirjoitukset, puheet ja kannanotot — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Kirjoitukset, puheet ja kannanotot"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 5791.8125,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/kynasta/",
+    "width": 390,
+    "title": "Writings, speeches and statements — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Writings, speeches and statements"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 3537.0625,
+    "buttons": [],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/kirjoitukset/",
+    "width": 390,
+    "title": "Blogi, mielipidekirjoitukset ja kolumnit — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Blogi, mielipidekirjoitukset ja kolumnit"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 6609.78125,
+    "buttons": [
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/writings/",
+    "width": 390,
+    "title": "Writings and Speeches — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Writings, speeches and publications"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 15468.171875,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/esitykset/",
+    "width": 390,
+    "title": "Esitykset ja opetusmateriaalit — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Tekoälyä, oppimista ja teknologiaa käsittelevät esitykset ja materiaalit"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 121151.25,
+    "buttons": [
+      "AI literacy",
+      "Tekoäly",
+      "Koulutusteknologia",
+      "Opettajankoulutus",
+      "Mobiilioppiminen",
+      "Tyhjennä",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ],
+    "images": 167,
+    "errors": []
+  },
+  {
+    "url": "/en/presentations/",
+    "width": 390,
+    "title": "Presentations — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Presentations and Learning Materials"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 69582.0625,
+    "buttons": [
+      "Reset",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ],
+    "images": 99,
+    "errors": []
+  },
+  {
+    "url": "/julkaisut/",
+    "width": 390,
+    "title": "Julkaisuluettelo — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Julkaisuluettelo"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 15658.953125,
+    "buttons": [
+      "",
+      "Näytä analytiikka",
+      "",
+      "",
+      "",
+      "Näytä kaikki",
+      "Tyhjennä",
+      "Näytä lisää",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite",
+      "Vie viite"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/publications/",
+    "width": 390,
+    "title": "Scientific publications and research outputs — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Publications & Analytics"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 17527.09375,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/mediassa/",
+    "width": 390,
+    "title": "Mediassa: podcastit, videot ja haastattelut — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Mediassa"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 7348.171875,
+    "buttons": [
+      "Lehtijutut",
+      "Videot",
+      "Podcastit",
+      "Tekoäly ja koulutus",
+      "Avoin tiede",
+      "Kaikki",
+      "Lehtijutut",
+      "Podcastit",
+      "Videot",
+      "Radio",
+      "Asiantuntijatehtävät",
+      "Minusta tehty",
+      "Asiantuntijaroolit",
+      "Vieraana",
+      "Haastattelijana"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/media/",
+    "width": 390,
+    "title": "In the Media: podcasts, videos and interviews — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "In the Media"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 26931.484375,
+    "buttons": [],
+    "images": 1,
+    "errors": []
+  },
+  {
+    "url": "/opinnaytteet/",
+    "width": 390,
+    "title": "Ohjatut opinnäytetyöt — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Ohjatut opinnäytetyöt"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 5123.09375,
+    "buttons": [
+      "Tyhjennä",
+      "Näytä lisää"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/theses/",
+    "width": 390,
+    "title": "Supervised Theses — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Supervised theses"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 5195.109375,
+    "buttons": [
+      "Clear",
+      "Show more"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/yhteystiedot/",
+    "width": 390,
+    "title": "Yhteystiedot ja yhteydenotto — Jari Laru",
+    "lang": "fi",
+    "h1": [
+      "Yhteystiedot"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 2296.53125,
+    "buttons": [
+      "Lähetä viesti"
+    ],
+    "images": 0,
+    "errors": []
+  },
+  {
+    "url": "/en/contact/",
+    "width": 390,
+    "title": "Contact Jari Laru — Jari Laru",
+    "lang": "en",
+    "h1": [
+      "Contact Jari Laru"
+    ],
+    "overflow": false,
+    "scrollWidth": 390,
+    "mainHeight": 2485.234375,
+    "buttons": [
+      "Send message"
+    ],
+    "images": 0,
+    "errors": []
+  }
+]

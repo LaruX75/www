@@ -1,0 +1,143 @@
+{% set topKeywords = collections.keywordList | take(40) %}
+
+<section class="taxonomy-index taxonomy-index--categories">
+  <div class="site-shell">
+    <header class="taxonomy-index-hero">
+      <div>
+        <p class="taxonomy-kicker">{{ "Aihekartta" | pageText(lang) }}</p>
+        <h1>{{ "Kategoriat" | pageText(lang) }}</h1>
+        <p class="taxonomy-index-lead">{{ "Kategoriat näyttävät sivuston sisällöt aihealueittain. Ne auttavat löytämään kokonaisuuksia silloin, kun yksittäinen kirjoitus, puheenvuoro, esitys tai mediaosuma on osa laajempaa teemaa." | pageText(lang) }}</p>
+      </div>
+      <aside class="taxonomy-index-summary" aria-label="{{ "Kategorioiden yhteenveto" | pageText(lang) }}">
+        <span class="taxonomy-stat-number">{{ collections.categoryList.length | pageText(lang) }}</span>
+        <span class="taxonomy-stat-label">{{ "kategoriaa" | pageText(lang) }}</span>
+        <span class="taxonomy-stat-range">{{ collections.keywordList.length | pageText(lang) }} {{ "avainsanaa" | pageText(lang) }}</span>
+      </aside>
+    </header>
+
+    <section class="taxonomy-index-section" aria-labelledby="topic-profiles-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">{{ "Teemaprofiilit" | pageText(lang) }}</p>
+        <h2 id="topic-profiles-title">{{ "Toimitetut aihepolut" | pageText(lang) }}</h2>
+        <p>{{ "Teemaprofiilit kokoavat saman aiheen sisällöt yli kategorioiden, avainsanojen ja sisältötyyppien. Ne sopivat silloin, kun etsit kokonaiskuvaa etkä yksittäistä arkistosanaa." | pageText(lang) }}</p>
+      </div>
+
+      <div class="taxonomy-index-profile-grid">
+        {% for topic in seoTopics %}
+          {% set topicItems = collections | topicItems(topic, 9999) %}
+          {% set researchPublications = researchfiContent | curatedResearchForTopic(topic.researchThemes, 9999) %}
+          {% set topicContentCount = topicItems.totalCount + researchPublications.length %}
+          <a class="taxonomy-index-profile-card" href="{{ "/teemat/" | localeUrl(lang) }}{{ topic.slug }}/">
+            <span class="taxonomy-index-card-count">{{ topicContentCount | pageText(lang) }}</span>
+            <span class="taxonomy-index-card-title">{{ topic.title | pageText(lang) }}</span>
+            <span class="taxonomy-index-card-text">{{ topic.lead | pageText(lang) }}</span>
+          </a>
+        {% endfor %}
+      </div>
+
+      <a class="taxonomy-index-more-link" href="{{ "/teemat/" | localeUrl(lang) }}">{{ "Kaikki teemaprofiilit" | pageText(lang) }}</a>
+    </section>
+
+    <section class="taxonomy-index-section" aria-labelledby="profile-categories-title">
+      <div class="taxonomy-index-section-head">
+        <p class="taxonomy-kicker">{{ "Profiilikategoriat" | pageText(lang) }}</p>
+        <h2 id="profile-categories-title">{{ "Keskeiset aihekokonaisuudet" | pageText(lang) }}</h2>
+        <p>{{ "Nämä kategoriat ovat sivustolla tavallista arkistoa vahvempia kokonaisuuksia. Niissä on oma johdanto, sisältötyyppien kooste ja reitit saman aiheen tarkempaan selaamiseen." | pageText(lang) }}</p>
+      </div>
+
+      <div class="taxonomy-index-profile-grid">
+        {% for cat in collections.categoryList %}
+          {% if taxonomyProfiles.categories[cat.slug] %}
+            {% set profile = taxonomyProfiles.categories[cat.slug] %}
+            <a class="taxonomy-index-profile-card" href="{{ "/en/categories/" if lang == "en" else "/kategoriat/" }}{{ cat.slug }}/">
+              <span class="taxonomy-index-card-count">{{ cat.count | pageText(lang) }}</span>
+              <span class="taxonomy-index-card-title">{{ cat.name | termLabel(lang or "fi", "category") }}</span>
+              <span class="taxonomy-index-card-text">{{ profile.lead | pageText(lang) }}</span>
+            </a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="taxonomy-index-layout">
+      <main class="taxonomy-index-main">
+        <section class="taxonomy-index-section" aria-labelledby="all-categories-title">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">{{ "Kaikki kategoriat" | pageText(lang) }}</p>
+            <h2 id="all-categories-title">{{ "Tarkemmat aihealueet" | pageText(lang) }}</h2>
+            <p>{{ "Pienemmät kategoriat toimivat arkistoreitteinä. Ne eivät tarvitse omaa profiilitekstiä, mutta avaavat sisällöt samalla uudella kategoriasivupohjalla." | pageText(lang) }}</p>
+          </div>
+
+          <div class="taxonomy-index-list">
+            {% for cat in collections.categoryList %}
+              {% if not taxonomyProfiles.categories[cat.slug] %}
+                <a class="taxonomy-index-list-item" href="{{ "/en/categories/" if lang == "en" else "/kategoriat/" }}{{ cat.slug }}/">
+                  <span>{{ cat.name | termLabel(lang or "fi", "category") }}</span>
+                  <small>{{ cat.count | pageText(lang) }}</small>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </section>
+      </main>
+
+      <aside class="taxonomy-index-aside" aria-labelledby="keyword-cloud-title">
+        <section class="taxonomy-index-section taxonomy-index-section--quiet">
+          <div class="taxonomy-index-section-head taxonomy-index-section-head--compact">
+            <p class="taxonomy-kicker">{{ "Avainsanat" | pageText(lang) }}</p>
+            <h2 id="keyword-cloud-title">{{ "Tarkempi hakureitti" | pageText(lang) }}</h2>
+            <p>{{ "Avainsanat sopivat silloin, kun etsit tiettyä paikkaa, käsitettä, hanketta tai toistuvaa yksityiskohtaa kategorian sisältä." | pageText(lang) }}</p>
+          </div>
+
+          <div class="taxonomy-term-cloud taxonomy-index-keyword-cloud">
+            {% for key in topKeywords %}
+              <a href="{{ "/en/keywords/" if lang == "en" else "/avainsanat/" }}{{ key.slug }}/">
+                <span>{{ key.name | pageText(lang) }}</span>
+                <small>{{ key.count | pageText(lang) }}</small>
+              </a>
+            {% endfor %}
+          </div>
+
+          <a class="taxonomy-index-more-link" href="{{ "/avainsanat/" | localeUrl(lang) }}">{{ "Kaikki avainsanat" | pageText(lang) }}</a>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% set taxonomyBaseUrl = site.url or "https://www.jarilaru.fi" %}
+{% set structuredCategories = collections.categoryList | take(80) %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Kategoriat",
+  "description": "Jarilaru.fi:n kategoriat kokoavat sisällöt aihealueittain.",
+  "url": {{ (page.url | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+  "inLanguage": "{{ 'en-GB' if lang == 'en' else 'fi-FI' }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": {{ taxonomyBaseUrl | jsonSafe | safe }}
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "Kategoriat",
+    "numberOfItems": {{ structuredCategories.length }},
+    "itemListElement": [
+      {% for cat in structuredCategories %}
+      {% set categoryUrl = "/kategoriat/" ~ cat.slug ~ "/" %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "item": {
+          "@type": "DefinedTerm",
+          "name": {{ cat.name | jsonSafe | safe }},
+          "url": {{ (categoryUrl | absoluteUrl(taxonomyBaseUrl)) | jsonSafe | safe }},
+          "description": {{ ((taxonomyProfiles.categories[cat.slug] or taxonomyProfiles.defaultCategory).lead) | jsonSafe | safe }}
+        }
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ]
+  }
+}
+</script>

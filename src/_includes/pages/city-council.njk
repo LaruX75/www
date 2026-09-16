@@ -1,0 +1,100 @@
+{% if lang == "en" %}<p class="site-shell small text-muted py-3 mb-0">Original records, quotations and linked texts are mainly in Finnish.</p>{% endif %}
+
+{% set meetings = councilMeetings %}
+{% set timeline = councilMeetingTimeline %}
+
+<section class="council-meetings">
+  <header class="council-meetings-hero">
+    <div>
+      <p class="term-eyebrow mb-2">{{ "Poliittinen työ" | pageText(lang) }}</p>
+      <h1 class="term-hero-title mb-3">{{ "Kaupunginvaltuusto" | pageText(lang) }}</h1>
+      <p class="term-hero-lead mb-0">{{ "Kaupunginvaltuuston kokouksista näkee, missä asioissa olen käyttänyt puheenvuoroja, jättänyt valtuustoaloitteita tai kysynyt vastauksia valtuuston kyselytunnilla. Samasta paikasta löytyvät myös pöytäkirjat ja kokousvideot, kun ne ovat tiedossa." | pageText(lang) }}</p>
+    </div>
+    <aside class="council-meetings-hero-card">
+      <p class="term-hero-card__kicker">{{ "Kokoukset ja aineisto" | pageText(lang) }}</p>
+      <p>{{ "Aikajana näyttää valtuustotyön suhteessa kokouksiin: laajat kortit silloin, kun kokoukseen on kytketty oma sisältö, ja pienet merkinnät niistä kokouksista, jotka kuuluvat valtuuston vuosikelloon." | pageText(lang) }}</p>
+      <div class="council-meetings-hero-stats" aria-label="{{ "Kokousmäärät" | pageText(lang) }}">
+        <div>
+          <strong>{{ meetings.length | pageText(lang) }}</strong>
+          <span>{{ "kokousta, joissa oma sisältö näkyy" | pageText(lang) }}</span>
+        </div>
+        <div>
+          <strong>{{ timeline.length | pageText(lang) }}</strong>
+          <span>{{ "kokousta aikajanalla" | pageText(lang) }}</span>
+        </div>
+      </div>
+    </aside>
+  </header>
+
+  <h2 class="visually-hidden">{{ "Kaupunginvaltuuston kokoukset" | pageText(lang) }}</h2>
+  <div class="council-meetings-list" aria-label="{{ "Kaupunginvaltuuston kokoukset" | pageText(lang) }}">
+    {% for meeting in timeline %}
+    {% set currentYear = meeting.year %}
+    {% set previousYear = timeline[loop.index0 - 1].year if not loop.first else "" %}
+    {% if loop.first or currentYear != previousYear %}
+    {% if not loop.first %}
+      </div>
+    </details>
+    {% endif %}
+    <details class="council-year-block" data-council-mobile-collapse {% if loop.first %}data-council-current="true"{% endif %} open>
+      <summary class="council-year-summary">
+        <span>{{ currentYear | pageText(lang) }}</span>
+        <small>{{ "Kaupunginvaltuuston kokoukset" | pageText(lang) }}</small>
+      </summary>
+      <div class="council-year-items">
+    {% endif %}
+    {% if meeting.isQuiet %}
+    <div class="council-meeting-marker" id="kokous-{{ meeting.date }}">
+      <span class="council-meeting-marker__date">{{ meeting.date | dateFormat | pageText(lang) }}</span>
+      <span class="council-meeting-marker__title">{% if meeting.meetingNumber %}{{ "Kokous" | pageText(lang) }} {{ meeting.meetingNumber | pageText(lang) }}{% else %}{{ meeting.meetingLabel | pageText(lang) }}{% endif %}</span>
+      <span class="council-meeting-marker__note">{% if meeting.timelineKind == "annual-cycle" %}{{ "Valtuuston vuosikello" | pageText(lang) }}{% else %}{{ "Ei omaa puheenvuoroa sivustolla" | pageText(lang) }}{% endif %}</span>
+      {% if meeting.video and meeting.video.url %}
+      <a href="{{ meeting.video.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ "Kokousvideo" | pageText(lang) }}</a>
+      {% endif %}
+    </div>
+    {% else %}
+    <article class="council-meeting-card" id="kokous-{{ meeting.date }}">
+      <div class="council-meeting-card__date">
+        <span>{{ meeting.date | dateFormat | pageText(lang) }}</span>
+      </div>
+      <div class="council-meeting-card__body">
+        <h3><a href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ meeting.meetingLabel | pageText(lang) }}</a></h3>
+        <p class="council-meeting-card__meta">{{ meeting.contextLabel | pageText(lang) }} · {{ meeting.date | dateFormat | pageText(lang) }}</p>
+        {% if meeting.summaryTitle %}
+        <p class="council-meeting-card__summary">{{ meeting.summaryTitle | pageText(lang) }}</p>
+        {% endif %}
+        <div class="council-meeting-counts" aria-label="{{ "Kokouksen sisällöt" | pageText(lang) }}">
+          {% if meeting.counts.speeches %}<span>{{ meeting.counts.speeches | pageText(lang) }} {{ "puheenvuoro" if meeting.counts.speeches == 1 else "puheenvuoroa" | pageText(lang) }}</span>{% endif %}
+          {% if meeting.counts.questions %}<span>{{ meeting.counts.questions | pageText(lang) }} {{ "kyselytunnin asia" if meeting.counts.questions == 1 else "kyselytunnin asiaa" | pageText(lang) }}</span>{% endif %}
+          {% if meeting.counts.initiatives %}<span>{{ meeting.counts.initiatives | pageText(lang) }} {{ "valtuustoaloite" if meeting.counts.initiatives == 1 else "valtuustoaloitetta" | pageText(lang) }}</span>{% endif %}
+          {% if meeting.counts.other %}<span>{{ meeting.counts.other | pageText(lang) }} {{ "muu sisältö" if meeting.counts.other == 1 else "muuta sisältöä" | pageText(lang) }}</span>{% endif %}
+        </div>
+        <ul class="council-meeting-preview">
+          {% for item in meeting.items %}
+          {% if loop.index <= 3 %}
+          <li>
+            <a href="{{ item.url | localeUrl(lang) }}">{{ item.title | pageText(lang) }}</a>
+            <span>{{ item.typeLabel | pageText(lang) }}{% if item.detailLabel %} · {{ item.detailLabel | pageText(lang) }}{% endif %}</span>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="council-meeting-card__actions">
+        <a class="btn btn-read-more rounded-pill px-4" href="/politiikka/kaupunginvaltuusto/kokoukset/{{ meeting.date }}/">{{ "Avaa kokous" | pageText(lang) }}</a>
+        {% if meeting.protocolUrl %}
+        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.protocolUrl | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ "Pöytäkirja" | pageText(lang) }}</a>
+        {% endif %}
+        {% if meeting.video and meeting.video.url %}
+        <a class="btn btn-outline-primary rounded-pill px-4" href="{{ meeting.video.url | localeUrl(lang) }}" target="_blank" rel="noopener noreferrer">{{ "Kokousvideo" | pageText(lang) }}</a>
+        {% endif %}
+      </div>
+    </article>
+    {% endif %}
+    {% if loop.last %}
+      </div>
+    </details>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

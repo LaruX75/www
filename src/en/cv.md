@@ -1,23 +1,39 @@
 ---
-layout: page.njk
-templateEngineOverride: md
-title: Curriculum Vitae
-description: "Jari Laru's CV in English: academic role, degree, focus areas, and links to core research profiles."
+title: Curriculum vitae
 permalink: /en/cv/
 translationKey: cv
+layout: base.njk
 lang: en
+description: >-
+  Education, employment, research projects, teaching and academic achievements
+  of Jari Laru.
+templateEngineOverride: njk
 schemaType: ProfilePage
+schemaAbout:
+  - '@type': Thing
+    name: Kasvatustieteen tohtori
+    description: >-
+      Väitöskirja yhteisöllisestä oppimisesta ja mobiiliteknologiasta, Oulun
+      yliopisto.
+  - '@type': Thing
+    name: Yliopistonlehtori
+    description: >-
+      Teknologiatuettu oppiminen ja opetus, Kasvatustieteiden ja psykologian
+      tiedekunta.
+  - '@type': Thing
+    name: Tutkimusrahoitus ja hankkeet
+    description: Kansalliset ja kansainväliset tutkimushankkeet oppimisteknologiasta.
+  - '@type': Thing
+    name: Julkaisutoiminta
+    description: 'Vertaisarvioidut artikkelit, konferenssijulkaisut ja kirjoitukset.'
+schemaMentions:
+  - '@type': CollegeOrUniversity
+    name: Oulun yliopisto
+    url: 'https://www.oulu.fi/'
+  - '@type': Organization
+    name: 'Kasvatustieteiden ja psykologian tiedekunta, Oulun yliopisto'
+    url: >-
+      https://www.oulu.fi/fi/yliopisto/tiedekunnat/kasvatustieteiden-ja-psykologian-tiedekunta
+metaTitle: Curriculum vitae
 ---
-## Jari Jukka Laru
-
-- University Lecturer, University of Oulu
-- Doctor of Education (PhD)
-- Focus areas: educational technology, learning sciences, digital pedagogy, AI literacy
-
-### Profiles
-
-- ORCID: <https://orcid.org/0000-0003-0347-0182>
-- ResearchGate: <https://www.researchgate.net/profile/Jari-Laru>
-- Google Scholar: <https://scholar.google.com/citations?user=HOLu1ZIAAAAJ&hl=en>
-
-For the full Finnish CV, see: <https://www.jarilaru.fi/cv/>
+{% include "pages/cv.njk" %}

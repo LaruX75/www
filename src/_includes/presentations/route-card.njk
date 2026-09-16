@@ -1,8 +1,8 @@
-<a href="#kaikki-esitykset" class="presentation-route-card card border-0 shadow-sm">
+<a href="{{ "#kaikki-esitykset" | localeUrl(lang) }}" class="presentation-route-card card border-0 shadow-sm">
   <div class="card-body p-4 p-xl-5">
-    <span class="presentation-route-number">{{ routeCard.number }}</span>
-    <p class="presentation-browse-label mb-2">{{ routeCard.label }}</p>
-    <strong class="presentation-route-title d-block mb-2">{{ routeCard.title }}</strong>
-    <p class="text-muted mb-3">{{ routeCard.description }}</p>
+    <span class="presentation-route-number">{{ routeCard.number | pageText(lang) }}</span>
+    <p class="presentation-browse-label mb-2">{{ routeCard.label | pageText(lang) }}</p>
+    <strong class="presentation-route-title d-block mb-2">{{ routeCard.title | pageText(lang) }}</strong>
+    <p class="text-muted mb-3">{{ routeCard.description | pageText(lang) }}</p>
   </div>
 </a>
