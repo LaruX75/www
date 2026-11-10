@@ -19,7 +19,12 @@ course:
   semesterLabel: "Syyslukukausi 2026"
   periodId: "2026-2027-a"
   peppiUrl: "https://opas.peppi.oulu.fi/fi/opintojakso/405040Y/28004?period=2026-2027"
-  teachingUnitLabel: Opettajankoulutus
+  teachingUnitLabel: "KAKO / OPTI / PSYKO / MUKO"
+  targetGroups:
+    - KAKO
+    - OPTI
+    - PSYKO
+    - MUKO
   teachingStaff:
     - name: Jari Laru
       responsibilities:

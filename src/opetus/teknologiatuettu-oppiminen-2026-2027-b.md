@@ -22,7 +22,7 @@ course:
   targetGroups:
     - LUKO
     - ELO
-  teachingUnitLabel: Opettajankoulutus
+  teachingUnitLabel: "LUKO / ELO"
   teachingStaff:
     - name: Jari Laru
       responsibilities:
