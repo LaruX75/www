@@ -26,10 +26,17 @@ course:
   participantCount: 110
   teachingStaff:
     - name: Riina Pursiainen
+      responsibilities:
+        - Harjoitukset
+      platform: Moodle
     - name: Iiris Jokela
+      responsibilities:
+        - Harjoitukset
+      platform: Moodle
     - name: Jari Laru
       responsibilities:
         - Luennot
+      platform: Howspace
   lectures:
     - number: 1
       date: 2026-01-07
@@ -129,11 +136,14 @@ course:
           <div class="card-body">
             <p class="fw-semibold mb-2">{{ member.name }}</p>
             {% if member.responsibilities and member.responsibilities.length %}
-            <ul class="list-unstyled mb-0 small">
+            <ul class="list-unstyled mb-{% if member.platform %}3{% else %}0{% endif %} small">
               {% for responsibility in member.responsibilities %}
               <li>{{ responsibility }}</li>
               {% endfor %}
             </ul>
+            {% endif %}
+            {% if member.platform %}
+            <p class="text-muted small mb-0">Oppimisympäristö: {{ member.platform }}</p>
             {% endif %}
           </div>
         </div>
