@@ -26,16 +26,17 @@ course:
   teachingStaff:
     - name: Jari Laru
       responsibilities:
-        - Luennot (yhteiset LUKO/ELO)
-        - Musiikkikasvatuksen harjoitukset (ELO)
+        - Luennot
+        - Harjoitukset ELO
       platform: Howspace
     - name: Riina Pursiainen
       responsibilities:
-        - Kasvatustieteiden ja oppimistieteiden harjoitukset (LUKO)
+        - Harjoitukset LUKO
       platform: Moodle
     - name: Jouni Karsikas
       responsibilities:
-        - Psykologian harjoitukset (LUKO)
+        - Harjoitukset LUKO
+      platform: Moodle
   lectures:
     - number: 1
       date: 2026-10-29
