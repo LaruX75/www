@@ -90,6 +90,19 @@ course:
         url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=d94ccc60-3ece-4769-86b0-b4fa00bd63b2"
         label: "Katso tallenne (Panopto)"
         note: "Kurssin opiskelijoille tarkoitettu tallenne. Vaatii Oulun yliopiston kirjautumisen."
+    - number: 5
+      date: 2026-11-12
+      time: "8:15-10:00"
+      room: Luentosali L2
+      title: Tekoälylukutaito
+      presentationPageUrl: null
+      material:
+        url: "https://canva.link/666rwb1kr9owlhh"
+        label: "Luentodiat"
+      recording:
+        url: "https://oulu.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8cecaa84-27aa-4f5f-81f8-b500008b4a98"
+        label: "Katso tallenne (Panopto)"
+        note: "Kurssin opiskelijoille tarkoitettu tallenne. Vaatii Oulun yliopiston kirjautumisen."
 ---
 
 <section class="py-5 bg-body-tertiary border-bottom course-page-hero">
